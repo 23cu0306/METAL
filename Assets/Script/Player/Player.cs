@@ -4,7 +4,7 @@ public class Player : MonoBehaviour
 {
 	[Header("移動設定")]
 	public float moveSpeed = 15f;             // 地上での移動速度
-	public float jumpForce = 10f;             // ジャンプの強さ
+	public float jumpForce = 20f;             // ジャンプの強さ
 	public float airControlMultiplier = 0.5f; // 空中での移動制御の効き具合
 	public float fallMultiplier = 2.5f;       // 落下速度の増加倍率（ジャンプ後の落下を速くする）
 
@@ -79,5 +79,11 @@ public class Player : MonoBehaviour
 		{
 			rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
 		}
+	}
+
+	//他スクリプトから接地判定を取得するためのメソッド
+	public bool IsGrounded()
+	{
+		return isGrounded;
 	}
 }
