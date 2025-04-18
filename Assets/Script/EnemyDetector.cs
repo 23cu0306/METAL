@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyDetector : MonoBehaviour
 {
-    public Player player; // プレイヤー本体の参照（Inspector で設定）
+    public Attack player; // プレイヤーアタックの参照（Inspector で設定）
 
     void OnTriggerEnter2D(Collider2D other)
     {

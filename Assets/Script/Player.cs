@@ -13,14 +13,9 @@ public class Player : MonoBehaviour
 	public float checkRadius = 0.2f;          // 判定円の半径
 	public LayerMask groundLayer;             // 地面として認識するレイヤー
 
-	[Header("弾の設定")]
-	public GameObject bulletPrefab;           // 弾のプレハブ
-	public Transform firePoint;               // 弾が発射される位置
-
 	private Rigidbody2D rb;                   // プレイヤーのRigidbody2D
 	private BoxCollider2D col;                // プレイヤーのコライダー
-	public bool isGrounded;                  // 接地しているかどうか
-	public bool isEnemyNearby = false;       // 近接攻撃判定用
+	private bool isGrounded;                  // 接地しているかどうか
 
 	//しゃがみ込み
 	//private Vector2 standingSize = new Vector2(1f, 2f);
@@ -41,7 +36,6 @@ public class Player : MonoBehaviour
 		HandleMovement();  // 移動処理（横方向）
 		HandleJump();      // ジャンプ入力と処理
 		HandleFall();      // 落下速度の調整
-		HandleShoot();     // 弾発射処理
 	}
 
 	// 接地判定処理（小さな円で地面との接触を検知）
@@ -85,39 +79,5 @@ public class Player : MonoBehaviour
 		{
 			rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
 		}
-	}
-
-	// Zキーで攻撃するための処理
-	void HandleShoot()
-	{
-		if (Input.GetKeyDown(KeyCode.Z))
-		{
-			if (isEnemyNearby)
-			{
-				PerformMeleeAttack();
-			}
-			else
-			{
-				Shoot();
-			}
-		}
-	}
-
-	// 弾を生成して発射
-	void Shoot()
-	{
-		Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
-	}
-
-	void PerformMeleeAttack()
-	{
-		// 実際の処理はここに追加（アニメ、ヒット判定、ダメージなど）
-		Debug.Log("ナイフ攻撃！");
-	}
-
-	// EnemyDetector から呼び出される
-	public void SetEnemyNearby(bool isNearby)
-	{
-		isEnemyNearby = isNearby;
 	}
 }
