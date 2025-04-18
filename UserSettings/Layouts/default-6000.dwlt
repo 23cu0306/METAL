@@ -19,7 +19,22 @@ MonoBehaviour:
     width: 1904
     height: 968
   m_ShowMode: 4
+<<<<<<< HEAD
   m_Title: Project
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+  m_Title: Hierarchy
+=======
+  m_Title: Scene
+>>>>>>> 110b1fa80a65a050dc7ce777a4d9e8ea4670f6e2
+=======
+  m_Title: Scene
+=======
+  m_Title: Hierarchy
+>>>>>>> origin/main
+>>>>>>> origin/main
+>>>>>>> origin/main
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -48,7 +63,22 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
+<<<<<<< HEAD
   controlID: 39
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+  controlID: 39
+=======
+  controlID: 40
+>>>>>>> 110b1fa80a65a050dc7ce777a4d9e8ea4670f6e2
+=======
+  controlID: 40
+=======
+  controlID: 103
+>>>>>>> origin/main
+>>>>>>> origin/main
+>>>>>>> origin/main
   draggingID: 0
 --- !u!114 &3
 MonoBehaviour:
@@ -67,8 +97,16 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1454
     y: 0
+<<<<<<< HEAD
     width: 450
+=======
+    width: 454
+<<<<<<< HEAD
+    height: 933
+=======
+>>>>>>> origin/main
     height: 912
+>>>>>>> 110b1fa80a65a050dc7ce777a4d9e8ea4670f6e2
   m_MinSize: {x: 276, y: 76}
   m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 13}
@@ -93,8 +131,16 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 360
+=======
+    width: 363
+<<<<<<< HEAD
+    height: 553
+=======
+>>>>>>> origin/main
     height: 540
+>>>>>>> 110b1fa80a65a050dc7ce777a4d9e8ea4670f6e2
   m_MinSize: {x: 201, y: 226}
   m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 14}
@@ -273,6 +319,20 @@ MonoBehaviour:
     height: 540
   m_MinSize: {x: 202, y: 226}
   m_MaxSize: {x: 4002, y: 4026}
+<<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
+    height: 540
+  m_MinSize: {x: 202, y: 226}
+  m_MaxSize: {x: 4002, y: 4026}
+=======
+    height: 553
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
+>>>>>>> origin/main
+>>>>>>> origin/main
+>>>>>>> origin/main
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -326,7 +386,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
+<<<<<<< HEAD
     - Assets/Scenes
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+    - Assets/Script/Player
+=======
+    - Assets/Script
+>>>>>>> 110b1fa80a65a050dc7ce777a4d9e8ea4670f6e2
+=======
+    - Assets/Script
+=======
+    - Assets/Script/Enemy
+>>>>>>> origin/main
+>>>>>>> origin/main
+>>>>>>> origin/main
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -336,16 +411,56 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
+<<<<<<< HEAD
   - Assets/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\23CU0338\METAL
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+  - Assets/Script/Player
+=======
+  - Assets/Script
+>>>>>>> 110b1fa80a65a050dc7ce777a4d9e8ea4670f6e2
+=======
+  - Assets/Script
+=======
+  - Assets/Script/Enemy
+>>>>>>> origin/main
+>>>>>>> origin/main
+  m_LastFoldersGridSize: -1
+  m_LastProjectPath: D:\23cu0311\ms
+>>>>>>> origin/main
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
     m_SelectedIDs: 80fd0000
     m_LastClickedID: 64896
     m_ExpandedIDs: 0000000088ae0000
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+    m_SelectedIDs: 6ab00000
+    m_LastClickedID: 45162
+    m_ExpandedIDs: 0000000054ae00002ab0000000ca9a3bffffff7f
+=======
+    m_SelectedIDs: 5cb00000
+    m_LastClickedID: 45148
+    m_ExpandedIDs: 0000000056b0000058b0000000ca9a3b
+>>>>>>> 110b1fa80a65a050dc7ce777a4d9e8ea4670f6e2
+=======
+    m_SelectedIDs: 5cb00000
+    m_LastClickedID: 45148
+    m_ExpandedIDs: 0000000056b0000058b0000000ca9a3b
+=======
+    m_SelectedIDs: b40d0100
+    m_LastClickedID: 69044
+    m_ExpandedIDs: 0000000052e800009e02010000ca9a3bffffff7f
+>>>>>>> origin/main
+>>>>>>> origin/main
+>>>>>>> origin/main
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -374,7 +489,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< HEAD
     m_ExpandedIDs: 0000000088ae0000
+=======
+    m_ExpandedIDs: 0000000054ae0000
+>>>>>>> origin/main
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -420,7 +539,7 @@ MonoBehaviour:
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_TrimLeadingAndTrailingWhitespace: 0
-      m_ClientGUIView: {fileID: 5}
+      m_ClientGUIView: {fileID: 7}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0
@@ -522,7 +641,22 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
+<<<<<<< HEAD
       m_ExpandedIDs: 922cffff
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+      m_ExpandedIDs: 0cfbffff
+=======
+      m_ExpandedIDs: 06fbfffff0ad0000
+>>>>>>> 110b1fa80a65a050dc7ce777a4d9e8ea4670f6e2
+=======
+      m_ExpandedIDs: 06fbfffff0ad0000
+=======
+      m_ExpandedIDs: aa2cffffce0a0100
+>>>>>>> origin/main
+>>>>>>> origin/main
+>>>>>>> origin/main
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1126,9 +1260,21 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
+<<<<<<< HEAD
     m_Target: {x: 0, y: 0, z: 0}
     speed: 2
     m_Value: {x: 0, y: 0, z: 0}
+=======
+<<<<<<< HEAD
+    m_Target: {x: -4.881313, y: -0.07356195, z: -0.05396584}
+    speed: 2
+    m_Value: {x: -4.881313, y: -0.07356195, z: -0.05396584}
+=======
+    m_Target: {x: -3.7314065, y: -0.9858609, z: -0.027687639}
+    speed: 2
+    m_Value: {x: -3.7314065, y: -0.9858609, z: -0.027687639}
+>>>>>>> 110b1fa80a65a050dc7ce777a4d9e8ea4670f6e2
+>>>>>>> origin/main
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1178,9 +1324,21 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
+<<<<<<< HEAD
     m_Target: 10
     speed: 2
     m_Value: 10
+=======
+<<<<<<< HEAD
+    m_Target: 7.807511
+    speed: 2
+    m_Value: 7.807511
+=======
+    m_Target: 5.179688
+    speed: 2
+    m_Value: 5.179688
+>>>>>>> 110b1fa80a65a050dc7ce777a4d9e8ea4670f6e2
+>>>>>>> origin/main
   m_Ortho:
     m_Target: 1
     speed: 2
