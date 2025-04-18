@@ -423,6 +423,10 @@ PrefabInstance:
       propertyPath: groundLayer.m_Bits
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 8404350236004277400, guid: 956fcc5f062e65b49ae3c03248937009, type: 3}
+      propertyPath: jumpForce
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8304306545997446788, guid: 956fcc5f062e65b49ae3c03248937009, type: 3}
     m_RemovedGameObjects: []
