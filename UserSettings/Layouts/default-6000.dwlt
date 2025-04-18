@@ -19,7 +19,11 @@ MonoBehaviour:
     width: 1920
     height: 968
   m_ShowMode: 4
+<<<<<<< HEAD
   m_Title: Scene
+=======
+  m_Title: Hierarchy
+>>>>>>> origin/main
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -48,7 +52,11 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
+<<<<<<< HEAD
   controlID: 40
+=======
+  controlID: 103
+>>>>>>> origin/main
   draggingID: 0
 --- !u!114 &3
 MonoBehaviour:
@@ -270,9 +278,15 @@ MonoBehaviour:
     x: 363
     y: 0
     width: 1103
+<<<<<<< HEAD
     height: 540
   m_MinSize: {x: 202, y: 226}
   m_MaxSize: {x: 4002, y: 4026}
+=======
+    height: 553
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
+>>>>>>> origin/main
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -326,7 +340,11 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
+<<<<<<< HEAD
     - Assets/Script
+=======
+    - Assets/Script/Enemy
+>>>>>>> origin/main
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -336,16 +354,26 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
+<<<<<<< HEAD
   - Assets/Script
+=======
+  - Assets/Script/Enemy
+>>>>>>> origin/main
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: D:\23CU0338\METAL
+  m_LastProjectPath: D:\23cu0306\METASULA
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
     m_SelectedIDs: 5cb00000
     m_LastClickedID: 45148
     m_ExpandedIDs: 0000000056b0000058b0000000ca9a3b
+=======
+    m_SelectedIDs: b40d0100
+    m_LastClickedID: 69044
+    m_ExpandedIDs: 0000000052e800009e02010000ca9a3bffffff7f
+>>>>>>> origin/main
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -522,7 +550,11 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
+<<<<<<< HEAD
       m_ExpandedIDs: 06fbfffff0ad0000
+=======
+      m_ExpandedIDs: aa2cffffce0a0100
+>>>>>>> origin/main
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
