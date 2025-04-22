@@ -66,7 +66,10 @@
     <Compile Include="Assets\Script\Player\Attack.cs" />
     <Compile Include="Assets\Script\Player\MBullet.cs" />
     <Compile Include="Assets\Script\Enemy\DecayBullet.cs" />
+<<<<<<< HEAD
     <Compile Include="Assets\GloomVisBoss.cs" />
+=======
+>>>>>>> origin/main
     <Compile Include="Assets\Script\GameOverManager.cs" />
     <Compile Include="Assets\Laser.cs" />
     <Compile Include="Assets\Script\Player\EnemyDetector.cs" />
