@@ -4,7 +4,7 @@ public class Enemy_Bullet : MonoBehaviour
 {
 	public float lifetime = 5f;
 	[SerializeField] public float moveSpeed = 50f; //à⁄ìÆíl
-	[SerializeField] Vector2 moveVec = new(-1, 0);
+	[SerializeField] Vector3 moveVec = new(-1, 0, 0);
 	 // Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
     {
@@ -22,8 +22,16 @@ public class Enemy_Bullet : MonoBehaviour
 		moveSpeed = _speed;
 	}
 
-	public void SetMoveVec(Vector2 _vec)
+	public void SetMoveVec(Vector3 _vec)
 	{
 		moveVec = _vec.normalized;
+	}
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.CompareTag("Player"))
+		{
+			Destroy(other.gameObject); // ìGÇè¡Ç∑
+			Destroy(gameObject);       // íeÇ‡è¡Ç∑
+		}
 	}
 }

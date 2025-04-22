@@ -42,6 +42,9 @@ public class Attack : MonoBehaviour
 		HandleCrouchFirePoint();     // しゃがみ時の発射位置調整
 		UpdateShootDirection();     // 入力による方向切替
 		HandleGroundState();        // 空中下撃ち後の状態回復
+		CheckDownInputWhileJumping(); //空中で↓押しっぱなしを再検知
+		CheckUpKeyRelease();		// ↑キー押下/離し処理
+		CheckDownKeyRelease();      // ↓キー押下/離し処理
 		HandleShoot();              // 発射処理
 
 		// マシンガンモードのタイマー更新
@@ -78,7 +81,6 @@ public class Attack : MonoBehaviour
 		}
 	}
 
-	// 矢印キーによる攻撃方向の変更
 	void UpdateShootDirection()
 	{
 		if (Input.GetKeyDown(KeyCode.LeftArrow))
@@ -95,13 +97,10 @@ public class Attack : MonoBehaviour
 		}
 		else if (Input.GetKeyDown(KeyCode.UpArrow))
 		{
-			currentDirection = Vector2.up;
-			lastValidDirection = currentDirection;
-			SetFirePointPosition(upOffset);
+			// 🟡 ここでは切り替えない（CheckUpKeyRelease に任せる）
 		}
 		else if (Input.GetKeyDown(KeyCode.DownArrow))
 		{
-			// 空中のみ下撃ち可能
 			if (playerScript != null && !playerScript.IsGrounded())
 			{
 				currentDirection = Vector2.down;
@@ -220,5 +219,64 @@ public class Attack : MonoBehaviour
 		machineGunDuration = duration;
 		machineGunTimer = 0f;
 		Debug.Log("マシンガンモード発動！");
+	}
+
+	//空中で↓を押しっぱなしにしていたら、再び下撃ち状態へ
+	void CheckDownInputWhileJumping()
+	{
+		if (Input.GetKey(KeyCode.DownArrow))
+		{
+			if (playerScript != null && !playerScript.IsGrounded() && currentDirection != Vector2.down)
+			{
+				currentDirection = Vector2.down;
+				SetFirePointPosition(downOffset);
+				Debug.Log("空中で↓を押しているため、再び下方向に切り替えました");
+			}
+		}
+	}
+
+	// ↑キーを押している間だけ上撃ち、離したら元の方向に戻す
+	void CheckUpKeyRelease()
+	{
+		if (Input.GetKey(KeyCode.UpArrow))
+		{
+			// 上方向でないときだけ切り替え（切り替え前に保存）
+			if (currentDirection != Vector2.up)
+			{
+				if (currentDirection != Vector2.down)
+				{
+					lastValidDirection = currentDirection;
+					lastValidFirePointOffset = firePoint.localPosition;
+				}
+
+				currentDirection = Vector2.up;
+				SetFirePointPosition(upOffset);
+				Debug.Log("↑キーが押されているので上撃ちに切り替えました");
+			}
+		}
+		else
+		{
+			// ↑キー離された → 上撃ち中なら戻す
+			if (currentDirection == Vector2.up)
+			{
+				currentDirection = lastValidDirection;
+				SetFirePointPosition(lastValidFirePointOffset);
+				Debug.Log("↑キーを離したので発射方向を元に戻しました");
+			}
+		}
+	}
+
+	// ↓キーのリリース処理（元の方向に戻す）
+	void CheckDownKeyRelease()
+	{
+		if (!Input.GetKey(KeyCode.DownArrow))
+		{
+			if (currentDirection == Vector2.down)
+			{
+				currentDirection = lastValidDirection;
+				SetFirePointPosition(lastValidFirePointOffset);
+				Debug.Log("↓キーを離したので発射方向を元に戻しました");
+			}
+		}
 	}
 }
