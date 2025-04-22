@@ -202,7 +202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotData:
     frame: 400
-    type: 1
+    type: 2
     bullet: {fileID: -7142988566152139376, guid: b8f8beabddec0cc499b7c0de0f2db788, type: 3}
 --- !u!1 &425163730
 GameObject:
