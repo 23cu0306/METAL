@@ -65,11 +65,14 @@
     <Compile Include="Assets\Script\Enemy\Enemy_Bullet.cs" />
     <Compile Include="Assets\Script\Player\Attack.cs" />
     <Compile Include="Assets\Script\Player\MBullet.cs" />
-    <Compile Include="Assets\GloomVisBoss.cs" />
+    <Compile Include="Assets\Script\Enemy\DecayBullet.cs" />
+    <Compile Include="Assets\Script\GameOverManager.cs" />
+    <Compile Include="Assets\Laser.cs" />
     <Compile Include="Assets\Script\Player\EnemyDetector.cs" />
     <Compile Include="Assets\Script\Player\Bullet.cs" />
     <Compile Include="Assets\Script\Player\MachineGunItem.cs" />
     <Compile Include="Assets\Script\Player\Player.cs" />
+    <Compile Include="Assets\Script\Enemy\GloomVisBoss.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
