@@ -2,167 +2,223 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    [Header("弾の設定")]
-    public GameObject bulletPrefab;     // 弾プレハブ
-    public Transform firePoint;         // 弾の発射位置（子オブジェクト）
-    public float bulletSpeed = 10f;     // 弾の速さ
+	[Header("弾の設定")]
+	public GameObject bulletPrefab;          // 弾のプレハブ
+	public Transform firePoint;              // 発射位置（空の子オブジェクト）
+	public float bulletSpeed = 10f;          // 弾の速度
 
-    private bool isEnemyNearby = false;       // 近接攻撃モード（未使用でもOK）
-    private Vector2 currentDirection = Vector2.right; // 現在の発射方向
-    private Vector2 lastValidDirection = Vector2.right; // 最後に有効だった方向（下以外）
-    private Vector2 lastValidFirePointOffset;           // 最後に有効だった発射位置
-    private bool wasGrounded = true;
+	[Header("マシンガン設定")]
+	public float fireRate = 0.1f;            // 弾の連射間隔（マシンガン時）
+	private float fireTimer = 0f;            // 連射用タイマー
+	private bool isMachineGunMode = false;   // マシンガンモードかどうか
+	private float machineGunDuration = 5f;   // モード継続時間（秒）
+	private float machineGunTimer = 0f;      // 経過時間
 
-    [Header("プレイヤー接続")]
-    public Player playerScript;          // Playerスクリプト参照
+	private bool isEnemyNearby = false;      // 近接攻撃フラグ（未使用でもOK）
+	private Vector2 currentDirection = Vector2.right;       // 現在の攻撃方向
+	private Vector2 lastValidDirection = Vector2.right;     // 最後に有効だった方向（下以外）
+	private Vector2 lastValidFirePointOffset;               // 最後に有効だった発射位置
+	private bool wasGrounded = true;                        // 前フレームの地面接地状態
 
-    // 発射位置の定義（方向に応じてfirePointの位置を調整）
-    private Vector2 rightOffset = new Vector2(0.5f, 0f);
-    private Vector2 leftOffset = new Vector2(-0.5f, 0f);
-    private Vector2 upOffset = new Vector2(0f, 1f);
-    private Vector2 downOffset = new Vector2(0f, -1f);
-    private Vector2 crouchOffset = new Vector2(0.5f, -0.5f); // しゃがみ時の位置
+	[Header("プレイヤー接続")]
+	public Player playerScript;             // Playerスクリプトの参照
 
-    void Start()
-    {
-        firePoint.localPosition = rightOffset;       // 初期位置は右向き
-        lastValidFirePointOffset = rightOffset;
-    }
+	// 発射位置のオフセット（方向別）
+	private Vector2 rightOffset = new Vector2(0.5f, 0f);
+	private Vector2 leftOffset = new Vector2(-0.5f, 0f);
+	private Vector2 upOffset = new Vector2(0f, 1f);
+	private Vector2 downOffset = new Vector2(0f, -1f);
+	private Vector2 crouchOffset = new Vector2(0.5f, -0.5f); // しゃがみ撃ち
 
-    void Update()
-    {
-        HandleCrouchFirePoint();     // しゃがみ状態に応じた発射位置調整
-        UpdateShootDirection();     // 方向入力でfirePointを変更
-        HandleGroundState();        // 地上・空中の切り替え処理
-        HandleShoot();              // Zキーで弾を撃つ
-    }
+	void Start()
+	{
+		// 初期位置を右向きに設定
+		firePoint.localPosition = rightOffset;
+		lastValidFirePointOffset = rightOffset;
+	}
 
-    // プレイヤーがしゃがんでいるかどうかで発射位置を変更
-    void HandleCrouchFirePoint()
-    {
-        if (playerScript != null && playerScript.IsGrounded())
-        {
-            if (playerScript.IsCrouching())
-            {
-                if (currentDirection == Vector2.right)
-                    SetFirePointPosition(crouchOffset);
-                else if (currentDirection == Vector2.left)
-                    SetFirePointPosition(new Vector2(-crouchOffset.x, crouchOffset.y));
-            }
-            else
-            {
-                if (currentDirection == Vector2.right)
-                    SetFirePointPosition(rightOffset);
-                else if (currentDirection == Vector2.left)
-                    SetFirePointPosition(leftOffset);
-            }
-        }
-    }
+	void Update()
+	{
+		HandleCrouchFirePoint();     // しゃがみ時の発射位置調整
+		UpdateShootDirection();     // 入力による方向切替
+		HandleGroundState();        // 空中下撃ち後の状態回復
+		HandleShoot();              // 発射処理
 
-    // 矢印キー入力で発射方向と発射位置を更新
-    void UpdateShootDirection()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            currentDirection = Vector2.left;
-            lastValidDirection = currentDirection;
-            SetFirePointPosition(leftOffset);
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            currentDirection = Vector2.right;
-            lastValidDirection = currentDirection;
-            SetFirePointPosition(rightOffset);
-        }
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            currentDirection = Vector2.up;
-            lastValidDirection = currentDirection;
-            SetFirePointPosition(upOffset);
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            // 空中時のみ下撃ち可能
-            if (playerScript != null && !playerScript.IsGrounded())
-            {
-                currentDirection = Vector2.down;
-                SetFirePointPosition(downOffset);
-            }
-            else
-            {
-                Debug.Log("地上では下方向に変更できません");
-            }
-        }
-    }
+		// マシンガンモードのタイマー更新
+		if (isMachineGunMode)
+		{
+			machineGunTimer += Time.deltaTime;
+			if (machineGunTimer >= machineGunDuration)
+			{
+				isMachineGunMode = false;
+				Debug.Log("マシンガンモード終了");
+			}
+		}
+	}
 
-    // 発射位置を更新し、有効方向なら記録
-    void SetFirePointPosition(Vector2 offset)
-    {
-        firePoint.localPosition = offset;
+	// プレイヤーがしゃがんでいる場合に発射位置を下に移動
+	void HandleCrouchFirePoint()
+	{
+		if (playerScript != null && playerScript.IsGrounded())
+		{
+			if (playerScript.IsCrouching())
+			{
+				if (currentDirection == Vector2.right)
+					SetFirePointPosition(crouchOffset);
+				else if (currentDirection == Vector2.left)
+					SetFirePointPosition(new Vector2(-crouchOffset.x, crouchOffset.y));
+			}
+			else
+			{
+				if (currentDirection == Vector2.right)
+					SetFirePointPosition(rightOffset);
+				else if (currentDirection == Vector2.left)
+					SetFirePointPosition(leftOffset);
+			}
+		}
+	}
 
-        if (currentDirection != Vector2.down)
-            lastValidFirePointOffset = offset;
-    }
+	// 矢印キーによる攻撃方向の変更
+	void UpdateShootDirection()
+	{
+		if (Input.GetKeyDown(KeyCode.LeftArrow))
+		{
+			currentDirection = Vector2.left;
+			lastValidDirection = currentDirection;
+			SetFirePointPosition(leftOffset);
+		}
+		else if (Input.GetKeyDown(KeyCode.RightArrow))
+		{
+			currentDirection = Vector2.right;
+			lastValidDirection = currentDirection;
+			SetFirePointPosition(rightOffset);
+		}
+		else if (Input.GetKeyDown(KeyCode.UpArrow))
+		{
+			currentDirection = Vector2.up;
+			lastValidDirection = currentDirection;
+			SetFirePointPosition(upOffset);
+		}
+		else if (Input.GetKeyDown(KeyCode.DownArrow))
+		{
+			// 空中のみ下撃ち可能
+			if (playerScript != null && !playerScript.IsGrounded())
+			{
+				currentDirection = Vector2.down;
+				SetFirePointPosition(downOffset);
+			}
+			else
+			{
+				Debug.Log("地上では下方向に変更できません");
+			}
+		}
+	}
 
-    // 着地時に下撃ちモードから元の方向に戻す
-    void HandleGroundState()
-    {
-        if (playerScript == null) return;
+	// 発射位置の設定（方向ごとに位置調整）
+	void SetFirePointPosition(Vector2 offset)
+	{
+		firePoint.localPosition = offset;
 
-        bool isGroundedNow = playerScript.IsGrounded();
-        if (!wasGrounded && isGroundedNow && currentDirection == Vector2.down)
-        {
-            currentDirection = lastValidDirection;
-            SetFirePointPosition(lastValidFirePointOffset);
-            Debug.Log("着地したので方向とFirePointを戻しました");
-        }
-        wasGrounded = isGroundedNow;
-    }
+		if (currentDirection != Vector2.down)
+			lastValidFirePointOffset = offset;
+	}
 
-    // 攻撃処理（近接 or 弾発射）
-    void HandleShoot()
-    {
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            if (isEnemyNearby)
-            {
-                PerformMeleeAttack();
-            }
-            else
-            {
-                // 地上では下撃ちを無効にする
-                if (currentDirection == Vector2.down && playerScript.IsGrounded())
-                {
-                    Debug.Log("地上では下撃ちできません");
-                    return;
-                }
-                Shoot(currentDirection);
-            }
-        }
-    }
+	// 空中下撃ちから地上に戻ったときに向きを復元
+	void HandleGroundState()
+	{
+		if (playerScript == null) return;
 
-    // 弾の発射処理（向きと速度を設定）
-    void Shoot(Vector2 direction)
-    {
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.Euler(0f, 0f, angle));
+		bool isGroundedNow = playerScript.IsGrounded();
+		if (!wasGrounded && isGroundedNow && currentDirection == Vector2.down)
+		{
+			currentDirection = lastValidDirection;
+			SetFirePointPosition(lastValidFirePointOffset);
+			Debug.Log("着地したので方向とFirePointを戻しました");
+		}
+		wasGrounded = isGroundedNow;
+	}
 
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        if (rb != null)
-            rb.linearVelocity = direction.normalized * bulletSpeed;
+	// 発射処理（モードによって単発 or 連射）
+	void HandleShoot()
+	{
+		if (isMachineGunMode)
+		{
+			// Zを押しっぱなしで連射
+			if (Input.GetKey(KeyCode.Z))
+			{
+				fireTimer += Time.deltaTime;
+				if (fireTimer >= fireRate)
+				{
+					if (!CanShoot()) return;
+					Shoot(currentDirection);
+					fireTimer = 0f;
+				}
+			}
+			else
+			{
+				fireTimer = fireRate;
+			}
+		}
+		else
+		{
+			// 単発モード：Zキーを押した瞬間のみ発射
+			if (Input.GetKeyDown(KeyCode.Z))
+			{
+				if (!CanShoot()) return;
+				Shoot(currentDirection);
+			}
+		}
+	}
 
-        Debug.Log($"弾を {direction} に発射（角度: {angle}°）");
-    }
+	// 下撃ち制限や近接切替のチェック
+	bool CanShoot()
+	{
+		if (isEnemyNearby)
+		{
+			PerformMeleeAttack();
+			return false;
+		}
 
-    // 近接攻撃（未実装）
-    void PerformMeleeAttack()
-    {
-        Debug.Log("ナイフ攻撃！");
-    }
+		if (currentDirection == Vector2.down && playerScript.IsGrounded())
+		{
+			Debug.Log("地上では下撃ちできません");
+			return false;
+		}
 
-    // 外部から近接フラグを変更できるようにする
-    public void SetEnemyNearby(bool isNearby)
-    {
-        isEnemyNearby = isNearby;
-    }
+		return true;
+	}
+
+	// 弾を生成して発射
+	void Shoot(Vector2 direction)
+	{
+		float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+		GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.Euler(0f, 0f, angle));
+
+		Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+		if (rb != null)
+			rb.linearVelocity = direction.normalized * bulletSpeed;
+
+		Debug.Log($"弾を {direction} に発射（角度: {angle}°）");
+	}
+
+	// 近接攻撃処理（仮実装）
+	void PerformMeleeAttack()
+	{
+		Debug.Log("ナイフ攻撃！");
+	}
+
+	// 近接攻撃モード切替用
+	public void SetEnemyNearby(bool isNearby)
+	{
+		isEnemyNearby = isNearby;
+	}
+
+	// マシンガンモードを有効化（アイテム取得時などに呼ぶ）
+	public void ActivateMachineGunMode(float duration)
+	{
+		isMachineGunMode = true;
+		machineGunDuration = duration;
+		machineGunTimer = 0f;
+		Debug.Log("マシンガンモード発動！");
+	}
 }
