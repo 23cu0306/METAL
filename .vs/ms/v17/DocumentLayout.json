@@ -3,12 +3,8 @@
   "WorkspaceRootPath": "D:\\23cu0311\\MS\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|d:\\23cu0311\\ms\\assets\\laser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|solutionrelative:assets\\laser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|d:\\23cu0311\\ms\\assets\\script\\enemy\\gloomvisboss.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\enemy\\gloomvisboss.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|d:\\23cu0311\\ms\\assets\\script\\image.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\image.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|D:\\23cu0311\\MS\\assets\\script\\gameovermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -17,6 +13,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|D:\\23cu0311\\MS\\assets\\script\\enemy\\decaybullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\enemy\\decaybullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|D:\\23cu0311\\MS\\assets\\script\\enemy\\gloomvisboss.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\enemy\\gloomvisboss.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|D:\\23cu0311\\MS\\assets\\script\\player\\bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -35,8 +35,8 @@
       "RelativeMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\player\\machinegunitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|d:\\23cu0311\\ms\\assets\\gloomvisboss.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:assets\\gloomvisboss.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\23cu0311\\MS\\Assets\\GloomVisBoss.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\GloomVisBoss.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -51,19 +51,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Laser.cs",
-              "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\Laser.cs",
-              "RelativeDocumentMoniker": "Assets\\Laser.cs",
-              "ToolTip": "D:\\23cu0311\\MS\\Assets\\Laser.cs",
-              "RelativeToolTip": "Assets\\Laser.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Title": "Image.cs",
+              "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\Script\\Image.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\Image.cs",
+              "ToolTip": "D:\\23cu0311\\MS\\Assets\\Script\\Image.cs",
+              "RelativeToolTip": "Assets\\Script\\Image.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAkwBAAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T07:03:57.891Z",
+              "WhenOpened": "2025-04-22T07:16:58.976Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "GameOverManager.cs",
               "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\Script\\GameOverManager.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\GameOverManager.cs",
@@ -71,23 +71,24 @@
               "RelativeToolTip": "Assets\\Script\\GameOverManager.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T06:49:48.234Z"
+              "WhenOpened": "2025-04-22T06:49:48.234Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "DecayBullet.cs",
               "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\Script\\Enemy\\DecayBullet.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Enemy\\DecayBullet.cs",
               "ToolTip": "D:\\23cu0311\\MS\\Assets\\Script\\Enemy\\DecayBullet.cs",
               "RelativeToolTip": "Assets\\Script\\Enemy\\DecayBullet.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAqwCAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABQAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-22T06:47:58.5Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "GloomVisBoss.cs",
               "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\Script\\Enemy\\GloomVisBoss.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Enemy\\GloomVisBoss.cs",
@@ -95,8 +96,7 @@
               "RelativeToolTip": "Assets\\Script\\Enemy\\GloomVisBoss.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T06:45:07.147Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-22T06:45:07.147Z"
             },
             {
               "$type": "Document",
