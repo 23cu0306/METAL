@@ -15,6 +15,7 @@ MonoBehaviour:
   m_PixelRect:
     serializedVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
     x: 0
     y: 43
     width: 1920
@@ -24,11 +25,15 @@ MonoBehaviour:
 =======
     x: 4
     y: 56
+=======
+    x: 8
+    y: 51
+>>>>>>> origin/main
     width: 1870
     height: 973
   m_ShowMode: 4
-<<<<<<< HEAD
   m_Title: Project
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
   m_Title: Scene
@@ -36,6 +41,8 @@ MonoBehaviour:
   m_Title: Project
 >>>>>>> origin/main
 >>>>>>> origin/main
+>>>>>>> origin/main
+=======
 >>>>>>> origin/main
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
@@ -74,6 +81,7 @@ MonoBehaviour:
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
   controlID: 107
 =======
 <<<<<<< HEAD
@@ -86,6 +94,9 @@ MonoBehaviour:
 >>>>>>> origin/main
 >>>>>>> origin/main
 >>>>>>> origin/main
+>>>>>>> origin/main
+=======
+  controlID: 114
 >>>>>>> origin/main
   draggingID: 0
 --- !u!114 &3
@@ -109,8 +120,8 @@ MonoBehaviour:
 =======
     x: 1425
     y: 0
-<<<<<<< HEAD
     width: 445
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> origin/main
@@ -130,6 +141,11 @@ MonoBehaviour:
   m_MaxSize: {x: 4001, y: 4026}
 >>>>>>> origin/main
 >>>>>>> origin/main
+>>>>>>> origin/main
+=======
+    height: 917
+  m_MinSize: {x: 276, y: 76}
+  m_MaxSize: {x: 4001, y: 4026}
 >>>>>>> origin/main
   m_ActualView: {fileID: 13}
   m_Panes:
@@ -154,6 +170,7 @@ MonoBehaviour:
     x: 0
     y: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
     width: 353
@@ -174,6 +191,12 @@ MonoBehaviour:
   m_MinSize: {x: 201, y: 226}
   m_MaxSize: {x: 4001, y: 4026}
 >>>>>>> origin/main
+>>>>>>> origin/main
+=======
+    width: 353
+    height: 551
+  m_MinSize: {x: 201, y: 226}
+  m_MaxSize: {x: 4001, y: 4026}
 >>>>>>> origin/main
   m_ActualView: {fileID: 14}
   m_Panes:
@@ -331,6 +354,7 @@ MonoBehaviour:
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
   controlID: 54
 =======
   controlID: 42
@@ -341,6 +365,9 @@ MonoBehaviour:
 >>>>>>> origin/main
 >>>>>>> origin/main
 >>>>>>> origin/main
+>>>>>>> origin/main
+=======
+  controlID: 55
 >>>>>>> origin/main
   draggingID: 0
 --- !u!114 &10
@@ -376,6 +403,7 @@ MonoBehaviour:
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
   controlID: 45
 =======
   controlID: 43
@@ -386,6 +414,9 @@ MonoBehaviour:
 >>>>>>> origin/main
 >>>>>>> origin/main
 >>>>>>> origin/main
+>>>>>>> origin/main
+=======
+  controlID: 46
 >>>>>>> origin/main
   draggingID: 0
 --- !u!114 &11
@@ -446,6 +477,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
     x: 0
     y: 631
     width: 1465
@@ -453,6 +485,10 @@ MonoBehaviour:
 =======
     x: 4
     y: 643
+=======
+    x: 8
+    y: 638
+>>>>>>> origin/main
     width: 1424
     height: 340
 >>>>>>> origin/main
@@ -479,6 +515,7 @@ MonoBehaviour:
     m_SearchArea: 1
     m_Folders:
 <<<<<<< HEAD
+<<<<<<< HEAD
     - Assets/Script/Enemy
 =======
 <<<<<<< HEAD
@@ -495,6 +532,9 @@ MonoBehaviour:
 >>>>>>> origin/main
 >>>>>>> origin/main
 >>>>>>> origin/main
+=======
+    - Assets/Script
+>>>>>>> origin/main
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -504,6 +544,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 85
   m_LastFolders:
+<<<<<<< HEAD
 <<<<<<< HEAD
   - Assets/Script/Enemy
   m_LastFoldersGridSize: 85
@@ -565,22 +606,29 @@ MonoBehaviour:
 >>>>>>> origin/main
 >>>>>>> origin/main
 >>>>>>> origin/main
+=======
+  - Assets/Script
+  m_LastFoldersGridSize: 85
+  m_LastProjectPath: D:\23cu0311\MS
+  m_LockTracker:
+    m_IsLocked: 0
+  m_FolderTreeState:
+    scrollPos: {x: 0, y: 19}
+    m_SelectedIDs: 3a030100
+    m_LastClickedID: 66362
+    m_ExpandedIDs: 00000000dce800001e0301003a03010000ca9a3bffffff7f
+>>>>>>> origin/main
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
       m_OriginalName: 
->>>>>>> origin/main
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-<<<<<<< HEAD
-      m_UserData: 68148
-=======
       m_UserData: 0
->>>>>>> origin/main
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
       m_OriginalEventType: 11
@@ -627,7 +675,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c6230000
+    m_ExpandedInstanceIDs: c6230000b80d0100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -678,6 +726,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
     x: 1466
     y: 79
     width: 453
@@ -685,6 +734,10 @@ MonoBehaviour:
 =======
     x: 1429
     y: 92
+=======
+    x: 1433
+    y: 87
+>>>>>>> origin/main
     width: 444
     height: 891
 >>>>>>> origin/main
@@ -707,9 +760,13 @@ MonoBehaviour:
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_LastVerticalScrollValue: 0
 =======
   m_LastVerticalScrollValue: 398
+>>>>>>> origin/main
+=======
+  m_LastVerticalScrollValue: 0
 >>>>>>> origin/main
   m_GlobalObjectId: 
   m_InspectorMode: 0
@@ -738,6 +795,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
     x: 0
     y: 79
     width: 362
@@ -745,6 +803,10 @@ MonoBehaviour:
 =======
     x: 4
     y: 92
+=======
+    x: 8
+    y: 87
+>>>>>>> origin/main
     width: 352
     height: 525
 >>>>>>> origin/main
@@ -762,8 +824,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 88d00000
+      m_SelectedIDs: 260e0100
       m_LastClickedID: 0
+<<<<<<< HEAD
 <<<<<<< HEAD
       m_ExpandedIDs: 002cffff
 =======
@@ -780,6 +843,9 @@ MonoBehaviour:
 >>>>>>> origin/main
 >>>>>>> origin/main
 >>>>>>> origin/main
+>>>>>>> origin/main
+=======
+      m_ExpandedIDs: cc10ffffb42bffff
 >>>>>>> origin/main
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -827,6 +893,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
     x: 363
     y: 79
     width: 1101
@@ -850,6 +917,12 @@ MonoBehaviour:
     height: 517
 >>>>>>> origin/main
 >>>>>>> origin/main
+>>>>>>> origin/main
+=======
+    x: 361
+    y: 87
+    width: 1070
+    height: 525
 >>>>>>> origin/main
   m_SerializedDataModeController:
     m_DataMode: 0
@@ -1406,6 +1479,7 @@ MonoBehaviour:
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_Target: {x: 0, y: 0, z: 0}
     speed: 2
     m_Value: {x: 0, y: 0, z: 0}
@@ -1431,6 +1505,11 @@ MonoBehaviour:
 >>>>>>> origin/main
 >>>>>>> origin/main
 >>>>>>> origin/main
+>>>>>>> origin/main
+=======
+    m_Target: {x: 0, y: 0, z: 0}
+    speed: 2
+    m_Value: {x: 0, y: 0, z: 0}
 >>>>>>> origin/main
   m_RenderMode: 0
   m_CameraMode:
@@ -1482,6 +1561,7 @@ MonoBehaviour:
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_Target: 10
     speed: 2
     m_Value: 10
@@ -1507,6 +1587,11 @@ MonoBehaviour:
 >>>>>>> origin/main
 >>>>>>> origin/main
 >>>>>>> origin/main
+>>>>>>> origin/main
+=======
+    m_Target: 10
+    speed: 2
+    m_Value: 10
 >>>>>>> origin/main
   m_Ortho:
     m_Target: 1
@@ -1562,8 +1647,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Game\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 357
-    y: 92
+    x: 361
+    y: 87
     width: 1070
     height: 525
   m_SerializedDataModeController:
@@ -1663,17 +1748,10 @@ MonoBehaviour:
     m_TextWithWhitespace: "Console\u200B"
   m_Pos:
     serializedVersion: 2
-<<<<<<< HEAD
-    x: 4
-    y: 643
+    x: 8
+    y: 638
     width: 1424
     height: 340
-=======
-    x: 8
-    y: 632
-    width: 1453
-    height: 346
->>>>>>> origin/main
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
