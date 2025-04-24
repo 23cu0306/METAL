@@ -1,13 +1,15 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class MBullet : MonoBehaviour
 {
     public float lifetime = 3f;
     public float speed = 100f;
     public int direction = 1; // ¶‰E‚ÌŒü‚«i1 or -1j
+	public int damage = 10;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+	// Start is called once before the first execution of Update after the MonoBehaviour is created
+	void Start()
     {
         Destroy(gameObject, lifetime); // ŠÔŒo‰ß‚Å’e‚ğ©“®íœ
     }
@@ -26,5 +28,15 @@ public class Bullet : MonoBehaviour
             Destroy(other.gameObject); // “G‚ğÁ‚·
             Destroy(gameObject);       // ’e‚àÁ‚·
         }
-    }
+		if (other.CompareTag("WeakPoint"))
+		{
+			GloomVisBoss boss = other.GetComponentInParent<GloomVisBoss>();
+			if (boss != null)
+			{
+				boss.TakeDamage(damage);
+			}
+
+			Destroy(gameObject); // ’e‚ğÁ‚·
+		}
+	}
 }

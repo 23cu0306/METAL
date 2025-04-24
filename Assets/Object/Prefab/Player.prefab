@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 5140054231352603818}
   - component: {fileID: 8170445645601684190}
   - component: {fileID: 8404350236004277400}
+  - component: {fileID: -8437598244433982153}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -179,7 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 15
-  jumpForce: 10
+  jumpForce: 18
   airControlMultiplier: 0.5
   fallMultiplier: 2.5
   groundCheck: {fileID: 145118336394596553}
@@ -187,6 +188,23 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+--- !u!114 &-8437598244433982153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 50688427192309746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95a74b34a8b040b4597176009bf76efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 5942574532214364184, guid: 5b0591434a56c8a4884981ec205b639c, type: 3}
+  firePoint: {fileID: 0}
+  bulletSpeed: 10
+  fireRate: 0.1
+  playerScript: {fileID: 0}
 --- !u!1 &1873876569487404571
 GameObject:
   m_ObjectHideFlags: 0
