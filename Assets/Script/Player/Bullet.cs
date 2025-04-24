@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MBullet : MonoBehaviour
 {
-    public float lifetime = 3f;
+    public float lifetime = 1f;
     public float speed = 100f;
     public int direction = 1; // ¶‰E‚ÌŒü‚«i1 or -1j
 	public int damage = 10;

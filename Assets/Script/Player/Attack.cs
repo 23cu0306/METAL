@@ -20,6 +20,9 @@ public class Attack : MonoBehaviour
 	private Vector2 lastValidFirePointOffset;               // 最後に有効だった発射位置
 	private bool wasGrounded = true;                        // 前フレームの地面接地状態
 
+	//近接攻撃用
+	private GameObject nearbyEnemy; // 近くの敵を保持する変数
+
 	[Header("プレイヤー接続")]
 	public Player playerScript;             // Playerスクリプトの参照
 
@@ -97,7 +100,7 @@ public class Attack : MonoBehaviour
 		}
 		else if (Input.GetKeyDown(KeyCode.UpArrow))
 		{
-			// 🟡 ここでは切り替えない（CheckUpKeyRelease に任せる）
+			//ここでは切り替えない（CheckUpKeyRelease に任せる）
 		}
 		else if (Input.GetKeyDown(KeyCode.DownArrow))
 		{
@@ -200,11 +203,30 @@ public class Attack : MonoBehaviour
 		Debug.Log($"弾を {direction} に発射（角度: {angle}°）");
 	}
 
-	// 近接攻撃処理（仮実装）
+	public void SetEnemyNearby(bool isNearby, GameObject enemy = null)
+	{
+		if (isNearby && enemy != null)
+		{
+			nearbyEnemy = enemy;
+		}
+		else
+		{
+			nearbyEnemy = null;
+		}
+	}
+
 	void PerformMeleeAttack()
 	{
 		Debug.Log("ナイフ攻撃！");
+
+		if (nearbyEnemy != null)
+		{
+			Debug.Log($"敵 {nearbyEnemy.name} を倒しました！");
+			Destroy(nearbyEnemy); // 敵を削除
+			nearbyEnemy = null;   // 一度倒したらリセット
+		}
 	}
+
 
 	// 近接攻撃モード切替用
 	public void SetEnemyNearby(bool isNearby)
