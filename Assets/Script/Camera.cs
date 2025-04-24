@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Camera : MonoBehaviour
 {
 	//プレイヤーの情報（Inspecterで設定)
 	public GameObject player;
-
 	//追従するかしないか
 	bool IsHorming;
 	//x座標更新地
@@ -21,13 +21,20 @@ public class Camera : MonoBehaviour
 	public float spawnInterval = 1f; // 敵をスポーンさせる間隔（秒）
 	Player _pl;
 	private bool hasSpawned = false; // 敵をスポーンさせたかどうかを追跡
-									 // Start is called before the first frame update
+	public bool startZoomOut = false;   // ズームアウトを開始するかどうか
+	public float moveSpeed = 2f;        // カメラの移動速度
+	private bool isZoomingOut = false;
+
+	private Vector3 targetPosition;
+	// Start is called before the first frame update
 	void Start()
 	{
 		_pl = GameObject.Find("Player").GetComponent<Player>();
 		IsHorming = true;
 		MostPosX = player.transform.position.x;
 		PosX = player.transform.position.x;
+
+		
 	}
 
 	// Update is called once per frame
@@ -45,6 +52,8 @@ public class Camera : MonoBehaviour
 			StartCoroutine(SpawnEnemies());
 			hasSpawned = true;
 		}
+
+		
 	}
 
 	IEnumerator SpawnEnemies()
@@ -62,9 +71,10 @@ public class Camera : MonoBehaviour
 		}
 	}
 
+	
 
-//追従
-void PlayerHorming (bool Frg)
+	//追従
+	void PlayerHorming (bool Frg)
 	{
 		if(Frg)
 		{

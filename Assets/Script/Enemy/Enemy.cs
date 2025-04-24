@@ -2,6 +2,22 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+	public int scoreValue = 100;
+
+	public void Defeat()
+	{
+		GameManager.Instance.AddScore(scoreValue);
+		Destroy(gameObject);
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.CompareTag("PlayerAttack"))
+		{
+			Defeat();
+		}
+	}
+
 	enum ShotType
 	{
 		NONE = 0,
