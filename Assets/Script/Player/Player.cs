@@ -84,8 +84,14 @@ public class Player : MonoBehaviour
         // 空中時は移動速度が低下
         float appliedSpeed = isGrounded ? moveSpeed : moveSpeed * airControlMultiplier;
 
-        // プレイヤーの横方向速度を設定
-        rb.linearVelocity = new Vector2(horizontal * appliedSpeed, rb.linearVelocity.y);
+		// しゃがみ時はさらにスピードを半分に落とす
+		if (isCrouching)
+		{
+			appliedSpeed *= 0.5f;
+		}
+
+		// プレイヤーの横方向速度を設定
+		rb.linearVelocity = new Vector2(horizontal * appliedSpeed, rb.linearVelocity.y);
     }
 
     // ジャンプ処理（地面にいるときだけ）
