@@ -1,4 +1,8 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections; 
+
+
 
 public class Player : MonoBehaviour
 {
@@ -22,7 +26,17 @@ public class Player : MonoBehaviour
     private Vector2 standingSize;               // 通常時のコライダーサイズ
     private Vector2 crouchingSize;              // しゃがみ時のコライダーサイズ
 
-    void Start()
+	private Vector3 respawnPosition;
+
+    public int Playerlife;
+	private bool isInvincible = false;
+	public float invincibilityDuration = 2f;
+	public float blinkInterval = 0.1f;
+
+	private SpriteRenderer spriteRenderer;
+
+
+	void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<BoxCollider2D>();
@@ -31,7 +45,9 @@ public class Player : MonoBehaviour
         // コライダーのサイズ記録（しゃがみ用に半分の高さにする）
         standingSize = col.size;
         crouchingSize = new Vector2(standingSize.x, standingSize.y / 2f);
-    }
+		spriteRenderer = GetComponent<SpriteRenderer>();
+		respawnPosition = transform.position;
+	}
 
     void Update()
     {
@@ -54,9 +70,16 @@ public class Player : MonoBehaviour
         float horizontal = 0f;
 
         if (Input.GetKey(KeyCode.LeftArrow))
+        {
             horizontal = -1f;
+            respawnPosition = transform.position;
+        }
+
         else if (Input.GetKey(KeyCode.RightArrow))
+        {
             horizontal = 1f;
+			respawnPosition = transform.position;
+		}
 
         // 空中時は移動速度が低下
         float appliedSpeed = isGrounded ? moveSpeed : moveSpeed * airControlMultiplier;
@@ -70,7 +93,8 @@ public class Player : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+			respawnPosition = transform.position;
+			rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
     }
 
@@ -97,9 +121,43 @@ public class Player : MonoBehaviour
             col.size = standingSize; // 元に戻す
         }
     }
+	private IEnumerator InvincibilityCoroutine()
+	{
+		isInvincible = true;
 
-    // 他スクリプト用：接地判定を外部から取得
-    public bool IsGrounded() => isGrounded;
+		float elapsed = 0f;
+		while (elapsed < invincibilityDuration)
+		{
+			spriteRenderer.enabled = !spriteRenderer.enabled; // 点滅
+			yield return new WaitForSeconds(blinkInterval);
+			elapsed += blinkInterval;
+		}
+
+		spriteRenderer.enabled = true; // 点滅終了で表示を戻す
+		isInvincible = false;
+	}
+
+	void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("EnemyBullet") && !isInvincible)
+        {
+            if(Playerlife <= 0)
+            {
+				// シーン切り替えでゲームオーバーを演出
+				SceneManager.LoadScene("GameOverScene"); 
+			}
+			// プレイヤーをリスポーン位置に戻す
+			transform.position = respawnPosition;
+
+			// 任意で速度もリセットすると自然
+			rb.linearVelocity = Vector2.zero;
+            Playerlife -= 1;
+			StartCoroutine(InvincibilityCoroutine());
+		}
+    }
+
+	// 他スクリプト用：接地判定を外部から取得
+	public bool IsGrounded() => isGrounded;
 
     // 他スクリプト用：しゃがみ状態を外部から取得
     public bool IsCrouching() => isCrouching;

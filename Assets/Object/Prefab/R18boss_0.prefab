@@ -80,7 +80,6 @@ GameObject:
   - component: {fileID: 3179996069135937954}
   - component: {fileID: 4273515719292027085}
   - component: {fileID: 3935823461118368901}
-  - component: {fileID: 974394463096840847}
   m_Layer: 0
   m_Name: R18boss_0
   m_TagString: Boss
@@ -97,8 +96,8 @@ Transform:
   m_GameObject: {fileID: 7569211284216831802}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.8999996, y: 1.8000001, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 7.33, y: 0.58, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9207060913018516147}
@@ -167,7 +166,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7569211284216831802}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -216,28 +215,9 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 2.555
---- !u!114 &974394463096840847
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7569211284216831802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7bd64ce2ce499e449de261ca43031f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHP: 100
-  player: {fileID: 0}
-  weakPoint: {fileID: 9207060913018516147}
-  decayBulletPrefab: {fileID: 4557858763061409297, guid: 4d6f18195957cc74d84aad7fa517977f, type: 3}
-  laserPrefab: {fileID: 3504354999754169030, guid: 388d37bf2923994468393c2367d7e52a, type: 3}
-  phase2Threshold: 70
-  phase3Threshold: 30
