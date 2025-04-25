@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
     private Vector2 standingSize;               // 通常時のコライダーサイズ
     private Vector2 crouchingSize;              // しゃがみ時のコライダーサイズ
 
+    private float HP = 2;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();

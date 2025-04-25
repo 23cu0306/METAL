@@ -6,7 +6,7 @@ public class MBullet : MonoBehaviour
     public float speed = 100f;
     public int direction = 1; // ¶‰E‚ÌŒü‚«i1 or -1j
 	public int damage = 10;
-
+    public int damagetrue = 1;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
@@ -23,8 +23,14 @@ public class MBullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy"))
+		//Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+		//if (enemy != null)
+		//{
+		//	enemy.TakeDamage(damage);
+		//}
+		if (other.CompareTag("Enemy"))
         {
+            Debug.Log("EnemyDamage");
             Destroy(other.gameObject); // “G‚ğÁ‚·
             Destroy(gameObject);       // ’e‚àÁ‚·
         }
