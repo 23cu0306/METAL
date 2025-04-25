@@ -78,6 +78,7 @@
     <Compile Include="Assets\Script\Player\Bullet.cs" />
     <Compile Include="Assets\Script\Frame.cs" />
     <Compile Include="Assets\Script\Player\MachineGunItem.cs" />
+    <Compile Include="Assets\GamingSpinEffect.cs" />
     <Compile Include="Assets\Script\Player\Player.cs" />
     <Compile Include="Assets\Script\Enemy\GloomVisBoss.cs" />
     <Compile Include="Assets\Script\assist.cs" />

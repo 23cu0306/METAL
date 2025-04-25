@@ -10323,3 +10323,6 @@ Memory consumption went from 151.7 MB to 145.8 MB.
 Total: 11.474300 ms (FindLiveObjects: 0.735400 ms CreateObjectMapping: 1.402500 ms MarkObjects: 4.877500 ms  DeleteObjects: 4.457900 ms)
 
 Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
