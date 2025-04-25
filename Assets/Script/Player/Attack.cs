@@ -175,6 +175,7 @@ public class Attack : MonoBehaviour
 	// 下撃ち制限や近接切替のチェック
 	bool CanShoot()
 	{
+
 		if (isEnemyNearby)
 		{
 			PerformMeleeAttack();
@@ -205,6 +206,7 @@ public class Attack : MonoBehaviour
 
 	public void SetEnemyNearby(bool isNearby, GameObject enemy = null)
 	{
+		isEnemyNearby = isNearby;
 		if (isNearby && enemy != null)
 		{
 			nearbyEnemy = enemy;
