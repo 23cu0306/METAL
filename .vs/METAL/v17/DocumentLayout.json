@@ -3,10 +3,20 @@
   "WorkspaceRootPath": "D:\\23CU0338\\METAL\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\student\\Desktop\\FightGame\\Source\\FightGame\\MyGameModeBase.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\23CU0338\\METAL\\Assets\\Script\\Player\\EnemyDetector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Script\\Player\\EnemyDetector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\23CU0338\\\u5B9F\u9A13\\FightGame\\Source\\FightGame\\MyGameModeBase.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\23CU0338\\METAL\\Assets\\Script\\Player\\Bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Script\\Player\\Bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\23CU0338\\METAL\\Assets\\Script\\Player\\Attack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Script\\Player\\Attack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\23CU0338\\METAL\\Assets\\Script\\Player\\Player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Script\\Player\\Player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -16,30 +26,60 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "MyGameModeBase.cpp",
-              "DocumentMoniker": "D:\\23CU0338\\\u5B9F\u9A13\\FightGame\\Source\\FightGame\\MyGameModeBase.cpp",
-              "RelativeDocumentMoniker": "..\\\u5B9F\u9A13\\FightGame\\Source\\FightGame\\MyGameModeBase.cpp",
-              "ToolTip": "D:\\23CU0338\\\u5B9F\u9A13\\FightGame\\Source\\FightGame\\MyGameModeBase.cpp",
-              "RelativeToolTip": "..\\\u5B9F\u9A13\\FightGame\\Source\\FightGame\\MyGameModeBase.cpp",
-              "ViewState": "AgIAAJEAAAAAAAAAAAAAwJ0AAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-04-24T06:06:43.109Z",
+              "Title": "Bullet.cs",
+              "DocumentMoniker": "D:\\23CU0338\\METAL\\Assets\\Script\\Player\\Bullet.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\Player\\Bullet.cs",
+              "ToolTip": "D:\\23CU0338\\METAL\\Assets\\Script\\Player\\Bullet.cs",
+              "RelativeToolTip": "Assets\\Script\\Player\\Bullet.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAgwB4AAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-25T01:25:22.011Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Attack.cs",
+              "DocumentMoniker": "D:\\23CU0338\\METAL\\Assets\\Script\\Player\\Attack.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\Player\\Attack.cs",
+              "ToolTip": "D:\\23CU0338\\METAL\\Assets\\Script\\Player\\Attack.cs",
+              "RelativeToolTip": "Assets\\Script\\Player\\Attack.cs",
+              "ViewState": "AgIAAHkAAAAAAAAAAAAcwNEAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-25T01:25:17.202Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MyGameModeBase.h",
-              "DocumentMoniker": "C:\\Users\\student\\Desktop\\FightGame\\Source\\FightGame\\MyGameModeBase.h",
-              "ToolTip": "C:\\Users\\student\\Desktop\\FightGame\\Source\\FightGame\\MyGameModeBase.h",
-              "ViewState": "AgIAAGwAAAAAAAAAAAAcwHQAAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-04-24T06:09:41.847Z",
+              "Title": "EnemyDetector.cs",
+              "DocumentMoniker": "D:\\23CU0338\\METAL\\Assets\\Script\\Player\\EnemyDetector.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\Player\\EnemyDetector.cs",
+              "ToolTip": "D:\\23CU0338\\METAL\\Assets\\Script\\Player\\EnemyDetector.cs",
+              "RelativeToolTip": "Assets\\Script\\Player\\EnemyDetector.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-25T01:25:24.224Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Player.cs",
+              "DocumentMoniker": "D:\\23CU0338\\METAL\\Assets\\Script\\Player\\Player.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\Player\\Player.cs",
+              "ToolTip": "D:\\23CU0338\\METAL\\Assets\\Script\\Player\\Player.cs",
+              "RelativeToolTip": "Assets\\Script\\Player\\Player.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAgwBgAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-25T00:28:43.845Z",
               "EditorCaption": ""
             }
           ]
