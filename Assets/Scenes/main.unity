@@ -1189,7 +1189,11 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+<<<<<<< HEAD
+  Playerlife: 5
+=======
   Playerlife: 2
+>>>>>>> origin/main
   invincibilityDuration: 2
   blinkInterval: 0.1
 --- !u!212 &1821448531
