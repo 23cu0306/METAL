@@ -1189,6 +1189,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  Playerlife: 2
+  invincibilityDuration: 2
+  blinkInterval: 0.1
 --- !u!212 &1821448531
 SpriteRenderer:
   m_ObjectHideFlags: 0
