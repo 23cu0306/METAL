@@ -1,25 +1,24 @@
-//using UnityEngine;
-//using UnityEngine.UI;
+using UnityEngine;
 
-//public class Image : MonoBehaviour
-//{
-//public Image targetImage;  // 対象のImage
-//public float scaleSpeed = 1.0f;  // 拡大縮小のスピード
-//public float scaleAmount = 0.5f; // 拡大の幅（1.0 ± scaleAmount）
+public class Image : MonoBehaviour
+{
+	public float scaleAmount = 0.2f;    // 拡大縮小の強さ
+	public float speed = 5f;            // アニメーションの速さ
 
-//private Vector3 originalScale;
+	private Vector3 originalScale;
 
-//void Start()
-//{
-//	if (targetImage == null)
-//		targetImage = GetComponent<Image>();
+	void Start()
+	{
+		originalScale = transform.localScale;
+	}
 
-//	originalScale = targetImage.rectTransform.localScale;
-//}
+	void Update()
+	{
+		// 時間ベースでスケールを揺らす
+		float scaleOffset = Mathf.Sin(Time.time * speed) * scaleAmount;
 
-//void Update()
-//{
-//	float scale = 1.0f + Mathf.Sin(Time.time * scaleSpeed) * scaleAmount;
-//	targetImage.rectTransform.localScale = originalScale * scale;
-//}
-//}
+		// X, Y のスケールだけ変化させる
+		transform.localScale = originalScale + new Vector3(scaleOffset, scaleOffset, 0f);
+	}
+}
+
