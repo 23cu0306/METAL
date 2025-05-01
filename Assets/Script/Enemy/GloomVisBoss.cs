@@ -10,6 +10,12 @@ public class GloomVisBoss : MonoBehaviour
 	public Transform weakPoint;
 	public GameObject decayBulletPrefab;
 	public GameObject laserPrefab;
+	public Transform laserSpawnPoint1;
+	public Transform laserSpawnPoint2;
+	public Transform laserSpawnPoint3;
+	public Transform laserSpawnPoint4;
+	public Transform MSpawnPoint;
+
 
 	public float phase2Threshold = 70;
 	public float phase3Threshold = 30;
@@ -61,14 +67,14 @@ public class GloomVisBoss : MonoBehaviour
 			case BossPhase.Phase1:
 				int p1 = Random.Range(0, 3);
 				if (p1 == 0) StartCoroutine(SwingTentacle());
-				if (p1 == 1) ShootDecayBullets();
+				if (p1 == 1) StartCoroutine(meteo());
 				if (p1 == 2) StartCoroutine(FireLaser());
 				break;
 
 			case BossPhase.Phase2:
 				int p2 = Random.Range(0, 3);
 				if (p2 == 0) StartCoroutine(DashAttack());
-				if (p2 == 1) ShootDecayBullets();
+				if (p2 == 1) StartCoroutine(meteo());
 				if (p2 == 2) StartCoroutine(OpenWeakPointTemporarily());
 				break;
 
@@ -76,10 +82,43 @@ public class GloomVisBoss : MonoBehaviour
 				int p3 = Random.Range(0, 3);
 				if (p3 == 0) StartCoroutine(ChargeBeam());
 				if (p3 == 1) StartCoroutine(OpenWeakPointPermanently());
-				if (p3 == 2) ShootDecayBullets();
+				if (p3 == 2) StartCoroutine(meteo());
 				break;
 		}
 	}
+
+	IEnumerator meteo()
+		{ 
+		weakPoint.gameObject.SetActive(true);
+		yield return new WaitForSeconds(1.0f);
+
+		
+		int Num = Random.Range(15, 21);
+		for (int x = 0; x <= Num; x++ )
+		{
+			if (MSpawnPoint != null)
+			{
+				int RNum = Random.Range(0, 41);
+				// 現在のスポーン位置を取得
+				Vector3 spawnPos = MSpawnPoint.position;
+
+				// X座標に乱数を加えた新しい位置を作成
+				Vector3 newPos = new Vector3(spawnPos.x + RNum, spawnPos.y, spawnPos.z);
+
+				Instantiate(decayBulletPrefab, newPos, Quaternion.identity);
+
+			}
+			else
+			{
+				// 万が一設定されてないときの保険
+				Instantiate(decayBulletPrefab, transform.position, Quaternion.identity);
+			}
+		}
+
+		yield return new WaitForSeconds(0.5f);
+		weakPoint.gameObject.SetActive(false);
+	}
+
 
 	void ShootDecayBullets()
 	{
@@ -95,8 +134,19 @@ public class GloomVisBoss : MonoBehaviour
 	{
 		weakPoint.gameObject.SetActive(true);
 		yield return new WaitForSeconds(1.0f);
-
-		Instantiate(laserPrefab, transform.position, Quaternion.identity);
+		
+		if (laserSpawnPoint1 != null || laserSpawnPoint2 != null || laserSpawnPoint3 != null || laserSpawnPoint2 != null)
+		{
+			Instantiate(laserPrefab, laserSpawnPoint1.position, laserSpawnPoint1.rotation);
+			Instantiate(laserPrefab, laserSpawnPoint2.position, laserSpawnPoint2.rotation);
+			Instantiate(laserPrefab, laserSpawnPoint3.position, laserSpawnPoint3.rotation);
+			Instantiate(laserPrefab, laserSpawnPoint4.position, laserSpawnPoint4.rotation);
+		}
+		else
+		{
+			// 万が一設定されてないときの保険
+			Instantiate(laserPrefab, transform.position, Quaternion.identity);
+		}
 
 		yield return new WaitForSeconds(0.5f);
 		weakPoint.gameObject.SetActive(false);

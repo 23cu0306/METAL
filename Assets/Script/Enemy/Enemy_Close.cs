@@ -28,7 +28,7 @@ public class Enemy_Close : MonoBehaviour
 		if (collision.gameObject.CompareTag("Enemy"))
 		{
 			// プレイヤーが敵に当たった時の処理（例：ダメージを受ける）
-
+			Destroy(player);
 			Debug.Log("Player hit by enemy!");
 		}
 	}
