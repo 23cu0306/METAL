@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy_Shooter : MonoBehaviour
 {
 	public int scoreValue = 100;
 
