@@ -19,10 +19,15 @@ public class Player : MonoBehaviour
     private BoxCollider2D col;                  // プレイヤーのBoxCollider2D
     private bool isGrounded;                    // 接地しているかどうか
 
-    // しゃがみ状態の管理
-    private bool isCrouching = false;           // 現在しゃがんでいるか
+	[Header("しゃがみ設定")]
+	// しゃがみ状態の管理
+	private bool isCrouching = false;           // 現在しゃがんでいるか
     private Vector2 standingSize;               // 通常時のコライダーサイズ
     private Vector2 crouchingSize;              // しゃがみ時のコライダーサイズ
+
+	//しゃがみを継続するかの管理
+	public Collider2D headCheckCollider;        // 子オブジェクトのBoxCollider2D
+	private bool isCeilingBlocked = false;      // 頭上にGroundがあるか
 
 	private Vector3 respawnPosition;
 
@@ -50,7 +55,8 @@ public class Player : MonoBehaviour
     void Update()
     {
         CheckGround();      // 接地しているか確認
-        HandleCrouch();     // しゃがみ処理
+		CheckCeiling();     //頭上にグラウンドレイヤーがあるかを確認
+		HandleCrouch();     // しゃがみ処理
         HandleMovement();   // 横移動処理
         HandleJump();       // ジャンプ処理
         HandleFall();       // 落下処理（落下加速）
@@ -109,20 +115,52 @@ public class Player : MonoBehaviour
         }
     }
 
-    // ↓キーでしゃがみ／コライダーの高さを変更
-    void HandleCrouch()
-    {
-        if (isGrounded && Input.GetKey(KeyCode.DownArrow))
-        {
-            isCrouching = true;
-            col.size = crouchingSize; // 小さくする
-        }
-        else
-        {
-            isCrouching = false;
-            col.size = standingSize; // 元に戻す
-        }
-    }
+	void HandleCrouch()
+	{
+		bool isDownPressed = Input.GetKey(KeyCode.DownArrow);
+
+		if (isGrounded)
+		{
+			if (isDownPressed)
+			{
+				// ↓キーが押されていればしゃがむ
+				isCrouching = true;
+				col.size = crouchingSize;
+			}
+			else if (isCrouching)
+			{
+				// ↓を離したあと、頭上が空いていれば立ち上がる
+				if (!isCeilingBlocked)
+				{
+					isCrouching = false;
+					col.size = standingSize;
+				}
+				// 頭上が塞がっていればしゃがみ継続（何もしない）
+			}
+			else
+			{
+				// 通常状態
+				isCrouching = false;
+				col.size = standingSize;
+			}
+		}
+	}
+
+
+	//頭上にGroundがあるか確認
+	void CheckCeiling()
+	{
+		if (headCheckCollider != null)
+		{
+			isCeilingBlocked = Physics2D.OverlapBox(
+				headCheckCollider.bounds.center,
+				headCheckCollider.bounds.size,
+				0f,
+				groundLayer
+			);
+		}
+	}
+
 	private IEnumerator InvincibilityCoroutine()
 	{
 		isInvincible = true;
