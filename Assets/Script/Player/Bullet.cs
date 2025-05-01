@@ -33,7 +33,12 @@ public class MBullet : MonoBehaviour
             Debug.Log("EnemyDamage");
             Destroy(other.gameObject); // ìGÇè¡Ç∑
             Destroy(gameObject);       // íeÇ‡è¡Ç∑
+
         }
+		if (other.CompareTag("Boss"))
+		{
+			Destroy(gameObject);       // íeÇ‡è¡Ç∑
+		}
 		if (other.CompareTag("WeakPoint"))
 		{
 			GloomVisBoss boss = other.GetComponentInParent<GloomVisBoss>();
