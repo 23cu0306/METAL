@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9207060913018516147}
   - component: {fileID: 7933413714577960639}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WeakPoint
   m_TagString: WeakPoint
   m_Icon: {fileID: 0}
@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 3179996069135937954}
   - component: {fileID: 4273515719292027085}
   - component: {fileID: 3935823461118368901}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: R18boss_0
   m_TagString: Boss
   m_Icon: {fileID: 0}
