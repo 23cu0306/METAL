@@ -80,11 +80,13 @@ public class Player : MonoBehaviour
 		{
 			horizontal = -1f;
 			respawnPosition = transform.position;
+			spriteRenderer.flipX = true;  // 左向き（反転）
 		}
 		else if (Input.GetKey(KeyCode.RightArrow))
 		{
 			horizontal = 1f;
 			respawnPosition = transform.position;
+			spriteRenderer.flipX = false; // 右向き（元に戻す）
 		}
 
 		// 空中時は移動速度が低下

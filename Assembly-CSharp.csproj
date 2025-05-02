@@ -10,11 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-<<<<<<< HEAD
-    <ProjectGuid>{65EF54DF-34EB-2623-152F-1F9DA6665EC6}</ProjectGuid>
-=======
     <ProjectGuid>{AE9218B9-A476-B582-2A0A-753587AB202B}</ProjectGuid>
->>>>>>> origin/main
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -79,10 +75,6 @@
     <Compile Include="Assets\Script\GameOverManager.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy_Shooter.cs" />
     <Compile Include="Assets\Script\Enemy\Laser.cs" />
-<<<<<<< HEAD
-=======
-    <Compile Include="Assets\Script\CollisionDisabler.cs" />
->>>>>>> origin/main
     <Compile Include="Assets\CameraController.cs" />
     <Compile Include="Assets\Script\GameManager.cs" />
     <Compile Include="Assets\Script\Player\EnemyDetector.cs" />
