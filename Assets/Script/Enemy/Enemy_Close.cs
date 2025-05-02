@@ -25,7 +25,7 @@ public class Enemy_Close : MonoBehaviour
 	}
 	void OnCollisionEnter2D(Collision2D collision)
 	{
-		if (collision.gameObject.CompareTag("Enemy"))
+		if (collision.gameObject.CompareTag("Player"))
 		{
 			// プレイヤーが敵に当たった時の処理（例：ダメージを受ける）
 			Destroy(player);
