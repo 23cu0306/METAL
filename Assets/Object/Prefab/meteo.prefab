@@ -166,5 +166,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 5
-  moveSpeed: 1
+  moveSpeed: 7
   moveVec: {x: 0, y: -1, z: 0}
