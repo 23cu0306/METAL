@@ -63,7 +63,6 @@
   <ItemGroup>
     <Compile Include="Assets\Script\CameraFollow.cs" />
     <Compile Include="Assets\Script\Enemy\meteo.cs" />
-    <Compile Include="Assets\CameraZoneTrigger.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy_Bullet.cs" />
     <Compile Include="Assets\EnemySpawner.cs" />
     <Compile Include="Assets\Script\UIManager.cs" />
