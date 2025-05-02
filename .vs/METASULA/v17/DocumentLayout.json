@@ -3,11 +3,15 @@
   "WorkspaceRootPath": "D:\\23cu0306\\METASULA\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{65EF54DF-34EB-2623-152F-1F9DA6665EC6}|Assembly-CSharp.csproj|D:\\23cu0306\\METASULA\\assets\\script\\enemy\\enemy_close.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{65EF54DF-34EB-2623-152F-1F9DA6665EC6}|Assembly-CSharp.csproj|d:\\23cu0306\\metasula\\assets\\script\\collisiondisabler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{65EF54DF-34EB-2623-152F-1F9DA6665EC6}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\collisiondisabler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{65EF54DF-34EB-2623-152F-1F9DA6665EC6}|Assembly-CSharp.csproj|d:\\23cu0306\\metasula\\assets\\script\\enemy\\enemy_close.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{65EF54DF-34EB-2623-152F-1F9DA6665EC6}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\enemy\\enemy_close.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{65EF54DF-34EB-2623-152F-1F9DA6665EC6}|Assembly-CSharp.csproj|d:\\23cu0306\\metasula\\assets\\script\\enemy\\enemy_shooter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{65EF54DF-34EB-2623-152F-1F9DA6665EC6}|Assembly-CSharp.csproj|D:\\23cu0306\\METASULA\\assets\\script\\enemy\\enemy_shooter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{65EF54DF-34EB-2623-152F-1F9DA6665EC6}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\enemy\\enemy_shooter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -18,11 +22,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "CollisionDisabler.cs",
+              "DocumentMoniker": "D:\\23cu0306\\METASULA\\Assets\\Script\\CollisionDisabler.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\CollisionDisabler.cs",
+              "ToolTip": "D:\\23cu0306\\METASULA\\Assets\\Script\\CollisionDisabler.cs",
+              "RelativeToolTip": "Assets\\Script\\CollisionDisabler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-01T07:21:58.911Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Enemy_Shooter.cs",
               "DocumentMoniker": "D:\\23cu0306\\METASULA\\Assets\\Script\\Enemy\\Enemy_Shooter.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Enemy\\Enemy_Shooter.cs",
@@ -30,18 +47,17 @@
               "RelativeToolTip": "Assets\\Script\\Enemy\\Enemy_Shooter.cs",
               "ViewState": "AgIAACMAAAAAAAAAAAAIwAYAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-01T05:06:10.734Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-01T05:06:10.734Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Enemy_Close.cs",
               "DocumentMoniker": "D:\\23cu0306\\METASULA\\Assets\\Script\\Enemy\\Enemy_Close.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Enemy\\Enemy_Close.cs",
-              "ToolTip": "D:\\23cu0306\\METASULA\\Assets\\Script\\Enemy\\Enemy_Close.cs*",
-              "RelativeToolTip": "Assets\\Script\\Enemy\\Enemy_Close.cs*",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAgwB8AAAAkAAAAAAAAAA==",
+              "ToolTip": "D:\\23cu0306\\METASULA\\Assets\\Script\\Enemy\\Enemy_Close.cs",
+              "RelativeToolTip": "Assets\\Script\\Enemy\\Enemy_Close.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAA1wB8AAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-01T04:46:32.546Z",
               "EditorCaption": ""
