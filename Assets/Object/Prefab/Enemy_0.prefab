@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 7567039476023558366}
   - component: {fileID: 812112266252736734}
   - component: {fileID: 6845333002234810857}
-  m_Layer: 8
+  - component: {fileID: -6259715367171836243}
+  m_Layer: 0
   m_Name: Enemy_0
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -180,3 +181,18 @@ MonoBehaviour:
     frame: 400
     type: 2
     bullet: {fileID: -7142988566152139376, guid: b8f8beabddec0cc499b7c0de0f2db788, type: 3}
+--- !u!114 &-6259715367171836243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673688290170692785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d954ffedd5d1944b97c79a8f31dc77b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _colA: {fileID: 5140054231352603818, guid: 956fcc5f062e65b49ae3c03248937009, type: 3}
+  _colB: {fileID: 812112266252736734}
+  ignoreCollision: 1

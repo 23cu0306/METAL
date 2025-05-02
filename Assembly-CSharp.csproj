@@ -10,19 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-<<<<<<< HEAD
-    <ProjectGuid>{AE9218B9-A476-B582-2A0A-753587AB202B}</ProjectGuid>
-=======
-<<<<<<< HEAD
-    <ProjectGuid>{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}</ProjectGuid>
-=======
-<<<<<<< HEAD
-    <ProjectGuid>{AE9218B9-A476-B582-2A0A-753587AB202B}</ProjectGuid>
-=======
     <ProjectGuid>{65EF54DF-34EB-2623-152F-1F9DA6665EC6}</ProjectGuid>
->>>>>>> origin/main
->>>>>>> origin/main
->>>>>>> origin/main
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -74,20 +62,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\CameraFollow.cs" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <Compile Include="Assets\CameraZoneTrigger.cs" />
-=======
-<<<<<<< HEAD
-    <Compile Include="Assets\Script\Enemy\meteo.cs" />
-    <Compile Include="Assets\Script\Enemy\Enemy.cs" />
-=======
->>>>>>> origin/main
->>>>>>> origin/main
-=======
     <Compile Include="Assets\Script\Enemy\meteo.cs" />
     <Compile Include="Assets\CameraZoneTrigger.cs" />
->>>>>>> origin/main
     <Compile Include="Assets\Script\Enemy\Enemy_Bullet.cs" />
     <Compile Include="Assets\EnemySpawner.cs" />
     <Compile Include="Assets\Script\UIManager.cs" />
@@ -100,10 +76,6 @@
     <Compile Include="Assets\Script\GameOverManager.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy_Shooter.cs" />
     <Compile Include="Assets\Script\Enemy\Laser.cs" />
-<<<<<<< HEAD
-    <Compile Include="Assets\Script\CollisionDisabler.cs" />
-=======
->>>>>>> origin/main
     <Compile Include="Assets\CameraController.cs" />
     <Compile Include="Assets\Script\GameManager.cs" />
     <Compile Include="Assets\Script\Player\EnemyDetector.cs" />
