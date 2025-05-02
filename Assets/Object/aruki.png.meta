@@ -197,7 +197,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      aruki_0: -5147509809951812025
+      aruki_1: -2097301792654614097
+      aruki_2: 7950574971868122969
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

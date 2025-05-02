@@ -33,6 +33,11 @@ public class Attack : MonoBehaviour
 	private Vector2 downOffset = new Vector2(0f, -1f);
 	private Vector2 crouchOffset = new Vector2(0.5f, -0.5f); // しゃがみ撃ち
 
+	private bool isTransitioningToUp = false;
+	private bool isTransitioningToDown = false;
+	private float transitionDuration = 0.1f;  // 斜め撃ちの演出時間
+	private float transitionTimer = 0f;
+
 	void Start()
 	{
 		// 初期位置を右向きに設定

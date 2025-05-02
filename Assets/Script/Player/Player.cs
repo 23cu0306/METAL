@@ -41,6 +41,7 @@ public class Player : MonoBehaviour
 
 	void Start()
     {
+		//指定のレイヤーを持つオブジェクト同士がすり抜けるようになる処理
 		int playerLayer = LayerMask.NameToLayer("Player");
 		int enemyLayer = LayerMask.NameToLayer("Enemy");
 		Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, true);
