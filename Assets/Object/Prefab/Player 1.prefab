@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8016163403926841369}
   - component: {fileID: 3441601819879101891}
   - component: {fileID: 8828010070402777163}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy_Near_Check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 919074947463140478}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FIrePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 2684220448564784000}
   - component: {fileID: 5136281139596033764}
   - component: {fileID: 2264747471376486549}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player 1
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -343,7 +343,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1092317802848501743}
   - component: {fileID: 1931901974256840074}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: UpSideCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -421,7 +421,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4562094273269444776}
   - component: {fileID: 606966282158781041}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}

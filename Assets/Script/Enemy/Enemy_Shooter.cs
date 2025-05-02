@@ -23,6 +23,7 @@ public class Enemy_Shooter : MonoBehaviour
 		NONE = 0,
 		AIM,            // プレイヤーを狙う
 		THREE_WAY,      // ３方向
+		RAPID_FIRE,      // 連射
 	}
 
 	[System.Serializable]
@@ -87,6 +88,20 @@ public class Enemy_Shooter : MonoBehaviour
 						bullet.SetMoveVec(Quaternion.AngleAxis(15, new Vector3(0, 0, 1)) * new Vector3(-1, 0, 0));
 						bullet = (Enemy_Bullet)Instantiate(shotData.bullet, transform.position, Quaternion.identity);
 						bullet.SetMoveVec(Quaternion.AngleAxis(-15, new Vector3(0, 0, 1)) * new Vector3(-1, 0, 0));
+					}
+					break;
+
+				//連射
+				case ShotType.RAPID_FIRE:
+					{
+						for(int i = 0; i < 3; ++i)
+						{
+							Enemy_Bullet bullet = (Enemy_Bullet)Instantiate(
+							shotData.bullet,
+							transform.position,
+							Quaternion.identity
+							);
+						}
 					}
 					break;
 			}
