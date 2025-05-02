@@ -70,8 +70,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GloomVisBoss.cs",
+              "DocumentMoniker": "D:\\23cu0311\\ms\\Assets\\Script\\Enemy\\GloomVisBoss.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\Enemy\\GloomVisBoss.cs",
+              "ToolTip": "D:\\23cu0311\\ms\\Assets\\Script\\Enemy\\GloomVisBoss.cs",
+              "RelativeToolTip": "Assets\\Script\\Enemy\\GloomVisBoss.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-02T01:33:33.309Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -82,7 +95,8 @@
               "RelativeToolTip": "Assets\\Script\\Enemy\\meteo.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAQwA4AAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-01T06:24:39.95Z"
+              "WhenOpened": "2025-05-01T06:24:39.95Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -155,19 +169,6 @@
               "ViewState": "AgIAAEoAAAAAAAAAAAA9wFsAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-22T06:47:58.5Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "GloomVisBoss.cs",
-              "DocumentMoniker": "D:\\23cu0311\\ms\\Assets\\Script\\Enemy\\GloomVisBoss.cs",
-              "RelativeDocumentMoniker": "Assets\\Script\\Enemy\\GloomVisBoss.cs",
-              "ToolTip": "D:\\23cu0311\\ms\\Assets\\Script\\Enemy\\GloomVisBoss.cs",
-              "RelativeToolTip": "Assets\\Script\\Enemy\\GloomVisBoss.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAQwBMAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T06:45:07.147Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Document",

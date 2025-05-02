@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: b589dd72d0f248a43974216f919dd5cc
+guid: 0e1cc9805368c604a932f2a78ca064e7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8140593895237489223
-    second: PlayerBullet_0
+      213: -5147509809951812025
+    second: aruki_0
+  - first:
+      213: -2097301792654614097
+    second: aruki_1
+  - first:
+      213: 7950574971868122969
+    second: aruki_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +119,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlayerBullet_0
+      name: aruki_0
       rect:
         serializedVersion: 2
-        x: 125
-        y: 129
-        width: 246
-        height: 242
+        x: 273
+        y: 615
+        width: 14
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +134,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 742185a540339f070800000000000000
-      internalID: 8140593895237489223
+      spriteID: 746dbfbb91f5098b0800000000000000
+      internalID: -5147509809951812025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aruki_1
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 417
+        width: 1437
+        height: 1622
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa1280ea123e4e2e0800000000000000
+      internalID: -2097301792654614097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aruki_2
+      rect:
+        serializedVersion: 2
+        x: 1988
+        y: 417
+        width: 1405
+        height: 1643
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95f8f4e10dd165e60800000000000000
+      internalID: 7950574971868122969
       vertices: []
       indices: 
       edges: []
@@ -148,7 +198,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      PlayerBullet_0: 8140593895237489223
+      aruki_0: -5147509809951812025
+      aruki_1: -2097301792654614097
+      aruki_2: 7950574971868122969
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

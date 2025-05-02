@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b589dd72d0f248a43974216f919dd5cc
+guid: 0cf4c1f9803a3824fa20cbf7165e5d1b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8140593895237489223
-    second: PlayerBullet_0
+      213: -1923159360018771241
+    second: taiki_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlayerBullet_0
+      name: taiki_0
       rect:
         serializedVersion: 2
-        x: 125
-        y: 129
-        width: 246
-        height: 242
+        x: 3
+        y: 0
+        width: 1019
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 742185a540339f070800000000000000
-      internalID: 8140593895237489223
+      spriteID: 7d21d9b50c09f45e0800000000000000
+      internalID: -1923159360018771241
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      PlayerBullet_0: 8140593895237489223
+      taiki_0: -1923159360018771241
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

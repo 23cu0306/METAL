@@ -41,7 +41,12 @@ public class Player : MonoBehaviour
 
 	void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+		//指定のレイヤーを持つオブジェクト同士がすり抜けるようになる処理
+		int playerLayer = LayerMask.NameToLayer("Player");
+		int enemyLayer = LayerMask.NameToLayer("Enemy");
+		Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, true);
+
+		rb = GetComponent<Rigidbody2D>();
         col = GetComponent<BoxCollider2D>();
         rb.gravityScale = 3f;                   // 重力を強めてジャンプのメリハリをつける
 

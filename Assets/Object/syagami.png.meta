@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b589dd72d0f248a43974216f919dd5cc
+guid: 5cd7a9385fd52c245883d3a876997eda
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8140593895237489223
-    second: PlayerBullet_0
+      213: -8692991198958538733
+    second: syagami_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlayerBullet_0
+      name: syagami_0
       rect:
         serializedVersion: 2
-        x: 125
-        y: 129
-        width: 246
-        height: 242
+        x: 39
+        y: 22
+        width: 428
+        height: 437
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 742185a540339f070800000000000000
-      internalID: 8140593895237489223
+      spriteID: 310ba7edf8a4c5780800000000000000
+      internalID: -8692991198958538733
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      PlayerBullet_0: 8140593895237489223
+      syagami_0: -8692991198958538733
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
