@@ -102,16 +102,12 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-<<<<<<< HEAD
           "SelectedChildIndex": 12,
-=======
-          "SelectedChildIndex": 7,
->>>>>>> origin/main
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
 <<<<<<< HEAD
+              "DocumentIndex": 1,
               "Title": "MBullet.cs",
               "DocumentMoniker": "D:\\23cu0311\\ms\\Assets\\Script\\Player\\MBullet.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Player\\MBullet.cs",
@@ -148,20 +144,21 @@
             {
               "$type": "Document",
               "DocumentIndex": 10,
+=======
+              "DocumentIndex": 0,
+>>>>>>> origin/main
               "Title": "GloomVisBoss.cs",
               "DocumentMoniker": "D:\\23cu0311\\ms\\Assets\\Script\\Enemy\\GloomVisBoss.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Enemy\\GloomVisBoss.cs",
               "ToolTip": "D:\\23cu0311\\ms\\Assets\\Script\\Enemy\\GloomVisBoss.cs",
               "RelativeToolTip": "Assets\\Script\\Enemy\\GloomVisBoss.cs",
-              "ViewState": "AgIAAM8AAAAAAAAAAAAiwAgAAAAXAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-02T01:33:33.309Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-=======
->>>>>>> origin/main
+              "DocumentIndex": 1,
               "Title": "meteo.cs",
               "DocumentMoniker": "D:\\23cu0311\\ms\\Assets\\Script\\Enemy\\meteo.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Enemy\\meteo.cs",
@@ -169,7 +166,8 @@
               "RelativeToolTip": "Assets\\Script\\Enemy\\meteo.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAQwA4AAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-01T06:24:39.95Z"
+              "WhenOpened": "2025-05-01T06:24:39.95Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -258,28 +256,12 @@
               "ViewState": "AgIAAEoAAAAAAAAAAAA9wFsAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-22T06:47:58.5Z"
-<<<<<<< HEAD
             },
             {
               "$type": "Document",
+<<<<<<< HEAD
               "DocumentIndex": 4,
 =======
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "GloomVisBoss.cs",
-              "DocumentMoniker": "D:\\23cu0311\\ms\\Assets\\Script\\Enemy\\GloomVisBoss.cs",
-              "RelativeDocumentMoniker": "Assets\\Script\\Enemy\\GloomVisBoss.cs",
-              "ToolTip": "D:\\23cu0311\\ms\\Assets\\Script\\Enemy\\GloomVisBoss.cs",
-              "RelativeToolTip": "Assets\\Script\\Enemy\\GloomVisBoss.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAQwBMAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T06:45:07.147Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 6,
 >>>>>>> origin/main
               "Title": "MachineGunItem.cs",
@@ -295,19 +277,17 @@
               "$type": "Document",
 <<<<<<< HEAD
               "DocumentIndex": 0,
-              "Title": "Player.cs",
-              "DocumentMoniker": "D:\\23cu0311\\ms\\Assets\\Script\\Player\\Player.cs",
-              "RelativeDocumentMoniker": "Assets\\Script\\Player\\Player.cs",
-              "ToolTip": "D:\\23cu0311\\ms\\Assets\\Script\\Player\\Player.cs*",
-              "RelativeToolTip": "Assets\\Script\\Player\\Player.cs*",
-              "ViewState": "AgIAAEoAAAAAAAAAAAAwwFgAAAAtAAAAAAAAAA==",
 =======
               "DocumentIndex": 4,
+>>>>>>> origin/main
               "Title": "Player.cs",
               "DocumentMoniker": "D:\\23cu0311\\ms\\Assets\\Script\\Player\\Player.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Player\\Player.cs",
               "ToolTip": "D:\\23cu0311\\ms\\Assets\\Script\\Player\\Player.cs",
               "RelativeToolTip": "Assets\\Script\\Player\\Player.cs",
+<<<<<<< HEAD
+              "ViewState": "AgIAAEoAAAAAAAAAAAAwwFgAAAAtAAAAAAAAAA==",
+=======
               "ViewState": "AgIAACMAAAAAAAAAAAAwwFQAAAAUAAAAAAAAAA==",
 >>>>>>> origin/main
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
