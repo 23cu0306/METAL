@@ -15,6 +15,9 @@ public class GloomVisBoss : MonoBehaviour
 	public Transform laserSpawnPoint3;
 	public Transform laserSpawnPoint4;
 	public Transform MSpawnPoint;
+	public int sita;
+	public int ue;
+	public int hanni;
 
 
 	public float phase2Threshold = 70;
@@ -93,12 +96,12 @@ public class GloomVisBoss : MonoBehaviour
 		yield return new WaitForSeconds(1.0f);
 
 		
-		int Num = Random.Range(15, 21);
+		int Num = Random.Range(sita, ue);
 		for (int x = 0; x <= Num; x++ )
 		{
 			if (MSpawnPoint != null)
 			{
-				int RNum = Random.Range(0, 41);
+				int RNum = Random.Range(0, hanni);
 				// 現在のスポーン位置を取得
 				Vector3 spawnPos = MSpawnPoint.position;
 
