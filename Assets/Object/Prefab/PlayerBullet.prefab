@@ -8,10 +8,17 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD:Assets/Object/Prefab/Bullet.prefab
+  - component: {fileID: 7478675465986244547}
+  - component: {fileID: 5192406815292919585}
+  - component: {fileID: 246853204838215960}
+  - component: {fileID: -6525696840443054197}
+=======
   - component: {fileID: 8208395530161822815}
   - component: {fileID: 7355025577868381798}
   - component: {fileID: 4840083054800486458}
   - component: {fileID: 595952333487829741}
+>>>>>>> origin/main:Assets/Object/Prefab/PlayerBullet.prefab
   m_Layer: 0
   m_Name: PlayerBullet
   m_TagString: Untagged
@@ -135,7 +142,11 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.46, y: 2.42}
   m_EdgeRadius: 0
+<<<<<<< HEAD:Assets/Object/Prefab/Bullet.prefab
+--- !u!114 &-6525696840443054197
+=======
 --- !u!114 &595952333487829741
+>>>>>>> origin/main:Assets/Object/Prefab/PlayerBullet.prefab
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
