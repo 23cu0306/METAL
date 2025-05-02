@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MBullet : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
     public float lifetime = 3f;
     public float speed = 100f;
@@ -26,6 +26,5 @@ public class MBullet : MonoBehaviour
             Destroy(other.gameObject); // ìGÇè¡Ç∑
             Destroy(gameObject);       // íeÇ‡è¡Ç∑
         }
-
     }
 }
