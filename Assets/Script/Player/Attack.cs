@@ -91,22 +91,22 @@ public class Attack : MonoBehaviour
         }
     }
 
-    // 左右キーで発射方向切り替え
-    void UpdateShootDirection()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            currentDirection = Vector2.left;
-            lastValidDirection = currentDirection;
-            SetFirePointPosition(leftOffset);
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            currentDirection = Vector2.right;
-            lastValidDirection = currentDirection;
-            SetFirePointPosition(rightOffset);
-        }
-    }
+    //// 左右キーで発射方向切り替え
+    //void UpdateShootDirection()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.LeftArrow))
+    //    {
+    //        currentDirection = Vector2.left;
+    //        lastValidDirection = currentDirection;
+    //        SetFirePointPosition(leftOffset);
+    //    }
+    //    else if (Input.GetKeyDown(KeyCode.RightArrow))
+    //    {
+    //        currentDirection = Vector2.right;
+    //        lastValidDirection = currentDirection;
+    //        SetFirePointPosition(rightOffset);
+    //    }
+    //}
 
     // 発射位置の設定と記録
     void SetFirePointPosition(Vector2 offset)
@@ -117,20 +117,20 @@ public class Attack : MonoBehaviour
     }
 
     // 空中・地上状態の変化をチェック
-    void HandleGroundState()
-    {
-        if (playerScript == null) return;
+    //void HandleGroundState()
+    //{
+    //    if (playerScript == null) return;
 
-        bool isGroundedNow = playerScript.IsGrounded();
-        if (!wasGrounded && isGroundedNow && currentDirection == Vector2.down)
-        {
-            // 地上で下撃ちから復帰
-            currentDirection = lastValidDirection;
-            SetFirePointPosition(lastValidFirePointOffset);
-            Debug.Log("着地：発射方向を復元");
-        }
-        wasGrounded = isGroundedNow;
-    }
+    //    bool isGroundedNow = playerScript.IsGrounded();
+    //    if (!wasGrounded && isGroundedNow && currentDirection == Vector2.down)
+    //    {
+    //        // 地上で下撃ちから復帰
+    //        currentDirection = lastValidDirection;
+    //        SetFirePointPosition(lastValidFirePointOffset);
+    //        Debug.Log("着地：発射方向を復元");
+    //    }
+    //    wasGrounded = isGroundedNow;
+    //}
 
     // 弾の発射処理（マシンガン or 単発）
     void HandleShoot()
@@ -162,6 +162,127 @@ public class Attack : MonoBehaviour
         }
     }
 
+    // 弾を生成して発射
+    void Shoot(Vector2 direction)
+    {
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.Euler(0f, 0f, angle));
+
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        if (rb != null)
+            rb.linearVelocity = direction.normalized * bulletSpeed;
+
+        Debug.Log($"弾を {direction} に発射（角度: {angle}°）");
+    }
+
+
+
+
+
+
+
+
+
+
+    void HandleGroundState()
+    {
+        if (playerScript == null) return;
+
+        bool isGroundedNow = playerScript.IsGrounded();
+        if (!wasGrounded && isGroundedNow)
+        {
+            if (currentDirection == Vector2.down)
+            {
+                // 着地後に下方向が残っている場合は元に戻す
+                currentDirection = lastValidDirection;
+                SetFirePointPosition(lastValidFirePointOffset);
+                Debug.Log("着地したので方向とFirePointを戻しました");
+            }
+        }
+
+        // 空中での方向変更処理
+        if (playerScript != null && !playerScript.IsGrounded() && currentDirection == Vector2.down)
+        {
+            // もし空中で↓キーが押されている場合、再び下に撃つようにする
+            if (Input.GetKey(KeyCode.DownArrow))
+            {
+                currentDirection = Vector2.down;
+                SetFirePointPosition(downOffset);
+                Debug.Log("空中で↓を押しているため、再び下方向に切り替えました");
+            }
+        }
+
+        wasGrounded = isGroundedNow;
+    }
+
+    void CheckDownInputWhileJumping()
+    {
+        // 空中で↓を押しっぱなしにしていたら、再び下撃ち状態へ
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            if (playerScript != null && !playerScript.IsGrounded() && currentDirection != Vector2.down)
+            {
+                currentDirection = Vector2.down;
+                SetFirePointPosition(downOffset);
+                Debug.Log("空中で↓を押しているため、再び下方向に切り替えました");
+            }
+        }
+    }
+
+    void CheckDownKeyRelease()
+    {
+        if (!Input.GetKey(KeyCode.DownArrow))
+        {
+            if (currentDirection == Vector2.down)
+            {
+                currentDirection = lastValidDirection; // 方向を元に戻す
+                SetFirePointPosition(lastValidFirePointOffset);
+                Debug.Log("↓キーを離したので発射方向を元に戻しました");
+            }
+        }
+    }
+
+    void UpdateShootDirection()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            currentDirection = Vector2.left;
+            lastValidDirection = currentDirection;
+            SetFirePointPosition(leftOffset);
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            currentDirection = Vector2.right;
+            lastValidDirection = currentDirection;
+            SetFirePointPosition(rightOffset);
+        }
+        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            // ↑キーの処理はCheckUpKeyReleaseに任せる
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            if (playerScript != null && !playerScript.IsGrounded())
+            {
+                currentDirection = Vector2.down;
+                SetFirePointPosition(downOffset);
+            }
+            else
+            {
+                Debug.Log("地上では下方向に変更できません");
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
     // 発射して良い状態か判定
     bool CanShoot()
     {
@@ -178,19 +299,6 @@ public class Attack : MonoBehaviour
         }
 
         return true;
-    }
-
-    // 弾を生成して発射
-    void Shoot(Vector2 direction)
-    {
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.Euler(0f, 0f, angle));
-
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        if (rb != null)
-            rb.linearVelocity = direction.normalized * bulletSpeed;
-
-        Debug.Log($"弾を {direction} に発射（角度: {angle}°）");
     }
 
     // 方向ベクトルを滑らかに補間（上・下）
@@ -274,58 +382,58 @@ public class Attack : MonoBehaviour
         }
     }
 
-    // 空中で下方向射撃するための処理
-    void CheckDownInputWhileJumping()
-    {
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            if (playerScript != null && !playerScript.IsGrounded())
-            {
-                if (isMachineGunMode)
-                {
-                    if (currentDirection != Vector2.down)
-                    {
-                        lastValidDirection = currentDirection;
-                        lastValidFirePointOffset = firePoint.localPosition;
-                        isShootingDown = true;
-                        directionLerpTimer = 0f;
-                    }
-                }
-                else
-                {
-                    if (currentDirection != Vector2.down)
-                    {
-                        lastValidDirection = currentDirection;
-                        lastValidFirePointOffset = firePoint.localPosition;
-                        currentDirection = Vector2.down;
-                        SetFirePointPosition(downOffset);
-                        Debug.Log("通常モード：空中で下方向に切り替え");
-                    }
-                }
-            }
-        }
-        else
-        {
-            if (isMachineGunMode)
-            {
-                isShootingDown = false;
-            }
-        }
-    }
+    //// 空中で下方向射撃するための処理
+    //void CheckDownInputWhileJumping()
+    //{
+    //    if (Input.GetKey(KeyCode.DownArrow))
+    //    {
+    //        if (playerScript != null && !playerScript.IsGrounded())
+    //        {
+    //            if (isMachineGunMode)
+    //            {
+    //                if (currentDirection != Vector2.down)
+    //                {
+    //                    lastValidDirection = currentDirection;
+    //                    lastValidFirePointOffset = firePoint.localPosition;
+    //                    isShootingDown = true;
+    //                    directionLerpTimer = 0f;
+    //                }
+    //            }
+    //            else
+    //            {
+    //                if (currentDirection != Vector2.down)
+    //                {
+    //                    lastValidDirection = currentDirection;
+    //                    lastValidFirePointOffset = firePoint.localPosition;
+    //                    currentDirection = Vector2.down;
+    //                    SetFirePointPosition(downOffset);
+    //                    Debug.Log("通常モード：空中で下方向に切り替え");
+    //                }
+    //            }
+    //        }
+    //    }
+    //    else
+    //    {
+    //        if (isMachineGunMode)
+    //        {
+    //            isShootingDown = false;
+    //        }
+    //    }
+    //}
 
     // ↓キー離したときに元の方向に戻す
-    void CheckDownKeyRelease()
-    {
-        if (!Input.GetKey(KeyCode.DownArrow))
-        {
-            if (currentDirection == Vector2.down)
-            {
-                currentDirection = lastValidDirection;
-                SetFirePointPosition(lastValidFirePointOffset);
-                Debug.Log("↓キー離した：方向復元");
-            }
-        }
-    }
+    //void CheckDownKeyRelease()
+    //{
+    //    if (!Input.GetKey(KeyCode.DownArrow))
+    //    {
+    //        if (currentDirection == Vector2.down)
+    //        {
+    //            currentDirection = lastValidDirection;
+    //            SetFirePointPosition(lastValidFirePointOffset);
+    //            Debug.Log("↓キー離した：方向復元");
+    //        }
+    //    }
+    //}
 
     // 近距離攻撃処理（ナイフ）
     void PerformMeleeAttack()
