@@ -3,59 +3,62 @@ using UnityEngine;
 public class Attack : MonoBehaviour
 {
     [Header("弾の設定")]
-    public GameObject bulletPrefab; // 弾のプレハブ
-    public Transform firePoint;     // 発射位置のTransform
-    public float bulletSpeed = 10f; // 弾速
+    public GameObject bulletPrefab;             // 弾のプレハブ
+    public Transform firePoint;                 // 弾を発射する位置
+    public float bulletSpeed = 10f;             // 弾の速度
 
     [Header("マシンガン設定")]
-    public float fireRate = 0.1f;       // 連射間隔
-    private float fireTimer = 0f;       // 発射間隔の管理用タイマー
-    private bool isMachineGunMode = false; // マシンガンモード中か
-    private float machineGunDuration = 5f; // マシンガン持続時間
-    private float machineGunTimer = 0f;    // モード経過時間
+    public float fireRate = 0.1f;               // 発射間隔（マシンガンモード時）
+    private float fireTimer = 0f;               // 発射タイマー
+    private bool isMachineGunMode = false;      // マシンガンモード中か
+    private float machineGunDuration = 5f;      // マシンガンの持続時間
+    private float machineGunTimer = 0f;         // モード継続時間カウント
 
-    private bool isEnemyNearby = false;    // 近接攻撃が可能な敵が近くにいるか
-    private GameObject nearbyEnemy;        // 近くの敵オブジェクト参照
+    private bool isEnemyNearby = false;         // 敵が近くにいるか
+    private GameObject nearbyEnemy;             // 近くの敵
 
     [Header("プレイヤー接続")]
-    public Player playerScript;            // プレイヤーのスクリプト参照
+    public Player playerScript;                 // プレイヤースクリプトへの参照
 
-    private Vector2 currentDirection = Vector2.right;  // 現在の発射方向
-    private Vector2 lastValidDirection = Vector2.right; // 最後の有効な方向（上下以外）
-    private Vector2 lastValidFirePointOffset;           // 有効な方向のときの発射位置オフセット
-    private bool wasGrounded = true;                    // 前のフレームで地上にいたかどうか
+    // 現在の発射方向と最後の有効な方向
+    private Vector2 currentDirection = Vector2.right;
+    private Vector2 lastValidDirection = Vector2.right;
+    private Vector2 lastValidFirePointOffset;
 
-    // 各方向の発射位置
+    private bool wasGrounded = true;            // 前のフレームで地面にいたか
+
+    // 各方向への発射位置のオフセット
     private Vector2 rightOffset = new Vector2(0.5f, 0f);
     private Vector2 leftOffset = new Vector2(-0.5f, 0f);
     private Vector2 upOffset = new Vector2(0f, 1f);
     private Vector2 downOffset = new Vector2(0f, -1f);
-    private Vector2 crouchOffset = new Vector2(0.5f, -0.5f); // しゃがみ中の位置補正
+    private Vector2 crouchOffset = new Vector2(0.5f, -0.5f);
 
-    private bool isShootingUp = false;     // 上撃ち中かどうか
-    private bool isShootingDown = false;   // 下撃ち中かどうか
-    private float directionLerpTimer = 0f; // 補間用タイマー
-    private float directionLerpDuration = 0.15f; // 補間にかける時間
+    // 上下方向射撃のフラグと補間用変数
+    private bool isShootingUp = false;
+    private bool isShootingDown = false;
+    private float directionLerpTimer = 0f;
+    private float directionLerpDuration = 0.15f;
 
     void Start()
     {
-        // 初期化：右方向を基準に設定
+        // 初期発射位置（右）
         firePoint.localPosition = rightOffset;
         lastValidFirePointOffset = rightOffset;
     }
 
     void Update()
     {
-        HandleCrouchFirePoint();        // しゃがみ時の発射位置調整
-        UpdateShootDirection();         // 左右入力による方向変更
-        HandleGroundState();            // 地面への着地検出と方向リセット
-        CheckDownInputWhileJumping();   // 空中での下入力による下撃ち開始
-        CheckUpKeyRelease();            // 上撃ちキーの押下・離し
-        CheckDownKeyRelease();          // 下撃ちキーの離し
-        HandleVerticalDirectionLerp();  // 上下撃ちへの滑らかな移行
-        HandleShoot();                  // 発射処理
+        HandleCrouchFirePoint();       // しゃがみ時の発射位置調整
+        UpdateShootDirection();        // 左右キーによる方向切り替え
+        HandleGroundState();           // 地上・空中の状態管理
+        CheckDownInputWhileJumping();  // 空中での下方向射撃のチェック
+        CheckUpKeyRelease();           // ↑キー入力・離す処理
+        CheckDownKeyRelease();         // ↓キー離した処理
+        HandleVerticalDirectionLerp(); // 上下射撃の滑らかな補間
+        HandleShoot();                 // 発射処理
 
-        // マシンガンモード終了判定
+        // マシンガンモードの終了チェック
         if (isMachineGunMode)
         {
             machineGunTimer += Time.deltaTime;
@@ -67,9 +70,9 @@ public class Attack : MonoBehaviour
         }
     }
 
+    // しゃがみ時の発射位置調整
     void HandleCrouchFirePoint()
     {
-        // しゃがみ中はFirePointの位置を下げる
         if (playerScript == null || !playerScript.IsGrounded()) return;
 
         if (playerScript.IsCrouching())
@@ -81,7 +84,6 @@ public class Attack : MonoBehaviour
         }
         else
         {
-            // 通常立ち時の発射位置
             if (currentDirection == Vector2.right)
                 SetFirePointPosition(rightOffset);
             else if (currentDirection == Vector2.left)
@@ -89,9 +91,9 @@ public class Attack : MonoBehaviour
         }
     }
 
+    // 左右キーで発射方向切り替え
     void UpdateShootDirection()
     {
-        // 左右キーで発射方向とFirePointを更新
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             currentDirection = Vector2.left;
@@ -106,22 +108,23 @@ public class Attack : MonoBehaviour
         }
     }
 
+    // 発射位置の設定と記録
     void SetFirePointPosition(Vector2 offset)
     {
-        // FirePointの位置変更と有効方向の保存（上下方向は除外）
         firePoint.localPosition = offset;
         if (currentDirection != Vector2.down)
             lastValidFirePointOffset = offset;
     }
 
+    // 空中・地上状態の変化をチェック
     void HandleGroundState()
     {
-        // 下撃ち中に着地したら元の方向に復元
         if (playerScript == null) return;
 
         bool isGroundedNow = playerScript.IsGrounded();
         if (!wasGrounded && isGroundedNow && currentDirection == Vector2.down)
         {
+            // 地上で下撃ちから復帰
             currentDirection = lastValidDirection;
             SetFirePointPosition(lastValidFirePointOffset);
             Debug.Log("着地：発射方向を復元");
@@ -129,9 +132,9 @@ public class Attack : MonoBehaviour
         wasGrounded = isGroundedNow;
     }
 
+    // 弾の発射処理（マシンガン or 単発）
     void HandleShoot()
     {
-        // マシンガン時と通常時で処理を分岐
         if (isMachineGunMode)
         {
             if (Input.GetKey(KeyCode.Z))
@@ -146,7 +149,7 @@ public class Attack : MonoBehaviour
             }
             else
             {
-                fireTimer = fireRate;
+                fireTimer = fireRate; // キー離してたらリセット
             }
         }
         else
@@ -159,9 +162,9 @@ public class Attack : MonoBehaviour
         }
     }
 
+    // 発射して良い状態か判定
     bool CanShoot()
     {
-        // ナイフ処理と地上での下撃ち制限
         if (isEnemyNearby)
         {
             PerformMeleeAttack();
@@ -177,9 +180,9 @@ public class Attack : MonoBehaviour
         return true;
     }
 
+    // 弾を生成して発射
     void Shoot(Vector2 direction)
     {
-        // 弾を方向に応じて回転・速度設定して生成
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.Euler(0f, 0f, angle));
 
@@ -190,7 +193,7 @@ public class Attack : MonoBehaviour
         Debug.Log($"弾を {direction} に発射（角度: {angle}°）");
     }
 
-    // ベクトル補間：角度を保ったままSlerp
+    // 方向ベクトルを滑らかに補間（上・下）
     Vector2 Slerp(Vector2 from, Vector2 to, float t)
     {
         float fromAngle = Mathf.Atan2(from.y, from.x);
@@ -199,9 +202,11 @@ public class Attack : MonoBehaviour
         return new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
     }
 
-    // 上下方向へのなめらかな補間処理
+    // 上下方向射撃の補間処理（マシンガンモード用）
     void HandleVerticalDirectionLerp()
     {
+        if (!isMachineGunMode) return;
+
         if (isShootingUp)
         {
             directionLerpTimer += Time.deltaTime;
@@ -218,54 +223,97 @@ public class Attack : MonoBehaviour
         }
     }
 
-    // ↑キーの押下・離し検出
+    // ↑キー入力・離した時の処理
     void CheckUpKeyRelease()
     {
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            if (!isShootingUp)
+            if (isMachineGunMode)
             {
-                if (currentDirection != Vector2.down)
+                if (!isShootingUp)
                 {
-                    lastValidDirection = currentDirection;
-                    lastValidFirePointOffset = firePoint.localPosition;
+                    if (currentDirection != Vector2.down)
+                    {
+                        lastValidDirection = currentDirection;
+                        lastValidFirePointOffset = firePoint.localPosition;
+                    }
+                    isShootingUp = true;
+                    directionLerpTimer = 0f;
                 }
-                isShootingUp = true;
-                directionLerpTimer = 0f;
+            }
+            else
+            {
+                if (currentDirection != Vector2.up)
+                {
+                    if (currentDirection != Vector2.down)
+                    {
+                        lastValidDirection = currentDirection;
+                        lastValidFirePointOffset = firePoint.localPosition;
+                    }
+                    currentDirection = Vector2.up;
+                    SetFirePointPosition(upOffset);
+                    Debug.Log("通常モード：上方向に切り替え");
+                }
             }
         }
         else
         {
-            if (isShootingUp)
+            if (isMachineGunMode && isShootingUp)
             {
                 isShootingUp = false;
                 currentDirection = lastValidDirection;
                 SetFirePointPosition(lastValidFirePointOffset);
                 Debug.Log("↑キー離した：方向復元");
             }
+            else if (!isMachineGunMode && currentDirection == Vector2.up)
+            {
+                currentDirection = lastValidDirection;
+                SetFirePointPosition(lastValidFirePointOffset);
+                Debug.Log("通常モード：↑キー離した→方向復元");
+            }
         }
     }
 
-    // 空中での↓入力開始判定
+    // 空中で下方向射撃するための処理
     void CheckDownInputWhileJumping()
     {
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            if (playerScript != null && !playerScript.IsGrounded() && currentDirection != Vector2.down)
+            if (playerScript != null && !playerScript.IsGrounded())
             {
-                lastValidDirection = currentDirection;
-                lastValidFirePointOffset = firePoint.localPosition;
-                isShootingDown = true;
-                directionLerpTimer = 0f;
+                if (isMachineGunMode)
+                {
+                    if (currentDirection != Vector2.down)
+                    {
+                        lastValidDirection = currentDirection;
+                        lastValidFirePointOffset = firePoint.localPosition;
+                        isShootingDown = true;
+                        directionLerpTimer = 0f;
+                    }
+                }
+                else
+                {
+                    if (currentDirection != Vector2.down)
+                    {
+                        lastValidDirection = currentDirection;
+                        lastValidFirePointOffset = firePoint.localPosition;
+                        currentDirection = Vector2.down;
+                        SetFirePointPosition(downOffset);
+                        Debug.Log("通常モード：空中で下方向に切り替え");
+                    }
+                }
             }
         }
         else
         {
-            isShootingDown = false;
+            if (isMachineGunMode)
+            {
+                isShootingDown = false;
+            }
         }
     }
 
-    // ↓キーを離したときの復元処理
+    // ↓キー離したときに元の方向に戻す
     void CheckDownKeyRelease()
     {
         if (!Input.GetKey(KeyCode.DownArrow))
@@ -279,7 +327,7 @@ public class Attack : MonoBehaviour
         }
     }
 
-    // ナイフ処理：近接敵を撃破
+    // 近距離攻撃処理（ナイフ）
     void PerformMeleeAttack()
     {
         Debug.Log("ナイフ攻撃！");
@@ -291,7 +339,7 @@ public class Attack : MonoBehaviour
         }
     }
 
-    // 外部からマシンガンモードを有効化
+    // マシンガンモードを有効にする
     public void ActivateMachineGunMode(float duration)
     {
         isMachineGunMode = true;
@@ -300,7 +348,7 @@ public class Attack : MonoBehaviour
         Debug.Log("マシンガンモード発動！");
     }
 
-    // 敵弾ヒット時にマシンガンモード解除
+    // 敵の弾に当たったらマシンガンモード終了
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("EnemyBullet"))
@@ -309,7 +357,7 @@ public class Attack : MonoBehaviour
         }
     }
 
-    // 近接攻撃対象の設定
+    // 敵が近くにいるかを設定
     public void SetEnemyNearby(bool isNearby, GameObject enemy = null)
     {
         isEnemyNearby = isNearby;
