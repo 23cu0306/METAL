@@ -104,7 +104,7 @@ public class Player : MonoBehaviour
     // ジャンプ処理（地面にいるときだけ）
     void HandleJump()
     {
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
 			respawnPosition = transform.position;
 			rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
