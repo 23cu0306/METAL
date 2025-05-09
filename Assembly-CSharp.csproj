@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{1C51793E-F664-E348-8ABF-4076A2D58846}</ProjectGuid>
+    <ProjectGuid>{ECB54C66-ED91-677B-989F-A6312233C53C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -70,6 +70,7 @@
     <Compile Include="Assets\Script\Player\Attack.cs" />
     <Compile Include="Assets\Script\Image.cs" />
     <Compile Include="Assets\Script\Camera.cs" />
+    <Compile Include="Assets\Enemy.cs" />
     <Compile Include="Assets\Script\Enemy\DecayBullet.cs" />
     <Compile Include="Assets\SCORE.cs" />
     <Compile Include="Assets\Script\GameOverManager.cs" />
