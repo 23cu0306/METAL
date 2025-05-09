@@ -7,7 +7,8 @@ public class GameOverManager : MonoBehaviour
 
 	public void GameOver()
 	{
-		// シーン切り替えでゲームオーバーを演出
-		SceneManager.LoadScene(gameOverSceneName);
+        Debug.Log("ゲームオーバー処理実行");
+        // シーン切り替えでゲームオーバーを演出
+        SceneManager.LoadScene(gameOverSceneName);
 	}
 }
