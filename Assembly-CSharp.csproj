@@ -9,8 +9,14 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
+<<<<<<< HEAD
     <RootNamespace></RootNamespace>
     <ProjectGuid>{EDFB371C-4E17-45C7-7C10-5A4FC3445F02}</ProjectGuid>
+=======
+    <RootNamespace>
+    </RootNamespace>
+    <ProjectGuid>{65EF54DF-34EB-2623-152F-1F9DA6665EC6}</ProjectGuid>
+>>>>>>> origin/main
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -68,8 +74,10 @@
     <Compile Include="Assets\EnemySpawner.cs" />
     <Compile Include="Assets\Script\UIManager.cs" />
     <Compile Include="Assets\Script\Player\Attack.cs" />
+    <Compile Include="Assets\Script\Enemy\Enemy_Jump.cs" />
     <Compile Include="Assets\Script\Image.cs" />
     <Compile Include="Assets\Script\Camera.cs" />
+    <Compile Include="Assets\Enemy.cs" />
     <Compile Include="Assets\Script\Enemy\DecayBullet.cs" />
     <Compile Include="Assets\SCORE.cs" />
     <Compile Include="Assets\Script\GameOverManager.cs" />
