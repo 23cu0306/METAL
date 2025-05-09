@@ -37,7 +37,7 @@ public class Enemy_Jump : MonoBehaviour
 	{
 		// プレイヤーの方向を計算して移動
 		Vector2 direction = (player.position - transform.position).normalized;
-		rb.velocity = new Vector2(direction.x * moveSpeed, rb.velocity.y);
+		rb.linearVelocity = new Vector2(direction.x * moveSpeed, rb.linearVelocity.y);
 	}
 
 	void JumpTowardsPlayer()
@@ -46,7 +46,7 @@ public class Enemy_Jump : MonoBehaviour
 		isJumping = true;
 
 		// Y軸に対してジャンプ力を加える
-		rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+		rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
 
 		// 一定時間後にジャンプ状態を解除（例えば、1秒後）
 		Invoke("ResetJump", 1f);
