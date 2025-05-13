@@ -3,8 +3,11 @@ using UnityEngine;
 public class Enemy_Shooter : MonoBehaviour
 {
 	public int scoreValue = 100;
+    public float health = 20f;  // 敵の体力
+    public GameObject deathEffect;  // 敵が消滅した際に表示するエフェクト
 
-	public void Defeat()
+
+    public void Defeat()
 	{
 		GameManager.Instance.AddScore(scoreValue);
 		Destroy(gameObject);
@@ -109,4 +112,38 @@ public class Enemy_Shooter : MonoBehaviour
 			shotFrame = 0;
 		}
 	}
+
+    // トリガーイベント（弾との衝突）
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        // 弾が当たった場合、体力を減らす
+        if (other.CompareTag("Bullet"))
+        {
+            TakeDamage(10f);  // 弾が当たったときに10のダメージを受ける
+            Destroy(other.gameObject);  // 弾を破壊
+        }
+    }
+
+    // 体力を減らすメソッド
+    void TakeDamage(float damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    // 敵が死んだときの処理
+    void Die()
+    {
+        // 死亡エフェクトを表示
+        if (deathEffect != null)
+        {
+            Instantiate(deathEffect, transform.position, Quaternion.identity);
+        }
+
+        // 敵オブジェクトを消去
+        Destroy(gameObject);
+    }
 }

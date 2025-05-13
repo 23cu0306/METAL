@@ -31,7 +31,7 @@ public class MBullet : MonoBehaviour
 		if (other.CompareTag("Enemy"))
         {
             Debug.Log("EnemyDamage");
-            Destroy(other.gameObject); // “G‚ğÁ‚·
+            
             Destroy(gameObject);       // ’e‚àÁ‚·
 
         }

@@ -10,7 +10,15 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
+<<<<<<< HEAD
     <ProjectGuid>{DD1E4334-804D-FBDA-E0CE-D3F300031EF5}</ProjectGuid>
+=======
+<<<<<<< HEAD
+    <ProjectGuid>{77900AD4-47F1-9B7E-CD03-B03019DD561E}</ProjectGuid>
+=======
+    <ProjectGuid>{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}</ProjectGuid>
+>>>>>>> origin/main
+>>>>>>> origin/main
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -70,7 +78,6 @@
     <Compile Include="Assets\Script\Player\Attack.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy_Jump.cs" />
     <Compile Include="Assets\Script\Image.cs" />
-    <Compile Include="Assets\Script\Camera.cs" />
     <Compile Include="Assets\Enemy.cs" />
     <Compile Include="Assets\Script\Enemy\DecayBullet.cs" />
     <Compile Include="Assets\SCORE.cs" />
