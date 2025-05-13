@@ -7,6 +7,8 @@ public class Camera : MonoBehaviour
 {
 	//プレイヤーの情報（Inspecterで設定)
 	public GameObject player;
+
+	public GameObject enemy;
 	//追従するかしないか
 	bool IsHorming;
 	//x座標更新地
@@ -22,7 +24,8 @@ public class Camera : MonoBehaviour
 	Player _pl;
 	private bool hasSpawned = false; // 敵をスポーンさせたかどうかを追跡
 	public bool startZoomOut = false;   // ズームアウトを開始するかどうか
-	public float moveSpeed = 2f;        // カメラの移動速度
+    public bool isEnemyInScreen;  // 敵が画面内にいるかどうか
+    public float moveSpeed = 2f;        // カメラの移動速度
 	private bool isZoomingOut = false;
 
 	private Vector3 targetPosition;
@@ -30,7 +33,7 @@ public class Camera : MonoBehaviour
 	void Start()
 	{
 		_pl = GameObject.Find("Player").GetComponent<Player>();
-		IsHorming = true;
+        IsHorming = true;
 		MostPosX = player.transform.position.x;
 		PosX = player.transform.position.x;
 
@@ -44,7 +47,9 @@ public class Camera : MonoBehaviour
 		MostPos();
 		GetPos();
 
-		PlayerHorming(IsHorming);
+        isEnemyInScreen = IsEnemyOnScreen(spawnPosition);
+
+        PlayerHorming(IsHorming);
 
 		if (cameraTransform.position.x > spawnPosition.x && !hasSpawned)
 		{
@@ -70,11 +75,37 @@ public class Camera : MonoBehaviour
 			yield return new WaitForSeconds(spawnInterval);
 		}
 	}
+    bool IsEnemyOnScreen(Vector3 position)
+    {
+        // スクリーン座標に変換（画面の解像度に基づく）
+        Vector2 screenPosition = transform.position;
 
-	
+        // 画面内かどうかを判定（スクリーン座標が画面の範囲内にあるか）
+        if (screenPosition.x - 26 <  enemy.transform.position.x && enemy.transform.position.x < screenPosition.x + 26 )
+        {
+			if(screenPosition.y - 15 < enemy.transform.position.y && enemy.transform.position.y < screenPosition.y + 15)
+			{
+                Debug.Log("敵いる");
+                return true;
+            }
 
-	//追従
-	void PlayerHorming (bool Frg)
+			else
+			{
+
+                Debug.Log("敵いません");
+                return false;
+			}
+        } 
+        else
+        {
+            Debug.Log("敵いません");
+            return false;
+        }
+    }
+
+
+    //追従
+    void PlayerHorming (bool Frg)
 	{
 		if(Frg)
 		{
@@ -117,4 +148,6 @@ public class Camera : MonoBehaviour
 
 		return PosX;
 	}
+
+
 }

@@ -228,11 +228,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7323478143867855901, guid: ab99e6e6293a146469b6c31104b1b20c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 7323478143867855901, guid: ab99e6e6293a146469b6c31104b1b20c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.16
       objectReference: {fileID: 0}
     - target: {fileID: 7323478143867855901, guid: ab99e6e6293a146469b6c31104b1b20c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -378,12 +378,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1777649920}
+  enemy: {fileID: 82067554365954575, guid: 63b6c5eeaf5f2764e92046f290423201, type: 3}
   enemyPrefab: {fileID: 82067554365954575, guid: 63b6c5eeaf5f2764e92046f290423201, type: 3}
   cameraTransform: {fileID: 334255054}
   spawnPosition: {x: 50, y: 0, z: 0}
   numberOfEnemies: 5
   spawnInterval: 1
   startZoomOut: 0
+  isEnemyInScreen: 0
   moveSpeed: 2
 --- !u!114 &334255056
 MonoBehaviour:
