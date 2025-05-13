@@ -5,10 +5,10 @@ using UnityEngine;
 public class frame : MonoBehaviour
 {
 	//プレイヤーの情報（Inspecterで設定)
-	public GameObject camera;
+	public GameObject _camera;
 
 	Player _pl;
-	Camera _cam;
+	GameManager _cam;
 
 	//追従するかしないか
 	bool IsHorming;
@@ -22,14 +22,14 @@ public class frame : MonoBehaviour
 
 	void Start()
 	{
-		_cam = GameObject.Find("Main Camera").GetComponent<Camera>();
-		IsHorming = true;
-		MostPosX = camera.transform.position.x;
-		PosX = camera.transform.position.x;
+		_cam = GameObject.Find("Main Camera").GetComponent<GameManager>();
+        IsHorming = true;
+		MostPosX = _camera.transform.position.x;
+		PosX = _camera.transform.position.x;
 
 		StartPos = transform.position.x;
 
-		DeltaCameraPos = camera.transform.position.x - StartPos;
+		DeltaCameraPos = _camera.transform.position.x - StartPos;
 	}
 
 	// Update is called once per frame
@@ -55,7 +55,7 @@ public class frame : MonoBehaviour
 
 	void StopHorming()
 	{
-		if (GetPos() >= 55)
+		if (_cam.IsEnemyInScreen())
 		{
 			IsHorming = false;
 		}
@@ -83,7 +83,7 @@ public class frame : MonoBehaviour
 
 	float GetPos()
 	{
-		PosX = camera.transform.position.x;
+		PosX = _camera.transform.position.x;
 
 		return PosX;
 	}
