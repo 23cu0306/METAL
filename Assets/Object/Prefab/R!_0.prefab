@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 488322410214638634}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 8, z: 0}
+  m_LocalPosition: {x: 50, y: 8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -182,3 +182,4 @@ MonoBehaviour:
   jumpHorizontalForce: 5
   health: 20
   deathEffect: {fileID: 0}
+  damage: 20

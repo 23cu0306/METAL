@@ -183,39 +183,42 @@ public class Player : MonoBehaviour
 		isInvincible = false;
 	}
 
-	void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("EnemyBullet") && !isInvincible)
-        {
-            if(Playerlife <= 0)
-            {
-				// シーン切り替えでゲームオーバーを演出
-				SceneManager.LoadScene("GameOverScene"); 
-			}
-			// プレイヤーをリスポーン位置に戻す
-			transform.position = respawnPosition;
+	//void OnTriggerEnter2D(Collider2D other)
+ //   {
+ //       if (other.CompareTag("EnemyBullet") && !isInvincible)
+ //       {
+ //           if(Playerlife <= 0)
+ //           {
+	//			// シーン切り替えでゲームオーバーを演出
+	//			SceneManager.LoadScene("GameOverScene"); 
+	//		}
+	//		// プレイヤーをリスポーン位置に戻す
+	//		transform.position = respawnPosition;
 
-			// 任意で速度もリセットすると自然
-			rb.linearVelocity = Vector2.zero;
-            Playerlife -= 1;
-			StartCoroutine(InvincibilityCoroutine());
-		}
-    }
+	//		// 任意で速度もリセットすると自然
+	//		rb.linearVelocity = Vector2.zero;
+ //           Playerlife -= 1;
+	//		StartCoroutine(InvincibilityCoroutine());
+	//	}
+ //   }
    
     // 敵からダメージを受ける処理
     public void TakeDamage(int damage)
     {
-        health -= damage;
-        if (health <= 0)
-        {
-            Die();
-        }
-        // プレイヤーをリスポーン位置に戻す
-        transform.position = respawnPosition;
+		if(!isInvincible)
+		{
+            health -= damage;
+            if (health <= 0)
+            {
+                Die();
+            }
+            // プレイヤーをリスポーン位置に戻す
+            transform.position = respawnPosition;
 
-        // 任意で速度もリセットすると自然
-        rb.linearVelocity = Vector2.zero;
-        StartCoroutine(InvincibilityCoroutine());
+            // 任意で速度もリセットすると自然
+            rb.linearVelocity = Vector2.zero;
+            StartCoroutine(InvincibilityCoroutine());
+        }
     }
 
     // プレイヤーが死亡した時の処理
