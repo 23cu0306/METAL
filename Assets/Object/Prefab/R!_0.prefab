@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1787674728444992022}
   - component: {fileID: -228220356682477511}
   - component: {fileID: 7465444204135840526}
+  - component: {fileID: -3347688426603056602}
   m_Layer: 8
   m_Name: R!_0
   m_TagString: Enemy
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 488322410214638634}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.96, y: -7.64, z: 0}
+  m_LocalPosition: {x: 50, y: 8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -162,3 +163,23 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.93, y: 3.88}
   m_EdgeRadius: 0
+--- !u!114 &-3347688426603056602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488322410214638634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7577ef8c03d76414288ff28fffe59bcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 7323478143867855901, guid: ab99e6e6293a146469b6c31104b1b20c, type: 3}
+  speed: 3
+  jumpDistance: 2
+  jumpForce: 10
+  jumpHorizontalForce: 5
+  health: 20
+  deathEffect: {fileID: 0}
+  damage: 20
