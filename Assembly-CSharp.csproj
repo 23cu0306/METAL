@@ -10,7 +10,11 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
+<<<<<<< HEAD
     <ProjectGuid>{1C51793E-F664-E348-8ABF-4076A2D58846}</ProjectGuid>
+=======
+    <ProjectGuid>{9894DBBB-1E4B-BBD8-9910-1A7E0A89B7F6}</ProjectGuid>
+>>>>>>> origin/main
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -63,8 +67,6 @@
   <ItemGroup>
     <Compile Include="Assets\Script\CameraFollow.cs" />
     <Compile Include="Assets\Script\Enemy\meteo.cs" />
-    <Compile Include="Assets\DrillAttack.cs" />
-    <Compile Include="Assets\HomingMissile.cs" />
     <Compile Include="Assets\CameraZoneTrigger.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy_Bullet.cs" />
     <Compile Include="Assets\EnemySpawner.cs" />
@@ -79,10 +81,7 @@
     <Compile Include="Assets\Script\GameOverManager.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy_Shooter.cs" />
     <Compile Include="Assets\Script\Enemy\Laser.cs" />
-    <Compile Include="Assets\ScarletClawBoss.cs" />
-    <Compile Include="Assets\MetalSlugCamera.cs" />
     <Compile Include="Assets\CameraController.cs" />
-    <Compile Include="Assets\CoreLaser.cs" />
     <Compile Include="Assets\Script\GameManager.cs" />
     <Compile Include="Assets\Script\Player\EnemyDetector.cs" />
     <Compile Include="Assets\Script\Player\Bullet.cs" />
@@ -93,7 +92,6 @@
     <Compile Include="Assets\Script\Player\Player.cs" />
     <Compile Include="Assets\Script\Enemy\GloomVisBoss.cs" />
     <Compile Include="Assets\Script\assist.cs" />
-    <Compile Include="Assets\PlayerControls.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy_Close.cs" />
   </ItemGroup>
   <ItemGroup>

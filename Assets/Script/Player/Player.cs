@@ -1,235 +1,209 @@
-using UnityEngine.SceneManagement;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using System.Collections;
+using UnityEngine.SceneManagement;
+using System.Collections; 
 
 public class Player : MonoBehaviour
 {
     [Header("移動設定")]
-    public float moveSpeed = 15f;                 // 移動速度
-    public float jumpForce = 20f;                 // ジャンプ時に加える力
-    public float airControlMultiplier = 0.5f;     // 空中での移動制限倍率
-    public float fallMultiplier = 2.5f;           // 落下速度を強調するための倍率
+    public float moveSpeed = 15f;               // 地上での移動速度
+    public float jumpForce = 20f;               // ジャンプの力
+    public float airControlMultiplier = 0.5f;   // 空中での移動力の減衰
+    public float fallMultiplier = 2.5f;         // 落下加速度の倍率（ジャンプ後にふわっとしすぎないように）
 
     [Header("接地判定")]
-    public Transform groundCheck;                 // 地面チェック用の位置
-    public float checkRadius = 0.2f;              // 地面チェックの円の半径
-    public LayerMask groundLayer;                 // 接地判定対象となるレイヤー
+    public Transform groundCheck;               // 足元に設置した空オブジェクト
+    public float checkRadius = 0.2f;            // 地面判定の円の半径
+    public LayerMask groundLayer;               // 地面として認識するレイヤー
 
-    private Rigidbody2D rb;                       // Rigidbody2D コンポーネント
-    private BoxCollider2D col;                    // プレイヤーのコライダー
-    private bool isGrounded;                      // 地面に接しているかどうか
+    private Rigidbody2D rb;                     // プレイヤーのRigidbody2D
+    private BoxCollider2D col;                  // プレイヤーのBoxCollider2D
+    private bool isGrounded;                    // 接地しているかどうか
 
-    [Header("しゃがみ設定")]
-    private bool isCrouching = false;             // しゃがみ中かどうか
-    private Vector2 standingSize;                 // 立っている時のコライダーサイズ
-    private Vector2 crouchingSize;                // しゃがみ時のコライダーサイズ
+	[Header("しゃがみ設定")]
+	// しゃがみ状態の管理
+	private bool isCrouching = false;           // 現在しゃがんでいるか
+    private Vector2 standingSize;               // 通常時のコライダーサイズ
+    private Vector2 crouchingSize;              // しゃがみ時のコライダーサイズ
 
-    public Collider2D headCheckCollider;          // 天井判定用のコライダー
-    private bool isCeilingBlocked = false;        // 頭上がふさがれているか
+	//しゃがみを継続するかの管理
+	public Collider2D headCheckCollider;        // 子オブジェクトのBoxCollider2D
+	private bool isCeilingBlocked = false;      // 頭上にGroundがあるか
 
-    private Vector3 respawnPosition;              // リスポーン時の座標
+	private Vector3 respawnPosition;
 
-    public int health = 100;                      // プレイヤーの体力
-    private bool isInvincible = false;            // 無敵状態かどうか
-    public float invincibilityDuration = 2f;      // 無敵時間
-    public float blinkInterval = 0.1f;            // 点滅間隔
+    public int Playerlife;
+	private bool isInvincible = false;
+	public float invincibilityDuration = 2f;
+	public float blinkInterval = 0.1f;
 
-    private SpriteRenderer spriteRenderer;        // 見た目の描画用
+	private SpriteRenderer spriteRenderer;
 
-    [Header("攻撃設定")]
-    public GameObject bulletPrefab;               // 弾丸のプレハブ
-    public Transform firePoint;                   // 弾の発射位置
-    public float bulletSpeed = 10f;               // 弾のスピード
 
-    // Input System 関連
-    private PlayerControls controls;              // InputActionアセット
-    private Vector2 moveInput;                    // 移動入力の値
-    private bool jumpPressed;                     // ジャンプ入力
-    private bool attackPressed;                   // 攻撃入力
-
-    private Vector2 lastMoveDirection = Vector2.right;  // 最後に動いた方向（射撃時に使う）
-
-    void Awake()
+	void Start()
     {
-        controls = new PlayerControls();
+		//指定のレイヤーを持つオブジェクト同士がすり抜けるようになる処理
+		int playerLayer = LayerMask.NameToLayer("Player");
+		int enemyLayer = LayerMask.NameToLayer("Enemy");
+		Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, true);
 
-        // 入力イベント登録
-        controls.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
-        controls.Player.Move.canceled += ctx => moveInput = Vector2.zero;
-
-        controls.Player.Jump.performed += ctx => jumpPressed = true;
-        controls.Player.Attack.performed += ctx => attackPressed = true;
-    }
-
-    void OnEnable() => controls.Enable();     // 有効時に入力を有効化
-    void OnDisable() => controls.Disable();   // 無効時に入力を無効化
-
-    void Start()
-    {
-        // 敵との衝突を無視
-        int playerLayer = LayerMask.NameToLayer("Player");
-        int enemyLayer = LayerMask.NameToLayer("Enemy");
-        Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, true);
-
-        // 初期化
-        rb = GetComponent<Rigidbody2D>();
+		rb = GetComponent<Rigidbody2D>();
         col = GetComponent<BoxCollider2D>();
-        rb.gravityScale = 3f;
+        rb.gravityScale = 3f;                   // 重力を強めてジャンプのメリハリをつける
 
+        // コライダーのサイズ記録（しゃがみ用に半分の高さにする）
         standingSize = col.size;
         crouchingSize = new Vector2(standingSize.x, standingSize.y / 2f);
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        respawnPosition = transform.position;
-    }
+		spriteRenderer = GetComponent<SpriteRenderer>();
+		respawnPosition = transform.position;
+	}
 
     void Update()
     {
-        CheckGround();       // 接地判定
-        CheckCeiling();      // 天井判定
-        HandleCrouch();      // しゃがみ処理
-        HandleMovement();    // 横移動処理
-        HandleJump();        // ジャンプ処理
-        HandleFall();        // 落下補正処理
-    }
+        CheckGround();      // 接地しているか確認
+		CheckCeiling();     //頭上にグラウンドレイヤーがあるかを確認
+		HandleCrouch();     // しゃがみ処理
+        HandleMovement();   // 横移動処理
+        HandleJump();       // ジャンプ処理
+        HandleFall();       // 落下処理（落下加速）
+	}
 
+    // 地面との接触を調べてisGroundedを更新
     void CheckGround()
     {
-        // 地面との接触をチェック（OverlapCircle）
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
     }
 
+    // 左右移動（空中だとスピードが減る）
     void HandleMovement()
     {
-        float horizontal = moveInput.x;
+        float horizontal = 0f;
+		if (Input.GetKey(KeyCode.LeftArrow))
+		{
+			horizontal = -1f;
+			respawnPosition = transform.position;
+		}
+		else if (Input.GetKey(KeyCode.RightArrow))
+		{
+			horizontal = 1f;
+			respawnPosition = transform.position;
+		}
 
-        // 移動入力があれば最後の移動方向を保存
-        if (horizontal != 0)
-        {
-            lastMoveDirection = new Vector2(horizontal, 0);
-        }
+		// 空中時は移動速度が低下
+		float appliedSpeed = isGrounded ? moveSpeed : moveSpeed * airControlMultiplier;
 
-        // 空中なら移動速度を減らす
-        float appliedSpeed = isGrounded ? moveSpeed : moveSpeed * airControlMultiplier;
+		// しゃがみ時はさらにスピードを半分に落とす
+		if (isCrouching)
+		{
+			appliedSpeed *= 0.3f;
+		}
 
-        // しゃがみ中はさらに減速
-        if (isCrouching)
-        {
-            appliedSpeed *= 0.3f;
-        }
+		// プレイヤーの横方向速度を設定
+		rb.linearVelocity = new Vector2(horizontal * appliedSpeed, rb.linearVelocity.y);
+	}
 
-        // 横方向の速度を設定（Y速度は維持）
-        rb.linearVelocity = new Vector2(horizontal * appliedSpeed, rb.linearVelocity.y);
-    }
-
+    // ジャンプ処理（地面にいるときだけ）
     void HandleJump()
     {
-        // ジャンプボタンが押されており、かつ地面にいる場合
-        if (jumpPressed && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            respawnPosition = transform.position; // ジャンプ地点をリスポーン地点に
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce); // 上方向に力を加える
+			respawnPosition = transform.position;
+			rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
-        jumpPressed = false; // 入力のフラグをリセット
     }
 
+    // ジャンプ中の落下を早めるための加速処理
     void HandleFall()
     {
-        // 下方向に落ちているときは重力を強める
         if (rb.linearVelocity.y < 0)
         {
             rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
     }
 
-    void HandleCrouch()
-    {
-        bool isDownPressed = moveInput.y < -0.5f;
+	void HandleCrouch()
+	{
+		bool isDownPressed = Input.GetKey(KeyCode.DownArrow);
 
-        if (isGrounded)
+		if (isGrounded)
+		{
+			if (isDownPressed)
+			{
+				// ↓キーが押されていればしゃがむ
+				isCrouching = true;
+				col.size = crouchingSize;
+			}
+			else if (isCrouching)
+			{
+				// ↓を離したあと、頭上が空いていれば立ち上がる
+				if (!isCeilingBlocked)
+				{
+					isCrouching = false;
+					col.size = standingSize;
+				}
+				// 頭上が塞がっていればしゃがみ継続（何もしない）
+			}
+			else
+			{
+				// 通常状態
+				isCrouching = false;
+				col.size = standingSize;
+			}
+		}
+	}
+
+
+	//頭上にGroundがあるか確認
+	void CheckCeiling()
+	{
+		if (headCheckCollider != null)
+		{
+			isCeilingBlocked = Physics2D.OverlapBox(
+				headCheckCollider.bounds.center,
+				headCheckCollider.bounds.size,
+				0f,
+				groundLayer
+			);
+		}
+	}
+
+	private IEnumerator InvincibilityCoroutine()
+	{
+		isInvincible = true;
+
+		float elapsed = 0f;
+		while (elapsed < invincibilityDuration)
+		{
+			spriteRenderer.enabled = !spriteRenderer.enabled; // 点滅
+			yield return new WaitForSeconds(blinkInterval);
+			elapsed += blinkInterval;
+		}
+
+		spriteRenderer.enabled = true; // 点滅終了で表示を戻す
+		isInvincible = false;
+	}
+
+	void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("EnemyBullet") && !isInvincible)
         {
-            if (isDownPressed)
+            if(Playerlife <= 0)
             {
-                // しゃがみ開始
-                isCrouching = true;
-                col.size = crouchingSize;
-            }
-            else if (isCrouching)
-            {
-                // しゃがみ解除条件を確認
-                if (!isCeilingBlocked)
-                {
-                    isCrouching = false;
-                    col.size = standingSize;
-                }
-            }
-            else
-            {
-                // 立ち状態のまま
-                isCrouching = false;
-                col.size = standingSize;
-            }
-        }
+				// シーン切り替えでゲームオーバーを演出
+				SceneManager.LoadScene("GameOverScene"); 
+			}
+			// プレイヤーをリスポーン位置に戻す
+			transform.position = respawnPosition;
+
+			// 任意で速度もリセットすると自然
+			rb.linearVelocity = Vector2.zero;
+            Playerlife -= 1;
+			StartCoroutine(InvincibilityCoroutine());
+		}
     }
 
-    void CheckCeiling()
-    {
-        // 頭上に障害物があるかをチェック
-        if (headCheckCollider != null)
-        {
-            isCeilingBlocked = Physics2D.OverlapBox(
-                headCheckCollider.bounds.center,
-                headCheckCollider.bounds.size,
-                0f,
-                groundLayer
-            );
-        }
-    }
+	// 他スクリプト用：接地判定を外部から取得
+	public bool IsGrounded() => isGrounded;
 
-    private IEnumerator InvincibilityCoroutine()
-    {
-        // 一定時間無敵状態にし、点滅させる
-        isInvincible = true;
-        float elapsed = 0f;
-        while (elapsed < invincibilityDuration)
-        {
-            spriteRenderer.enabled = !spriteRenderer.enabled; // 点滅
-            yield return new WaitForSeconds(blinkInterval);
-            elapsed += blinkInterval;
-        }
-
-        spriteRenderer.enabled = true; // 最後に表示状態を戻す
-        isInvincible = false;
-    }
-
-    // 敵からダメージを受けたときに呼ばれる
-    public void TakeDamage(int damage)
-    {
-        if (!isInvincible)
-        {
-            health -= damage;
-
-            if (health <= 0)
-            {
-                Die(); // 死亡処理へ
-            }
-
-            transform.position = respawnPosition;  // リスポーン地点へ戻す
-            rb.linearVelocity = Vector2.zero;      // 速度もリセット
-            StartCoroutine(InvincibilityCoroutine()); // 無敵モード開始
-        }
-    }
-
-    // 死亡処理
-    private void Die()
-    {
-        Debug.Log("プレイヤーが死亡しました");
-        SceneManager.LoadScene("GameOverScene"); // ゲームオーバー画面へ
-    }
-
-    // 他のスクリプトからアクセス可能な接地判定
-    public bool IsGrounded() => isGrounded;
-
-    // 他のスクリプトからアクセス可能なしゃがみ状態
+    // 他スクリプト用：しゃがみ状態を外部から取得
     public bool IsCrouching() => isCrouching;
 }

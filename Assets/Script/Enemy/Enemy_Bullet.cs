@@ -30,7 +30,7 @@ public class Enemy_Bullet : MonoBehaviour
 	{
 		if (other.CompareTag("Player"))
 		{
-			
+			//Destroy(other.gameObject); // “G‚ğÁ‚·
 			Destroy(gameObject);       // ’e‚àÁ‚·
 		}
 	}
