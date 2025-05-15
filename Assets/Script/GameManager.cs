@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
         if (screenPosition.x - 26 < enemy.transform.position.x && enemy.transform.position.x < screenPosition.x + 26)
         {
             Debug.Log(enemy.transform.position.x);
-            Debug.Log("“G‚¢‚È‚¢");
+            //Debug.Log("“G‚¢‚È‚¢");
             return true;
         }
 

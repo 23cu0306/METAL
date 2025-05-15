@@ -80,6 +80,8 @@ public class Enemy_Jump : MonoBehaviour
     // トリガーイベント（弾との衝突）
     void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("接触したオブジェクト: " + other.gameObject.name);  // 接触したオブジェクトの名前を表示
+
         // 弾が当たった場合、体力を減らす
         if (other.CompareTag("Bullet"))
         {
