@@ -7,8 +7,8 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
-	// 敵オブジェクトのリスト
-	private List<Enemy> enemies;
+    // 敵オブジェクトのリスト
+    private List<Enemy> enemies;
 
     public GameObject player;
 
@@ -16,11 +16,11 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
-	public int score = 0;
-	public float gameTime = 60f; // 60秒の制限時間
+    public int score = 0;
+    public float gameTime = 60f; // 60秒の制限時間
 
-	public delegate void OnScoreChanged(int newScore);
-	public event OnScoreChanged onScoreChanged;
+    public delegate void OnScoreChanged(int newScore);
+    public event OnScoreChanged onScoreChanged;
 
     //x座標更新地
     float MostPosX;
@@ -33,34 +33,33 @@ public class GameManager : MonoBehaviour
     public float spawnInterval = 1f; // 敵をスポーンさせる間隔（秒）
     private bool hasSpawned = false; // 敵をスポーンさせたかどうかを追跡
     public TransferFunction taget; //敵いるかいないかの判定
-	public delegate void OnTimeUp();
+    public delegate void OnTimeUp();
     public bool isEnemyInScreen;  // 敵が画面内にいるかどうか
 
     private void Awake()
-	{
-		Instance = this;
+    {
+        Instance = this;
 
-       
+
     }
 
-	private void Start()
-	{
-		 MostPosX = player.transform.position.x;
+    private void Start()
+    {
+        MostPosX = player.transform.position.x;
         PosX = player.transform.position.x;
-       
-	}
 
-	 void Update()
-	{
+    }
+
+    void Update()
+    {
+        IsEnemyInScreen();
         if (cameraTransform.position.x > spawnPosition.x && !hasSpawned)
         {
             // 敵を等間隔で順番にスポーンさせる
             StartCoroutine(SpawnEnemies());
             hasSpawned = true;
-
-            
         }
-IsEnemyInScreen();
+
     }
 
     IEnumerator SpawnEnemies()
@@ -86,26 +85,26 @@ IsEnemyInScreen();
         if (screenPosition.x - 26 < enemy.transform.position.x && enemy.transform.position.x < screenPosition.x + 26)
         {
             Debug.Log(enemy.transform.position.x);
-            Debug.Log("敵いる");
+            Debug.Log("敵いない");
             return true;
         }
 
         else
         {
             Debug.Log(enemy.transform.position.x);
-            Debug.Log("敵いません");
+            Debug.Log("敵いる");
             return false;
         }
     }
 
-	public void AddScore(int value)
-	{
-		score += value;
-		onScoreChanged?.Invoke(score);
-	}
+    public void AddScore(int value)
+    {
+        score += value;
+        onScoreChanged?.Invoke(score);
+    }
 
-	public float GetRemainingTime()
-	{
-		return gameTime;
-	}
+    public float GetRemainingTime()
+    {
+        return gameTime;
+    }
 }
