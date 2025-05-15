@@ -175,20 +175,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -3347688426603056602, guid: e639818c56ec58d43a4b0572bbd8e8c4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 488322410214638634, guid: e639818c56ec58d43a4b0572bbd8e8c4, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 527217201}
+      addedObject: {fileID: 527217207}
   m_SourcePrefab: {fileID: 100100000, guid: e639818c56ec58d43a4b0572bbd8e8c4, type: 3}
 --- !u!1 &527217200 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 488322410214638634, guid: e639818c56ec58d43a4b0572bbd8e8c4, type: 3}
   m_PrefabInstance: {fileID: 391305110}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &527217201
+--- !u!114 &527217207
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -200,12 +201,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7577ef8c03d76414288ff28fffe59bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1648063045}
   speed: 3
-  jumpDistance: 8
+  jumpDistance: 2
   jumpForce: 10
   jumpHorizontalForce: 5
-  health: 2
+  health: 20
   deathEffect: {fileID: 0}
   damage: 20
 --- !u!1001 &834338558
@@ -218,7 +219,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3224082846501101326, guid: ab99e6e6293a146469b6c31104b1b20c, type: 3}
       propertyPath: m_Name
-      value: Player 1
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7323478143867855901, guid: ab99e6e6293a146469b6c31104b1b20c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -778,6 +779,11 @@ Tilemap:
 --- !u!1 &1648063039 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3224082846501101326, guid: ab99e6e6293a146469b6c31104b1b20c, type: 3}
+  m_PrefabInstance: {fileID: 834338558}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1648063045 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7323478143867855901, guid: ab99e6e6293a146469b6c31104b1b20c, type: 3}
   m_PrefabInstance: {fileID: 834338558}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1716908979

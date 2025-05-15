@@ -93,7 +93,7 @@ IsEnemyInScreen();
         else
         {
             Debug.Log(enemy.transform.position.x);
-            Debug.Log("“G‚¢‚Ü‚¹‚ñ");
+            //Debug.Log("“G‚¢‚Ü‚¹‚ñ");
             return false;
         }
     }
