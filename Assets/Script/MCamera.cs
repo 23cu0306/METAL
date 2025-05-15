@@ -29,7 +29,7 @@ public class MCamera : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-		_pl = GameObject.Find("Player 1").GetComponent<Player>();
+		_pl = GameObject.Find("Player").GetComponent<Player>();
         IsHorming = true;
 
 
