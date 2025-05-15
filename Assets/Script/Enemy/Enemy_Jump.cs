@@ -9,6 +9,7 @@ public class Enemy_Jump : MonoBehaviour
     public float jumpHorizontalForce = 5f;  // プレイヤー方向に向かって加える水平ジャンプ力
     public float health = 20f;  // 敵の体力
     public GameObject deathEffect;  // 敵が消滅した際に表示するエフェクト
+    public int damage = 20;  // 敵のダメージ量
 
     private Rigidbody2D rb;  // 敵のRigidbody2D
     private bool isGrounded;  // 地面にいるかどうかのフラグ
@@ -108,5 +109,19 @@ public class Enemy_Jump : MonoBehaviour
 
         // 敵オブジェクトを消去
         Destroy(gameObject);
+    }
+
+    // プレイヤーに接触したときにダメージを与える
+    private void OnTriggerEnter(Collider other)
+    {
+        // プレイヤーに接触した場合
+        if (other.CompareTag("Player"))
+        {
+            Player playerHealth = other.GetComponent<Player>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(damage);  // プレイヤーにダメージを与える
+            }
+        }
     }
 }
