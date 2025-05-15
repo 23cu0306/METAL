@@ -58,9 +58,9 @@ public class GameManager : MonoBehaviour
             StartCoroutine(SpawnEnemies());
             hasSpawned = true;
 
-            IsEnemyInScreen();
+            
         }
-
+IsEnemyInScreen();
     }
 
     IEnumerator SpawnEnemies()

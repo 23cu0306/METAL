@@ -101,6 +101,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreValue: 100
+  health: 20
+  deathEffect: {fileID: 0}
   shotData:
     frame: 60
     type: 1
