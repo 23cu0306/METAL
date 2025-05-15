@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
 
 	private Vector3 respawnPosition;
 
+    public int health = 100;  // プレイヤーの初期HP
     public int Playerlife;
 	private bool isInvincible = false;
 	public float invincibilityDuration = 2f;
@@ -200,9 +201,35 @@ public class Player : MonoBehaviour
 			StartCoroutine(InvincibilityCoroutine());
 		}
     }
+   
+    // 敵からダメージを受ける処理
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            Die();
+        }
+        // プレイヤーをリスポーン位置に戻す
+        transform.position = respawnPosition;
 
-	// 他スクリプト用：接地判定を外部から取得
-	public bool IsGrounded() => isGrounded;
+        // 任意で速度もリセットすると自然
+        rb.linearVelocity = Vector2.zero;
+        StartCoroutine(InvincibilityCoroutine());
+    }
+
+    // プレイヤーが死亡した時の処理
+    private void Die()
+    {
+        Debug.Log("プレイヤーが死亡しました");
+        // 死亡処理（例えば、ゲームオーバー画面に遷移する等）
+        // シーン切り替えでゲームオーバーを演出
+        SceneManager.LoadScene("GameOverScene");
+    }
+
+
+    // 他スクリプト用：接地判定を外部から取得
+    public bool IsGrounded() => isGrounded;
 
     // 他スクリプト用：しゃがみ状態を外部から取得
     public bool IsCrouching() => isCrouching;
