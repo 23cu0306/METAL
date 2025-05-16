@@ -97,7 +97,7 @@ public class Attack : MonoBehaviour
     // 移動入力に応じた射撃方向の更新
     void HandleInput()
     {
-        // 左右の方向更新
+        // 左右方向
         if (moveInput.x > 0.5f)
         {
             currentDirection = Vector2.right;
@@ -111,46 +111,46 @@ public class Attack : MonoBehaviour
             SetFirePointPosition(leftOffset);
         }
 
-        // 上撃ち処理（上入力が強いと上方向に切り替え）
-        if (moveInput.y > 0.3f)
+        // 上撃ち処理
+        bool isUpInput = moveInput.y > 0.3f;
+
+        if (isUpInput && !isShootingUp)
         {
-            if (currentDirection != Vector2.up)
-            {
-                lastValidDirection = currentDirection;
-                lastValidFirePointOffset = firePoint.localPosition;
-                currentDirection = Vector2.up;
-                SetFirePointPosition(upOffset);
-                isShootingUp = true;
-            }
+            // 上撃ち開始
+            lastValidDirection = currentDirection;
+            lastValidFirePointOffset = firePoint.localPosition;
+            currentDirection = Vector2.up;
+            SetFirePointPosition(upOffset);
         }
-        else if (isShootingUp)
+        else if (!isUpInput && isShootingUp)
         {
-            // 上撃ち解除 → 元の方向に戻す
+            // 上撃ち終了
             currentDirection = lastValidDirection;
             SetFirePointPosition(lastValidFirePointOffset);
-            isShootingUp = false;
         }
 
-        // 空中での下撃ち
-        if (moveInput.y < -0.3f)
+        isShootingUp = isUpInput;
+
+        // 下撃ち処理も同様に
+        bool isDownInput = moveInput.y < -0.3f;
+        if (isDownInput && !isShootingDown)
         {
-            if (playerScript != null && !playerScript.IsGrounded() && currentDirection != Vector2.down)
+            if (playerScript != null && !playerScript.IsGrounded())
             {
                 lastValidDirection = currentDirection;
                 lastValidFirePointOffset = firePoint.localPosition;
                 currentDirection = Vector2.down;
                 SetFirePointPosition(downOffset);
-                isShootingDown = true;
             }
         }
-        else if (isShootingDown)
+        else if (!isDownInput && isShootingDown)
         {
-            // 下撃ち解除 → 元の方向に戻す
             currentDirection = lastValidDirection;
             SetFirePointPosition(lastValidFirePointOffset);
-            isShootingDown = false;
         }
+        isShootingDown = isDownInput;
     }
+
 
     // 攻撃入力に応じた発射処理
     void HandleShoot()

@@ -82,6 +82,7 @@
     <Compile Include="Assets\Script\Enemy\Laser.cs" />
     <Compile Include="Assets\Script\Enemy\Camera.cs" />
     <Compile Include="Assets\ScarletClawBoss.cs" />
+    <Compile Include="Assets\EnemyActiv.cs" />
     <Compile Include="Assets\MetalSlugCamera.cs" />
     <Compile Include="Assets\CameraController.cs" />
     <Compile Include="Assets\CoreLaser.cs" />
