@@ -93,6 +93,7 @@
     <Compile Include="Assets\GamingSpinEffect.cs" />
     <Compile Include="Assets\Script\Player\Player.cs" />
     <Compile Include="Assets\Script\Enemy\GloomVisBoss.cs" />
+    <Compile Include="Assets\EnemyZoneContrller.cs" />
     <Compile Include="Assets\Script\assist.cs" />
     <Compile Include="Assets\PlayerControls.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy_Close.cs" />
