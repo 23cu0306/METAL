@@ -206,7 +206,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 0
   m_Sprite: {fileID: -1923159360018771241, guid: 0cf4c1f9803a3824fa20cbf7165e5d1b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -240,12 +240,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   headCheckCollider: {fileID: 1931901974256840074}
-  health: 100
+  Playerlife: 3
   invincibilityDuration: 2
   blinkInterval: 0.1
-  bulletPrefab: {fileID: 0}
-  firePoint: {fileID: 0}
-  bulletSpeed: 10
 --- !u!61 &2684220448564784000
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -6,12 +6,15 @@ public class frame : MonoBehaviour
 {
 	//プレイヤーの情報（Inspecterで設定)
 	public GameObject _camera;
+    GameManager _gm;
 
-	Player _pl;
+    Player _pl;
 	GameManager _cam;
 
-	//追従するかしないか
-	bool IsHorming;
+    [SerializeField] Renderer _r;
+
+    //追従するかしないか
+    bool IsHorming;
 	//x座標更新地
 	float MostPosX;
 	//現在のX座標
@@ -55,7 +58,7 @@ public class frame : MonoBehaviour
 
 	void StopHorming()
 	{
-		if (_cam.IsEnemyInScreen())
+		if (IsVisible())
 		{
 			IsHorming = false;
 		}
@@ -87,5 +90,10 @@ public class frame : MonoBehaviour
 
 		return PosX;
 	}
+
+    public bool IsVisible()
+    {
+        return _r.isVisible;
+    }
 }
 

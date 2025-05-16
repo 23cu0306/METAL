@@ -3,7 +3,6 @@ using UnityEngine;
 public class Enemy_Bullet : MonoBehaviour
 {
 	public float lifetime = 5f;
-	public int damage = 10;
 	[SerializeField] public float moveSpeed = 50f; //移動値
 	[SerializeField] Vector3 moveVec = new(-1, 0, 0);
 	 // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -29,14 +28,10 @@ public class Enemy_Bullet : MonoBehaviour
 	}
 	void OnTriggerEnter2D(Collider2D other)
 	{
-        // プレイヤーに接触した場合
-        if (other.CompareTag("Player"))
-        {
-            Player playerHealth = other.GetComponent<Player>();
-            if (playerHealth != null)
-            {
-                playerHealth.TakeDamage(damage);  // プレイヤーにダメージを与える
-            }
-        }
-    }
+		if (other.CompareTag("Player"))
+		{
+			//Destroy(other.gameObject); // 敵を消す
+			Destroy(gameObject);       // 弾も消す
+		}
+	}
 }

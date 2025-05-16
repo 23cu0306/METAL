@@ -8,12 +8,8 @@ public class Player : MonoBehaviour
     [Header("移動設定")]
     public float moveSpeed = 15f;                 // 移動速度
     public float jumpForce = 20f;                 // ジャンプ時に加える力
-    public float crouchSpeed = 4f;                // しゃがんだ際の速度
-    public float airMoveSpeed = 8f;               // ジャンプした時の速度
     public float airControlMultiplier = 0.5f;     // 空中での移動制限倍率
     public float fallMultiplier = 2.5f;           // 落下速度を強調するための倍率
-    [SerializeField] private Vector3 triggerPosition;  // プレイヤーが到達するべき位置
-    private bool hasCameraBeenFixed = false;
 
     [Header("接地判定")]
     public Transform groundCheck;                 // 地面チェック用の位置
@@ -50,7 +46,8 @@ public class Player : MonoBehaviour
     private PlayerControls controls;              // InputActionアセット
     private Vector2 moveInput;                    // 移動入力の値
     private bool jumpPressed;                     // ジャンプ入力
-    
+    private bool attackPressed;                   // 攻撃入力
+
     private Vector2 lastMoveDirection = Vector2.right;  // 最後に動いた方向（射撃時に使う）
 
     void Awake()
@@ -62,6 +59,7 @@ public class Player : MonoBehaviour
         controls.Player.Move.canceled += ctx => moveInput = Vector2.zero;
 
         controls.Player.Jump.performed += ctx => jumpPressed = true;
+        controls.Player.Attack.performed += ctx => attackPressed = true;
     }
 
     void OnEnable() => controls.Enable();     // 有効時に入力を有効化
@@ -91,16 +89,8 @@ public class Player : MonoBehaviour
         CheckCeiling();      // 天井判定
         HandleCrouch();      // しゃがみ処理
         HandleMovement();    // 横移動処理
-        Jump();              // ジャンプ処理
+        HandleJump();        // ジャンプ処理
         HandleFall();        // 落下補正処理
-
-        // プレイヤーが指定した位置に到達したらカメラを固定
-        if (!hasCameraBeenFixed && transform.position.x >= triggerPosition.x)
-        {
-            Metal_Manager.Instance.FixCamera(new Vector3(10, 10, -10));  // 任意の固定位置に設定
-            hasCameraBeenFixed = true;
-            Debug.Log("カメラが固定されました");
-        }
     }
 
     void CheckGround()
@@ -111,51 +101,34 @@ public class Player : MonoBehaviour
 
     void HandleMovement()
     {
-        Vector2 input = moveInput;
+        float horizontal = moveInput.x;
 
-        if (input != Vector2.zero)
+        // 移動入力があれば最後の移動方向を保存
+        if (horizontal != 0)
         {
-            input = input.normalized;
-
-            float angle = Mathf.Atan2(input.y, input.x) * Mathf.Rad2Deg;
-            if (angle < 0)
-                angle += 360f;
-
-            // 上打ち処理
-            if (angle >= 60f && angle <= 120f)
-            {
-                input.x = 0f;
-                input.y = 1f;
-            }
-
-            float horizontalInput = Mathf.Sign(input.x);
-
-            if (input.x != 0)
-            {
-                lastMoveDirection = new Vector2(horizontalInput, 0);
-            }
-
-            // 状態別速度
-            float currentSpeed = isCrouching ? crouchSpeed : (isGrounded ? moveSpeed : airMoveSpeed);
-
-            rb.linearVelocity = new Vector2(input.x * currentSpeed, rb.linearVelocity.y);
+            lastMoveDirection = new Vector2(horizontal, 0);
         }
-        else
+
+        // 空中なら移動速度を減らす
+        float appliedSpeed = isGrounded ? moveSpeed : moveSpeed * airControlMultiplier;
+
+        // しゃがみ中はさらに減速
+        if (isCrouching)
         {
-            // 入力がない場合、地上ならピタ止め、空中ならそのまま
-            if (isGrounded)
-                rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+            appliedSpeed *= 0.3f;
         }
+
+        // 横方向の速度を設定（Y速度は維持）
+        rb.linearVelocity = new Vector2(horizontal * appliedSpeed, rb.linearVelocity.y);
     }
 
-
-    void Jump()
+    void HandleJump()
     {
         // ジャンプボタンが押されており、かつ地面にいる場合
         if (jumpPressed && isGrounded)
         {
             respawnPosition = transform.position; // ジャンプ地点をリスポーン地点に
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce); //上方向に力を加える
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce); // 上方向に力を加える
         }
         jumpPressed = false; // 入力のフラグをリセット
     }

@@ -12,6 +12,7 @@ public class Bullet : MonoBehaviour
 	void Start()
     {
         Destroy(gameObject, lifetime); // ŠÔŒo‰ß‚Å’e‚ğ©“®íœ
+
     }
 
     // Update is called once per frame
