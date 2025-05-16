@@ -532,6 +532,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 15
   jumpForce: 20
+  crouchSpeed: 4
+  airMoveSpeed: 8
   airControlMultiplier: 0.5
   fallMultiplier: 2.5
   groundCheck: {fileID: 648865369}
@@ -540,9 +542,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   headCheckCollider: {fileID: 254940552}
-  Playerlife: 3
+  health: 100
   invincibilityDuration: 2
   blinkInterval: 0.1
+  bulletPrefab: {fileID: 0}
+  firePoint: {fileID: 0}
+  bulletSpeed: 10
 --- !u!212 &267519269
 SpriteRenderer:
   m_ObjectHideFlags: 0

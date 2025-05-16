@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     [Header("移動設定")]
     public float moveSpeed = 15f;                 // 移動速度
     public float jumpForce = 20f;                 // ジャンプ時に加える力
+    public float crouchSpeed = 4f;                // しゃがんだ際の速度
+    public float airMoveSpeed = 8f;               // ジャンプした時の速度
     public float airControlMultiplier = 0.5f;     // 空中での移動制限倍率
     public float fallMultiplier = 2.5f;           // 落下速度を強調するための倍率
 
@@ -87,7 +89,7 @@ public class Player : MonoBehaviour
         CheckCeiling();      // 天井判定
         HandleCrouch();      // しゃがみ処理
         HandleMovement();    // 横移動処理
-        HandleJump();        // ジャンプ処理
+        Jump();              // ジャンプ処理
         HandleFall();        // 落下補正処理
     }
 
@@ -103,12 +105,13 @@ public class Player : MonoBehaviour
 
         if (input != Vector2.zero)
         {
-            input = input.normalized;  // 非ゼロ時のみ正規化
+            input = input.normalized;
 
             float angle = Mathf.Atan2(input.y, input.x) * Mathf.Rad2Deg;
             if (angle < 0)
                 angle += 360f;
 
+            // 上打ち処理
             if (angle >= 60f && angle <= 120f)
             {
                 input.x = 0f;
@@ -120,27 +123,29 @@ public class Player : MonoBehaviour
             if (input.x != 0)
             {
                 lastMoveDirection = new Vector2(horizontalInput, 0);
-                rb.linearVelocity = new Vector2(horizontalInput * moveSpeed, rb.linearVelocity.y);
             }
-            else
-            {
-                rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
-            }
+
+            // 状態別速度
+            float currentSpeed = isCrouching ? crouchSpeed : (isGrounded ? moveSpeed : airMoveSpeed);
+
+            rb.linearVelocity = new Vector2(input.x * currentSpeed, rb.linearVelocity.y);
         }
         else
         {
-            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+            // 入力がない場合、地上ならピタ止め、空中ならそのまま
+            if (isGrounded)
+                rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
         }
     }
 
 
-    void HandleJump()
+    void Jump()
     {
         // ジャンプボタンが押されており、かつ地面にいる場合
         if (jumpPressed && isGrounded)
         {
             respawnPosition = transform.position; // ジャンプ地点をリスポーン地点に
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce); // 上方向に力を加える
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce); //上方向に力を加える
         }
         jumpPressed = false; // 入力のフラグをリセット
     }
