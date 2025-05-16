@@ -102,12 +102,13 @@ public class ScarletClawBoss : MonoBehaviour
 
         currentHP -= damage;
 
-        if (currentHP <= 200 && currentPhase == BossPhase.Phase1)
+        if (currentHP <= 600 && currentPhase == BossPhase.Phase1)
         {
             TransitionToPhase2();
         }
-        else if (currentHP <= 100 && currentPhase == BossPhase.Phase2)
+        else if (currentHP <= 300 && currentPhase == BossPhase.Phase2)
         {
+            attackInterval /= 2;
             TransitionToPhase3();
         }
         else if (currentHP <= 0)
