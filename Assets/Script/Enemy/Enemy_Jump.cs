@@ -7,7 +7,7 @@ public class Enemy_Jump : MonoBehaviour
     public float jumpDistance = 2f;  // ジャンプする距離
     public float jumpForce = 10f;  // ジャンプの力
     public float jumpHorizontalForce = 5f;  // プレイヤー方向に向かって加える水平ジャンプ力
-    public float health = 20f;  // 敵の体力
+    public int health = 20;  // 敵の体力
     public GameObject deathEffect;  // 敵が消滅した際に表示するエフェクト
     public int damage = 20;  // 敵のダメージ量
 
@@ -80,18 +80,15 @@ public class Enemy_Jump : MonoBehaviour
     // トリガーイベント（弾との衝突）
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("接触したオブジェクト: " + other.gameObject.name);  // 接触したオブジェクトの名前を表示
-
         // 弾が当たった場合、体力を減らす
         if (other.CompareTag("Bullet"))
         {
-            TakeDamage(10f);  // 弾が当たったときに10のダメージを受ける
+            TakeDamage(10);  // 弾が当たったときに10のダメージを受ける
             Destroy(other.gameObject);  // 弾を破壊
         }
         // プレイヤーに接触した場合
         if (other.CompareTag("Player"))
         {
-            Debug.Log("うおw");
             Player playerHealth = other.GetComponent<Player>();
             if (playerHealth != null)
             {
@@ -101,7 +98,7 @@ public class Enemy_Jump : MonoBehaviour
     }
 
     // 体力を減らすメソッド
-    void TakeDamage(float Enemydamage)
+    void TakeDamage(int Enemydamage)
     {
         health -= Enemydamage;
         if (health <= 0)

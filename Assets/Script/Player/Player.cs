@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
 
     private Vector3 respawnPosition;              // リスポーン時の座標
 
-    public int health = 100;                      // プレイヤーの体力
+    public int health = 30;                      // プレイヤーの体力
     private bool isInvincible = false;            // 無敵状態かどうか
     public float invincibilityDuration = 2f;      // 無敵時間
     public float blinkInterval = 0.1f;            // 点滅間隔
