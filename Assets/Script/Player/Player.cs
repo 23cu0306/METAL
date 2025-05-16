@@ -46,7 +46,6 @@ public class Player : MonoBehaviour
     private PlayerControls controls;              // InputActionアセット
     private Vector2 moveInput;                    // 移動入力の値
     private bool jumpPressed;                     // ジャンプ入力
-    private bool attackPressed;                   // 攻撃入力
 
     private Vector2 lastMoveDirection = Vector2.right;  // 最後に動いた方向（射撃時に使う）
 
@@ -59,7 +58,6 @@ public class Player : MonoBehaviour
         controls.Player.Move.canceled += ctx => moveInput = Vector2.zero;
 
         controls.Player.Jump.performed += ctx => jumpPressed = true;
-        controls.Player.Attack.performed += ctx => attackPressed = true;
     }
 
     void OnEnable() => controls.Enable();     // 有効時に入力を有効化
@@ -101,26 +99,40 @@ public class Player : MonoBehaviour
 
     void HandleMovement()
     {
-        float horizontal = moveInput.x;
+        Vector2 input = moveInput;
 
-        // 移動入力があれば最後の移動方向を保存
-        if (horizontal != 0)
+        if (input != Vector2.zero)
         {
-            lastMoveDirection = new Vector2(horizontal, 0);
+            input = input.normalized;  // 非ゼロ時のみ正規化
+
+            float angle = Mathf.Atan2(input.y, input.x) * Mathf.Rad2Deg;
+            if (angle < 0)
+                angle += 360f;
+
+            if (angle >= 60f && angle <= 120f)
+            {
+                input.x = 0f;
+                input.y = 1f;
+            }
+
+            float horizontalInput = Mathf.Sign(input.x);
+
+            if (input.x != 0)
+            {
+                lastMoveDirection = new Vector2(horizontalInput, 0);
+                rb.linearVelocity = new Vector2(horizontalInput * moveSpeed, rb.linearVelocity.y);
+            }
+            else
+            {
+                rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+            }
         }
-
-        // 空中なら移動速度を減らす
-        float appliedSpeed = isGrounded ? moveSpeed : moveSpeed * airControlMultiplier;
-
-        // しゃがみ中はさらに減速
-        if (isCrouching)
+        else
         {
-            appliedSpeed *= 0.3f;
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
         }
-
-        // 横方向の速度を設定（Y速度は維持）
-        rb.linearVelocity = new Vector2(horizontal * appliedSpeed, rb.linearVelocity.y);
     }
+
 
     void HandleJump()
     {
