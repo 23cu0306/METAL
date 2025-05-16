@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     public float airMoveSpeed = 8f;               // ジャンプした時の速度
     public float airControlMultiplier = 0.5f;     // 空中での移動制限倍率
     public float fallMultiplier = 2.5f;           // 落下速度を強調するための倍率
+    [SerializeField] private Vector3 triggerPosition;  // プレイヤーが到達するべき位置
+    private bool hasCameraBeenFixed = false;
 
     [Header("接地判定")]
     public Transform groundCheck;                 // 地面チェック用の位置
@@ -48,7 +50,7 @@ public class Player : MonoBehaviour
     private PlayerControls controls;              // InputActionアセット
     private Vector2 moveInput;                    // 移動入力の値
     private bool jumpPressed;                     // ジャンプ入力
-
+    
     private Vector2 lastMoveDirection = Vector2.right;  // 最後に動いた方向（射撃時に使う）
 
     void Awake()
@@ -91,6 +93,14 @@ public class Player : MonoBehaviour
         HandleMovement();    // 横移動処理
         Jump();              // ジャンプ処理
         HandleFall();        // 落下補正処理
+
+        // プレイヤーが指定した位置に到達したらカメラを固定
+        if (!hasCameraBeenFixed && transform.position.x >= triggerPosition.x)
+        {
+            Metal_Manager.Instance.FixCamera(new Vector3(10, 10, -10));  // 任意の固定位置に設定
+            hasCameraBeenFixed = true;
+            Debug.Log("カメラが固定されました");
+        }
     }
 
     void CheckGround()
