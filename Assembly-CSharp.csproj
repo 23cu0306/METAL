@@ -10,7 +10,11 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
+<<<<<<< HEAD
+    <ProjectGuid>{1C51793E-F664-E348-8ABF-4076A2D58846}</ProjectGuid>
+=======
     <ProjectGuid>{EDFB371C-4E17-45C7-7C10-5A4FC3445F02}</ProjectGuid>
+>>>>>>> origin/main
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -63,6 +67,7 @@
   <ItemGroup>
     <Compile Include="Assets\Script\CameraFollow.cs" />
     <Compile Include="Assets\Script\Enemy\meteo.cs" />
+    <Compile Include="Assets\Script\Player\Metal_Manager.cs" />
     <Compile Include="Assets\DrillAttack.cs" />
     <Compile Include="Assets\HomingMissile.cs" />
     <Compile Include="Assets\CameraZoneTrigger.cs" />
@@ -79,6 +84,7 @@
     <Compile Include="Assets\Script\GameOverManager.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy_Shooter.cs" />
     <Compile Include="Assets\Script\Enemy\Laser.cs" />
+    <Compile Include="Assets\Script\Enemy\Camera.cs" />
     <Compile Include="Assets\ScarletClawBoss.cs" />
     <Compile Include="Assets\EnemyActiv.cs" />
     <Compile Include="Assets\MetalSlugCamera.cs" />
@@ -90,10 +96,15 @@
     <Compile Include="Assets\Script\MCamera.cs" />
     <Compile Include="Assets\Script\Frame.cs" />
     <Compile Include="Assets\Script\Player\MachineGunItem.cs" />
+    <Compile Include="Assets\Script\Enemy\Enemy_Stats.cs" />
     <Compile Include="Assets\GamingSpinEffect.cs" />
     <Compile Include="Assets\Script\Player\Player.cs" />
     <Compile Include="Assets\Script\Enemy\GloomVisBoss.cs" />
+<<<<<<< HEAD
     <Compile Include="Assets\EnemyZoneContrller.cs" />
+=======
+    <Compile Include="Assets\Script\Enemy\Enemy_Manager.cs" />
+>>>>>>> origin/main
     <Compile Include="Assets\Script\assist.cs" />
     <Compile Include="Assets\PlayerControls.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy_Close.cs" />

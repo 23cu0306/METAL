@@ -11,6 +11,7 @@ public class Enemy_Jump : MonoBehaviour
     public GameObject deathEffect;  // 敵が消滅した際に表示するエフェクト
     public int damage = 20;  // 敵のダメージ量
 
+    public Enemy_Manager enemy_manager;
     private Rigidbody2D rb;  // 敵のRigidbody2D
     private bool isGrounded;  // 地面にいるかどうかのフラグ
     private bool isJumping;  // ジャンプしているかどうかのフラグ
@@ -103,21 +104,8 @@ public class Enemy_Jump : MonoBehaviour
         health -= Enemydamage;
         if (health <= 0)
         {
-            Die();
+            enemy_manager.RemoveEnemy(gameObject);
         }
-    }
-
-    // 敵が死んだときの処理
-    void Die()
-    {
-        // 死亡エフェクトを表示
-        if (deathEffect != null)
-        {
-            Instantiate(deathEffect, transform.position, Quaternion.identity);
-        }
-
-        // 敵オブジェクトを消去
-        Destroy(gameObject);
     }
 
 }
