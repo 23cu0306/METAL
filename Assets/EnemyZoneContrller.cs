@@ -3,7 +3,11 @@ using UnityEngine;
 public class EnemyZoneCont : MonoBehaviour
 {
     public GameObject[] enemies;                    // このエリアの敵
+<<<<<<< HEAD
     //public MetalSlugCamera cameraController;        // カメラスクリプト
+=======
+    public MetalSlugCamera cameraController;        // カメラスクリプト
+>>>>>>> origin/main
 
     private bool triggered = false;
 
