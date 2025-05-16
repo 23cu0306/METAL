@@ -3,12 +3,24 @@
   "WorkspaceRootPath": "D:\\23cu0311\\MS\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|D:\\23cu0311\\MS\\assets\\background.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|solutionrelative:assets\\background.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|D:\\23cu0311\\MS\\assets\\script\\player\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\player\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|d:\\23cu0311\\ms\\assets\\script\\mcamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|D:\\23cu0311\\MS\\assets\\script\\player\\attack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\player\\attack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|d:\\23cu0311\\ms\\assets\\metalslugcamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|solutionrelative:assets\\metalslugcamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|D:\\23cu0311\\MS\\assets\\script\\mcamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\mcamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|D:\\23cu0311\\MS\\assets\\background.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|solutionrelative:assets\\background.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|D:\\23cu0311\\MS\\assets\\script\\frame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -23,15 +35,15 @@
       "RelativeMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\player\\machinegunitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\23cu0311\\ms\\Assets\\Script\\Enemy\\Enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\23cu0311\\MS\\Assets\\Script\\Enemy\\Enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Script\\Enemy\\Enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\23cu0311\\ms\\Library\\PackageCache\\com.unity.render-pipelines.universal@d680fce5716f\\Editor\\ShaderGUI\\BaseShaderGUI.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\23cu0311\\MS\\Library\\PackageCache\\com.unity.render-pipelines.universal@d680fce5716f\\Editor\\ShaderGUI\\BaseShaderGUI.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Library\\PackageCache\\com.unity.render-pipelines.universal@d680fce5716f\\Editor\\ShaderGUI\\BaseShaderGUI.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\23cu0311\\ms\\Assets\\Script\\Player\\MBullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\23cu0311\\MS\\Assets\\Script\\Player\\MBullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Script\\Player\\MBullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -71,16 +83,8 @@
       "RelativeMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\enemy\\decaybullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|D:\\23cu0311\\MS\\assets\\script\\player\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\player\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|D:\\23cu0311\\MS\\assets\\script\\enemy\\enemy_bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\enemy\\enemy_bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|D:\\23cu0311\\MS\\assets\\script\\player\\attack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\player\\attack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{77900AD4-47F1-9B7E-CD03-B03019DD561E}|Assembly-CSharp.csproj|D:\\23cu0311\\MS\\assets\\script\\player\\bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -94,11 +98,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 17,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "MetalSlugCamera.cs",
+              "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\MetalSlugCamera.cs",
+              "RelativeDocumentMoniker": "Assets\\MetalSlugCamera.cs",
+              "ToolTip": "D:\\23cu0311\\MS\\Assets\\MetalSlugCamera.cs",
+              "RelativeToolTip": "Assets\\MetalSlugCamera.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-16T07:03:34.822Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "MCamera.cs",
               "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\Script\\MCamera.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\MCamera.cs",
@@ -111,7 +128,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "Frame.cs",
               "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\Script\\Frame.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Frame.cs",
@@ -119,12 +136,11 @@
               "RelativeToolTip": "Assets\\Script\\Frame.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-13T04:49:53.716Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-13T04:49:53.716Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "Enemy_Shooter.cs",
               "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\Script\\Enemy\\Enemy_Shooter.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Enemy\\Enemy_Shooter.cs",
@@ -136,7 +152,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "BackGround.cs",
               "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\BackGround.cs",
               "RelativeDocumentMoniker": "Assets\\BackGround.cs",
@@ -144,12 +160,11 @@
               "RelativeToolTip": "Assets\\BackGround.cs",
               "ViewState": "AgIAABYAAAAAAAAAAAAgwA4AAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-13T04:48:29.71Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-13T04:48:29.71Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "CameraZoneTrigger.cs",
               "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\CameraZoneTrigger.cs",
               "RelativeDocumentMoniker": "Assets\\CameraZoneTrigger.cs",
@@ -160,7 +175,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "CameraController.cs",
               "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\CameraController.cs",
               "RelativeDocumentMoniker": "Assets\\CameraController.cs",
@@ -172,7 +187,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 13,
               "Title": "GloomVisBoss.cs",
               "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\Script\\Enemy\\GloomVisBoss.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Enemy\\GloomVisBoss.cs",
@@ -184,7 +199,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 14,
               "Title": "meteo.cs",
               "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\Script\\Enemy\\meteo.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Enemy\\meteo.cs",
@@ -196,7 +211,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 15,
               "Title": "Laser.cs",
               "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\Script\\Enemy\\Laser.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Enemy\\Laser.cs",
@@ -208,7 +223,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 16,
               "Title": "GamingSpinEffect.cs",
               "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\GamingSpinEffect.cs",
               "RelativeDocumentMoniker": "Assets\\GamingSpinEffect.cs",
@@ -220,7 +235,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "Enemy.cs",
               "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\Script\\Enemy\\Enemy.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Enemy\\Enemy.cs",
@@ -231,7 +246,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "MBullet.cs",
               "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\Script\\Player\\MBullet.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Player\\MBullet.cs",
@@ -243,7 +258,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 17,
               "Title": "Image.cs",
               "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\Script\\Image.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Image.cs",
@@ -255,7 +270,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 18,
               "Title": "GameOverManager.cs",
               "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\Script\\GameOverManager.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\GameOverManager.cs",
@@ -267,7 +282,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 19,
               "Title": "DecayBullet.cs",
               "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\Script\\Enemy\\DecayBullet.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Enemy\\DecayBullet.cs",
@@ -279,7 +294,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "MachineGunItem.cs",
               "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\Script\\Player\\MachineGunItem.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Player\\MachineGunItem.cs",
@@ -291,19 +306,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 0,
               "Title": "Player.cs",
               "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\Script\\Player\\Player.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Player\\Player.cs",
               "ToolTip": "D:\\23cu0311\\MS\\Assets\\Script\\Player\\Player.cs",
               "RelativeToolTip": "Assets\\Script\\Player\\Player.cs",
-              "ViewState": "AgIAAEoAAAAAAAAAAAAwwFgAAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAAwGQAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T04:59:43.477Z"
+              "WhenOpened": "2025-04-22T04:59:43.477Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 20,
               "Title": "Enemy_Bullet.cs",
               "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\Script\\Enemy\\Enemy_Bullet.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Enemy\\Enemy_Bullet.cs",
@@ -315,7 +331,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "BaseShaderGUI.cs",
               "DocumentMoniker": "D:\\23cu0311\\MS\\Library\\PackageCache\\com.unity.render-pipelines.universal@d680fce5716f\\Editor\\ShaderGUI\\BaseShaderGUI.cs",
               "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.render-pipelines.universal@d680fce5716f\\Editor\\ShaderGUI\\BaseShaderGUI.cs",
@@ -328,19 +344,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 1,
               "Title": "Attack.cs",
               "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\Script\\Player\\Attack.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Player\\Attack.cs",
               "ToolTip": "D:\\23cu0311\\MS\\Assets\\Script\\Player\\Attack.cs",
               "RelativeToolTip": "Assets\\Script\\Player\\Attack.cs",
-              "ViewState": "AgIAAJEAAAAAAAAAAAAcwJcAAAAXAAAAAAAAAA==",
+              "ViewState": "AgIAAJEAAAAAAAAAAAAcwLEAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T04:44:21.764Z"
+              "WhenOpened": "2025-04-22T04:44:21.764Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "Bullet.cs",
               "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\Script\\Player\\Bullet.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Player\\Bullet.cs",
