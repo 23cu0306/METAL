@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     [Header("移動設定")]
     public float moveSpeed = 15f;                 // 移動速度
     public float jumpForce = 20f;                 // ジャンプ時に加える力
+    public float crouchSpeed = 4f;                // しゃがんだ際の速度
+    public float airMoveSpeed = 8f;               // ジャンプした時の速度
     public float airControlMultiplier = 0.5f;     // 空中での移動制限倍率
     public float fallMultiplier = 2.5f;           // 落下速度を強調するための倍率
 
@@ -46,7 +48,6 @@ public class Player : MonoBehaviour
     private PlayerControls controls;              // InputActionアセット
     private Vector2 moveInput;                    // 移動入力の値
     private bool jumpPressed;                     // ジャンプ入力
-    private bool attackPressed;                   // 攻撃入力
 
     private Vector2 lastMoveDirection = Vector2.right;  // 最後に動いた方向（射撃時に使う）
 
@@ -59,7 +60,6 @@ public class Player : MonoBehaviour
         controls.Player.Move.canceled += ctx => moveInput = Vector2.zero;
 
         controls.Player.Jump.performed += ctx => jumpPressed = true;
-        controls.Player.Attack.performed += ctx => attackPressed = true;
     }
 
     void OnEnable() => controls.Enable();     // 有効時に入力を有効化
@@ -89,7 +89,7 @@ public class Player : MonoBehaviour
         CheckCeiling();      // 天井判定
         HandleCrouch();      // しゃがみ処理
         HandleMovement();    // 横移動処理
-        HandleJump();        // ジャンプ処理
+        Jump();              // ジャンプ処理
         HandleFall();        // 落下補正処理
     }
 
@@ -101,34 +101,43 @@ public class Player : MonoBehaviour
 
     void HandleMovement()
     {
-        float horizontal = moveInput.x;
+        Vector2 input = moveInput;
 
-        // 移動入力があれば最後の移動方向を保存
-        if (horizontal != 0)
+        if (input != Vector2.zero)
         {
-            lastMoveDirection = new Vector2(horizontal, 0);
+            Vector2 moveDir = new Vector2(input.x, 0f).normalized; // 移動方向は常に水平方向のみ
+            Vector2 aimDir = input.normalized;
+
+            float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
+            if (angle < 0) angle += 360f;
+
+            // 上打ち方向の処理（上撃ち状態かどうかを検出したい場合に使用）
+            bool isAimingUp = (angle >= 60f && angle <= 120f);
+
+            if (moveDir.x != 0)
+            {
+                lastMoveDirection = new Vector2(Mathf.Sign(moveDir.x), 0);
+            }
+
+            float currentSpeed = isCrouching ? crouchSpeed : (isGrounded ? moveSpeed : airMoveSpeed);
+            rb.linearVelocity = new Vector2(moveDir.x * currentSpeed, rb.linearVelocity.y);
         }
-
-        // 空中なら移動速度を減らす
-        float appliedSpeed = isGrounded ? moveSpeed : moveSpeed * airControlMultiplier;
-
-        // しゃがみ中はさらに減速
-        if (isCrouching)
+        else
         {
-            appliedSpeed *= 0.3f;
+            if (isGrounded)
+                rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
         }
-
-        // 横方向の速度を設定（Y速度は維持）
-        rb.linearVelocity = new Vector2(horizontal * appliedSpeed, rb.linearVelocity.y);
     }
 
-    void HandleJump()
+
+
+    void Jump()
     {
         // ジャンプボタンが押されており、かつ地面にいる場合
         if (jumpPressed && isGrounded)
         {
             respawnPosition = transform.position; // ジャンプ地点をリスポーン地点に
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce); // 上方向に力を加える
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce); //上方向に力を加える
         }
         jumpPressed = false; // 入力のフラグをリセット
     }
