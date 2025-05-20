@@ -1,7 +1,7 @@
 using System.Net.Sockets;
 using UnityEngine;
 
-public class Camera : MonoBehaviour
+public class XCamera : MonoBehaviour
 {
     public Transform player;  // プレイヤーのTransform
     public Vector3 offset;  // プレイヤーからカメラのオフセット
