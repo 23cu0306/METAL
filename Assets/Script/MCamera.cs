@@ -9,7 +9,7 @@ public class MCamera : MonoBehaviour
     public GameObject player;
     GameObject _en;
 
-    [SerializeField] Renderer _r;
+  bool _r;
 
     //’Ç]‚·‚é‚©‚µ‚È‚¢‚©
     bool IsHorming;
@@ -33,17 +33,13 @@ public class MCamera : MonoBehaviour
     {
         _pl = GameObject.Find("Player").GetComponent<Player>();
         _en = GameObject.Find("R!_0");
-        _r = _en.GetComponent<SpriteRenderer>();
-        IsHorming = true;
+        _r = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_en != null)
-        {
-            StopHorming();
-        }
+        StopHorming();
 
         MostPos();
         GetPos();
@@ -52,42 +48,41 @@ public class MCamera : MonoBehaviour
     }
 
 
-
-
     //’Ç]
-    void PlayerHorming(bool Frg)
+    void PlayerHorming(bool HormingFrg)
     {
-        if (Frg)
+        if (HormingFrg)
         {
             //xÀ•W‚¾‚¯ƒvƒŒƒCƒ„[‚ÌˆÊ’u‚É‡‚í‚¹‚é
             transform.position = new Vector3(GetPos(), 0.0f, transform.position.z);
         }
+
+        else
+        {
+            Debug.Log("’Ç]‚µ‚Ä‚È‚¢");
+        }
     }
 
+    //’Ç]‚·‚é‚©”»’f
     void StopHorming()
     {
-        if (IsVisible())
-        {
-            Debug.Log("“G‚¢‚é");
-            IsHorming = false;
-        }
-
-
-        else if (MostPos() > GetPos())
-        {
-            IsHorming = false;
-        }
-
-        if (!(MostPos() > GetPos()) || !IsVisible())
+        //‰E‘¤‚©‚Â“G‚ª‰æ–Ê“à‚É‚¢‚È‚¢‚Æ‚«
+        //MostPos() <= GetPos()(‰E‚É‚¢‚é‚©)@&& !InCamera() (“G‚ª‰æ–Ê“à‚É‚¢‚é‚©)
+        //MostPos()’Ç]‚µ‚È‚¢Å‘åƒ‰ƒCƒ“
+        if (MostPos() <= GetPos() && !InCamera())
         {
             IsHorming = true;
-
-            Debug.Log("“G‚¢‚È‚¢");
         }
 
-
+        //‰æ–Ê‚Ì¶‚É‚¢‚é‚Æ‚«‚Ü‚½‚Í“G‚ª‰æ–Ê“à‚É‚¢‚é‚Æ‚«
+        //GetPos() < MostPos()(¶‚É‚¢‚é‚©)@|| InCamera() (“G‚ª‰æ–Ê“à‚É‚¢‚é‚©)
+        else if (GetPos() < MostPos() || InCamera())
+        {
+            IsHorming = false;
+        }
     }
 
+    //’Ç]‚·‚é‚©”»’èƒ‰ƒCƒ“iXÀ•Wj
     float MostPos()
     {
         if (MostPosX <= GetPos())
@@ -98,6 +93,7 @@ public class MCamera : MonoBehaviour
         return MostPosX;
     }
 
+    //player‚ÌŒ»İÀ•Wæ“¾
     float GetPos()
     {
         PosX = player.transform.position.x;
@@ -105,10 +101,20 @@ public class MCamera : MonoBehaviour
         return PosX;
     }
 
-    public bool IsVisible()
-    {
-        return _r.isVisible;
 
-        Debug.Log(_r.isVisible);
+    //“G‚ª‰æ–Ê“à‚É‚¢‚é‚©‚¢‚È‚¢‚©
+    bool InCamera()
+    {
+        if (_en != null)
+        {
+            _r = _en.GetComponent<SpriteRenderer>().isVisible;
+
+            return _r;
+        }
+
+        else
+        {
+            return false;
+        }
     }
 }
