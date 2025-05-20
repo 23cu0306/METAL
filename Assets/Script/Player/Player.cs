@@ -103,15 +103,16 @@ public class Player : MonoBehaviour
     {
         Vector2 input = moveInput;
 
-        if (input != Vector2.zero)
+        float moveThreshold = 0.3f; // ある程度倒さないと移動しないようにする閾値
+
+        if (Mathf.Abs(input.x) > moveThreshold)
         {
-            Vector2 moveDir = new Vector2(input.x, 0f).normalized; // 移動方向は常に水平方向のみ
+            Vector2 moveDir = new Vector2(Mathf.Sign(input.x), 0f); // 方向のみで正規化不要
             Vector2 aimDir = input.normalized;
 
             float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
             if (angle < 0) angle += 360f;
 
-            // 上打ち方向の処理（上撃ち状態かどうかを検出したい場合に使用）
             bool isAimingUp = (angle >= 60f && angle <= 120f);
 
             if (moveDir.x != 0)
@@ -128,8 +129,6 @@ public class Player : MonoBehaviour
                 rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
         }
     }
-
-
 
     void Jump()
     {
