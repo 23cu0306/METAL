@@ -232,6 +232,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 15
   jumpForce: 20
+  crouchSpeed: 4
+  airMoveSpeed: 8
   airControlMultiplier: 0.5
   fallMultiplier: 2.5
   groundCheck: {fileID: 4562094273269444776}
@@ -240,9 +242,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   headCheckCollider: {fileID: 1931901974256840074}
-  Playerlife: 3
+  health: 100
   invincibilityDuration: 2
   blinkInterval: 0.1
+  bulletPrefab: {fileID: 8162234288098437430, guid: b26f38666b410a445be9a2f42824b978, type: 3}
+  firePoint: {fileID: 0}
+  bulletSpeed: 10
 --- !u!61 &2684220448564784000
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -328,7 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95a74b34a8b040b4597176009bf76efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 2319514735607753487, guid: 12a06982e616ba045b7406f63c7823a7, type: 3}
+  bulletPrefab: {fileID: 8162234288098437430, guid: b26f38666b410a445be9a2f42824b978, type: 3}
   firePoint: {fileID: 919074947463140478}
   bulletSpeed: 10
   fireRate: 0.1

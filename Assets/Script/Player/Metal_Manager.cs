@@ -3,7 +3,7 @@ using UnityEngine;
 public class Metal_Manager : MonoBehaviour
 {
     public static Metal_Manager Instance { get; private set; }  // シングルトンインスタンス
-    [SerializeField] private Camera cameraFollow;  // Camera の参照
+    [SerializeField] private XCamera cameraFollow;  // Camera の参照
     [SerializeField] private Enemy_Manager enemyManager;  // EnemyManager の参照
 
     private void Awake()
