@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MBullet : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
     public float lifetime = 1f;
     public float speed = 100f;
@@ -12,6 +12,7 @@ public class MBullet : MonoBehaviour
 	void Start()
     {
         Destroy(gameObject, lifetime); // ŠÔŒo‰ß‚Å’e‚ğ©“®íœ
+
     }
 
     // Update is called once per frame
