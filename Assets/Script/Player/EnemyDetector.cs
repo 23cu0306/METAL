@@ -9,7 +9,7 @@ public class EnemyDetector : MonoBehaviour
 		if (other.CompareTag("Enemy"))
 		{
 			Debug.Log("EnemyFound");
-			player.SetEnemyNearby(true, other.gameObject);
+			//player.SetEnemyNearby(true, other.gameObject);
 		}
 	}
 
@@ -18,7 +18,7 @@ public class EnemyDetector : MonoBehaviour
 		if (other.CompareTag("Enemy"))
 		{
 			Debug.Log("Enemylose");
-			player.SetEnemyNearby(false);
+			//player.SetEnemyNearby(false);
 		}
 	}
 }
