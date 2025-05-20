@@ -443,7 +443,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 8162234288098437430, guid: b26f38666b410a445be9a2f42824b978, type: 3}
   firePoint: {fileID: 2105315833}
   bulletSpeed: 10
-  fireRate: 0.1
   playerScript: {fileID: 267519268}
 --- !u!50 &267519266
 Rigidbody2D:
@@ -532,6 +531,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 15
   jumpForce: 20
+  crouchSpeed: 4
+  airMoveSpeed: 8
   airControlMultiplier: 0.5
   fallMultiplier: 2.5
   groundCheck: {fileID: 648865369}
@@ -540,9 +541,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   headCheckCollider: {fileID: 254940552}
-  Playerlife: 3
+  health: 100
   invincibilityDuration: 2
   blinkInterval: 0.1
+  bulletPrefab: {fileID: 0}
+  firePoint: {fileID: 0}
+  bulletSpeed: 10
 --- !u!212 &267519269
 SpriteRenderer:
   m_ObjectHideFlags: 0
