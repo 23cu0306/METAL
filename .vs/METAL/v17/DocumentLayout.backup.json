@@ -1,70 +1,70 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\23CU0338\\METAL\\",
+  "WorkspaceRootPath": "D:\\23cu0306\\Metal\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|D:\\23CU0338\\METAL\\assets\\script\\player\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\player\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1C51793E-F664-E348-8ABF-4076A2D58846}|Assembly-CSharp.csproj|D:\\23cu0306\\Metal\\assets\\script\\enemy\\enemy_bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1C51793E-F664-E348-8ABF-4076A2D58846}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\enemy\\enemy_bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|d:\\23cu0338\\metal\\assets\\script\\player\\attack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\player\\attack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1C51793E-F664-E348-8ABF-4076A2D58846}|Assembly-CSharp.csproj|D:\\23cu0306\\Metal\\assets\\script\\player\\bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1C51793E-F664-E348-8ABF-4076A2D58846}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\player\\bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|D:\\23CU0338\\METAL\\assets\\script\\player\\enemydetector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\player\\enemydetector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1C51793E-F664-E348-8ABF-4076A2D58846}|Assembly-CSharp.csproj|D:\\23cu0306\\Metal\\assets\\script\\player\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1C51793E-F664-E348-8ABF-4076A2D58846}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\player\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|D:\\23CU0338\\METAL\\assets\\script\\enemy\\enemy_close.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\enemy\\enemy_close.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1C51793E-F664-E348-8ABF-4076A2D58846}|Assembly-CSharp.csproj|D:\\23cu0306\\Metal\\assets\\script\\enemy\\enemy_jump.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1C51793E-F664-E348-8ABF-4076A2D58846}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\enemy\\enemy_jump.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|D:\\23CU0338\\METAL\\assets\\script\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1C51793E-F664-E348-8ABF-4076A2D58846}|Assembly-CSharp.csproj|D:\\23cu0306\\Metal\\assets\\script\\enemy\\enemy_shooter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1C51793E-F664-E348-8ABF-4076A2D58846}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\enemy\\enemy_shooter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|D:\\23CU0338\\METAL\\assets\\metalslugcamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|solutionrelative:assets\\metalslugcamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1C51793E-F664-E348-8ABF-4076A2D58846}|Assembly-CSharp.csproj|d:\\23cu0306\\metal\\assets\\script\\player\\attack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1C51793E-F664-E348-8ABF-4076A2D58846}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\player\\attack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|D:\\23CU0338\\METAL\\assets\\background.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|solutionrelative:assets\\background.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1C51793E-F664-E348-8ABF-4076A2D58846}|Assembly-CSharp.csproj|D:\\23cu0306\\Metal\\assets\\background.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1C51793E-F664-E348-8ABF-4076A2D58846}|Assembly-CSharp.csproj|solutionrelative:assets\\background.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|D:\\23CU0338\\METAL\\assets\\script\\player\\bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\player\\bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1C51793E-F664-E348-8ABF-4076A2D58846}|Assembly-CSharp.csproj|D:\\23cu0306\\Metal\\assets\\metalslugcamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1C51793E-F664-E348-8ABF-4076A2D58846}|Assembly-CSharp.csproj|solutionrelative:assets\\metalslugcamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|D:\\23CU0338\\METAL\\assets\\script\\enemy\\enemy_jump.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\enemy\\enemy_jump.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1C51793E-F664-E348-8ABF-4076A2D58846}|Assembly-CSharp.csproj|D:\\23cu0306\\Metal\\assets\\scarletclawboss.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1C51793E-F664-E348-8ABF-4076A2D58846}|Assembly-CSharp.csproj|solutionrelative:assets\\scarletclawboss.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|D:\\23CU0338\\METAL\\assets\\script\\enemy\\enemy_shooter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\enemy\\enemy_shooter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1C51793E-F664-E348-8ABF-4076A2D58846}|Assembly-CSharp.csproj|D:\\23cu0306\\Metal\\assets\\script\\player\\enemydetector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1C51793E-F664-E348-8ABF-4076A2D58846}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\player\\enemydetector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|D:\\23CU0338\\METAL\\assets\\script\\enemy\\decaybullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\enemy\\decaybullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1C51793E-F664-E348-8ABF-4076A2D58846}|Assembly-CSharp.csproj|D:\\23cu0306\\Metal\\assets\\script\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1C51793E-F664-E348-8ABF-4076A2D58846}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|D:\\23CU0338\\METAL\\assets\\scarletclawboss.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|solutionrelative:assets\\scarletclawboss.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1C51793E-F664-E348-8ABF-4076A2D58846}|Assembly-CSharp.csproj|D:\\23cu0306\\Metal\\assets\\script\\enemy\\decaybullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1C51793E-F664-E348-8ABF-4076A2D58846}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\enemy\\decaybullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|D:\\23CU0338\\METAL\\assets\\script\\player\\machinegunitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\player\\machinegunitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1C51793E-F664-E348-8ABF-4076A2D58846}|Assembly-CSharp.csproj|D:\\23cu0306\\Metal\\assets\\script\\enemy\\enemy_close.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1C51793E-F664-E348-8ABF-4076A2D58846}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\enemy\\enemy_close.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|D:\\23CU0338\\METAL\\assets\\script\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1C51793E-F664-E348-8ABF-4076A2D58846}|Assembly-CSharp.csproj|D:\\23cu0306\\Metal\\assets\\cameracontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1C51793E-F664-E348-8ABF-4076A2D58846}|Assembly-CSharp.csproj|solutionrelative:assets\\cameracontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|D:\\23CU0338\\METAL\\assets\\cameracontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|solutionrelative:assets\\cameracontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1C51793E-F664-E348-8ABF-4076A2D58846}|Assembly-CSharp.csproj|D:\\23cu0306\\Metal\\assets\\script\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1C51793E-F664-E348-8ABF-4076A2D58846}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|D:\\23CU0338\\METAL\\assets\\script\\enemy\\enemy_bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\enemy\\enemy_bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1C51793E-F664-E348-8ABF-4076A2D58846}|Assembly-CSharp.csproj|D:\\23cu0306\\Metal\\assets\\script\\player\\machinegunitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1C51793E-F664-E348-8ABF-4076A2D58846}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\player\\machinegunitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -74,17 +74,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Player.cs",
-              "DocumentMoniker": "D:\\23CU0338\\METAL\\Assets\\Script\\Player\\Player.cs",
+              "DocumentMoniker": "D:\\23cu0306\\Metal\\Assets\\Script\\Player\\Player.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Player\\Player.cs",
-              "ToolTip": "D:\\23CU0338\\METAL\\Assets\\Script\\Player\\Player.cs",
+              "ToolTip": "D:\\23cu0306\\Metal\\Assets\\Script\\Player\\Player.cs",
               "RelativeToolTip": "Assets\\Script\\Player\\Player.cs",
-              "ViewState": "AgIAAIEAAAAAAAAAAADwv4kAAABEAAAAAAAAAA==",
+              "ViewState": "AgIAABcAAAAAAAAAAAAQwOoAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-15T05:47:57.323Z",
               "IsPinned": true,
@@ -92,24 +92,147 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Attack.cs",
-              "DocumentMoniker": "D:\\23CU0338\\METAL\\Assets\\Script\\Player\\Attack.cs",
-              "RelativeDocumentMoniker": "Assets\\Script\\Player\\Attack.cs",
-              "ToolTip": "D:\\23CU0338\\METAL\\Assets\\Script\\Player\\Attack.cs",
-              "RelativeToolTip": "Assets\\Script\\Player\\Attack.cs",
-              "ViewState": "AgIAAH8AAAAAAAAAAAAIwLEAAAAFAAAAAAAAAA==",
+              "DocumentIndex": 8,
+              "Title": "ScarletClawBoss.cs",
+              "DocumentMoniker": "D:\\23cu0306\\Metal\\Assets\\ScarletClawBoss.cs",
+              "RelativeDocumentMoniker": "Assets\\ScarletClawBoss.cs",
+              "ToolTip": "D:\\23cu0306\\Metal\\Assets\\ScarletClawBoss.cs",
+              "RelativeToolTip": "Assets\\ScarletClawBoss.cs",
+              "ViewState": "AgIAAHUAAAAAAAAAAAAkwIIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-15T06:29:43.41Z",
+              "WhenOpened": "2025-05-15T07:14:56.947Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "EnemyDetector.cs",
+              "DocumentMoniker": "D:\\23cu0306\\Metal\\Assets\\Script\\Player\\EnemyDetector.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\Player\\EnemyDetector.cs",
+              "ToolTip": "D:\\23cu0306\\Metal\\Assets\\Script\\Player\\EnemyDetector.cs",
+              "RelativeToolTip": "Assets\\Script\\Player\\EnemyDetector.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T05:47:57.39Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "D:\\23cu0306\\Metal\\Assets\\Script\\GameManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\GameManager.cs",
+              "ToolTip": "D:\\23cu0306\\Metal\\Assets\\Script\\GameManager.cs",
+              "RelativeToolTip": "Assets\\Script\\GameManager.cs",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAkwFgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T07:03:04.459Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "DecayBullet.cs",
+              "DocumentMoniker": "D:\\23cu0306\\Metal\\Assets\\Script\\Enemy\\DecayBullet.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\Enemy\\DecayBullet.cs",
+              "ToolTip": "D:\\23cu0306\\Metal\\Assets\\Script\\Enemy\\DecayBullet.cs",
+              "RelativeToolTip": "Assets\\Script\\Enemy\\DecayBullet.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T05:47:57.089Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Enemy_Shooter.cs",
+              "DocumentMoniker": "D:\\23cu0306\\Metal\\Assets\\Script\\Enemy\\Enemy_Shooter.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\Enemy\\Enemy_Shooter.cs",
+              "ToolTip": "D:\\23cu0306\\Metal\\Assets\\Script\\Enemy\\Enemy_Shooter.cs",
+              "RelativeToolTip": "Assets\\Script\\Enemy\\Enemy_Shooter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T05:47:57.173Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Enemy_Jump.cs",
+              "DocumentMoniker": "D:\\23cu0306\\Metal\\Assets\\Script\\Enemy\\Enemy_Jump.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\Enemy\\Enemy_Jump.cs",
+              "ToolTip": "D:\\23cu0306\\Metal\\Assets\\Script\\Enemy\\Enemy_Jump.cs",
+              "RelativeToolTip": "Assets\\Script\\Enemy\\Enemy_Jump.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGMAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T05:47:57.381Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Bullet.cs",
+              "DocumentMoniker": "D:\\23cu0306\\Metal\\Assets\\Script\\Player\\Bullet.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\Player\\Bullet.cs",
+              "ToolTip": "D:\\23cu0306\\Metal\\Assets\\Script\\Player\\Bullet.cs",
+              "RelativeToolTip": "Assets\\Script\\Player\\Bullet.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvw0AAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T05:47:57.385Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Enemy_Close.cs",
+              "DocumentMoniker": "D:\\23cu0306\\Metal\\Assets\\Script\\Enemy\\Enemy_Close.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\Enemy\\Enemy_Close.cs",
+              "ToolTip": "D:\\23cu0306\\Metal\\Assets\\Script\\Enemy\\Enemy_Close.cs",
+              "RelativeToolTip": "Assets\\Script\\Enemy\\Enemy_Close.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T05:47:57.385Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "CameraController.cs",
+              "DocumentMoniker": "D:\\23cu0306\\Metal\\Assets\\CameraController.cs",
+              "RelativeDocumentMoniker": "Assets\\CameraController.cs",
+              "ToolTip": "D:\\23cu0306\\Metal\\Assets\\CameraController.cs",
+              "RelativeToolTip": "Assets\\CameraController.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAmwBMAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-17T09:44:28.183Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Enemy_Bullet.cs",
+              "DocumentMoniker": "D:\\23cu0306\\Metal\\Assets\\Script\\Enemy\\Enemy_Bullet.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\Enemy\\Enemy_Bullet.cs",
+              "ToolTip": "D:\\23cu0306\\Metal\\Assets\\Script\\Enemy\\Enemy_Bullet.cs",
+              "RelativeToolTip": "Assets\\Script\\Enemy\\Enemy_Bullet.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T05:47:57.385Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MetalSlugCamera.cs",
+              "DocumentMoniker": "D:\\23cu0306\\Metal\\Assets\\MetalSlugCamera.cs",
+              "RelativeDocumentMoniker": "Assets\\MetalSlugCamera.cs",
+              "ToolTip": "D:\\23cu0306\\Metal\\Assets\\MetalSlugCamera.cs",
+              "RelativeToolTip": "Assets\\MetalSlugCamera.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAH8AAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-17T09:44:15.569Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
               "Title": "BackGround.cs",
-              "DocumentMoniker": "D:\\23CU0338\\METAL\\Assets\\BackGround.cs",
+              "DocumentMoniker": "D:\\23cu0306\\Metal\\Assets\\BackGround.cs",
               "RelativeDocumentMoniker": "Assets\\BackGround.cs",
-              "ToolTip": "D:\\23CU0338\\METAL\\Assets\\BackGround.cs",
+              "ToolTip": "D:\\23cu0306\\Metal\\Assets\\BackGround.cs",
               "RelativeToolTip": "Assets\\BackGround.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAiwA8AAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -118,142 +241,23 @@
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "MetalSlugCamera.cs",
-              "DocumentMoniker": "D:\\23CU0338\\METAL\\Assets\\MetalSlugCamera.cs",
-              "RelativeDocumentMoniker": "Assets\\MetalSlugCamera.cs",
-              "ToolTip": "D:\\23CU0338\\METAL\\Assets\\MetalSlugCamera.cs",
-              "RelativeToolTip": "Assets\\MetalSlugCamera.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAH8AAAAHAAAAAAAAAA==",
+              "Title": "Attack.cs",
+              "DocumentMoniker": "D:\\23cu0306\\Metal\\Assets\\Script\\Player\\Attack.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\Player\\Attack.cs",
+              "ToolTip": "D:\\23cu0306\\Metal\\Assets\\Script\\Player\\Attack.cs",
+              "RelativeToolTip": "Assets\\Script\\Player\\Attack.cs",
+              "ViewState": "AgIAAP4AAAAAAAAAAAAmwA4BAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-17T09:44:15.569Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "ScarletClawBoss.cs",
-              "DocumentMoniker": "D:\\23CU0338\\METAL\\Assets\\ScarletClawBoss.cs",
-              "RelativeDocumentMoniker": "Assets\\ScarletClawBoss.cs",
-              "ToolTip": "D:\\23CU0338\\METAL\\Assets\\ScarletClawBoss.cs",
-              "RelativeToolTip": "Assets\\ScarletClawBoss.cs",
-              "ViewState": "AgIAAHUAAAAAAAAAAAAkwIIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-15T07:14:56.947Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "EnemyDetector.cs",
-              "DocumentMoniker": "D:\\23CU0338\\METAL\\Assets\\Script\\Player\\EnemyDetector.cs",
-              "RelativeDocumentMoniker": "Assets\\Script\\Player\\EnemyDetector.cs",
-              "ToolTip": "D:\\23CU0338\\METAL\\Assets\\Script\\Player\\EnemyDetector.cs",
-              "RelativeToolTip": "Assets\\Script\\Player\\EnemyDetector.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-15T05:47:57.39Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "GameManager.cs",
-              "DocumentMoniker": "D:\\23CU0338\\METAL\\Assets\\Script\\GameManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Script\\GameManager.cs",
-              "ToolTip": "D:\\23CU0338\\METAL\\Assets\\Script\\GameManager.cs",
-              "RelativeToolTip": "Assets\\Script\\GameManager.cs",
-              "ViewState": "AgIAAEsAAAAAAAAAAAAkwFgAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-15T07:03:04.459Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "DecayBullet.cs",
-              "DocumentMoniker": "D:\\23CU0338\\METAL\\Assets\\Script\\Enemy\\DecayBullet.cs",
-              "RelativeDocumentMoniker": "Assets\\Script\\Enemy\\DecayBullet.cs",
-              "ToolTip": "D:\\23CU0338\\METAL\\Assets\\Script\\Enemy\\DecayBullet.cs",
-              "RelativeToolTip": "Assets\\Script\\Enemy\\DecayBullet.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-15T05:47:57.089Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Enemy_Shooter.cs",
-              "DocumentMoniker": "D:\\23CU0338\\METAL\\Assets\\Script\\Enemy\\Enemy_Shooter.cs",
-              "RelativeDocumentMoniker": "Assets\\Script\\Enemy\\Enemy_Shooter.cs",
-              "ToolTip": "D:\\23CU0338\\METAL\\Assets\\Script\\Enemy\\Enemy_Shooter.cs",
-              "RelativeToolTip": "Assets\\Script\\Enemy\\Enemy_Shooter.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-15T05:47:57.173Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Enemy_Jump.cs",
-              "DocumentMoniker": "D:\\23CU0338\\METAL\\Assets\\Script\\Enemy\\Enemy_Jump.cs",
-              "RelativeDocumentMoniker": "Assets\\Script\\Enemy\\Enemy_Jump.cs",
-              "ToolTip": "D:\\23CU0338\\METAL\\Assets\\Script\\Enemy\\Enemy_Jump.cs",
-              "RelativeToolTip": "Assets\\Script\\Enemy\\Enemy_Jump.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-15T05:47:57.381Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Bullet.cs",
-              "DocumentMoniker": "D:\\23CU0338\\METAL\\Assets\\Script\\Player\\Bullet.cs",
-              "RelativeDocumentMoniker": "Assets\\Script\\Player\\Bullet.cs",
-              "ToolTip": "D:\\23CU0338\\METAL\\Assets\\Script\\Player\\Bullet.cs",
-              "RelativeToolTip": "Assets\\Script\\Player\\Bullet.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-15T05:47:57.385Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Enemy_Close.cs",
-              "DocumentMoniker": "D:\\23CU0338\\METAL\\Assets\\Script\\Enemy\\Enemy_Close.cs",
-              "RelativeDocumentMoniker": "Assets\\Script\\Enemy\\Enemy_Close.cs",
-              "ToolTip": "D:\\23CU0338\\METAL\\Assets\\Script\\Enemy\\Enemy_Close.cs",
-              "RelativeToolTip": "Assets\\Script\\Enemy\\Enemy_Close.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-15T05:47:57.385Z"
+              "WhenOpened": "2025-05-15T06:29:43.41Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 14,
-              "Title": "CameraController.cs",
-              "DocumentMoniker": "D:\\23CU0338\\METAL\\Assets\\CameraController.cs",
-              "RelativeDocumentMoniker": "Assets\\CameraController.cs",
-              "ToolTip": "D:\\23CU0338\\METAL\\Assets\\CameraController.cs",
-              "RelativeToolTip": "Assets\\CameraController.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAmwBMAAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-17T09:44:28.183Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "Enemy_Bullet.cs",
-              "DocumentMoniker": "D:\\23CU0338\\METAL\\Assets\\Script\\Enemy\\Enemy_Bullet.cs",
-              "RelativeDocumentMoniker": "Assets\\Script\\Enemy\\Enemy_Bullet.cs",
-              "ToolTip": "D:\\23CU0338\\METAL\\Assets\\Script\\Enemy\\Enemy_Bullet.cs",
-              "RelativeToolTip": "Assets\\Script\\Enemy\\Enemy_Bullet.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAADwvwAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-15T05:47:57.385Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
               "Title": "UIManager.cs",
-              "DocumentMoniker": "D:\\23CU0338\\METAL\\Assets\\Script\\UIManager.cs",
+              "DocumentMoniker": "D:\\23cu0306\\Metal\\Assets\\Script\\UIManager.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\UIManager.cs",
-              "ToolTip": "D:\\23CU0338\\METAL\\Assets\\Script\\UIManager.cs",
+              "ToolTip": "D:\\23cu0306\\Metal\\Assets\\Script\\UIManager.cs",
               "RelativeToolTip": "Assets\\Script\\UIManager.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -261,11 +265,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 15,
               "Title": "MachineGunItem.cs",
-              "DocumentMoniker": "D:\\23CU0338\\METAL\\Assets\\Script\\Player\\MachineGunItem.cs",
+              "DocumentMoniker": "D:\\23cu0306\\Metal\\Assets\\Script\\Player\\MachineGunItem.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Player\\MachineGunItem.cs",
-              "ToolTip": "D:\\23CU0338\\METAL\\Assets\\Script\\Player\\MachineGunItem.cs",
+              "ToolTip": "D:\\23cu0306\\Metal\\Assets\\Script\\Player\\MachineGunItem.cs",
               "RelativeToolTip": "Assets\\Script\\Player\\MachineGunItem.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
