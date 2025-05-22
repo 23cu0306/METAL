@@ -85,6 +85,7 @@
     <Compile Include="Assets\MetalSlugCamera.cs" />
     <Compile Include="Assets\CameraController.cs" />
     <Compile Include="Assets\CoreLaser.cs" />
+    <Compile Include="Assets\EnemyActivator.cs" />
     <Compile Include="Assets\Script\GameManager.cs" />
     <Compile Include="Assets\Script\Player\EnemyDetector.cs" />
     <Compile Include="Assets\Script\Player\Bullet.cs" />
