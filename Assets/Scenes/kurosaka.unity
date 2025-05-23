@@ -1357,7 +1357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 996512516}
-  enemy: {fileID: 974554202363848162, guid: 29e413f9ad9742b4aa9e937589d48fec, type: 3}
+  enemy: {fileID: 9127502679921659106, guid: bf77ea26568eed549a53b5cb51c1dee2, type: 3}
   gameTime: 60
   cameraTransform: {fileID: 1451222082}
   spawnPosition: {x: 20, y: 0, z: 0}
