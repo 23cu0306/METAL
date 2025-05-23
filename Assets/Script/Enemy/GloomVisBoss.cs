@@ -3,8 +3,8 @@ using System.Collections; // �� ���ꂪ�K�v�I
 
 public class GloomVisBoss : MonoBehaviour
 {
-	public int maxHP = 100;
-	private int currentHP;
+	public float maxHP = 100;
+	private float currentHP;
 
 	public GameObject player;
 	public Transform weakPoint;
@@ -202,10 +202,11 @@ public class GloomVisBoss : MonoBehaviour
 		yield return new WaitForSeconds(1.0f);
 	}
 
-	public void TakeDamage(int dmg)
+	public void TakeDamage(float dmg)
 	{
 		currentHP -= dmg;
-		if (currentHP <= 0)
+        Debug.Log("ダメージ量 " + dmg + "ボス残り HP: " + currentHP);
+        if (currentHP <= 0)
 		{
 			Die();
 		}

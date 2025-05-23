@@ -109,7 +109,7 @@ public class Enemy_Jump : MonoBehaviour
     }
 
     // 体力を減らすメソッド
-    void TakeDamage(float Enemydamage)
+    public void TakeDamage(float Enemydamage)
     {
         health -= Enemydamage;
         if (health <= 0)
