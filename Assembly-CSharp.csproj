@@ -10,7 +10,15 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
+<<<<<<< HEAD
     <ProjectGuid>{1C51793E-F664-E348-8ABF-4076A2D58846}</ProjectGuid>
+=======
+<<<<<<< HEAD
+    <ProjectGuid>{F88AD6FB-70CC-7AB9-FE4A-D75CF9626D79}</ProjectGuid>
+=======
+    <ProjectGuid>{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}</ProjectGuid>
+>>>>>>> origin/main
+>>>>>>> origin/main
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -63,6 +71,7 @@
   <ItemGroup>
     <Compile Include="Assets\Script\CameraFollow.cs" />
     <Compile Include="Assets\Script\Enemy\meteo.cs" />
+    <Compile Include="Assets\ScoreManager.cs" />
     <Compile Include="Assets\Script\Enemy\XCamera.cs" />
     <Compile Include="Assets\Script\Player\Metal_Manager.cs" />
     <Compile Include="Assets\DrillAttack.cs" />

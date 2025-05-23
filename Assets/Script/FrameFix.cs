@@ -31,7 +31,6 @@ public class FrameFix : MonoBehaviour
     void Start()
     {
         _pl = GameObject.Find("Player").GetComponent<Player>();
-        //_en = GameObject.Find("R!=0");
         HormingLine = transform.position.x;
     }
 
@@ -109,7 +108,7 @@ public class FrameFix : MonoBehaviour
         bool result = false;
 
         // すべてのエネミーを取得
-        GameObject[] enemy_list = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject[] enemy_list = GameObject.FindGameObjectsWithTag("Enemy1");
 
         // 
         for(int i = 0; i < enemy_list.Length; ++i)
