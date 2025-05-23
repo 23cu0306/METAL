@@ -18,6 +18,10 @@ public class Enemy_Jump : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        // 敵との衝突を無効化
+        int enemyLayer1 = LayerMask.NameToLayer("Enemy");
+        int enemyLayer2 = LayerMask.NameToLayer("Enemy");
+        Physics2D.IgnoreLayerCollision(enemyLayer1, enemyLayer2, true);
     }
 
     void Update()
