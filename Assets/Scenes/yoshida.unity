@@ -548,8 +548,8 @@ MonoBehaviour:
   health: 100
   invincibilityDuration: 2
   blinkInterval: 0.1
-  bulletPrefab: {fileID: 0}
-  firePoint: {fileID: 0}
+  bulletPrefab: {fileID: 8162234288098437430, guid: b26f38666b410a445be9a2f42824b978, type: 3}
+  firePoint: {fileID: 2105315833}
   bulletSpeed: 10
 --- !u!212 &267519269
 SpriteRenderer:
