@@ -10,7 +10,19 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{77900AD4-47F1-9B7E-CD03-B03019DD561E}</ProjectGuid>
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <ProjectGuid>{1C51793E-F664-E348-8ABF-4076A2D58846}</ProjectGuid>
+=======
+<<<<<<< HEAD
+    <ProjectGuid>{F88AD6FB-70CC-7AB9-FE4A-D75CF9626D79}</ProjectGuid>
+=======
+    <ProjectGuid>{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}</ProjectGuid>
+>>>>>>> origin/main
+>>>>>>> origin/main
+=======
+    <ProjectGuid>{F88AD6FB-70CC-7AB9-FE4A-D75CF9626D79}</ProjectGuid>
+>>>>>>> origin/main
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -63,10 +75,12 @@
   <ItemGroup>
     <Compile Include="Assets\Script\CameraFollow.cs" />
     <Compile Include="Assets\Script\Enemy\meteo.cs" />
+    <Compile Include="Assets\ScoreManager.cs" />
     <Compile Include="Assets\Script\Enemy\XCamera.cs" />
     <Compile Include="Assets\Script\Player\Metal_Manager.cs" />
     <Compile Include="Assets\DrillAttack.cs" />
     <Compile Include="Assets\HomingMissile.cs" />
+    <Compile Include="Assets\Script\FrameFix.cs" />
     <Compile Include="Assets\CameraZoneTrigger.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy_Bullet.cs" />
     <Compile Include="Assets\EnemySpawner.cs" />
@@ -90,8 +104,6 @@
     <Compile Include="Assets\Script\GameManager.cs" />
     <Compile Include="Assets\Script\Player\EnemyDetector.cs" />
     <Compile Include="Assets\Script\Player\Bullet.cs" />
-    <Compile Include="Assets\Script\MCamera.cs" />
-    <Compile Include="Assets\Script\Frame.cs" />
     <Compile Include="Assets\Script\Player\MachineGunItem.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy_Stats.cs" />
     <Compile Include="Assets\GamingSpinEffect.cs" />
@@ -100,7 +112,6 @@
     <Compile Include="Assets\Script\Enemy\Enemy_Manager.cs" />
     <Compile Include="Assets\Script\assist.cs" />
     <Compile Include="Assets\PlayerControls.cs" />
-    <Compile Include="Assets\Script\Enemy\Enemy_Close.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 1454306045448764431}
   - component: {fileID: 5626771958193494707}
   m_Layer: 8
-  m_Name: R!_0 1
-  m_TagString: Enemy
+  m_Name: stop Enemy
+  m_TagString: Enemy1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -184,6 +184,7 @@ MonoBehaviour:
   health: 20
   deathEffect: {fileID: 0}
   damage: 20
+  scoreValue: 100
 --- !u!1 &6436459175011149797
 GameObject:
   m_ObjectHideFlags: 0

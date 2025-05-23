@@ -1,0 +1,24 @@
+diff a/Assets/Scenes/main.unity b/Assets/Scenes/main.unity	(rejected hunks)
+@@ -1088,22 +1088,6 @@
+   m_Name: 
+   m_EditorClassIdentifier: 
+   gameOverSceneName: GameOverScene
+---- !u!114 &1451222085
+-MonoBehaviour:
+-  m_ObjectHideFlags: 0
+-  m_CorrespondingSourceObject: {fileID: 0}
+-  m_PrefabInstance: {fileID: 0}
+-  m_PrefabAsset: {fileID: 0}
+-  m_GameObject: {fileID: 1451222078}
+-  m_Enabled: 1
+-  m_EditorHideFlags: 0
+-  m_Script: {fileID: 11500000, guid: e56b9ed0a5d604b4ba0053550e89d339, type: 3}
+-  m_Name: 
+-  m_EditorClassIdentifier: 
+-  player: {fileID: 996512522}
+-  enemy: {fileID: 824574310}
+-  followSpeed: 1
+-  detectionRange: 10
+ --- !u!114 &1451222086
+ MonoBehaviour:
+   m_ObjectHideFlags: 0

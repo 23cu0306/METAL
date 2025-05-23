@@ -241,8 +241,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c55c6fb424a76684883e9ee630619c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 500
-  colorChangeSpeed: 100
+  rotationSpeed: 180
+  colorChangeSpeed: 2
 --- !u!212 &385055161
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -343,8 +343,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 720a3ec0792b6624a91417d5173bf3f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleAmount: 10
-  speed: 30
+  scaleAmount: 0
+  speed: 0
 --- !u!212 &560723028
 SpriteRenderer:
   m_ObjectHideFlags: 0

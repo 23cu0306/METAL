@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 569368964712988995}
   - component: {fileID: 2240476161653109302}
   - component: {fileID: 9094812070174459512}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: zyuuotoko_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

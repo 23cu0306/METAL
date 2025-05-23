@@ -41,9 +41,9 @@ public class Enemy_Shooter : MonoBehaviour
 	[SerializeField] ShotData shotData = new ShotData { frame = 60, type = ShotType.NONE, bullet = null };
 
 	GameObject playerObj = null;    // プレイヤーオブジェクト
-	int shotFrame = 0;              // フレーム
+	float shotFrame = 0;              // フレーム
 
-	// Start is called once before the first execution of Update after the MonoBehaviour is created
+	// Start is called once before the first execuApplication.targetFrameRate = 60; tion of Update after the MonoBehaviour is created
 	void Start()
     {
 		// プレイヤーオブジェクトを取得する

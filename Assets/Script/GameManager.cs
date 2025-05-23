@@ -40,12 +40,13 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-
-
     }
 
     private void Start()
     {
+        // ƒtƒŒ[ƒ€‚ğ60pfs‚ÉŒÅ’è
+        Application.targetFrameRate = 60;
+
         MostPosX = player.transform.position.x;
         PosX = player.transform.position.x;
     }
