@@ -107,7 +107,7 @@ MonoBehaviour:
   deathEffect: {fileID: 0}
   shotData:
     frame: 1000
-    type: 1
+    type: 2
     bullet: {fileID: -7142988566152139376, guid: b8f8beabddec0cc499b7c0de0f2db788, type: 3}
 --- !u!50 &2240476161653109302
 Rigidbody2D:
@@ -117,7 +117,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4968795692144619796}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

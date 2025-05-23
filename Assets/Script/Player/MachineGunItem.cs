@@ -3,7 +3,7 @@ using UnityEngine;
 public class MachineGunItem : MonoBehaviour
 {
 	[Tooltip("マシンガンモードの持続時間（秒）")]
-	public float duration = 100f;
+	public float duration = 5f;
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
