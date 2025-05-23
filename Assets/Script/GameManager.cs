@@ -53,12 +53,13 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (cameraTransform.position.x > spawnPosition.x && !hasSpawned)
-        {
-            // 敵を等間隔で順番にスポーンさせる
-            StartCoroutine(SpawnEnemies());
-            hasSpawned = true;
-        }
+            if (cameraTransform.position.x > spawnPosition.x && !hasSpawned)
+            {
+                // 敵を等間隔で順番にスポーンさせる
+                StartCoroutine(SpawnEnemies());
+                hasSpawned = true;
+            }
+        
     }
 
     IEnumerator SpawnEnemies()
@@ -71,6 +72,8 @@ public class GameManager : MonoBehaviour
             // 敵を生成
             Instantiate(enemy, spawnPosition + spawnOffset, Quaternion.identity);
             enemy.transform.position = spawnPosition + spawnOffset;
+
+            Debug.Log("敵出現");
             // 次の敵をスポーンさせるまでの待機時間
             yield return new WaitForSeconds(spawnInterval);
         }

@@ -99,7 +99,7 @@ public class Enemy_Jump : MonoBehaviour
         // プレイヤーに接触した場合
         if (other.CompareTag("Player"))
         {
-            Debug.Log("うおw");
+            
             Player playerHealth = other.GetComponent<Player>();
             if (playerHealth != null)
             {
