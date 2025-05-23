@@ -4,14 +4,17 @@ using TMPro;
 using UnityEngine;
 
 using Unity.VisualScripting;
+using System;
 
 public class MCamera : MonoBehaviour
 {
     //プレイヤーの情報（Inspecterで設定)
     public GameObject player;
     GameObject _en;
+    public GameObject[] myArray = new GameObject[5];
 
-  bool _r;
+
+    bool _r;
 
     //追従するかしないか
     bool IsHorming;
@@ -34,7 +37,8 @@ public class MCamera : MonoBehaviour
     void Start()
     {
         _pl = GameObject.Find("Player").GetComponent<Player>();
-        _en = GameObject.Find("R!_0");
+        _en = GameObject.Find("R!=0");
+
         _r = false;
     }
 
@@ -47,6 +51,7 @@ public class MCamera : MonoBehaviour
         GetPos();
 
         PlayerHorming(IsHorming);
+        Debug.Log(_r);
     }
 
 
@@ -107,16 +112,24 @@ public class MCamera : MonoBehaviour
     //敵が画面内にいるかいないか
     bool InCamera()
     {
-        if (_en != null)
+        foreach (GameObject _en in myArray)
         {
-            _r = _en.GetComponent<SpriteRenderer>().isVisible;
 
-            return _r;
+            if (_en != null)
+            {
+                _r = GetComponent<SpriteRenderer>().isVisible;
+
+            }
+
+            if (_en == null)
+            {
+                _r = false;
+            }
         }
 
-        else
-        {
-            return false;
-        }
+
+        return _r;
     }
+
+
 }
