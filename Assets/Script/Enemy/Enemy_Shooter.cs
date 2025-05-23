@@ -43,7 +43,7 @@ public class Enemy_Shooter : MonoBehaviour
 	GameObject playerObj = null;    // プレイヤーオブジェクト
 	float shotFrame = 0;              // フレーム
 
-	// Start is called once before the first execution of Update after the MonoBehaviour is created
+	// Start is called once before the first execuApplication.targetFrameRate = 60; tion of Update after the MonoBehaviour is created
 	void Start()
     {
 		// プレイヤーオブジェクトを取得する

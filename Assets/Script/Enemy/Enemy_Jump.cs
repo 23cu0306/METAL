@@ -22,6 +22,8 @@ public class Enemy_Jump : MonoBehaviour
         int enemyLayer1 = LayerMask.NameToLayer("Enemy");
         int enemyLayer2 = LayerMask.NameToLayer("Enemy");
         Physics2D.IgnoreLayerCollision(enemyLayer1, enemyLayer2, true);
+
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void Update()
