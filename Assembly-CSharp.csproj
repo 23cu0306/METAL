@@ -80,6 +80,7 @@
     <Compile Include="Assets\BackGround.cs" />
     <Compile Include="Assets\Script\GameOverManager.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy_Shooter.cs" />
+    <Compile Include="Assets\Script\Player\bomb.cs" />
     <Compile Include="Assets\Script\Enemy\Laser.cs" />
     <Compile Include="Assets\ScarletClawBoss.cs" />
     <Compile Include="Assets\MetalSlugCamera.cs" />
