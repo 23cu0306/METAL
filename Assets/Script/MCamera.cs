@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+using Unity.VisualScripting;
+
 public class MCamera : MonoBehaviour
 {
     //プレイヤーの情報（Inspecterで設定)
