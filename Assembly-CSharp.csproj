@@ -11,6 +11,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <ProjectGuid>{1C51793E-F664-E348-8ABF-4076A2D58846}</ProjectGuid>
 =======
 <<<<<<< HEAD
@@ -18,6 +19,9 @@
 =======
     <ProjectGuid>{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}</ProjectGuid>
 >>>>>>> origin/main
+>>>>>>> origin/main
+=======
+    <ProjectGuid>{F88AD6FB-70CC-7AB9-FE4A-D75CF9626D79}</ProjectGuid>
 >>>>>>> origin/main
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>

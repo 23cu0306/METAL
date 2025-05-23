@@ -184,6 +184,7 @@ MonoBehaviour:
   health: 20
   deathEffect: {fileID: 0}
   damage: 20
+  scoreValue: 100
 --- !u!1 &6436459175011149797
 GameObject:
   m_ObjectHideFlags: 0

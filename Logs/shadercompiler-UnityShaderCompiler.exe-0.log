@@ -2,6 +2,7 @@ Base path: 'C:/Program Files/Unity/Hub/Editor/6000.0.43f1/Editor/Data', plugins 
 Cmd: initializeCompiler
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 Cmd: compileSnippet
 <<<<<<< HEAD
@@ -27,4 +28,6 @@ Cmd: compileSnippet
 
 Cmd: shutdown
 >>>>>>> origin/main
+>>>>>>> origin/main
+=======
 >>>>>>> origin/main
