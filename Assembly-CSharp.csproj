@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{77900AD4-47F1-9B7E-CD03-B03019DD561E}</ProjectGuid>
+    <ProjectGuid>{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -74,13 +74,13 @@
     <Compile Include="Assets\EnemySpawner.cs" />
     <Compile Include="Assets\Script\UIManager.cs" />
     <Compile Include="Assets\Script\Player\Attack.cs" />
-    <Compile Include="Assets\gurenerd.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy_Jump.cs" />
     <Compile Include="Assets\Script\Image.cs" />
     <Compile Include="Assets\Enemy.cs" />
     <Compile Include="Assets\Script\Enemy\DecayBullet.cs" />
     <Compile Include="Assets\SCORE.cs" />
     <Compile Include="Assets\BackGround.cs" />
+    <Compile Include="Assets\Script\Player\gurenerd.cs" />
     <Compile Include="Assets\Script\GameOverManager.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy_Shooter.cs" />
     <Compile Include="Assets\Script\Player\bomb.cs" />

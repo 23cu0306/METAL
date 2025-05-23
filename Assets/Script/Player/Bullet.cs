@@ -29,13 +29,7 @@ public class Bullet : MonoBehaviour
 		//{
 		//	enemy.TakeDamage(damage);
 		//}
-		if (other.CompareTag("Enemy"))
-        {
-            Debug.Log("EnemyDamage");
-            
-            Destroy(gameObject);       // íeÇ‡è¡Ç∑
-
-        }
+		
 		if (other.CompareTag("Boss"))
 		{
 			Destroy(gameObject);       // íeÇ‡è¡Ç∑
