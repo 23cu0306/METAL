@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{77900AD4-47F1-9B7E-CD03-B03019DD561E}</ProjectGuid>
+    <ProjectGuid>{F88AD6FB-70CC-7AB9-FE4A-D75CF9626D79}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -101,6 +101,7 @@
     <Compile Include="Assets\Script\Enemy\Enemy_Manager.cs" />
     <Compile Include="Assets\Script\assist.cs" />
     <Compile Include="Assets\PlayerControls.cs" />
+    <Compile Include="Assets\TimeText.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
