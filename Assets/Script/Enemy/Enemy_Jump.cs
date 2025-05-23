@@ -15,6 +15,8 @@ public class Enemy_Jump : MonoBehaviour
     private bool isGrounded;  // 地面にいるかどうかのフラグ
     private bool isJumping;  // ジャンプしているかどうかのフラグ
 
+    public int scoreValue = 100;//スコア換算の値（死亡時の所に入れといた）
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -119,6 +121,9 @@ public class Enemy_Jump : MonoBehaviour
     // 敵が死んだときの処理
     void Die()
     {
+        // スコア加算
+        ScoreManager.Instance.AddScore(scoreValue);
+
         // 死亡エフェクトを表示
         if (deathEffect != null)
         {
