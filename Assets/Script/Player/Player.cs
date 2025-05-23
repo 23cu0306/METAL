@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
     public float invincibilityDuration = 2f;      // 無敵状態の持続時間（秒）
     public float blinkInterval = 0.1f;            // 無敵時の点滅間隔（秒）
 
-    private SpriteRenderer spriteRenderer;        // プレイヤーのスプライト表示用コンポーネント
+    private SpriteRenderer spriteRenderer;        //プレイヤーのスプライト表示用コンポーネント
 
     [Header("攻撃設定")]
     public GameObject bulletPrefab;               // 弾のプレハブ（未使用）

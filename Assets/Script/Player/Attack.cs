@@ -17,7 +17,7 @@ public class Attack : MonoBehaviour
     private bool isBurstFiring = false; // バースト中かどうか
     private Vector2 burstDirection;
     private bool isMachineGunMode = false; // マシンガンモードかどうか
-    private float machineGunDuration = 100f; // モード持続時間
+    private float machineGunDuration = 1000f; // モード持続時間
     private float machineGunTimer = 0f;
 
     private bool isEnemyNearby = false; // 近くに敵がいるか
@@ -28,6 +28,7 @@ public class Attack : MonoBehaviour
 
     private Vector2 currentDirection = Vector2.right; // 現在の射撃方向
     private Vector2 targetDirection = Vector2.right; // 目標の射撃方向
+    private Vector2 StartDirection;                 //スタートの地点
     private Vector2 lastValidDirection = Vector2.right;
     private Vector2 lastValidFirePointOffset;
     private Vector2 lastHorizontalDirection = Vector2.right;
@@ -92,6 +93,16 @@ public class Attack : MonoBehaviour
                 Debug.Log("マシンガンモード終了");
             }
         }
+
+        //------------------------------------------------------------------
+        // デバッグ機能
+        //------------------------------------------------------------------
+#if DEBUG
+        if (Input.GetKeyUp(KeyCode.F1))
+        {
+            ActivateMachineGunMode(1000000.0f);
+        }
+#endif
     }
 
     // 入力に応じて方向を決定
@@ -153,6 +164,9 @@ public class Attack : MonoBehaviour
 
         float t = Time.deltaTime / directionLerpDuration;
         currentDirection = ((Vector2)Vector3.Slerp(currentDirection, targetDirection, t)).normalized;
+
+        //float t = Time.deltaTime / directionLerpDuration;
+        //currentDirection = ((Vector2)Vector3.Slerp(currentDirection, targetDirection - StartDirection, t)).normalized;
 
         float angle = Mathf.Atan2(currentDirection.y, currentDirection.x) * Mathf.Rad2Deg;
 
