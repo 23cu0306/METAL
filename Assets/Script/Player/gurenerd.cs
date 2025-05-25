@@ -1,10 +1,24 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class gurenerd : MonoBehaviour
 {
     public GameObject grenadePrefab;
     public Transform grenadeSpawnPoint;
     private bool isFacingRight = true;
+
+    public PlayerControls playerControls; // Input Action のスクリプタブルオブジェクト
+
+    void Awake()
+    {
+        playerControls = new PlayerControls();
+    }
+
+    void OnEnable()
+    {
+        playerControls.Enable();
+    }
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,7 +34,7 @@ public class gurenerd : MonoBehaviour
 
     void ThrowGrenade()
     {
-        if (Input.GetKeyDown(KeyCode.G) && bomb.activeGrenadeCount < 2) // グレネード投擲キー（例: G）
+        if (playerControls.Player.Bomb.triggered && bomb.activeGrenadeCount < 2) // グレネード投擲キー（例: G）
         {
             GameObject grenade = Instantiate(grenadePrefab, grenadeSpawnPoint.position, Quaternion.identity);
 
