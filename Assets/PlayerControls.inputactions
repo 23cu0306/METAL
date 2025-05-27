@@ -1,6 +1,6 @@
 {
-    "name": "PlayerControls",
-    "maps": [
+     "name": "PlayerControls",
+     "maps": [
         {
             "name": "Player",
             "id": "5b0f32a5-92cc-42a4-a8ea-fb9e1f07f67d",
@@ -10,39 +10,35 @@
                     "type": "Value",
                     "id": "68a4d031-f7db-4771-8dd6-f2d6ebb4f387",
                     "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
+                    "processors": [],
+                    "interactions": [],
                     "initialStateCheck": true
                 },
                 {
                     "name": "Jump",
                     "type": "Button",
                     "id": "7c632f13-5147-47e0-814d-5a3d05cd2bb8",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
+                    "expectedControlType": [],
+                    "processors": [],
+                    "interactions": [],
                     "initialStateCheck": false
                 },
                 {
                     "name": "Attack",
                     "type": "Button",
                     "id": "e8d52dd9-b9fd-44fc-88cd-d3a4b6824700",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
+                    "expectedControlType": [],
+                    "processors": [],
+                    "interactions": [],
                     "initialStateCheck": false
                 },
                 {
                     "name": "Bomb",
                     "type": "Button",
-<<<<<<< HEAD
                     "id": "faea3f7d-b877-48e5-8c55-81e7f0b62edb",
-=======
-                    "id": "94e17b0c-619f-42ed-b25c-9a7a29727663",
->>>>>>> origin/main
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
+                    "expectedControlType": [],
+                    "processors": [],
+                    "interactions": [],
                     "initialStateCheck": false
                 }
             ],
@@ -51,9 +47,9 @@
                     "name": "",
                     "id": "7b6fbb08-2048-471d-b89f-bc38695b51f3",
                     "path": "<Gamepad>/leftStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
+                    "interactions": [],
+                    "processors": [],
+                    "groups": [],
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -62,9 +58,9 @@
                     "name": "",
                     "id": "614e120f-214d-4047-a5d7-6288a26182e0",
                     "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
+                    "interactions": [],
+                    "processors": [],
+                    "groups": [],
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -73,24 +69,20 @@
                     "name": "",
                     "id": "f7e390ec-fe68-4805-b563-3789e9d03a5f",
                     "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
+                    "interactions": [],
+                    "processors": [],
+                    "groups": [],
                     "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-<<<<<<< HEAD
                     "id": "ae9afb3d-a0f4-41e5-8c87-c457783edfdc",
-=======
-                    "id": "c1972855-1e8b-46e7-98bc-989ab97330ac",
->>>>>>> origin/main
                     "path": "<Gamepad>/buttonNorth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
+                    "interactions": [],
+                    "processors": [],
+                    "groups": [],
                     "action": "Bomb",
                     "isComposite": false,
                     "isPartOfComposite": false

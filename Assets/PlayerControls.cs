@@ -121,7 +121,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Bomb"",
                     ""type"": ""Button"",
-                    ""id"": ""94e17b0c-619f-42ed-b25c-9a7a29727663"",
+                    ""id"": ""faea3f7d-b877-48e5-8c55-81e7f0b62edb"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -164,7 +164,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c1972855-1e8b-46e7-98bc-989ab97330ac"",
+                    ""id"": ""ae9afb3d-a0f4-41e5-8c87-c457783edfdc"",
                     ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
