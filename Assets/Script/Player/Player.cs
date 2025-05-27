@@ -209,7 +209,7 @@ public class Player : MonoBehaviour
 
     private IEnumerator InvincibilityCoroutine()
     {
-        // 無敵時間中、スプライトを点滅させる
+        // 無敵時間中、スプライトを点滅させる 
         isInvincible = true;
         float elapsed = 0f;
         while (elapsed < invincibilityDuration)
