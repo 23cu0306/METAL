@@ -74,13 +74,13 @@
     <Compile Include="Assets\EnemySpawner.cs" />
     <Compile Include="Assets\Script\UIManager.cs" />
     <Compile Include="Assets\Script\Player\Attack.cs" />
-    <Compile Include="Assets\gurenerd.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy_Jump.cs" />
     <Compile Include="Assets\Script\Image.cs" />
     <Compile Include="Assets\Enemy.cs" />
     <Compile Include="Assets\Script\Enemy\DecayBullet.cs" />
     <Compile Include="Assets\SCORE.cs" />
     <Compile Include="Assets\BackGround.cs" />
+    <Compile Include="Assets\Script\Player\gurenerd.cs" />
     <Compile Include="Assets\Script\GameOverManager.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy_Shooter.cs" />
     <Compile Include="Assets\Script\Player\bomb.cs" />
@@ -101,6 +101,7 @@
     <Compile Include="Assets\Script\Enemy\Enemy_Manager.cs" />
     <Compile Include="Assets\Script\assist.cs" />
     <Compile Include="Assets\PlayerControls.cs" />
+    <Compile Include="Assets\TimeText.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
