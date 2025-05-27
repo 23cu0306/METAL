@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{1C51793E-F664-E348-8ABF-4076A2D58846}</ProjectGuid>
+    <ProjectGuid>{07140784-2821-8343-8C55-19931F78E3B0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -87,6 +87,7 @@
     <Compile Include="Assets\Script\Enemy\Laser.cs" />
     <Compile Include="Assets\ScarletClawBoss.cs" />
     <Compile Include="Assets\MetalSlugCamera.cs" />
+    <Compile Include="Assets\EnemyAnimation.cs" />
     <Compile Include="Assets\CameraController.cs" />
     <Compile Include="Assets\CoreLaser.cs" />
     <Compile Include="Assets\EnemyActivator.cs" />

@@ -12,9 +12,11 @@ GameObject:
   - component: {fileID: 9025566862741892599}
   - component: {fileID: 5549621207336540495}
   - component: {fileID: 4402635403557051308}
+  - component: {fileID: -7077225264469971283}
+  - component: {fileID: -4765068360343268861}
   m_Layer: 0
   m_Name: Small_enemy
-  m_TagString: Untagged
+  m_TagString: Enemy1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,6 +131,40 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.58, y: 6.88}
   m_EdgeRadius: 0
+--- !u!95 &-7077225264469971283
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9127502679921659106}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b884fde874cd2ae41a172caba10b5dfd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-4765068360343268861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9127502679921659106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b61b04ea0b7a664c8035c013793a0e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3234145627097380914
 PrefabInstance:
   m_ObjectHideFlags: 0
