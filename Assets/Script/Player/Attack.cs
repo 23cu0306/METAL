@@ -123,29 +123,51 @@ public class Attack : MonoBehaviour
 
         if (isMachineGunMode)
         {
-            // マシンガン時：斜めも対応（Slerp）
-            if (Mathf.Abs(moveInput.x) > 0.4f)
+            // 入力の解釈
+            bool isLeft = moveInput.x < -0.4f;
+            bool isRight = moveInput.x > 0.4f;
+            bool isUp = moveInput.y > 0.4f;
+            bool isDown = moveInput.y < -0.3f;
+
+            // 左右入力を記録
+            if (isLeft)
             {
-                targetDirection = moveInput.x > 0 ? Vector2.right : Vector2.left;
-                lastHorizontalDirection = targetDirection;
+                targetDirection = Vector2.left;
+                lastHorizontalDirection = Vector2.left;
             }
-            else if (moveInput.y > 0.4f)
+            else if (isRight)
+            {
+                targetDirection = Vector2.right;
+                lastHorizontalDirection = Vector2.right;
+            }
+
+            // 上方向入力
+            if (isUp)
             {
                 targetDirection = Vector2.up;
             }
-            else if (moveInput.y < -0.3f && !isGrounded)
+            // 上方向を離した場合（戻り補間開始）
+            else if (currentDirection == Vector2.up && !isUp)
+            {
+                targetDirection = lastHorizontalDirection;
+                // → 補間でUpdateDirectionLerpが実行される
+            }
+
+            // 下方向（空中のみ許可）
+            else if (isDown && !isGrounded)
             {
                 targetDirection = Vector2.down;
             }
-            else if (targetDirection == Vector2.up && moveInput.y <= 0.4f)
+            // 下を離した場合または着地時は即座に復元
+            else if ((currentDirection == Vector2.down && !isDown) || isGrounded)
             {
-                // 上撃ちを解除して水平に戻す
-                targetDirection = lastHorizontalDirection;
+                currentDirection = targetDirection = lastHorizontalDirection;
+                SetFirePointPosition(lastValidFirePointOffset);
             }
         }
         else
         {
-            // 通常時：上下左右のみ対応（即切り替え）
+            // 通常時の入力処理（即時切り替え）
             if (moveInput.y > 0.4f)
             {
                 currentDirection = targetDirection = Vector2.up;
@@ -167,10 +189,10 @@ public class Attack : MonoBehaviour
                 currentDirection = targetDirection = lastHorizontalDirection = Vector2.left;
             }
 
-            // 通常攻撃時は補間不要
             directionLerpTimer = 0f;
         }
     }
+
 
     //==================== 補間処理で滑らかに方向を更新 ====================
     void UpdateDirectionLerp()
@@ -184,6 +206,7 @@ public class Attack : MonoBehaviour
         }
         else
         {
+            // 斜めまたは上下方向に滑らかに補間
             float t = Time.deltaTime / directionLerpDuration;
             currentDirection = ((Vector2)Vector3.Slerp(currentDirection, targetDirection, t)).normalized;
         }
@@ -208,6 +231,7 @@ public class Attack : MonoBehaviour
         else
             SetFirePointPosition(leftOffset);
     }
+
 
     //==================== 攻撃種別の振り分け ====================
     void Attackdivision()
