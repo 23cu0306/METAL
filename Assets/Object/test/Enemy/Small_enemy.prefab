@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4402635403557051308}
   - component: {fileID: -7077225264469971283}
   - component: {fileID: -4765068360343268861}
+  - component: {fileID: -3620118909699752872}
   m_Layer: 0
   m_Name: Small_enemy
   m_TagString: Enemy1
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 9127502679921659106}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 100, y: 8, z: 0}
+  m_LocalPosition: {x: 20, y: 8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -163,6 +164,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b61b04ea0b7a664c8035c013793a0e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-3620118909699752872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9127502679921659106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 574ad45e41f88d64aadd57f81edd3ffd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &3234145627097380914
