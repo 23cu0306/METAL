@@ -81,10 +81,12 @@
     <Compile Include="Assets\Script\Enemy\DecayBullet.cs" />
     <Compile Include="Assets\SCORE.cs" />
     <Compile Include="Assets\BackGround.cs" />
+    <Compile Include="Assets\ScenManager.cs" />
     <Compile Include="Assets\Script\Player\gurenerd.cs" />
     <Compile Include="Assets\Script\GameOverManager.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy_Shooter.cs" />
     <Compile Include="Assets\Script\Player\bomb.cs" />
+    <Compile Include="Assets\TaitlManager.cs" />
     <Compile Include="Assets\Script\Enemy\Laser.cs" />
     <Compile Include="Assets\ScarletClawBoss.cs" />
     <Compile Include="Assets\MetalSlugCamera.cs" />
