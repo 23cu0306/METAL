@@ -88,8 +88,6 @@ public class Enemy_Jump : MonoBehaviour
     // トリガーイベント（弾との衝突）
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("接触したオブジェクト: " + other.gameObject.name);  // 接触したオブジェクトの名前を表示
-
         // 弾が当たった場合、体力を減らす
         if (other.CompareTag("Bullet"))
         {
@@ -121,8 +119,7 @@ public class Enemy_Jump : MonoBehaviour
     // 敵が死んだときの処理
     void Die()
     {
-        // スコア加算
-        ScoreManager.Instance.AddScore(scoreValue);
+        
 
         // 死亡エフェクトを表示
         if (deathEffect != null)
@@ -132,6 +129,8 @@ public class Enemy_Jump : MonoBehaviour
 
         // 敵オブジェクトを消去
         Destroy(gameObject);
+        // スコア加算
+        ScoreManager.Instance.AddScore(scoreValue);
     }
 
 }

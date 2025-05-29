@@ -60,7 +60,7 @@ public class FrameFix : MonoBehaviour
 
         else
         {
-            Debug.Log("í«è]ÇµÇƒÇ»Ç¢");
+            //Debug.Log("í«è]ÇµÇƒÇ»Ç¢");
         }
     }
 
