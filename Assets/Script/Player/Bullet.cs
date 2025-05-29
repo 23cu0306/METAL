@@ -24,12 +24,14 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-		//Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-		//if (enemy != null)
-		//{
-		//	enemy.TakeDamage(damage);
-		//}
 		
+		if (other.CompareTag("Enemy"))
+		{
+            Enemy_Manager enemy = other.gameObject.GetComponent<Enemy_Manager>();
+            enemy.TakeDamage(damage);
+			Destroy(gameObject);  //“–‚½‚Á‚½‚ç©•ª‚ğÁ‚·
+		}
+
 		if (other.CompareTag("Boss"))
 		{
 			Destroy(gameObject);       // ’e‚àÁ‚·

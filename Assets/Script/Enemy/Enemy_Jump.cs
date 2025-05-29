@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemy_Jump : MonoBehaviour
+public class Enemy_Jump : MonoBehaviour, Enemy_Manager
 {
     public Transform player;  // プレイヤーのTransform
     public float speed = 3f;  // 敵の移動速度
@@ -88,12 +88,7 @@ public class Enemy_Jump : MonoBehaviour
     // トリガーイベント（弾との衝突）
     void OnTriggerEnter2D(Collider2D other)
     {
-        // 弾が当たった場合、体力を減らす
-        if (other.CompareTag("Bullet"))
-        {
-            TakeDamage(10f);  // 弾が当たったときに10のダメージを受ける
-            Destroy(other.gameObject);  // 弾を破壊
-        }
+       
         // プレイヤーに接触した場合
         if (other.CompareTag("Player"))
         {
