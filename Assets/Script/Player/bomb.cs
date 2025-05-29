@@ -13,9 +13,11 @@ public class bomb : MonoBehaviour
 
     void Start()
     {
+        //プレイヤーと敵への物理的接触を無効化
         int playerLayer = LayerMask.NameToLayer("Player");
         int bombLayer = LayerMask.NameToLayer("Bullet");
         Physics2D.IgnoreLayerCollision(playerLayer, bombLayer, true);
+
         activeGrenadeCount++;
         rb = GetComponent<Rigidbody2D>();
         rb.AddForce(transform.right * throwForce + transform.up * (throwForce / 2), ForceMode2D.Impulse);
@@ -35,7 +37,6 @@ public class bomb : MonoBehaviour
                 // 敵にダメージを与える処理（Enemyスクリプトを呼ぶなど）
                 col.GetComponent<GloomVisBoss>()?.TakeDamage(damage);
                 col.GetComponent<ScarletClawBoss>()?.TakeDamage((int)damage);
-                col.GetComponent<Enemy_Jump>()?.TakeDamage(damage);
             }
         }
 
@@ -48,5 +49,19 @@ public class bomb : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, explosionRadius);
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            // Enemy_Managerインターフェースを実装しているコンポーネントを取得
+            Enemy_Manager enemy = collision.gameObject.GetComponent<Enemy_Manager>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(damage);
+            }
+            activeGrenadeCount--;
+            Destroy(gameObject);
+        }
     }
 }

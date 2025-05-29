@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemy_Shooter : MonoBehaviour
+public class Enemy_Shooter : MonoBehaviour, Enemy_Manager
 {
 	public int scoreValue = 100;
     public float health = 20f;  // 敵の体力
@@ -113,21 +113,12 @@ public class Enemy_Shooter : MonoBehaviour
 		}
 	}
 
-    // トリガーイベント（弾との衝突）
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        // 弾が当たった場合、体力を減らす
-        if (other.CompareTag("Bullet"))
-        {
-            TakeDamage(10f);  // 弾が当たったときに10のダメージを受ける
-            Destroy(other.gameObject);  // 弾を破壊
-        }
-    }
+    
 
     // 体力を減らすメソッド
-    void TakeDamage(float damage)
+    void TakeDamage(float Enemydamage)
     {
-        health -= damage;
+        health -= Enemydamage;
         if (health <= 0)
         {
             Die();
@@ -145,5 +136,12 @@ public class Enemy_Shooter : MonoBehaviour
 
         // 敵オブジェクトを消去
         Destroy(gameObject);
+        // スコア加算
+        ScoreManager.Instance.AddScore(scoreValue);
+    }
+
+    void Enemy_Manager.TakeDamage(float damage)
+    {
+        TakeDamage(damage);
     }
 }
