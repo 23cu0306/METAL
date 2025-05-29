@@ -121,23 +121,28 @@ public class Attack : MonoBehaviour
     {
         bool isGrounded = playerScript != null && playerScript.IsGrounded();
 
+        //マシンガンモードの処理
         if (isMachineGunMode)
         {
-            // 入力の解釈
-            bool isLeft = moveInput.x < -0.4f;
-            bool isRight = moveInput.x > 0.4f;
-            bool isUp = moveInput.y > 0.4f;
-            bool isDown = moveInput.y < -0.3f;
+            bool isLeft = moveInput.x < -0.4f;  //左入力
+            bool isRight = moveInput.x > 0.4f;  //右入力
+            bool isUp = moveInput.y > 0.4f;     //上入力
+            bool isDown = moveInput.y < -0.3f;  //下入力
 
-            // 左右入力を記録
+            //　左右おされているほうこうに向きを変更
+            //  水平方向の入力がある時にtargetDirectionに即設定することで方向を保存(上下から戻すときに利用)
             if (isLeft)
             {
+                //発射方向を左へ
                 targetDirection = Vector2.left;
+                //左方向を保存
                 lastHorizontalDirection = Vector2.left;
             }
             else if (isRight)
             {
+                //発射方向を右へ
                 targetDirection = Vector2.right;
+                //右方向を保存
                 lastHorizontalDirection = Vector2.right;
             }
 
@@ -150,45 +155,58 @@ public class Attack : MonoBehaviour
             else if (currentDirection == Vector2.up && !isUp)
             {
                 targetDirection = lastHorizontalDirection;
-                // → 補間でUpdateDirectionLerpが実行される
             }
 
             // 下方向（空中のみ許可）
             else if (isDown && !isGrounded)
             {
+                //発射方向を下へ
                 targetDirection = Vector2.down;
             }
-            // 下を離した場合または着地時は即座に復元
+            // 下を離した場合または着地時は最後に向いていた水平方向に即座に復元
             else if ((currentDirection == Vector2.down && !isDown) || isGrounded)
             {
                 currentDirection = targetDirection = lastHorizontalDirection;
                 SetFirePointPosition(lastValidFirePointOffset);
             }
         }
+
+        //通常モード(拳銃の処理)
         else
         {
-            // 通常時の入力処理（即時切り替え）
             if (moveInput.y > 0.4f)
             {
+                //上方向の入力が入ったら即座に方向を真上に設定
+                //currentDirectionは今の方向、targetDirection は目標方向
+                //通常モードでは上の二つを同時に切り替える
                 currentDirection = targetDirection = Vector2.up;
             }
             else if (moveInput.y <= 0.4f && currentDirection == Vector2.up)
             {
+                //上入力を離した瞬間(かつ、現在の方向が上だった場合)左右保存していた方向に戻す
+                //lastHorizontalDirectionが最後に入力された左右の向き
                 currentDirection = targetDirection = lastHorizontalDirection;
             }
+
+            //空中にいるかつ、下方向の入力があった場合発射方向を下に設定
+            //地上では下打ちは禁止
             else if (moveInput.y < -0.3f && !isGrounded)
             {
                 currentDirection = targetDirection = Vector2.down;
             }
+            //右入力があった時方向を右にしつつ、lastHorizontalDirectionを右に更新
             else if (moveInput.x > 0.5f)
             {
                 currentDirection = targetDirection = lastHorizontalDirection = Vector2.right;
             }
+            //左入力があった時方向を左にしつつ、lastHorizontalDirectionを左に更新
             else if (moveInput.x < -0.5f)
             {
                 currentDirection = targetDirection = lastHorizontalDirection = Vector2.left;
             }
 
+            //補完タイマーをリセット
+            //通常モードでは補完を使用せず、方向を即時反映するため
             directionLerpTimer = 0f;
         }
     }
@@ -197,6 +215,7 @@ public class Attack : MonoBehaviour
     //==================== 補間処理で滑らかに方向を更新 ====================
     void UpdateDirectionLerp()
     {
+        //通常モードではこの処理は行わない
         if (!isMachineGunMode) return;
 
         // 左右方向だけは即時反映
