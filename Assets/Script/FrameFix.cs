@@ -11,11 +11,12 @@ public class FrameFix : MonoBehaviour
 {
     //プレイヤーの情報（Inspecterで設定)
     public GameObject player;
-
     //追従するかしないか
     bool IsHorming;
     //x座標更新地
     float HormingLine;
+
+   
 
 
     public Transform cameraTransform; // カメラのTransform
@@ -106,6 +107,8 @@ public class FrameFix : MonoBehaviour
     {
         // 判定結果用の変数
         bool result = false;
+
+
 
         // すべてのエネミーを取得
         GameObject[] enemy_list = GameObject.FindGameObjectsWithTag("Enemy1");
