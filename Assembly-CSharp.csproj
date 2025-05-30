@@ -10,7 +10,27 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
+<<<<<<< HEAD
     <ProjectGuid>{1C51793E-F664-E348-8ABF-4076A2D58846}</ProjectGuid>
+=======
+<<<<<<< HEAD
+    <ProjectGuid>{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}</ProjectGuid>
+=======
+<<<<<<< HEAD
+    <ProjectGuid>{1C51793E-F664-E348-8ABF-4076A2D58846}</ProjectGuid>
+=======
+<<<<<<< HEAD
+    <ProjectGuid>{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}</ProjectGuid>
+=======
+<<<<<<< HEAD
+    <ProjectGuid>{77900AD4-47F1-9B7E-CD03-B03019DD561E}</ProjectGuid>
+=======
+    <ProjectGuid>{9B30B0E6-D0A6-65DA-00B2-066BE753C7E8}</ProjectGuid>
+>>>>>>> origin/main
+>>>>>>> origin/main
+>>>>>>> origin/main
+>>>>>>> origin/main
+>>>>>>> origin/main
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -100,6 +120,7 @@
     <Compile Include="Assets\GamingSpinEffect.cs" />
     <Compile Include="Assets\Script\Player\Player.cs" />
     <Compile Include="Assets\Script\Enemy\GloomVisBoss.cs" />
+    <Compile Include="Assets\Script\Scene\WallStopper.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy_Manager.cs" />
     <Compile Include="Assets\Script\assist.cs" />
     <Compile Include="Assets\PlayerControls.cs" />
@@ -124,6 +145,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\やりたいこと.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />

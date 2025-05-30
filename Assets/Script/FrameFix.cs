@@ -28,6 +28,8 @@ public class FrameFix : MonoBehaviour
     public float moveSpeed = 2f;        // ƒJƒƒ‰‚ÌˆÚ“®‘¬“x
 
     private Vector3 targetPosition;
+    internal bool isVisible;
+
     // Start is called before the first frame update
     void Start()
     {
