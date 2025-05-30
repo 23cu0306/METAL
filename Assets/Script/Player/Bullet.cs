@@ -8,14 +8,14 @@ public class Bullet : MonoBehaviour
     public int damage = 10;
     public int damagetrue = 1;
 
-  
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       
-            //Destroy(gameObject, lifetime); // 時間経過で弾を自動削除
-       
+
+        //Destroy(gameObject, lifetime); // 時間経過で弾を自動削除
+
 
     }
 
@@ -32,9 +32,19 @@ public class Bullet : MonoBehaviour
         // 右端（中央の高さ）のViewport座標 → ワールド座標に変換
         Vector3 rightEdgeWorldPos = mainCamera.ViewportToWorldPoint(new Vector3(1, 0.5f, distanceFromCamera));
 
+
         Debug.Log("カメラ右端のワールド座標: " + rightEdgeWorldPos);
 
         if (transform.position.x > rightEdgeWorldPos.x)
+        {
+            Destroy(gameObject);
+        }
+        // 左端（中央の高さ）のViewport座標 → ワールド座標に変換
+        Vector3 lightEdgeWorldPos = mainCamera.ViewportToWorldPoint(new Vector3(0, 0.5f, distanceFromCamera));
+
+        Debug.Log("カメラ左端のワールド座標: " + lightEdgeWorldPos);
+
+        if (transform.position.x < lightEdgeWorldPos.x)
         {
             Destroy(gameObject);
         }
