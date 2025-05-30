@@ -113,6 +113,15 @@ public class FrameFix : MonoBehaviour
         // すべてのエネミーを取得
         //GameObject[] enemy_list = GameObject.FindGameObjectsWithTag("Enemy1");
 
+        //稼働中のスポナーがあるか
+        //EnemySpawner spawner = GameObject.FindObjectsByType<EnemySpawner>();
+        //if (spawner==null)
+        //{
+        //    return false;
+        //}
+       
+
+        //画面をロックする敵が残っている
         CameraLock camLock = GameObject.FindFirstObjectByType<CameraLock>();
 
         if (camLock ==null)
@@ -120,7 +129,7 @@ public class FrameFix : MonoBehaviour
             return false;
         }
 
-        bool active = camLock.gameObject.activeSelf;
+        bool active= camLock.gameObject.activeSelf;
 
         // 
         //for (int i = 0; i < enemy_list.Length; ++i)
@@ -133,5 +142,6 @@ public class FrameFix : MonoBehaviour
         //}
 
         return active;
+        
     }
 }
