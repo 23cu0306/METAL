@@ -230,6 +230,7 @@ public class Attack : MonoBehaviour
             currentDirection = ((Vector2)Vector3.Slerp(currentDirection, targetDirection, t)).normalized;
         }
 
+        //現在のベクトルから角度を取得
         float angle = Mathf.Atan2(currentDirection.y, currentDirection.x) * Mathf.Rad2Deg;
 
         // 角度に応じて発射位置を切り替え
