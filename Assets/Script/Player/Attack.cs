@@ -233,20 +233,28 @@ public class Attack : MonoBehaviour
         float angle = Mathf.Atan2(currentDirection.y, currentDirection.x) * Mathf.Rad2Deg;
 
         // 角度に応じて発射位置を切り替え
+        //真上に発射
         if (angle >= 45f && angle <= 135f)
             SetFirePointPosition(upOffset);
+        //少し上の右方向
         else if (angle >= 20f && angle < 45f)
             SetFirePointPosition(topRightOffset);
+        //少し上の左方向
         else if (angle > 135f || angle < -135f)
             SetFirePointPosition(topLeftOffset);
+        //真下を向いている
         else if (angle <= -45f && angle >= -135f)
             SetFirePointPosition(downOffset);
+        //下寄りの左方向
         else if (angle < -135f)
             SetFirePointPosition(bottomLeftOffset);
+        //下寄りの右方向
         else if (angle > -45f && angle < -20f)
             SetFirePointPosition(bottomRightOffset);
+        //右方向
         else if (angle > -20f && angle < 20f)
             SetFirePointPosition(rightOffset);
+        //左方向
         else
             SetFirePointPosition(leftOffset);
     }
@@ -272,6 +280,7 @@ public class Attack : MonoBehaviour
     }
 
     //==================== バースト射撃処理 ====================
+    //一回押すことでburstShotCountの間隔でburstShotMaxの回数分弾が発射される
     void HandleMachineGunBurst()
     {
         if (!isBurstFiring && attackPressed && CanShoot())
