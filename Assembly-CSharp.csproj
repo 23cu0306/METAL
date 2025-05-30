@@ -10,11 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-<<<<<<< HEAD
     <ProjectGuid>{9B30B0E6-D0A6-65DA-00B2-066BE753C7E8}</ProjectGuid>
-=======
-    <ProjectGuid>{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}</ProjectGuid>
->>>>>>> origin/main
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -75,7 +71,6 @@
     <Compile Include="Assets\Script\FrameFix.cs" />
     <Compile Include="Assets\CameraZoneTrigger.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy_Bullet.cs" />
-    <Compile Include="Assets\EnemySpawner.cs" />
     <Compile Include="Assets\Script\UIManager.cs" />
     <Compile Include="Assets\Script\Player\Attack.cs" />
     <Compile Include="Assets\EnemyScale.cs" />
@@ -101,6 +96,7 @@
     <Compile Include="Assets\Script\GameManager.cs" />
     <Compile Include="Assets\Script\Player\EnemyDetector.cs" />
     <Compile Include="Assets\Script\Player\Bullet.cs" />
+    <Compile Include="Assets\Script\EnemySpawner.cs" />
     <Compile Include="Assets\Script\Player\MachineGunItem.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy_Stats.cs" />
     <Compile Include="Assets\GamingSpinEffect.cs" />
