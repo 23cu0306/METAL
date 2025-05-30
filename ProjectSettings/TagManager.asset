@@ -23,9 +23,9 @@ TagManager:
   - Player
   - Enemy
   - Bullet
-  - Stop Enemy
-  - stopper
-  - 
+  - Stop_Enemy
+  - Stopper
+  - Item
   - 
   - 
   - 
