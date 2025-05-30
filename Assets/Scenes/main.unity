@@ -595,13 +595,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: R18boss
       objectReference: {fileID: 0}
+    - target: {fileID: 8839984854261298003, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9165783695796098830, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 265.7
+      value: 39.5
       objectReference: {fileID: 0}
     - target: {fileID: 9165783695796098830, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: -3.15
       objectReference: {fileID: 0}
     - target: {fileID: 9165783695796098830, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
       propertyPath: m_LocalPosition.z

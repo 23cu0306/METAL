@@ -129,6 +129,7 @@ public class Attack : MonoBehaviour
             bool isUp = moveInput.y > 0.4f;     //上入力
             bool isDown = moveInput.y < -0.3f;  //下入力
 
+            Debug.Log($"[Input] isUp changed to: {isUp}");
             //　左右おされているほうこうに向きを変更
             //  水平方向の入力がある時にtargetDirectionに即設定することで方向を保存(上下から戻すときに利用)
             if (isLeft)
@@ -152,10 +153,12 @@ public class Attack : MonoBehaviour
                 targetDirection = Vector2.up;
             }
             // 上方向を離した場合（戻り補間開始）
-            else if (currentDirection == Vector2.up && !isUp)
+            else if (Vector2.Distance(currentDirection, Vector2.up) < 0.1f && !isUp)
             {
+                Debug.Log("上が解除されました");
                 targetDirection = lastHorizontalDirection;
             }
+
 
             // 下方向（空中のみ許可）
             else if (isDown && !isGrounded)
