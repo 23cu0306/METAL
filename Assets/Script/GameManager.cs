@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
+
+
     private void Start()
     {
         // フレームを60pfsに固定
@@ -49,29 +51,36 @@ public class GameManager : MonoBehaviour
 
         MostPosX = player.transform.position.x;
         PosX = player.transform.position.x;
+
+
+        
+
     }
 
     void Update()
     {
-            if (cameraTransform.position.x > spawnPosition.x && !hasSpawned)
-            {
-                // 敵を等間隔で順番にスポーンさせる
-                StartCoroutine(SpawnEnemies());
-                hasSpawned = true;
-            }
-        
+            //if (cameraTransform.position.x > spawnPosition.x && !hasSpawned)
+            //{
+            //    // 敵を等間隔で順番にスポーンさせる
+            //    StartCoroutine(SpawnEnemies());
+            //    hasSpawned = true;
+            //}
+
     }
+
+    
 
     IEnumerator SpawnEnemies()
     {
         for (int i = 0; i < numberOfEnemies; i++)
         {
+      
             // 敵をスポーンさせる位置を少しずつずらす（例: Y軸方向）
             Vector3 spawnOffset = new Vector3(0, i * 2f, 0); // 敵の間隔を調整（ここではY軸方向に2ユニットごと）
 
             // 敵を生成
             Instantiate(enemy, spawnPosition + spawnOffset, Quaternion.identity);
-            enemy.transform.position = spawnPosition + spawnOffset;
+            enemy.transform.position = spawnPosition + spawnOffset ;
 
             Debug.Log("敵出現");
             // 次の敵をスポーンさせるまでの待機時間
