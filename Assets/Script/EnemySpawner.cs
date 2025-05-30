@@ -63,6 +63,11 @@ public class EnemySpawner : MonoBehaviour
 	
 	}
 
+    public bool IsSpawning()
+    {
+        return (mState == State.Spawning);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (mState == State.Idle)

@@ -57,8 +57,34 @@ public class FrameFix : MonoBehaviour
     {
         if (HormingFrg)
         {
+            //カメラが一度に移動する量
+            const float camMoveSpeed = 0.1f;
+
             //x座標だけプレイヤーの位置に合わせる
-            transform.position = new Vector3(GetPlayerPosX(), 0.0f, transform.position.z);
+            Vector3 target = new Vector3(GetPlayerPosX(), 0.0f, transform.position.z);
+
+            //現在位置から目的地に向かうベクトル
+            Vector3 to_target = target - transform.position;
+
+            //↑を大きさ１にしたベクトル
+            Vector3 direction = to_target.normalized;
+
+            //現在地から目的地までの距離が、移動スピードいないであれば
+            //今回のカメラの移動でカメラ位置が目的地に到達することになるので
+            //カメラ位置＝目的地でOK
+            if (to_target.magnitude <= camMoveSpeed)
+            {
+                transform.position = target;
+            }
+            else
+            {
+                //目的地と現在地の距離が、カメラの移動速度よりも大きい場合は
+                //このフレームではまだ目的地に到達しないので、
+                //目的地に向かってspeed分だけ移動させてあげる
+                transform.position += direction * camMoveSpeed;
+            }
+
+
         }
 
         else
@@ -116,11 +142,15 @@ public class FrameFix : MonoBehaviour
         //GameObject[] enemy_list = GameObject.FindGameObjectsWithTag("Enemy1");
 
         //稼働中のスポナーがあるか
-        //EnemySpawner spawner = GameObject.FindObjectsByType<EnemySpawner>();
-        //if (spawner==null)
-        //{
-        //    return false;
-        //}
+        EnemySpawner[] spawners = GameObject.FindObjectsByType<EnemySpawner>(FindObjectsSortMode.InstanceID);
+        foreach(EnemySpawner enemySpawner in spawners)
+        {
+            //1つでも敵生成中のスポナーがあれば画面はロックしておく
+            if (enemySpawner.IsSpawning())
+            {
+                return true;
+            }
+        }
        
 
         //画面をロックする敵が残っている
