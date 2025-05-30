@@ -5,7 +5,7 @@ public class bomb : MonoBehaviour
     public float throwForce = 10f;
     public float explosionDelay = 2f;
     public float explosionRadius = 3f;
-    public float damage = 50f;
+    public int damage = 50;
     public GameObject explosionEffect;
     public static int activeGrenadeCount = 0;
 
@@ -27,18 +27,18 @@ public class bomb : MonoBehaviour
     void Explode()
     {
         // 爆発エフェクト
-       // Instantiate(explosionEffect, transform.position, transform.rotation);
+        // Instantiate(explosionEffect, transform.position, transform.rotation);
 
-      Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
-        foreach (Collider2D col in enemies)
-        {
-            if (col.CompareTag("Enemy"))
-            {
-                // 敵にダメージを与える処理（Enemyスクリプトを呼ぶなど）
-                col.GetComponent<GloomVisBoss>()?.TakeDamage(damage);
-                col.GetComponent<ScarletClawBoss>()?.TakeDamage((int)damage);
-            }
-        }
+        //Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
+        //  foreach (Collider2D col in enemies)
+        //  {
+        //      if (col.CompareTag("Enemy"))
+        //      {
+        //          // 敵にダメージを与える処理（Enemyスクリプトを呼ぶなど）
+        //          col.GetComponent<GloomVisBoss>()?.TakeDamage(damage);
+        //          col.GetComponent<ScarletClawBoss>()?.TakeDamage((int)damage);
+        //      }
+        //  }
 
         activeGrenadeCount--;
         // グレネードを削除

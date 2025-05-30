@@ -140,7 +140,7 @@ public class Enemy_Shooter : MonoBehaviour, Enemy_Manager
         ScoreManager.Instance.AddScore(scoreValue);
     }
 
-    void Enemy_Manager.TakeDamage(float damage)
+    void Enemy_Manager.TakeDamage(int damage)
     {
         TakeDamage(damage);
     }
