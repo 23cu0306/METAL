@@ -111,18 +111,27 @@ public class FrameFix : MonoBehaviour
 
 
         // すべてのエネミーを取得
-        GameObject[] enemy_list = GameObject.FindGameObjectsWithTag("Enemy1");
+        //GameObject[] enemy_list = GameObject.FindGameObjectsWithTag("Enemy1");
 
-        // 
-        for(int i = 0; i < enemy_list.Length; ++i)
+        CameraLock camLock = GameObject.FindFirstObjectByType<CameraLock>();
+
+        if (camLock ==null)
         {
-            if (enemy_list[i].GetComponent<SpriteRenderer>().isVisible)
-            {
-                result = true;
-                break;
-            }
+            return false;
         }
 
-        return result;
+        bool active = camLock.gameObject.activeSelf;
+
+        // 
+        //for (int i = 0; i < enemy_list.Length; ++i)
+        //{
+        //    if (enemy_list[i].GetComponent<SpriteRenderer>().isVisible)
+        //    {
+        //        result = true;
+        //        break;
+        //    }
+        //}
+
+        return active;
     }
 }
