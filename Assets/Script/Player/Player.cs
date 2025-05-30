@@ -73,7 +73,9 @@ public class Player : MonoBehaviour
         // 敵との衝突を無効化
         int playerLayer = LayerMask.NameToLayer("Player");
         int enemyLayer = LayerMask.NameToLayer("Enemy");
+        int stopLayer = LayerMask.NameToLayer("Stop_Enemy");
         Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, true);
+        Physics2D.IgnoreLayerCollision(playerLayer, stopLayer, true);
 
         // 各コンポーネントの取得と初期設定
         rb = GetComponent<Rigidbody2D>();

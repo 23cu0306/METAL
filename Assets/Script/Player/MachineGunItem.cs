@@ -5,7 +5,16 @@ public class MachineGunItem : MonoBehaviour
 	[Tooltip("マシンガンモードの持続時間（秒）")]
 	public float duration = 1000f;
 
-	void OnTriggerEnter2D(Collider2D other)
+
+    private void Start()
+    {
+        int itemLayer = LayerMask.NameToLayer("Item");
+        int enemyLayer = LayerMask.NameToLayer("Enemy");
+		int stopLayer = LayerMask.NameToLayer("Stop_Enemy");
+        Physics2D.IgnoreLayerCollision(itemLayer, enemyLayer, true);
+        Physics2D.IgnoreLayerCollision(itemLayer, stopLayer, true);
+    }
+    void OnTriggerEnter2D(Collider2D other)
 	{
 		// プレイヤーの Attack スクリプトを取得
 		Attack attack = other.GetComponent<Attack>();
