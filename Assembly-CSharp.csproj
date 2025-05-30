@@ -10,11 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-<<<<<<< HEAD
-    <ProjectGuid>{9B30B0E6-D0A6-65DA-00B2-066BE753C7E8}</ProjectGuid>
-=======
-    <ProjectGuid>{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}</ProjectGuid>
->>>>>>> origin/main
+    <ProjectGuid>{1C51793E-F664-E348-8ABF-4076A2D58846}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -68,7 +64,6 @@
     <Compile Include="Assets\Script\CameraFollow.cs" />
     <Compile Include="Assets\Script\Enemy\meteo.cs" />
     <Compile Include="Assets\ScoreManager.cs" />
-    <Compile Include="Assets\Script\Enemy\XCamera.cs" />
     <Compile Include="Assets\Script\Player\Metal_Manager.cs" />
     <Compile Include="Assets\DrillAttack.cs" />
     <Compile Include="Assets\HomingMissile.cs" />
@@ -76,6 +71,7 @@
     <Compile Include="Assets\CameraZoneTrigger.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy_Bullet.cs" />
     <Compile Include="Assets\EnemySpawner.cs" />
+    <Compile Include="Assets\Script\ScenManager.cs" />
     <Compile Include="Assets\Script\UIManager.cs" />
     <Compile Include="Assets\Script\Player\Attack.cs" />
     <Compile Include="Assets\EnemyScale.cs" />
@@ -85,7 +81,6 @@
     <Compile Include="Assets\Script\Enemy\DecayBullet.cs" />
     <Compile Include="Assets\SCORE.cs" />
     <Compile Include="Assets\BackGround.cs" />
-    <Compile Include="Assets\ScenManager.cs" />
     <Compile Include="Assets\Script\Player\gurenerd.cs" />
     <Compile Include="Assets\Script\GameOverManager.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy_Shooter.cs" />
@@ -102,7 +97,6 @@
     <Compile Include="Assets\Script\Player\EnemyDetector.cs" />
     <Compile Include="Assets\Script\Player\Bullet.cs" />
     <Compile Include="Assets\Script\Player\MachineGunItem.cs" />
-    <Compile Include="Assets\Script\Enemy\Enemy_Stats.cs" />
     <Compile Include="Assets\GamingSpinEffect.cs" />
     <Compile Include="Assets\Script\Player\Player.cs" />
     <Compile Include="Assets\Script\Enemy\GloomVisBoss.cs" />
