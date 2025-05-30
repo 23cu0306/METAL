@@ -42,9 +42,32 @@ public class Bullet : MonoBehaviour
         // 左端（中央の高さ）のViewport座標 → ワールド座標に変換
         Vector3 lightEdgeWorldPos = mainCamera.ViewportToWorldPoint(new Vector3(0, 0.5f, distanceFromCamera));
 
+
         Debug.Log("カメラ左端のワールド座標: " + lightEdgeWorldPos);
 
         if (transform.position.x < lightEdgeWorldPos.x)
+        {
+            Destroy(gameObject);
+        }
+
+        // 上端（中央の高さ）のViewport座標 → ワールド座標に変換
+        Vector3 upEdgeWorldPos = mainCamera.ViewportToWorldPoint(new Vector3(1, 1.0f, distanceFromCamera));
+
+
+        Debug.Log("カメラ上端のワールド座標: " + upEdgeWorldPos);
+
+        if (transform.position.y > upEdgeWorldPos.y)
+        {
+            Destroy(gameObject);
+        }
+
+        // 下端（中央の高さ）のViewport座標 → ワールド座標に変換
+        Vector3 downEdgeWorldPos = mainCamera.ViewportToWorldPoint(new Vector3(1, 0.0f, distanceFromCamera));
+
+
+        Debug.Log("カメラ下端のワールド座標: " + downEdgeWorldPos);
+
+        if (transform.position.y < downEdgeWorldPos.y)
         {
             Destroy(gameObject);
         }
