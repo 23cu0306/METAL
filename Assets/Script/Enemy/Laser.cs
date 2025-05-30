@@ -4,6 +4,7 @@ public class Laser : MonoBehaviour
 {
 	public float duration = 1.5f;
 	public float speed = 10f;
+	public int damage = 30;
 
 	private Vector2 direction;
 
@@ -32,14 +33,13 @@ public class Laser : MonoBehaviour
 	{
 		if (other.CompareTag("Player"))
 		{
-			GameOverManager gameOver = FindObjectOfType<GameOverManager>();
-			if (gameOver != null)
-			{
-				gameOver.GameOver();
-			}
-
-			// Optional: 爆発エフェクトなど
-			Destroy(gameObject);
+            Player playerHealth = other.GetComponent<Player>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(damage);  // プレイヤーにダメージを与える
+            }
+            // Optional: 爆発エフェクトなど
+            Destroy(gameObject);
 		}
 	}
 }

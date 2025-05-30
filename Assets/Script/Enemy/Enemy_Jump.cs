@@ -7,7 +7,7 @@ public class Enemy_Jump : MonoBehaviour, Enemy_Manager
     public float jumpDistance = 2f;  // ジャンプする距離
     public float jumpForce = 10f;  // ジャンプの力
     public float jumpHorizontalForce = 5f;  // プレイヤー方向に向かって加える水平ジャンプ力
-    public float health = 20f;  // 敵の体力
+    public int health = 20;  // 敵の体力
     public GameObject deathEffect;  // 敵が消滅した際に表示するエフェクト
     public int damage = 20;  // 敵のダメージ量
 
@@ -102,7 +102,7 @@ public class Enemy_Jump : MonoBehaviour, Enemy_Manager
     }
 
     // 体力を減らすメソッド
-    public void TakeDamage(float Enemydamage)
+    public void TakeDamage(int Enemydamage)
     {
         health -= Enemydamage;
         if (health <= 0)
