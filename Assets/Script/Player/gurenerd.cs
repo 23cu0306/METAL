@@ -11,13 +11,22 @@ public class gurenerd : MonoBehaviour
 
     void Awake()
     {
+        //入力定義クラスのインスタンスを生成
         playerControls = new PlayerControls();
     }
 
     void OnEnable()
     {
+        //実際に入力を受け付けるように有効化
         playerControls.Enable();
     }
+
+
+    //void OnDisable()
+    //{
+    //    //無効化時に入力も止める
+    //    playerControls.Disable();
+    //}
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
