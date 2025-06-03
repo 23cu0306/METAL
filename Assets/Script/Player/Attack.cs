@@ -4,6 +4,10 @@ using UnityEngine.InputSystem.Controls;
 
 public class Attack : MonoBehaviour
 {
+    //==================== 効果音設定 ====================
+    public AudioClip attackSound; // Inspectorでセットする効果音
+    private AudioSource audioSource;
+
     //==================== 弾関連設定 ====================
     [Header("弾の設定")]
     public GameObject bulletPrefab;       // 弾のプレハブ
@@ -86,6 +90,7 @@ public class Attack : MonoBehaviour
     {
         firePoint.localPosition = rightOffset;          // 初期の発射位置を右に設定
         lastValidFirePointOffset = rightOffset;         // 最後の有効な発射位置としても保存
+        audioSource = GetComponent<AudioSource>();      // AudioSourceを取得
     }
 
     void Update()
@@ -279,6 +284,9 @@ public class Attack : MonoBehaviour
         if (attackPressed && CanShoot())
         {
             Shoot(currentDirection);
+            // 効果音を鳴らす
+            audioSource.PlayOneShot(attackSound);
+
             attackPressed = false;
         }
     }

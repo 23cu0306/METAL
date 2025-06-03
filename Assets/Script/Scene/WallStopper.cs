@@ -8,10 +8,11 @@ public class WallStopper : MonoBehaviour
         // ìGÇ∆ÇÃè’ìÀÇñ≥å¯âª
         int wallstopperLayer = LayerMask.NameToLayer("Stopper");
         int enemyLayer = LayerMask.NameToLayer("Enemy");
+        int itemLayer = LayerMask.NameToLayer("Item");
         int stopLayer = LayerMask.NameToLayer("Stop_Enemy");
         Physics2D.IgnoreLayerCollision(wallstopperLayer, enemyLayer, true);
         Physics2D.IgnoreLayerCollision(wallstopperLayer, stopLayer, true);
-
+        Physics2D.IgnoreLayerCollision(wallstopperLayer, itemLayer, true);
     }
 
     // Update is called once per frame
