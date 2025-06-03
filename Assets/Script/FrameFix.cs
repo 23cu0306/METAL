@@ -25,7 +25,7 @@ public class FrameFix : MonoBehaviour
 
     public bool startZoomOut = false;   // ズームアウトを開始するかどうか
 
-    public float moveSpeed = 2f;        // カメラの移動速度
+    public float moveSpeed = 50f;        // カメラの移動速度
 
     private Vector3 targetPosition;
     internal bool isVisible;
@@ -35,6 +35,7 @@ public class FrameFix : MonoBehaviour
     {
         _pl = GameObject.Find("Player").GetComponent<Player>();
         HormingLine = transform.position.x;
+        Debug.Log("取得");
     }
 
     // Update is called once per frame
@@ -58,7 +59,7 @@ public class FrameFix : MonoBehaviour
         if (HormingFrg)
         {
             //カメラが一度に移動する量
-            const float camMoveSpeed = 0.1f;
+            const float camMoveSpeed = 10f;
 
             //x座標だけプレイヤーの位置に合わせる
             Vector3 target = new Vector3(GetPlayerPosX(), 0.0f, transform.position.z);
@@ -135,11 +136,6 @@ public class FrameFix : MonoBehaviour
     {
         // 判定結果用の変数
         bool result = false;
-
-
-
-        // すべてのエネミーを取得
-        //GameObject[] enemy_list = GameObject.FindGameObjectsWithTag("Enemy1");
 
         //稼働中のスポナーがあるか
         EnemySpawner[] spawners = GameObject.FindObjectsByType<EnemySpawner>(FindObjectsSortMode.InstanceID);

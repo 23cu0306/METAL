@@ -9,6 +9,7 @@ public class EnemyDetector : MonoBehaviour
 		if (other.CompareTag("Enemy"))
 		{
 			Debug.Log("EnemyFound");
+			player.PerformMeleeAttack(other);
 			player.SetEnemyNearby(true, other.gameObject);
 		}
 	}

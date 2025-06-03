@@ -5,7 +5,11 @@ using UnityEngine.InputSystem.Controls;
 public class Attack : MonoBehaviour
 {
     //==================== 効果音設定 ====================
-    public AudioClip attackSound; // Inspectorでセットする効果音
+    // Inspectorでセットする効果音
+    public AudioClip attackSound;
+    public AudioClip machinegunSound;
+    public AudioClip knifeSound;
+
     private AudioSource audioSource;
 
     //==================== 弾関連設定 ====================
@@ -27,6 +31,7 @@ public class Attack : MonoBehaviour
     private float machineGunTimer = 0f;   // モード発動からの経過時間
 
     //==================== 近接戦闘判定 ====================
+    public int knifeDamage = 30;
     private bool isEnemyNearby = false;   // 敵が近くにいるか
     private GameObject nearbyEnemy;       // 近くにいる敵オブジェクト
 
@@ -134,7 +139,7 @@ public class Attack : MonoBehaviour
             bool isUp = moveInput.y > 0.4f;     //上入力
             bool isDown = moveInput.y < -0.3f;  //下入力
 
-            Debug.Log($"[Input] isUp changed to: {isUp}");
+    
             //　左右おされているほうこうに向きを変更
             //  水平方向の入力がある時にtargetDirectionに即設定することで方向を保存(上下から戻すときに利用)
             if (isLeft)
@@ -310,12 +315,14 @@ public class Attack : MonoBehaviour
             {
                 burstTimer = 0f;
                 Shoot(currentDirection);
+                audioSource.PlayOneShot(machinegunSound);
                 burstShotCount++;
-
+                
                 if (burstShotCount >= burstShotMax)
                     isBurstFiring = false;
             }
         }
+      
     }
 
     //==================== 弾の発射処理 ====================
@@ -384,7 +391,7 @@ public class Attack : MonoBehaviour
         // 敵が近い場合は近接攻撃を優先
         if (isEnemyNearby)
         {
-            PerformMeleeAttack();
+            //PerformMeleeAttack();
             return false;
         }
 
@@ -399,13 +406,14 @@ public class Attack : MonoBehaviour
     }
 
     //==================== 近接攻撃処理 ====================
-    void PerformMeleeAttack()
+   public void PerformMeleeAttack(Collider2D other)
     {
         Debug.Log("ナイフ攻撃！");
         if (nearbyEnemy != null)
         {
-            Debug.Log($"敵 {nearbyEnemy.name} を倒しました！");
-            Destroy(nearbyEnemy);
+            Enemy_Manager enemy = other.gameObject.GetComponent<Enemy_Manager>();
+            enemy.TakeDamage(knifeDamage);
+            audioSource.PlayOneShot(knifeSound);
             nearbyEnemy = null;
         }
     }

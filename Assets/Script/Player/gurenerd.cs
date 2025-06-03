@@ -43,10 +43,10 @@ public class gurenerd : MonoBehaviour
 
     void ThrowGrenade()
     {
-        if (playerControls.Player.Bomb.triggered && bomb.activeGrenadeCount < 2) // グレネード投擲キー（例: G）
+        if (playerControls.Player.Bomb.triggered && bomb.activeGrenadeCount < 2) // グレネード投擲キー
         {
             GameObject grenade = Instantiate(grenadePrefab, grenadeSpawnPoint.position, Quaternion.identity);
-
+            
             // 向いている方向に応じて回転
             Vector3 scale = grenade.transform.localScale;
             scale.x = isFacingRight ? Mathf.Abs(scale.x) : -Mathf.Abs(scale.x);
