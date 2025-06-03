@@ -241,9 +241,9 @@ public class Player : MonoBehaviour
                 Die(); // 体力が0になったら死亡処理へ
             }
 
-            // 被弾後はリスポーン位置に戻す
-            transform.position = respawnPosition;
-            rb.linearVelocity = Vector2.zero;
+            //// 被弾後はリスポーン位置に戻す
+            //transform.position = respawnPosition;
+            //rb.linearVelocity = Vector2.zero;
             StartCoroutine(InvincibilityCoroutine()); // 一定時間無敵状態になる
         }
     }
