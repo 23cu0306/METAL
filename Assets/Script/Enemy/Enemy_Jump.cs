@@ -85,7 +85,7 @@ public class Enemy_Jump : MonoBehaviour, Enemy_Manager
         }
     }
 
-    // トリガーイベント（弾との衝突）
+    // トリガーイベント
     void OnTriggerEnter2D(Collider2D other)
     {
        
