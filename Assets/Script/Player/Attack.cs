@@ -68,7 +68,7 @@ public class Attack : MonoBehaviour
     // 入力システム
     private PlayerControls controls;
     private Vector2 moveInput;
-    private bool attackPressed = false; // 押した瞬間
+    public bool attackPressed = false; // 押した瞬間
     private bool attackHeld = false;    // 押しっぱなし
 
     //==================== 初期化 ====================
@@ -388,12 +388,12 @@ public class Attack : MonoBehaviour
     //==================== 発射可能かどうかを判定 ====================
     bool CanShoot()
     {
-        // 敵が近い場合は近接攻撃を優先
-        if (isEnemyNearby)
-        {
-            //PerformMeleeAttack();
-            return false;
-        }
+        //// 敵が近い場合は近接攻撃を優先
+        //if (isEnemyNearby)
+        //{
+        //    //PerformMeleeAttack();
+        //    return false;
+        //}
 
         // 地上で下撃ちは禁止
         if (Vector2.Dot(currentDirection.normalized, Vector2.down) > 0.9f && playerScript.IsGrounded())
@@ -405,8 +405,20 @@ public class Attack : MonoBehaviour
         return true;
     }
 
+    public void TriggerShoot()
+    {
+        if (CanShoot()) // 近接判定を省いたバージョン
+        {
+            if (isMachineGunMode)
+                HandleMachineGunBurst();
+            else
+                HandleShoot();
+        }
+    }
+
+
     //==================== 近接攻撃処理 ====================
-   public void PerformMeleeAttack(Collider2D other)
+    public void PerformMeleeAttack(Collider2D other)
     {
         Debug.Log("ナイフ攻撃！");
         if (nearbyEnemy != null)
