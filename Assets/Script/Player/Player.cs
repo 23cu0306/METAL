@@ -51,8 +51,6 @@ public class Player : MonoBehaviour
 
     private Vector2 lastMoveDirection = Vector2.right;  // 最後に移動した方向（主に攻撃方向に利用）
 
-    public EnemyScale enemy;//敵から見てプレイヤーの位置を特定
-
     void Awake()
     {
         controls = new PlayerControls();  // 入力アセットの初期化
