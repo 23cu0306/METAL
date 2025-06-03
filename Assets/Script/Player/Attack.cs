@@ -405,7 +405,7 @@ public class Attack : MonoBehaviour
         if (nearbyEnemy != null)
         {
             Debug.Log($"敵 {nearbyEnemy.name} を倒しました！");
-            Destroy(nearbyEnemy);
+            //Destroy(nearbyEnemy);
             nearbyEnemy = null;
         }
     }
