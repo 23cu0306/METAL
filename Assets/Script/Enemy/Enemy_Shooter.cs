@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class Enemy_Shooter : MonoBehaviour, Enemy_Manager
 {
-	public int scoreValue = 100;
+	public AudioClip enemybulletSound;
+    private AudioSource audioSource;
+
+    public int scoreValue = 100;
     public float health = 20f;  // 敵の体力
     public GameObject deathEffect;  // 敵が消滅した際に表示するエフェクト
 
@@ -53,7 +56,8 @@ public class Enemy_Shooter : MonoBehaviour, Enemy_Manager
 				playerObj = GameObject.Find("Player");
 				break;
 		}
-	}
+        audioSource = GetComponent<AudioSource>();      // AudioSourceを取得
+    }
 	private void Update()
 	{
 		Shot();
@@ -76,8 +80,9 @@ public class Enemy_Shooter : MonoBehaviour, Enemy_Manager
 							Quaternion.identity
 						);
 						bullet.SetMoveVec(playerObj.transform.position - transform.position);
-					}
-					break;
+                    }
+                    audioSource.PlayOneShot(enemybulletSound);
+                    break;
 
 				// ３方向
 				case ShotType.THREE_WAY:
@@ -91,8 +96,9 @@ public class Enemy_Shooter : MonoBehaviour, Enemy_Manager
 						bullet.SetMoveVec(Quaternion.AngleAxis(15, new Vector3(0, 0, 1)) * new Vector3(-1, 0, 0));
 						bullet = (Enemy_Bullet)Instantiate(shotData.bullet, transform.position, Quaternion.identity);
 						bullet.SetMoveVec(Quaternion.AngleAxis(-15, new Vector3(0, 0, 1)) * new Vector3(-1, 0, 0));
-					}
-					break;
+                    }
+                    audioSource.PlayOneShot(enemybulletSound);
+                    break;
 
 				//連射
 				case ShotType.RAPID_FIRE:
