@@ -277,11 +277,43 @@ public class Attack : MonoBehaviour
     //==================== 攻撃種別の振り分け ====================
     void Attackdivision()
     {
+        if (isEnemyNearby && nearbyEnemy !=null)
+        {
+
+        }
         if (isMachineGunMode)
             HandleMachineGunBurst(); // バースト射撃
         else
             HandleShoot();           // 通常射撃
     }
+
+    //マシンガンが打てないエラー発生
+    //void Attackdivision()
+    //{
+    //    if (attackPressed && CanShoot())
+    //    {
+    //        if (isEnemyNearby && nearbyEnemy != null)
+    //        {
+    //            PerformMeleeAttack(nearbyEnemy.GetComponent<Collider2D>());
+    //            attackPressed = false;
+    //        }
+    //        else if (isMachineGunMode)
+    //        {
+    //            HandleMachineGunBurst();
+    //            // バーストが終わったらattackPressedをfalseにする
+    //            if (!isBurstFiring)
+    //            {
+    //                attackPressed = false;
+    //            }
+    //        }
+    //        else
+    //        {
+    //            HandleShoot();
+    //            attackPressed = false;
+    //        }
+    //    }
+    //}
+
 
     //==================== 通常攻撃処理 ====================
     void HandleShoot()
@@ -320,6 +352,7 @@ public class Attack : MonoBehaviour
                 
                 if (burstShotCount >= burstShotMax)
                     isBurstFiring = false;
+                    burstShotCount = 0;
             }
         }
       
@@ -388,12 +421,12 @@ public class Attack : MonoBehaviour
     //==================== 発射可能かどうかを判定 ====================
     bool CanShoot()
     {
-        //// 敵が近い場合は近接攻撃を優先
-        //if (isEnemyNearby)
-        //{
-        //    //PerformMeleeAttack();
-        //    return false;
-        //}
+        // 敵が近い場合は近接攻撃を優先
+        if (isEnemyNearby)
+        {
+            //PerformMeleeAttack();
+            return false;
+        }
 
         // 地上で下撃ちは禁止
         if (Vector2.Dot(currentDirection.normalized, Vector2.down) > 0.9f && playerScript.IsGrounded())
@@ -403,17 +436,6 @@ public class Attack : MonoBehaviour
         }
 
         return true;
-    }
-
-    public void TriggerShoot()
-    {
-        if (CanShoot()) // 近接判定を省いたバージョン
-        {
-            if (isMachineGunMode)
-                HandleMachineGunBurst();
-            else
-                HandleShoot();
-        }
     }
 
 

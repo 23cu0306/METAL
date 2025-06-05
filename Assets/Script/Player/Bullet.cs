@@ -33,7 +33,7 @@ public class Bullet : MonoBehaviour
         Vector3 rightEdgeWorldPos = mainCamera.ViewportToWorldPoint(new Vector3(1, 0.5f, distanceFromCamera));
 
 
-        Debug.Log("カメラ右端のワールド座標: " + rightEdgeWorldPos);
+        //Debug.Log("カメラ右端のワールド座標: " + rightEdgeWorldPos);
 
         if (transform.position.x > rightEdgeWorldPos.x)
         {
@@ -43,7 +43,7 @@ public class Bullet : MonoBehaviour
         Vector3 lightEdgeWorldPos = mainCamera.ViewportToWorldPoint(new Vector3(0, 0.5f, distanceFromCamera));
 
 
-        Debug.Log("カメラ左端のワールド座標: " + lightEdgeWorldPos);
+        //Debug.Log("カメラ左端のワールド座標: " + lightEdgeWorldPos);
 
         if (transform.position.x < lightEdgeWorldPos.x)
         {
@@ -54,7 +54,7 @@ public class Bullet : MonoBehaviour
         Vector3 upEdgeWorldPos = mainCamera.ViewportToWorldPoint(new Vector3(1, 1.0f, distanceFromCamera));
 
 
-        Debug.Log("カメラ上端のワールド座標: " + upEdgeWorldPos);
+        //Debug.Log("カメラ上端のワールド座標: " + upEdgeWorldPos);
 
         if (transform.position.y > upEdgeWorldPos.y)
         {
@@ -65,7 +65,7 @@ public class Bullet : MonoBehaviour
         Vector3 downEdgeWorldPos = mainCamera.ViewportToWorldPoint(new Vector3(1, 0.0f, distanceFromCamera));
 
 
-        Debug.Log("カメラ下端のワールド座標: " + downEdgeWorldPos);
+        //Debug.Log("カメラ下端のワールド座標: " + downEdgeWorldPos);
 
         if (transform.position.y < downEdgeWorldPos.y)
         {
@@ -94,10 +94,6 @@ public class Bullet : MonoBehaviour
             {
                 boss.TakeDamage(damage);
             }
-
-
-
-
             Destroy(gameObject); // 弾を消す
 
 
