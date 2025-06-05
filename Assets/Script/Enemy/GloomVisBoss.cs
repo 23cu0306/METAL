@@ -10,7 +10,8 @@ public class GloomVisBoss : MonoBehaviour
 	public Transform weakPoint;
 	public GameObject decayBulletPrefab;
 	public GameObject laserPrefab;
-	public Transform laserSpawnPoint1;
+    public GameObject ExPrefab;
+    public Transform laserSpawnPoint1;
 	public Transform laserSpawnPoint2;
 	public Transform laserSpawnPoint3;
 	public Transform laserSpawnPoint4;
@@ -18,9 +19,13 @@ public class GloomVisBoss : MonoBehaviour
 	public int sita;
 	public int ue;
 	public int hanni;
+	public int ExCnt;
+    private SpriteRenderer spriteRenderer;
+    private bool isBlinking = false;
+    private Vector3 originalPosition;
 
 
-	public float phase2Threshold = 70;
+    public float phase2Threshold = 70;
 	public float phase3Threshold = 30;
 
 	private enum BossPhase { Phase1, Phase2, Phase3 }
@@ -37,7 +42,9 @@ public class GloomVisBoss : MonoBehaviour
 		actionTimer = actionInterval;
 		weakPoint.gameObject.SetActive(false); // �����͔�\��
 		animator = GetComponent<Animator>();
-	}
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalPosition = transform.position;
+    }
 
 	void Update()
 	{
@@ -157,18 +164,30 @@ public class GloomVisBoss : MonoBehaviour
 
 	IEnumerator DashAttack()
 	{
-		Vector3 dashTarget = player.transform.position;
-		float duration = 0.5f;
-		float elapsed = 0f;
-		Vector3 start = transform.position;
+        Vector3 dashTarget = player.transform.position;
+        float duration = 0.3f;
+        float elapsed = 0f;
+        Vector3 start = transform.position;
 
-		while (elapsed < duration)
-		{
-			transform.position = Vector3.Lerp(start, dashTarget, elapsed / duration);
-			elapsed += Time.deltaTime;
-			yield return null;
-		}
-	}
+        // 前進
+        while (elapsed < duration)
+        {
+            transform.position = Vector3.Lerp(start, dashTarget, elapsed / duration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(0.2f); // 少し待ってから戻る
+
+        // 復帰
+        elapsed = 0f;
+        while (elapsed < duration)
+        {
+            transform.position = Vector3.Lerp(dashTarget, originalPosition, elapsed / duration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+    }
 
 	IEnumerator OpenWeakPointTemporarily()
 	{
@@ -206,15 +225,64 @@ public class GloomVisBoss : MonoBehaviour
 	{
 		currentHP -= dmg;
         Debug.Log("ダメージ量 " + dmg + "ボス残り HP: " + currentHP);
+        if (!isBlinking)
+            StartCoroutine(BlinkOnDamage());
         if (currentHP <= 0)
 		{
 			Die();
 		}
 	}
+    IEnumerator BlinkOnDamage()
+    {
+        isBlinking = true;
+        int blinkCount = 4;
+        float blinkDuration = 0.1f;
 
-	void Die()
+        for (int i = 0; i < blinkCount; i++)
+        {
+            if (spriteRenderer != null)
+                spriteRenderer.enabled = false;
+
+            yield return new WaitForSeconds(blinkDuration);
+
+            if (spriteRenderer != null)
+                spriteRenderer.enabled = true;
+
+            yield return new WaitForSeconds(blinkDuration);
+        }
+
+        isBlinking = false;
+    }
+
+    void Die()
 	{
-		// 爆発、演出など
-		Destroy(gameObject);
+        for (int x = 0; x <= ExCnt; x++)
+        {
+            // 位置をランダムにオフセット（例：XとYの±3ユニット以内）
+            Vector3 randomOffset = new Vector3(
+                Random.Range(-3f, 3f),
+                Random.Range(-3f, 3f),
+                0f // 2D用、
+            );
+
+            Vector3 spawnPosition = transform.position + randomOffset;
+            Instantiate(ExPrefab, spawnPosition, Quaternion.identity);
+            spawnPosition = transform.position - randomOffset;
+            Instantiate(ExPrefab, spawnPosition, Quaternion.identity);
+        }
+
+
+        Destroy(gameObject);
 	}
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Player playerHealth = other.GetComponent<Player>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(30);  // プレイヤーにダメージを与える
+            }
+        }
+    }
 }
