@@ -94,10 +94,6 @@ public class Bullet : MonoBehaviour
             {
                 boss.TakeDamage(damage);
             }
-
-
-
-
             Destroy(gameObject); // ’e‚ğÁ‚·
 
 
