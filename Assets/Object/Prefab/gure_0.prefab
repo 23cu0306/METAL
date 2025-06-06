@@ -108,7 +108,7 @@ MonoBehaviour:
   explosionDelay: 2
   explosionRadius: 2
   damage: 50
-  explosionEffect: {fileID: 0}
+  explosionEffect: {fileID: 649394730084515955, guid: b4153f711864cfe4ebfb5d14f18d383a, type: 3}
 --- !u!58 &-3718585045848968233
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -83,6 +83,7 @@
     <Compile Include="Assets\Script\Scene\TaitlManager.cs" />
     <Compile Include="Assets\Script\Player\bomb.cs" />
     <Compile Include="Assets\Script\Enemy\Laser.cs" />
+    <Compile Include="Assets\Script\Player\Explosion_Delete.cs" />
     <Compile Include="Assets\UnityTechnologies\EffectExamples\Shared\Scripts\ParticleMenu.cs" />
     <Compile Include="Assets\Script\Scene\UIManager.cs" />
     <Compile Include="Assets\UnityTechnologies\EffectExamples\Shared\Scripts\GunAim.cs" />

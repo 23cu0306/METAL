@@ -75,17 +75,25 @@ public class Attack : MonoBehaviour
     //==================== 初期化 ====================
     void Awake()
     {
+        // 新しい PlayerControls インスタンスを作成
+        // Input System における入力マッピング（Input Actions）を制御するためのもの
         controls = new PlayerControls();
 
         // 移動入力取得
+        // プレイヤーが移動スティック（または矢印キー/方向キー）を入力したときの処理
+        // Move.performed は「入力が行われたとき」に呼ばれる
         controls.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
+        // 方向入力を止めたとき（スティックを離す/キーを離す）にも反応するが、ここでは何もしていない
+        // 方向を維持するために空のラムダ式（ctx => { }）を設定している
         controls.Player.Move.canceled += ctx => { }; // 方向維持（Move中止しても保持）
 
         // 攻撃入力（ボタン押下・離す）
         controls.Player.Attack.started += ctx => {
-            attackPressed = true;
-            attackHeld = true;
+            attackPressed = true;       // 攻撃が押された（1回のトリガーとして使用）
+            attackHeld = true;          // 攻撃ボタンが押されている間ずっと true（押しっぱなし状態）
         };
+        // 攻撃ボタンが離されたときに呼ばれる処理
+        // `canceled` は「ボタンが離された瞬間」に一度だけ発生する
         controls.Player.Attack.canceled += ctx => attackHeld = false;
     }
 
@@ -385,7 +393,7 @@ public class Attack : MonoBehaviour
         //プレハブがなければエラー表示
         if (bulletPrefabToUse == null)
         {
-            Debug.LogError("弾のプレハブが設定されていません！");
+            Debug.LogError("弾のプレハブが設定されていません");
             return;
         }
 
@@ -477,12 +485,12 @@ public class Attack : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("Enemy_Manager が対象の敵に存在しません！");
+                Debug.LogWarning("Enemy_Manager が対象の敵に存在しません");
             }
         }
         else
         {
-            Debug.LogWarning("Collider2D が null です！");
+            Debug.LogWarning("Collider2D が null です");
         }
     }
 
@@ -493,7 +501,7 @@ public class Attack : MonoBehaviour
         isMachineGunMode = true;
         machineGunDuration = duration * Time.deltaTime; // 実時間に変換
         machineGunTimer = 0f;
-        Debug.Log("マシンガンモード発動！");
+        Debug.Log("マシンガンに変更");
     }
 
     //==================== 近くの敵状態を更新 ====================
