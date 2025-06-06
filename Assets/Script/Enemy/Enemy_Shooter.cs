@@ -81,7 +81,8 @@ public class Enemy_Shooter : MonoBehaviour, Enemy_Manager
 						);
 						bullet.SetMoveVec(playerObj.transform.position - transform.position);
                     }
-                    audioSource.PlayOneShot(enemybulletSound);
+                    // AudioManager ‚ğg‚Á‚ÄŒø‰Ê‰¹‚ğÄ¶
+                    SoundManager.Instance.PlaySound(enemybulletSound, transform.position);
                     break;
 
 				// ‚R•ûŒü
@@ -97,7 +98,8 @@ public class Enemy_Shooter : MonoBehaviour, Enemy_Manager
 						bullet = (Enemy_Bullet)Instantiate(shotData.bullet, transform.position, Quaternion.identity);
 						bullet.SetMoveVec(Quaternion.AngleAxis(-15, new Vector3(0, 0, 1)) * new Vector3(-1, 0, 0));
                     }
-                    audioSource.PlayOneShot(enemybulletSound);
+                    // AudioManager ‚ğg‚Á‚ÄŒø‰Ê‰¹‚ğÄ¶
+                    SoundManager.Instance.PlaySound(enemybulletSound, transform.position);
                     break;
 
 				//˜AË

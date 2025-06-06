@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class bomb : MonoBehaviour
 {
+    public AudioClip bombSound;
     public float throwForce = 10f;
     public float explosionDelay = 2f;
     public float explosionRadius = 3f;
@@ -43,6 +44,8 @@ public class bomb : MonoBehaviour
         activeGrenadeCount--;
         // グレネードを削除
         Destroy(gameObject);
+        // AudioManager を使って効果音を再生
+        SoundManager.Instance.PlaySound(bombSound, transform.position);
 
     }
     void OnDrawGizmosSelected()
@@ -60,6 +63,9 @@ public class bomb : MonoBehaviour
             {
                 enemy.TakeDamage(damage);
             }
+            // AudioManager を使って効果音を再生
+            SoundManager.Instance.PlaySound(bombSound, transform.position);
+
             activeGrenadeCount--;
             Destroy(gameObject);
         }

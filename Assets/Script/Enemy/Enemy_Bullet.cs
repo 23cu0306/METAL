@@ -38,13 +38,13 @@ public class Enemy_Bullet : MonoBehaviour
             // プレイヤーに接触した場合
             if (other.CompareTag("Player"))
             {
-                audioSource.PlayOneShot(enemybulletHitSound);
                 Player playerHealth = other.GetComponent<Player>();
                 if (playerHealth != null)
                 {
                     playerHealth.TakeDamage(damage);  // プレイヤーにダメージを与える
                 }
-               
+                // AudioManager を使って効果音を再生
+                SoundManager.Instance.PlaySound(enemybulletHitSound, transform.position);
             }
 			Destroy(gameObject);       // 弾も消す
 		}

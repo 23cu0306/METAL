@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class MachineGunItem : MonoBehaviour
 {
+	public AudioClip itemSound;
 	[Tooltip("マシンガンモードの持続時間（秒）")]
 	public float duration = 1000f;
 
@@ -23,8 +24,10 @@ public class MachineGunItem : MonoBehaviour
 		{
 			attack.ActivateMachineGunMode(duration); // マシンガンモード起動
 			Debug.Log("マシンガンアイテム取得！");
+            // AudioManager を使って効果音を再生
+            SoundManager.Instance.PlaySound(itemSound, transform.position);
 
-			Destroy(gameObject); // アイテムを削除
+            Destroy(gameObject); // アイテムを削除
 		}
 	}
 }

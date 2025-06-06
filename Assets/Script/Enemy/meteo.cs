@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class meteo : MonoBehaviour
 {
-    public int damage = 30;
+    public int damage = 10;
     public float lifetime = 5f;
     [SerializeField] public float moveSpeed = 50f; //ˆÚ“®’l
     [SerializeField] Vector3 moveVec = new(0, -1, 0);

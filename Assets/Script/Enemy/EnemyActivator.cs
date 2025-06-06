@@ -24,8 +24,6 @@ public class EnemyActivator : MonoBehaviour
 
         }
 
-        Debug.Log("意気消沈沈");
-
     }
 
     // Update is called once per frame
@@ -43,7 +41,6 @@ public class EnemyActivator : MonoBehaviour
                     comp.enabled = true;
                 }
             }
-            Debug.Log("パターン赤！起動します！");
 
         }
         
