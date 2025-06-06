@@ -14,7 +14,8 @@ public class Attack : MonoBehaviour
 
     //==================== 弾関連設定 ====================
     [Header("弾の設定")]
-    public GameObject bulletPrefab;       // 弾のプレハブ
+    public GameObject pistolBulletPrefab;       //拳銃の弾のプレハブ
+    public GameObject machineGunBulletPrefab;   //マシンガンの弾のプレハブ
     public Transform firePoint;           // 弾の発射位置
     public float bulletSpeed = 10f;       // 弾の速度
 
@@ -139,11 +140,12 @@ public class Attack : MonoBehaviour
             bool isUp = moveInput.y > 0.4f;     //上入力
             bool isDown = moveInput.y < -0.3f;  //下入力
 
-    
+
             //　左右おされているほうこうに向きを変更
             //  水平方向の入力がある時にtargetDirectionに即設定することで方向を保存(上下から戻すときに利用)
             if (isLeft)
             {
+                //Debug.Log("M左");
                 //発射方向を左へ
                 targetDirection = Vector2.left;
                 //左方向を保存
@@ -151,6 +153,7 @@ public class Attack : MonoBehaviour
             }
             else if (isRight)
             {
+                //Debug.Log("M右");
                 //発射方向を右へ
                 targetDirection = Vector2.right;
                 //右方向を保存
@@ -160,12 +163,13 @@ public class Attack : MonoBehaviour
             // 上方向入力
             if (isUp)
             {
+                //Debug.Log("M上");
                 targetDirection = Vector2.up;
             }
             // 上方向を離した場合（戻り補間開始）
             else if (Vector2.Distance(currentDirection, Vector2.up) < 0.1f && !isUp)
             {
-                Debug.Log("上が解除されました");
+                //Debug.Log("M上が解除されました");
                 targetDirection = lastHorizontalDirection;
             }
 
@@ -173,12 +177,14 @@ public class Attack : MonoBehaviour
             // 下方向（空中のみ許可）
             else if (isDown && !isGrounded)
             {
+                //Debug.Log("M下");
                 //発射方向を下へ
                 targetDirection = Vector2.down;
             }
             // 下を離した場合または着地時は最後に向いていた水平方向に即座に復元
             else if ((currentDirection == Vector2.down && !isDown) || isGrounded)
             {
+                //Debug.Log("M下を離した");
                 currentDirection = targetDirection = lastHorizontalDirection;
                 SetFirePointPosition(lastValidFirePointOffset);
             }
@@ -189,7 +195,7 @@ public class Attack : MonoBehaviour
         {
             if (moveInput.y > 0.4f)
             {
-                Debug.Log("上");
+                //Debug.Log("上");
                 //上方向の入力が入ったら即座に方向を真上に設定
                 //currentDirectionは今の方向、targetDirection は目標方向
                 //通常モードでは上の二つを同時に切り替える
@@ -197,7 +203,7 @@ public class Attack : MonoBehaviour
             }
             else if (moveInput.y <= 0.4f && currentDirection == Vector2.up)
             {
-                Debug.Log("上解除");
+                //Debug.Log("上解除");
                 //上入力を離した瞬間(かつ、現在の方向が上だった場合)左右保存していた方向に戻す
                 //lastHorizontalDirectionが最後に入力された左右の向き
                 currentDirection = targetDirection = lastHorizontalDirection;
@@ -207,19 +213,19 @@ public class Attack : MonoBehaviour
             //地上では下打ちは禁止
             else if (moveInput.y < -0.3f && !isGrounded)
             {
-                Debug.Log("下");
+                //Debug.Log("下");
                 currentDirection = targetDirection = Vector2.down;
             }
             //右入力があった時方向を右にしつつ、lastHorizontalDirectionを右に更新
             else if (moveInput.x > 0.5f)
             {
-                Debug.Log("右");
+                //Debug.Log("右");
                 currentDirection = targetDirection = lastHorizontalDirection = Vector2.right;
             }
             //左入力があった時方向を左にしつつ、lastHorizontalDirectionを左に更新
             else if (moveInput.x < -0.5f)
             {
-                Debug.Log("左");
+                //Debug.Log("左");
                 currentDirection = targetDirection = lastHorizontalDirection = Vector2.left;
             }
 
@@ -228,6 +234,7 @@ public class Attack : MonoBehaviour
             directionLerpTimer = 0f;
         }
     }
+
 
 
     //==================== 補間処理で滑らかに方向を更新 ====================
@@ -360,8 +367,32 @@ public class Attack : MonoBehaviour
     //==================== 弾の発射処理 ====================
     void Shoot(Vector2 direction)
     {
+        // 発射方向の角度計算
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.Euler(0f, 0f, angle));
+
+        // モードによって弾プレハブを切り替え
+        GameObject bulletPrefabToUse = null;
+        //マシンガンの弾に変更
+        if (isMachineGunMode)
+        {
+            bulletPrefabToUse = machineGunBulletPrefab;
+        }
+        //拳銃の弾に変更
+        else
+        {
+            bulletPrefabToUse = pistolBulletPrefab;
+        }
+        //プレハブがなければエラー表示
+        if (bulletPrefabToUse == null)
+        {
+            Debug.LogError("弾のプレハブが設定されていません！");
+            return;
+        }
+
+        // 弾を生成して回転をセット
+        GameObject bullet = Instantiate(bulletPrefabToUse, firePoint.position, Quaternion.Euler(0f, 0f, angle));
+
+        // Rigidbody2D が存在すれば、発射方向に速度を設定
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         if (rb != null)
             rb.linearVelocity = direction.normalized * bulletSpeed;

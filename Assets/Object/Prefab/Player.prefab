@@ -279,7 +279,8 @@ MonoBehaviour:
   attackSound: {fileID: 8300000, guid: 6173944d19f632f479c29767f44ab71f, type: 3}
   machinegunSound: {fileID: 8300000, guid: ace0bec5310523a4b93fb42d2c202681, type: 3}
   knifeSound: {fileID: 8300000, guid: 4f5ba6b5a4abb8f41a1a8f77bf76f8a3, type: 3}
-  bulletPrefab: {fileID: 8162234288098437430, guid: b26f38666b410a445be9a2f42824b978, type: 3}
+  pistolBulletPrefab: {fileID: 8162234288098437430, guid: b26f38666b410a445be9a2f42824b978, type: 3}
+  machineGunBulletPrefab: {fileID: 8162234288098437430, guid: 990f787576bf3364fb6d645297f8c203, type: 3}
   firePoint: {fileID: 919074947463140478}
   bulletSpeed: 10
   knifeDamage: 30
