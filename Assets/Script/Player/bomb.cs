@@ -28,7 +28,7 @@ public class bomb : MonoBehaviour
     void Explode()
     {
         // 爆発エフェクト
-        // Instantiate(explosionEffect, transform.position, transform.rotation);
+        Instantiate(explosionEffect, transform.position, transform.rotation);
 
         //Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
         //  foreach (Collider2D col in enemies)
@@ -57,6 +57,8 @@ public class bomb : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            //爆発エフェクト
+            Instantiate(explosionEffect, transform.position, transform.rotation);
             // Enemy_Managerインターフェースを実装しているコンポーネントを取得
             Enemy_Manager enemy = collision.gameObject.GetComponent<Enemy_Manager>();
             if (enemy != null)
