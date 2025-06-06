@@ -11,11 +11,12 @@ GameObject:
   - component: {fileID: 640817499230300369}
   - component: {fileID: 3370594711462959893}
   - component: {fileID: 569368964712988995}
+  - component: {fileID: -5806298513429511440}
   - component: {fileID: 2240476161653109302}
   - component: {fileID: 9094812070174459512}
   - component: {fileID: -3628075164763892706}
   m_Layer: 8
-  m_Name: zyuuotoko_0
+  m_Name: Shooter
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,6 +112,18 @@ MonoBehaviour:
     frame: 1000
     type: 2
     bullet: {fileID: -7142988566152139376, guid: b8f8beabddec0cc499b7c0de0f2db788, type: 3}
+--- !u!114 &-5806298513429511440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4968795692144619796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0483335ad93430245b34599788c3cb6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &2240476161653109302
 Rigidbody2D:
   serializedVersion: 5
@@ -197,7 +210,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0

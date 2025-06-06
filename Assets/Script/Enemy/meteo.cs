@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class meteo : MonoBehaviour
 {
-    public int damage = 30;
+    public int damage = 10;
     public float lifetime = 5f;
     [SerializeField] public float moveSpeed = 50f; //à⁄ìÆíl
     [SerializeField] Vector3 moveVec = new(0, -1, 0);
@@ -45,7 +45,7 @@ public class meteo : MonoBehaviour
             Destroy(gameObject);
         }
         // ï«Ç»Ç«Ç…ìñÇΩÇ¡ÇΩÇÁè¡Ç¶ÇÈ
-        if (!other.CompareTag("Enemy") && !other.CompareTag("Boss") && !other.CompareTag("EnemyBullet"))
+        if (other.CompareTag("Ground") || other.CompareTag("Bullet"))
         {
             Destroy(gameObject);
         }

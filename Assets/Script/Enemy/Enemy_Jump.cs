@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Enemy_Jump : MonoBehaviour, Enemy_Manager
 {
+    public AudioClip jumpSound; //ジャンプする際の効果音
     public Transform player;  // プレイヤーのTransform
     public float speed = 3f;  // 敵の移動速度
     public float jumpDistance = 2f;  // ジャンプする距離
@@ -64,6 +65,7 @@ public class Enemy_Jump : MonoBehaviour, Enemy_Manager
 
         // X方向にプレイヤーの方向を加えてジャンプ力を与える
         rb.linearVelocity = new Vector2(jumpDirection.x * jumpHorizontalForce, jumpForce); // プレイヤー方向に向かってジャンプ
+
     }
 
     // 敵が地面にいるかどうかをチェックするメソッド

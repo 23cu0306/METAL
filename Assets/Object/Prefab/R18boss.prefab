@@ -80,6 +80,7 @@ GameObject:
   - component: {fileID: 535131936848247150}
   - component: {fileID: 3397035101306733984}
   - component: {fileID: 5239255058080110534}
+  - component: {fileID: 6922950211193552504}
   - component: {fileID: 8839984854261298003}
   m_Layer: 0
   m_Name: R18boss
@@ -203,11 +204,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab922ac00cec80447b6431ba64c114d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  laserSound: {fileID: 0}
   maxHP: 100
   player: {fileID: 0}
   weakPoint: {fileID: 5158415949908583731}
   decayBulletPrefab: {fileID: 3732021045332269484, guid: 758cf477f00142c46b2729296577f37a, type: 3}
   laserPrefab: {fileID: 3504354999754169030, guid: 388d37bf2923994468393c2367d7e52a, type: 3}
+  ExPrefab: {fileID: 0}
   laserSpawnPoint1: {fileID: 5048752107472591697}
   laserSpawnPoint2: {fileID: 261336080674461745}
   laserSpawnPoint3: {fileID: 398329371856767467}
@@ -216,8 +219,21 @@ MonoBehaviour:
   sita: 8
   ue: 11
   hanni: 41
+  ExCnt: 0
   phase2Threshold: 70
   phase3Threshold: 30
+--- !u!114 &6922950211193552504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228845275007878551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0483335ad93430245b34599788c3cb6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!58 &8839984854261298003
 CircleCollider2D:
   m_ObjectHideFlags: 0

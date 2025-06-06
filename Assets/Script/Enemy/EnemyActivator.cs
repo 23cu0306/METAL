@@ -2,50 +2,68 @@ using UnityEngine;
 
 public class EnemyActivator : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private Renderer rend;
-    private bool hasActivated = false;
+    private Camera mainCamera;
+    private bool isActive;
+    private MonoBehaviour[] enemyBehaviours;
 
-    public Behaviour[] EnemyComp;
 
     void Start()
     {
-        
-        
-        rend = GetComponent<Renderer>();
-        //GetComponent<GloomVisBoss>().enabled = false;
+        mainCamera = Camera.main;
+        isActive = false;
 
-        foreach (var comp in EnemyComp)
+        // 敵の行動を管理している全スクリプトを取得
+        enemyBehaviours = new MonoBehaviour[]
         {
-            if( comp != null)
-            {
-                comp.enabled = false;
-            }
+            GetComponent<Enemy_Jump>(),
+            GetComponent<Enemy_Shooter>(),
+            GetComponent<GloomVisBoss>(),
+            // ほか必要なスクリプトもここに追加
+        };
 
-        }
-
-        Debug.Log("意気消沈沈");
-
+        StopEnemy();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (!hasActivated && rend.isVisible)
+        Vector3 viewportPos = mainCamera.WorldToViewportPoint(transform.position);
+        bool inView = viewportPos.x >= 0 && viewportPos.x <= 1 &&
+                      viewportPos.y >= 0 && viewportPos.y <= 1 &&
+                      viewportPos.z > 0;
+
+        if (inView)
         {
-
-            hasActivated = true;
-
-            foreach (var comp in EnemyComp)
-            { 
-                if (comp != null)
-                {
-                    comp.enabled = true;
-                }
+            if (!isActive)
+            {
+                isActive = true;
+                StartEnemy();
             }
-            Debug.Log("パターン赤！起動します！");
-
         }
-        
+        else
+        {
+            if (isActive)
+            {
+                isActive = false;
+                StopEnemy();
+            }
+        }
+    }
+
+    void StartEnemy()
+    {
+        foreach (var behaviour in enemyBehaviours)
+        {
+            if (behaviour != null)
+                behaviour.enabled = true;
+        }
+    }
+
+    void StopEnemy()
+    {
+        foreach (var behaviour in enemyBehaviours)
+        {
+            if (behaviour != null)
+                behaviour.enabled = false;
+        }
     }
 }

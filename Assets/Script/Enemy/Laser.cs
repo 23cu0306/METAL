@@ -33,7 +33,6 @@ public class Laser : MonoBehaviour
 	{
 		if (other.CompareTag("Player"))
 		{
-            Debug.Log("プレイヤーにヒット！");
             Player playerHealth = other.GetComponent<Player>();
             if (playerHealth != null)
             {

@@ -189,6 +189,7 @@ public class Attack : MonoBehaviour
         {
             if (moveInput.y > 0.4f)
             {
+                Debug.Log("上");
                 //上方向の入力が入ったら即座に方向を真上に設定
                 //currentDirectionは今の方向、targetDirection は目標方向
                 //通常モードでは上の二つを同時に切り替える
@@ -196,6 +197,7 @@ public class Attack : MonoBehaviour
             }
             else if (moveInput.y <= 0.4f && currentDirection == Vector2.up)
             {
+                Debug.Log("上解除");
                 //上入力を離した瞬間(かつ、現在の方向が上だった場合)左右保存していた方向に戻す
                 //lastHorizontalDirectionが最後に入力された左右の向き
                 currentDirection = targetDirection = lastHorizontalDirection;
@@ -205,16 +207,19 @@ public class Attack : MonoBehaviour
             //地上では下打ちは禁止
             else if (moveInput.y < -0.3f && !isGrounded)
             {
+                Debug.Log("下");
                 currentDirection = targetDirection = Vector2.down;
             }
             //右入力があった時方向を右にしつつ、lastHorizontalDirectionを右に更新
             else if (moveInput.x > 0.5f)
             {
+                Debug.Log("右");
                 currentDirection = targetDirection = lastHorizontalDirection = Vector2.right;
             }
             //左入力があった時方向を左にしつつ、lastHorizontalDirectionを左に更新
             else if (moveInput.x < -0.5f)
             {
+                Debug.Log("左");
                 currentDirection = targetDirection = lastHorizontalDirection = Vector2.left;
             }
 
@@ -228,7 +233,7 @@ public class Attack : MonoBehaviour
     //==================== 補間処理で滑らかに方向を更新 ====================
     void UpdateDirectionLerp()
     {
-        //通常モードではこの処理は行わない
+        //もしマシンガンモードなら処理をスルー
         if (!isMachineGunMode) return;
 
         // 左右方向だけは即時反映
@@ -273,46 +278,35 @@ public class Attack : MonoBehaviour
             SetFirePointPosition(leftOffset);
     }
 
-
-    //==================== 攻撃種別の振り分け ====================
+    //==================== 攻撃処理の切り替え ====================
     void Attackdivision()
     {
-        if (isEnemyNearby && nearbyEnemy !=null)
+        //攻撃ボタンがおされたときに処理
+        if (attackPressed)
         {
-
+            //敵が近くにいるかつ、nullではなかったときに処理
+            if (isEnemyNearby && nearbyEnemy != null)
+            {
+                PerformMeleeAttack(nearbyEnemy.GetComponent<Collider2D>()); //近接攻撃処理
+                attackPressed = false;          //攻撃ボタンfalseに切り替える
+            }
+            //銃の処理が可能なら銃の処理
+            else if (CanShoot())
+            {
+                //マシンガンモード
+                if(isMachineGunMode)
+                {
+                    HandleMachineGunBurst();    //マシンガン発射処理
+                }
+                //通常モード(拳銃)
+                else
+                {
+                    HandleShoot();              //通常処理(拳銃発射処理)
+                    attackPressed = false;      //攻撃ボタンをfalseに切り替える
+                }
+            }
         }
-        if (isMachineGunMode)
-            HandleMachineGunBurst(); // バースト射撃
-        else
-            HandleShoot();           // 通常射撃
     }
-
-    //マシンガンが打てないエラー発生
-    //void Attackdivision()
-    //{
-    //    if (attackPressed && CanShoot())
-    //    {
-    //        if (isEnemyNearby && nearbyEnemy != null)
-    //        {
-    //            PerformMeleeAttack(nearbyEnemy.GetComponent<Collider2D>());
-    //            attackPressed = false;
-    //        }
-    //        else if (isMachineGunMode)
-    //        {
-    //            HandleMachineGunBurst();
-    //            // バーストが終わったらattackPressedをfalseにする
-    //            if (!isBurstFiring)
-    //            {
-    //                attackPressed = false;
-    //            }
-    //        }
-    //        else
-    //        {
-    //            HandleShoot();
-    //            attackPressed = false;
-    //        }
-    //    }
-    //}
 
 
     //==================== 通常攻撃処理 ====================
@@ -328,31 +322,36 @@ public class Attack : MonoBehaviour
         }
     }
 
-    //==================== バースト射撃処理 ====================
+    //==================== マシンガン処理 ====================
     //一回押すことでburstShotCountの間隔でburstShotMaxの回数分弾が発射される
     void HandleMachineGunBurst()
     {
+        //バースト中ではないかつ、攻撃ボタンが押されたかつ、銃が打てる状態なら
         if (!isBurstFiring && attackPressed && CanShoot())
         {
-            isBurstFiring = true;
-            burstShotCount = 0;
-            burstTimer = 0f;
-            attackPressed = false;
+            isBurstFiring = true;   //現在のバースト中(マシンガン発射中)に変更
+            burstShotCount = 0;     //弾を打った数を初期化
+            burstTimer = 0f;        //バースト間のタイマーを初期化
+            attackPressed = false;  //攻撃ボタンが押されている状態を解除
         }
 
         if (isBurstFiring)
         {
-            burstTimer += Time.deltaTime;
+            burstTimer += Time.deltaTime; //バースト間のタイマーカウントスタート
+            //バーストタイマーがバーストインタバルを超えたら処理を実行
             if (burstTimer >= burstInterval)
             {
                 burstTimer = 0f;
                 Shoot(currentDirection);
-                audioSource.PlayOneShot(machinegunSound);
-                burstShotCount++;
-                
+                audioSource.PlayOneShot(machinegunSound);   //サウンド
+                burstShotCount++;   //弾の発射数を加算
+
+                //弾の発射数がburstShotMax(4)を超えたら処理
                 if (burstShotCount >= burstShotMax)
+                {
                     isBurstFiring = false;
-                    burstShotCount = 0;
+                    burstShotCount = 0;     //初期化
+                }
             }
         }
       
@@ -421,36 +420,41 @@ public class Attack : MonoBehaviour
     //==================== 発射可能かどうかを判定 ====================
     bool CanShoot()
     {
-        // 敵が近い場合は近接攻撃を優先
-        if (isEnemyNearby)
-        {
-            //PerformMeleeAttack();
-            return false;
-        }
-
-        // 地上で下撃ちは禁止
+        // 地上で下撃ちできないように制限
         if (Vector2.Dot(currentDirection.normalized, Vector2.down) > 0.9f && playerScript.IsGrounded())
         {
             Debug.Log("地上で下撃ちは禁止");
             return false;
         }
 
+        //それ以外は打てるようにする
         return true;
     }
 
 
-    //==================== 近接攻撃処理 ====================
+    //ナイフ攻撃処理
     public void PerformMeleeAttack(Collider2D other)
     {
         Debug.Log("ナイフ攻撃！");
-        if (nearbyEnemy != null)
+        if (other != null)
         {
-            Enemy_Manager enemy = other.gameObject.GetComponent<Enemy_Manager>();
-            enemy.TakeDamage(knifeDamage);
-            audioSource.PlayOneShot(knifeSound);
-            nearbyEnemy = null;
+            Enemy_Manager enemy = other.GetComponent<Enemy_Manager>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(knifeDamage);          //敵にダメージを送る
+                audioSource.PlayOneShot(knifeSound);    //サウンド
+            }
+            else
+            {
+                Debug.LogWarning("Enemy_Manager が対象の敵に存在しません！");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Collider2D が null です！");
         }
     }
+
 
     //==================== マシンガンモードの起動 ====================
     public void ActivateMachineGunMode(float duration)
