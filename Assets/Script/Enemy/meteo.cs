@@ -45,7 +45,7 @@ public class meteo : MonoBehaviour
             Destroy(gameObject);
         }
         // ï«Ç»Ç«Ç…ìñÇΩÇ¡ÇΩÇÁè¡Ç¶ÇÈ
-        if (!other.CompareTag("Enemy") && !other.CompareTag("Boss") && !other.CompareTag("EnemyBullet"))
+        if (other.CompareTag("Ground") || other.CompareTag("Bullet"))
         {
             Destroy(gameObject);
         }

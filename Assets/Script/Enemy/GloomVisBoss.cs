@@ -3,6 +3,7 @@ using System.Collections; // �� ���ꂪ�K�v�I
 
 public class GloomVisBoss : MonoBehaviour
 {
+	public AudioClip laserSound;
 	public float maxHP = 100;
 	private float currentHP;
 
@@ -157,8 +158,8 @@ public class GloomVisBoss : MonoBehaviour
 			// 万が一設定されてないときの保険
 			Instantiate(laserPrefab, transform.position, Quaternion.identity);
 		}
-
-		yield return new WaitForSeconds(0.5f);
+        SoundManager.Instance.PlaySound(laserSound, transform.position);
+        yield return new WaitForSeconds(0.5f);
 		weakPoint.gameObject.SetActive(false);
 	}
 
@@ -282,6 +283,7 @@ public class GloomVisBoss : MonoBehaviour
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(30);  // プレイヤーにダメージを与える
+				
             }
         }
     }
