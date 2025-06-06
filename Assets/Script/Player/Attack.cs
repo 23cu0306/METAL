@@ -316,7 +316,7 @@ public class Attack : MonoBehaviour
         {
             Shoot(currentDirection);
             // 効果音を鳴らす
-            audioSource.PlayOneShot(attackSound);
+            SoundManager.Instance.PlaySound(attackSound, transform.position);
 
             attackPressed = false;
         }
@@ -343,7 +343,7 @@ public class Attack : MonoBehaviour
             {
                 burstTimer = 0f;
                 Shoot(currentDirection);
-                audioSource.PlayOneShot(machinegunSound);   //サウンド
+                SoundManager.Instance.PlaySound(machinegunSound, transform.position);
                 burstShotCount++;   //弾の発射数を加算
 
                 //弾の発射数がburstShotMax(4)を超えたら処理
@@ -442,7 +442,7 @@ public class Attack : MonoBehaviour
             if (enemy != null)
             {
                 enemy.TakeDamage(knifeDamage);          //敵にダメージを送る
-                audioSource.PlayOneShot(knifeSound);    //サウンド
+                SoundManager.Instance.PlaySound(knifeSound, transform.position);    //サウンド
             }
             else
             {
