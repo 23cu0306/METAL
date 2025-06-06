@@ -1892,6 +1892,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 66127620375653832, guid: ab99e6e6293a146469b6c31104b1b20c, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2264747471376486549, guid: ab99e6e6293a146469b6c31104b1b20c, type: 3}
       propertyPath: knifeSound
       value: 
@@ -1955,6 +1959,10 @@ PrefabInstance:
     - target: {fileID: 7323478143867855901, guid: ab99e6e6293a146469b6c31104b1b20c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016163403926841369, guid: ab99e6e6293a146469b6c31104b1b20c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 40.12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
