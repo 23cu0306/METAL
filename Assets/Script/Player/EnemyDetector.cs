@@ -7,7 +7,6 @@ public class EnemyDetector : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("A");
         if (other.CompareTag("Enemy"))
         {
             Debug.Log("Enemy Found");
