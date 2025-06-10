@@ -375,7 +375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 363ec67dee7ff4a489f314e1dac256db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1861727026}
   cameraTransform: {fileID: 333697167}
   startZoomOut: 0
   moveSpeed: 50
@@ -1737,11 +1737,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7323478143867855901, guid: a50f9fd37ecb70b4288b4106e1d7f9ce, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.3
+      value: -22.7
       objectReference: {fileID: 0}
     - target: {fileID: 7323478143867855901, guid: a50f9fd37ecb70b4288b4106e1d7f9ce, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.020379
+      value: -9.1
       objectReference: {fileID: 0}
     - target: {fileID: 7323478143867855901, guid: a50f9fd37ecb70b4288b4106e1d7f9ce, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1780,6 +1780,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a50f9fd37ecb70b4288b4106e1d7f9ce, type: 3}
+--- !u!1 &1861727026 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3224082846501101326, guid: a50f9fd37ecb70b4288b4106e1d7f9ce, type: 3}
+  m_PrefabInstance: {fileID: 1861727025}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1922620250
 PrefabInstance:
   m_ObjectHideFlags: 0
