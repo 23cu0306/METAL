@@ -444,6 +444,7 @@ public class Attack : MonoBehaviour
     {
         if (playerScript == null) return;
 
+        //PlayerScriptから地面にいるかの結果をもらう
         bool isGroundedNow = playerScript.IsGrounded();
         if (!wasGrounded && isGroundedNow && currentDirection == Vector2.down)
         {
@@ -451,7 +452,7 @@ public class Attack : MonoBehaviour
             currentDirection = lastHorizontalDirection;
             targetDirection = lastHorizontalDirection;
             SetFirePointPosition(lastValidFirePointOffset);
-            Debug.Log("着地：方向とFirePointを復元（下撃ち→左右）");
+            Debug.Log("着地したため方向復元（下撃ち→左右）");
         }
         wasGrounded = isGroundedNow;
     }
@@ -496,15 +497,17 @@ public class Attack : MonoBehaviour
 
 
     //==================== マシンガンモードの起動 ====================
+    //アイテムを取得した際にMachineGunItemクラスから呼び出されるクラス
     public void ActivateMachineGunMode(float duration)
     {
         isMachineGunMode = true;
         machineGunDuration = duration * Time.deltaTime; // 実時間に変換
         machineGunTimer = 0f;
-        Debug.Log("マシンガンに変更");
+        Debug.Log("アイテムからマシンガン情報を取得しました。");
     }
 
     //==================== 近くの敵状態を更新 ====================
+    //近くに敵がいた際にEnemyDetectorから情報を渡される
     public void SetEnemyNearby(bool isNearby, GameObject enemy = null)
     {
         isEnemyNearby = isNearby;

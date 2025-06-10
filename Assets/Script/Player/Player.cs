@@ -40,9 +40,9 @@ public class Player : MonoBehaviour
     private SpriteRenderer spriteRenderer;        //プレイヤーのスプライト表示用コンポーネント
 
     [Header("攻撃設定")]
-    public GameObject bulletPrefab;               // 弾のプレハブ（未使用）
-    public Transform firePoint;                   // 弾の発射位置（未使用）
-    public float bulletSpeed = 10f;               // 弾のスピード（未使用）
+    //public GameObject bulletPrefab;               // 弾のプレハブ（未使用）
+    //public Transform firePoint;                   // 弾の発射位置（未使用）
+    //public float bulletSpeed = 10f;               // 弾のスピード（未使用）
 
     // Input System 関連
     private PlayerControls controls;              // Input System 用のカスタムアセット
