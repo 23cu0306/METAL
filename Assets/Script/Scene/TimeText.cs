@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TimeText : MonoBehaviour
@@ -52,5 +53,6 @@ public class TimeText : MonoBehaviour
         isGameOver = true;
         Debug.Log("Game Over!");
         // 必要に応じてシーン遷移や再スタート処理を追加
+        SceneManager.LoadScene("GameOverScene");
     }
 }
