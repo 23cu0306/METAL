@@ -16,8 +16,8 @@ public class Attack : MonoBehaviour
     [Header("弾の設定")]
     public GameObject pistolBulletPrefab;       //拳銃の弾のプレハブ
     public GameObject machineGunBulletPrefab;   //マシンガンの弾のプレハブ
-    public Transform firePoint;           // 弾の発射位置
-    public float bulletSpeed = 10f;       // 弾の速度
+    public Transform firePoint;                 // 弾の発射位置
+    public float bulletSpeed = 10f;             // 弾の速度
 
     //==================== マシンガン設定 ====================
     [Header("マシンガン設定")]
@@ -28,7 +28,7 @@ public class Attack : MonoBehaviour
     private bool isBurstFiring = false;   // 現在バースト中か
     private Vector2 burstDirection;       // バースト時の射撃方向（未使用）
     private bool isMachineGunMode = false;// マシンガンモード中か
-    private float machineGunDuration = 1000f; // モードの継続時間
+    private float machineGunDuration = 0f; // マシンガンモードの継続時間(MachineGunItemから時間を受け取り)
     private float machineGunTimer = 0f;   // モード発動からの経過時間
 
     //==================== 近接戦闘判定 ====================
@@ -69,8 +69,8 @@ public class Attack : MonoBehaviour
     // 入力システム
     private PlayerControls controls;
     private Vector2 moveInput;
-    public bool attackPressed = false; // 押した瞬間
-    private bool attackHeld = false;    // 押しっぱなし
+    public bool attackPressed = false;  // 押した瞬間
+    private bool attackHeld = false;    // 押しっぱなし(現在はマシンガンでも使用していない)
 
     //==================== 初期化 ====================
     void Awake()
@@ -83,9 +83,9 @@ public class Attack : MonoBehaviour
         // プレイヤーが移動スティック（または矢印キー/方向キー）を入力したときの処理
         // Move.performed は「入力が行われたとき」に呼ばれる
         controls.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
-        // 方向入力を止めたとき（スティックを離す/キーを離す）にも反応するが、ここでは何もしていない
-        // 方向を維持するために空のラムダ式（ctx => { }）を設定している
-        controls.Player.Move.canceled += ctx => { }; // 方向維持（Move中止しても保持）
+        //////// 方向入力を止めたとき（スティックを離す/キーを離す）にも反応するが、ここでは何もしていない
+        //////// 方向を維持するために空のラムダ式（ctx => { }）を設定している
+        //////controls.Player.Move.canceled += ctx => { }; // 方向維持（Move中止しても保持）
 
         // 攻撃入力（ボタン押下・離す）
         controls.Player.Attack.started += ctx => {
@@ -114,22 +114,13 @@ public class Attack : MonoBehaviour
         HandleGroundState();        // 地面との接触チェック
         UpdateDirectionLerp();      // 発射方向を補間して更新
         Attackdivision();           // 攻撃方法を分岐して処理
-
-        // マシンガンモード継続判定
-        if (isMachineGunMode)
-        {
-            machineGunTimer += Time.deltaTime;
-            if (machineGunTimer >= machineGunDuration)
-            {
-                isMachineGunMode = false;
-                Debug.Log("マシンガンモード終了");
-            }
-        }
+        MachineGunTimelimit();      // マシンガンの残り時間の計測
 
 #if DEBUG
         // F1キーでマシンガンモード強制起動
         if (Input.GetKeyUp(KeyCode.F1))
         {
+            //1000000秒を渡してアイテムを強制起動
             ActivateMachineGunMode(1000000.0f);
         }
 #endif
@@ -148,9 +139,8 @@ public class Attack : MonoBehaviour
             bool isUp = moveInput.y > 0.4f;     //上入力
             bool isDown = moveInput.y < -0.3f;  //下入力
 
-
-            //　左右おされているほうこうに向きを変更
             //  水平方向の入力がある時にtargetDirectionに即設定することで方向を保存(上下から戻すときに利用)
+            //  左入力
             if (isLeft)
             {
                 //Debug.Log("M左");
@@ -159,6 +149,8 @@ public class Attack : MonoBehaviour
                 //左方向を保存
                 lastHorizontalDirection = Vector2.left;
             }
+
+            //右入力
             else if (isRight)
             {
                 //Debug.Log("M右");
@@ -329,6 +321,7 @@ public class Attack : MonoBehaviour
     {
         if (attackPressed && CanShoot())
         {
+            //弾の発射
             Shoot(currentDirection);
             // 効果音を鳴らす
             SoundManager.Instance.PlaySound(attackSound, transform.position);
@@ -356,20 +349,36 @@ public class Attack : MonoBehaviour
             //バーストタイマーがバーストインタバルを超えたら処理を実行
             if (burstTimer >= burstInterval)
             {
-                burstTimer = 0f;
-                Shoot(currentDirection);
+                burstTimer = 0f;            //初期化
+                Shoot(currentDirection);    //弾の発射
                 SoundManager.Instance.PlaySound(machinegunSound, transform.position);
                 burstShotCount++;   //弾の発射数を加算
 
                 //弾の発射数がburstShotMax(4)を超えたら処理
                 if (burstShotCount >= burstShotMax)
                 {
-                    isBurstFiring = false;
+                    isBurstFiring = false;  //バースト状態を解除
                     burstShotCount = 0;     //初期化
                 }
             }
         }
       
+    }
+
+    //==================== マシンガンの継続期間をカウント ====================
+    void MachineGunTimelimit()
+    {
+        if (isMachineGunMode)
+        {
+            machineGunTimer += Time.deltaTime;
+            //もし設定した時間を超えたらマシンガン終了処理
+            if (machineGunTimer >= machineGunDuration)
+            {
+                isMachineGunMode = false;
+                machineGunTimer = 0;
+                Debug.Log("マシンガンモード終了");
+            }
+        }
     }
 
     //==================== 弾の発射処理 ====================
@@ -501,8 +510,9 @@ public class Attack : MonoBehaviour
     public void ActivateMachineGunMode(float duration)
     {
         isMachineGunMode = true;
+        //MachineGunItemクラスから時間を取得
         machineGunDuration = duration * Time.deltaTime; // 実時間に変換
-        machineGunTimer = 0f;
+        machineGunTimer = 0f;                           // 初期化
         Debug.Log("アイテムからマシンガン情報を取得しました。");
     }
 
@@ -510,6 +520,7 @@ public class Attack : MonoBehaviour
     //近くに敵がいた際にEnemyDetectorから情報を渡される
     public void SetEnemyNearby(bool isNearby, GameObject enemy = null)
     {
+        //近くに敵がいるかの情報を常に受け取り
         isEnemyNearby = isNearby;
         nearbyEnemy = enemy;
     }
