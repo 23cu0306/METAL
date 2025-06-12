@@ -33,6 +33,9 @@ public class FrameFix : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //FPS‚ÌŒÅ’è‚ð’Ç‰Á(‚Æ‚è‚ ‚¦‚¸60)
+        Application.targetFrameRate = 60;
+
         _pl = GameObject.Find("Player").GetComponent<Player>();
         HormingLine = transform.position.x;
         Debug.Log("Žæ“¾");
