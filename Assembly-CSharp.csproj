@@ -85,6 +85,7 @@
     <Compile Include="Assets\UnityTechnologies\PlayerControls.cs" />
     <Compile Include="Assets\Script\Enemy\Laser.cs" />
     <Compile Include="Assets\UnityTechnologies\EffectExamples\Shared\Scripts\ParticleMenu.cs" />
+    <Compile Include="Assets\Script\Scene\NextStage.cs" />
     <Compile Include="Assets\Script\Scene\UIManager.cs" />
     <Compile Include="Assets\UnityTechnologies\EffectExamples\Shared\Scripts\GunAim.cs" />
     <Compile Include="Assets\Script\Scene\BackGround.cs" />
