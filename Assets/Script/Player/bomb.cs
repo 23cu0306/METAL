@@ -12,16 +12,43 @@ public class bomb : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    //void Start()
+    //{
+    //    //プレイヤーと敵への物理的接触を無効化
+    //    int playerLayer = LayerMask.NameToLayer("Player");
+    //    int bombLayer = LayerMask.NameToLayer("Bullet");
+    //    Physics2D.IgnoreLayerCollision(playerLayer, bombLayer, true);
+
+    //    activeGrenadeCount++;
+    //    rb = GetComponent<Rigidbody2D>();
+    //    rb.AddForce(transform.right * throwForce + transform.up * (throwForce / 2), ForceMode2D.Impulse);
+    //    Invoke("Explode", explosionDelay);
+    //}
     void Start()
     {
-        //プレイヤーと敵への物理的接触を無効化
+        // プレイヤーと敵への物理的接触を無効化
         int playerLayer = LayerMask.NameToLayer("Player");
         int bombLayer = LayerMask.NameToLayer("Bullet");
         Physics2D.IgnoreLayerCollision(playerLayer, bombLayer, true);
 
         activeGrenadeCount++;
         rb = GetComponent<Rigidbody2D>();
-        rb.AddForce(transform.right * throwForce + transform.up * (throwForce / 2), ForceMode2D.Impulse);
+
+        // プレイヤーの向きに応じて投げる方向を変更
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        Vector2 throwDirection = Vector2.right;
+
+        if (player != null)
+        {
+            SpriteRenderer playerSprite = player.GetComponent<SpriteRenderer>();
+            if (playerSprite != null && playerSprite.flipX)
+            {
+                throwDirection = Vector2.left; // 左向きなら左に投げる
+            }
+        }
+
+        rb.AddForce(throwDirection * throwForce + Vector2.up * (throwForce / 2), ForceMode2D.Impulse);
+
         Invoke("Explode", explosionDelay);
     }
 
