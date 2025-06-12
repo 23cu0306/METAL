@@ -1,3 +1,4 @@
+//‹ß‚­‚É“G‚ª‚¢‚é‚©Šm”F
 using UnityEngine;
 
 public class EnemyDetector : MonoBehaviour

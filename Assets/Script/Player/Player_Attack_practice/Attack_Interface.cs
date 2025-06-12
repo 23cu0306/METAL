@@ -3,7 +3,13 @@ using UnityEngine;
 
 public class Attack_Interface : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    enum PlayerAttackType
+    {
+        NONE = 0,
+        Normal,         //通常攻撃
+        MachineGun,     //マシンガン
+        knife,          //近接攻撃(ナイフ)
+    }
     void Start()
     {
         
@@ -11,6 +17,11 @@ public class Attack_Interface : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        Attack();
+    }
+
+    void Attack()
     {
         
     }
