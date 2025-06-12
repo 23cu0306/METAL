@@ -946,9 +946,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.81
       objectReference: {fileID: 0}
+    - target: {fileID: 5239255058080110534, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
+      propertyPath: maxHP
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239255058080110534, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1579218073}
+    - target: {fileID: 5239255058080110534, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
+      propertyPath: ExPrefab
+      value: 
+      objectReference: {fileID: 4407178277181556488, guid: 0178539635de9c44bbae347d351f4046, type: 3}
     - target: {fileID: 9165783695796098830, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 276.2
+      value: 273.29
       objectReference: {fileID: 0}
     - target: {fileID: 9165783695796098830, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2074,7 +2086,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placements:
-  - enemyPrefab: {fileID: 9127502679921659106, guid: bf77ea26568eed549a53b5cb51c1dee2, type: 3}
+  - enemyPrefab: {fileID: 974554202363848162, guid: 89babce286d80064a88f507a31bdecb0, type: 3}
     spawnPoint: {fileID: 940279374}
     spawnTime: 0
   - enemyPrefab: {fileID: 974554202363848162, guid: 89babce286d80064a88f507a31bdecb0, type: 3}
