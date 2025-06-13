@@ -26,6 +26,8 @@ public class Player : MonoBehaviour
     private bool isCrouching = false;             // 現在しゃがみ中かどうか
     private Vector2 standingSize;                 // 通常時（立ち状態）のコライダーサイズ
     private Vector2 crouchingSize;                // しゃがみ時のコライダーサイズ
+    private Vector2 standingOffset;               // 立っている状態
+    private Vector2 crouchingOffset;              // しゃがみ状態
 
     public Collider2D headCheckCollider;          // 頭上に障害物があるか確認するためのコライダー
     private bool isCeilingBlocked = false;        // 頭上に何かがある場合 true
@@ -85,6 +87,17 @@ public class Player : MonoBehaviour
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         respawnPosition = transform.position; // 初期位置をリスポーン地点として保存
+
+        //立ち状態のBoxCollider2Dのサイズを保存
+        standingSize = col.size;
+        //しゃがみの時は高さを半分にしたサイズを設定
+        crouchingSize = new Vector2(standingSize.x, standingSize.y / 2f);
+
+        //現在の状態を立ち状態として保存
+        standingOffset = col.offset;
+        //しゃがみ時のオフセット
+        //高さが縮んだ分、中央基準のBoxColliderを足元に合わせて下へずらすことで地面のめり込みを解決
+        crouchingOffset = new Vector2(standingOffset.x, standingOffset.y - (standingSize.y - crouchingSize.y) / 2f);
     }
 
     void Update()
@@ -99,12 +112,14 @@ public class Player : MonoBehaviour
   
     }
 
+    //地面に接触確認
     void CheckGround()
     {
         // 円を使って地面と接触しているかを判定する
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
     }
 
+    //移動処理
     void HandleMovement()
     {
         Vector2 input = moveInput;
@@ -147,6 +162,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    //ジャンプ処理
     void Jump()
     {
         // 地面に接していて、ジャンプ入力があった場合のみジャンプ
@@ -158,6 +174,7 @@ public class Player : MonoBehaviour
         jumpPressed = false; // フラグリセット
     }
 
+    //ジャンプからの落下が自然に見えるように修正
     void HandleFall()
     {
         // 落下中（Y速度がマイナス）のときに重力を強化してより自然な落下感に
@@ -167,36 +184,54 @@ public class Player : MonoBehaviour
         }
     }
 
+    //しゃがみ処理
     void HandleCrouch()
     {
+        //下方向入力があるかの確認
         bool isDownPressed = moveInput.y < -0.5f;
 
+        //地面に接している時のみしゃがみ可能
         if (isGrounded)
         {
             if (isDownPressed)
             {
                 // しゃがみ開始
                 isCrouching = true;
+
+                //BoxColliderのサイズをしゃがみのサイズに変更
                 col.size = crouchingSize;
+
+                //コライダーのオフセットも下にずらして足元に揃える
+                col.offset = crouchingOffset;
             }
             else if (isCrouching)
             {
-                // 立ち上がる条件（頭上に何もない）
+                // 頭上に障害物がなければ立ち上がり
                 if (!isCeilingBlocked)
                 {
+                    // しゃがみ解除
                     isCrouching = false;
+
+                    //BoxColliderの元のサイズに戻す(立ち状態)
                     col.size = standingSize;
+
+                    // オフセットも元に戻す
+                    col.offset = standingOffset;
                 }
+
+                // 頭上に障害物がある場合はしゃがみを継続
             }
             else
             {
                 // 立ち状態のまま（初期化）
                 isCrouching = false;
                 col.size = standingSize;
+                col.offset = standingOffset;
             }
         }
     }
 
+    //頭の上に物があるか確認する処理
     void CheckCeiling()
     {
         // 天井に何かがあるかを OverlapBox で判定
