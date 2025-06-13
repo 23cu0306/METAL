@@ -42,6 +42,7 @@ public class Player : MonoBehaviour
     [Header("Sprite関連")]
     [SerializeField] private Sprite standingSprite;  // 待機状態
     [SerializeField] private Sprite crouchingSprite; // しゃがみ状態
+    [SerializeField] private Sprite jumpngSprite;    // ジャンプ状態
     private SpriteRenderer spriteRenderer;        //プレイヤーのスプライト表示用コンポーネント
 
     // Input System 関連
@@ -106,6 +107,7 @@ public class Player : MonoBehaviour
         HandleMovement();    // 横移動入力処理
         Jump();              // ジャンプ処理
         HandleFall();        // 落下時の重力補正
+        UpdateSpriteByState();// 状態に応じてスプライトを切り替える
     }
 
     //地面に接触確認
@@ -123,6 +125,13 @@ public class Player : MonoBehaviour
         {
             spriteRenderer.sprite = crouchingSprite;
         }
+
+        //ジャンプ状態
+        else if (!isGrounded)
+        {
+            spriteRenderer.sprite = jumpngSprite;
+        }
+
         //立ち状態
         else
         {
@@ -243,8 +252,8 @@ public class Player : MonoBehaviour
                 col.offset = standingOffset;
             }
 
-            // 状態に応じてスプライトを切り替える
-            UpdateSpriteByState();
+            //// 状態に応じてスプライトを切り替える
+            //UpdateSpriteByState();
         }
     }
 

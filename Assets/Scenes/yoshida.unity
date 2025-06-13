@@ -1865,6 +1865,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1092317802848501743, guid: a50f9fd37ecb70b4288b4106e1d7f9ce, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4.45
+      objectReference: {fileID: 0}
     - target: {fileID: 3224082846501101326, guid: a50f9fd37ecb70b4288b4106e1d7f9ce, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1913,6 +1917,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 7.05
       objectReference: {fileID: 0}
+    - target: {fileID: 8219426381285929645, guid: a50f9fd37ecb70b4288b4106e1d7f9ce, type: 3}
+      propertyPath: jumpngSprite
+      value: 
+      objectReference: {fileID: 7950574971868122969, guid: 0e1cc9805368c604a932f2a78ca064e7, type: 3}
     - target: {fileID: 8219426381285929645, guid: a50f9fd37ecb70b4288b4106e1d7f9ce, type: 3}
       propertyPath: standingSprite
       value: 
