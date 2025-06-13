@@ -106,8 +106,6 @@ public class Player : MonoBehaviour
         HandleMovement();    // 横移動入力処理
         Jump();              // ジャンプ処理
         HandleFall();        // 落下時の重力補正
-
-  
     }
 
     //地面に接触確認
@@ -139,6 +137,7 @@ public class Player : MonoBehaviour
         Vector2 input = moveInput;
         float moveThreshold = 0.3f; // スティックをある程度倒さないと移動しない
 
+        //プレイヤーの入力を判定してある程度強く入力されているかを確認
         if (Mathf.Abs(input.x) > moveThreshold)
         {
             // 左右移動入力を正規化
@@ -153,10 +152,10 @@ public class Player : MonoBehaviour
                 spriteRenderer.flipX = true;
             }
 
-            // 入力方向の角度から「上方向」入力を検出（未使用）
-            float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
-            if (angle < 0) angle += 360f;
-            bool isAimingUp = (angle >= 60f && angle <= 120f);
+            //// 入力方向の角度から「上方向」入力を検出（未使用）
+            //float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
+            //if (angle < 0) angle += 360f;
+            //bool isAimingUp = (angle >= 60f && angle <= 120f);
 
             // 移動方向を保存（弾の発射方向に使用）
             if (moveDir.x != 0)
@@ -166,6 +165,7 @@ public class Player : MonoBehaviour
 
             // 状態によって移動速度を切り替える
             float currentSpeed = isCrouching ? crouchSpeed : (isGrounded ? moveSpeed : airMoveSpeed);
+            //横移動の速度を計算して設定
             rb.linearVelocity = new Vector2(moveDir.x * currentSpeed, rb.linearVelocity.y);
         }
         else
@@ -251,7 +251,7 @@ public class Player : MonoBehaviour
     //頭の上に物があるか確認する処理
     void CheckCeiling()
     {
-        // 天井に何かがあるかを OverlapBox で判定
+        // 頭上に何かがあるかを OverlapBox で判定
         if (headCheckCollider != null)
         {
             isCeilingBlocked = Physics2D.OverlapBox(
@@ -265,7 +265,7 @@ public class Player : MonoBehaviour
 
     private IEnumerator InvincibilityCoroutine()
     {
-        // 無敵時間中、スプライトを点滅させる 
+        // 無敵時間中、スプライトを点滅させる
         isInvincible = true;
         float elapsed = 0f;
         while (elapsed < invincibilityDuration)

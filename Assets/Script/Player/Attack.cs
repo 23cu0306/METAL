@@ -113,14 +113,14 @@ public class Attack : MonoBehaviour
         HandleCrouchFirePoint();    // しゃがみ時の発射位置調整
         HandleGroundState();        // 地面との接触チェック
         UpdateDirectionLerp();      // 発射方向を補間して更新
-        Attackdivision();           // 攻撃方法を分岐して処理
+        Attackswitch();             // 攻撃方法を分岐して処理
         MachineGunTimelimit();      // マシンガンの残り時間の計測
 
 #if DEBUG
         // F1キーでマシンガンモード強制起動
         if (Input.GetKeyUp(KeyCode.F1))
         {
-            //1000000秒を渡してアイテムを強制起動
+            //マシンガンを強制起動
             ActivateMachineGunMode(1000000.0f);
         }
 #endif
@@ -232,12 +232,10 @@ public class Attack : MonoBehaviour
         }
     }
 
-
-
     //==================== 補間処理で滑らかに方向を更新 ====================
     void UpdateDirectionLerp()
     {
-        //もしマシンガンモードじゃなかったら処理をスルー
+        //もしマシンガンモードじゃなかったら処理をスキップ
         if (!isMachineGunMode) return;
 
         //// 左右方向だけは即時反映
@@ -257,7 +255,7 @@ public class Attack : MonoBehaviour
 
         if (verticalChange)
         {
-            // 補間あり（上下が絡んでいる場合）
+            // 上下が絡んでいる場合は補間あり
             float t = Time.deltaTime / directionLerpDuration;
             currentDirection = ((Vector2)Vector3.Slerp(currentDirection, targetDirection, t)).normalized;
         }
@@ -298,7 +296,7 @@ public class Attack : MonoBehaviour
     }
 
     //==================== 攻撃処理の切り替え ====================
-    void Attackdivision()
+    void Attackswitch()
     {
         //攻撃ボタンがおされたときに処理
         if (attackPressed)
@@ -443,19 +441,25 @@ public class Attack : MonoBehaviour
     //==================== しゃがみ状態に応じた発射位置調整 ====================
     void HandleCrouchFirePoint()
     {
+        //プレイヤースクリプトがnullか地面に接地していなかったらこの処理をスキップ
         if (playerScript == null || !playerScript.IsGrounded()) return;
 
+        //プレイヤーがしゃがみ中か確認
         if (playerScript.IsCrouching())
         {
+            //プレイヤーが右向きならしゃがみのオフセットをそのまま使用
             if (currentDirection == Vector2.right)
                 SetFirePointPosition(crouchOffset);
+            //プレイヤーが左向きならX方向を反転(-)にして左向きのしゃがみ位置にする
             else if (currentDirection == Vector2.left)
                 SetFirePointPosition(new Vector2(-crouchOffset.x, crouchOffset.y));
         }
         else
         {
+            //プレイヤーが左向きなら通常状態の発射位置(右向き)を使用
             if (currentDirection == Vector2.right)
                 SetFirePointPosition(rightOffset);
+            //プレイヤーが左向きなら通常状態の発射位置(左向き)を使用
             else if (currentDirection == Vector2.left)
                 SetFirePointPosition(leftOffset);
         }
@@ -509,6 +513,7 @@ public class Attack : MonoBehaviour
         Debug.Log("ナイフ攻撃！");
         if (other != null)
         {
+            //EnemyManagerの方法を取得
             Enemy_Manager enemy = other.GetComponent<Enemy_Manager>();
             if (enemy != null)
             {
