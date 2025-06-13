@@ -152,10 +152,10 @@ public class Player : MonoBehaviour
                 spriteRenderer.flipX = true;
             }
 
-            //// 入力方向の角度から「上方向」入力を検出（未使用）
-            //float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
-            //if (angle < 0) angle += 360f;
-            //bool isAimingUp = (angle >= 60f && angle <= 120f);
+            // 入力方向の角度から「上方向」入力を検出（未使用）
+            float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
+            if (angle < 0) angle += 360f;
+            bool isAimingUp = (angle >= 60f && angle <= 120f);
 
             // 移動方向を保存（弾の発射方向に使用）
             if (moveDir.x != 0)

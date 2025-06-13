@@ -69,7 +69,7 @@ public class Attack : MonoBehaviour
     // 入力システム
     private PlayerControls controls;
     private Vector2 moveInput;
-    public bool attackPressed = false;  // 押した瞬間
+    private bool attackPressed = false;  // 押した瞬間
     private bool attackHeld = false;    // 押しっぱなし(現在はマシンガンでも使用していない)
 
     //==================== 初期化 ====================
@@ -351,7 +351,7 @@ public class Attack : MonoBehaviour
             isBurstFiring = true;   //現在のバースト中(マシンガン発射中)に変更
             burstShotCount = 0;     //弾を打った数を初期化
             burstTimer = 0f;        //バースト間のタイマーを初期化
-            attackPressed = false;  //攻撃ボタンが押されている状態を解除
+            attackPressed = false;  //攻撃ボタンを解除
         }
 
         if (isBurstFiring)
