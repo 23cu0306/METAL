@@ -83,9 +83,9 @@ public class Attack : MonoBehaviour
         // プレイヤーが移動スティック（または矢印キー/方向キー）を入力したときの処理
         // Move.performed は「入力が行われたとき」に呼ばれる
         controls.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
-        //////// 方向入力を止めたとき（スティックを離す/キーを離す）にも反応するが、ここでは何もしていない
-        //////// 方向を維持するために空のラムダ式（ctx => { }）を設定している
-        //////controls.Player.Move.canceled += ctx => { }; // 方向維持（Move中止しても保持）
+        // 方向入力を止めたとき（スティックを離す/キーを離す）にも反応するが、ここでは何もしていない
+        // 方向を維持するために空のラムダ式（ctx => { }）を設定している
+        controls.Player.Move.canceled += ctx => moveInput =Vector2.zero; // 方向維持（Move中止しても保持）
 
         // 攻撃入力（ボタン押下・離す）
         controls.Player.Attack.started += ctx => {
@@ -143,7 +143,6 @@ public class Attack : MonoBehaviour
             //  左入力
             if (isLeft)
             {
-                //Debug.Log("M左");
                 //発射方向を左へ
                 targetDirection = Vector2.left;
                 //左方向を保存
@@ -153,7 +152,6 @@ public class Attack : MonoBehaviour
             //右入力
             else if (isRight)
             {
-                //Debug.Log("M右");
                 //発射方向を右へ
                 targetDirection = Vector2.right;
                 //右方向を保存
@@ -163,13 +161,11 @@ public class Attack : MonoBehaviour
             // 上方向入力
             if (isUp)
             {
-                //Debug.Log("M上");
                 targetDirection = Vector2.up;
             }
             // 上方向を離した場合（戻り補間開始）
             else if (Vector2.Distance(currentDirection, Vector2.up) < 0.1f && !isUp)
             {
-                //Debug.Log("M上が解除されました");
                 targetDirection = lastHorizontalDirection;
             }
 
@@ -177,14 +173,12 @@ public class Attack : MonoBehaviour
             // 下方向（空中のみ許可）
             else if (isDown && !isGrounded)
             {
-                //Debug.Log("M下");
                 //発射方向を下へ
                 targetDirection = Vector2.down;
             }
             // 下を離した場合または着地時は最後に向いていた水平方向に即座に復元
-            else if ((currentDirection == Vector2.down && !isDown) || isGrounded)
+            else if (!isDown && Vector2.Dot(currentDirection.normalized, Vector2.down) > 0.9f || !isGrounded)
             {
-                //Debug.Log("M下を離した");
                 currentDirection = targetDirection = lastHorizontalDirection;
                 SetFirePointPosition(lastValidFirePointOffset);
             }
@@ -195,16 +189,15 @@ public class Attack : MonoBehaviour
         {
             if (moveInput.y > 0.4f)
             {
-                //Debug.Log("上");
                 //上方向の入力が入ったら即座に方向を真上に設定
                 //currentDirectionは今の方向、targetDirection は目標方向
                 //通常モードでは上の二つを同時に切り替える
                 currentDirection = targetDirection = Vector2.up;
             }
+
+            //上入力を離した瞬間かつ、現在の方向が上だった場合は水平方向に戻す
             else if (moveInput.y <= 0.4f && currentDirection == Vector2.up)
             {
-                //Debug.Log("上解除");
-                //上入力を離した瞬間(かつ、現在の方向が上だった場合)左右保存していた方向に戻す
                 //lastHorizontalDirectionが最後に入力された左右の向き
                 currentDirection = targetDirection = lastHorizontalDirection;
             }
@@ -213,19 +206,23 @@ public class Attack : MonoBehaviour
             //地上では下打ちは禁止
             else if (moveInput.y < -0.3f && !isGrounded)
             {
-                //Debug.Log("下");
                 currentDirection = targetDirection = Vector2.down;
             }
+
+            //下を離した場合もしくは着地時は最後に向いていた水平方向に戻す処理
+            else if (moveInput.y >= -0.4f && currentDirection == Vector2.down)
+            {
+                currentDirection = targetDirection = lastHorizontalDirection;
+            }
+
             //右入力があった時方向を右にしつつ、lastHorizontalDirectionを右に更新
             else if (moveInput.x > 0.5f)
             {
-                //Debug.Log("右");
                 currentDirection = targetDirection = lastHorizontalDirection = Vector2.right;
             }
             //左入力があった時方向を左にしつつ、lastHorizontalDirectionを左に更新
             else if (moveInput.x < -0.5f)
             {
-                //Debug.Log("左");
                 currentDirection = targetDirection = lastHorizontalDirection = Vector2.left;
             }
 
@@ -319,6 +316,7 @@ public class Attack : MonoBehaviour
     //==================== 通常攻撃処理 ====================
     void HandleShoot()
     {
+        //攻撃ボタンが押されるかつ、打てる状態なら拳銃を発射
         if (attackPressed && CanShoot())
         {
             //弾の発射
@@ -463,6 +461,15 @@ public class Attack : MonoBehaviour
             SetFirePointPosition(lastValidFirePointOffset);
             Debug.Log("着地したため方向復元（下撃ち→左右）");
         }
+
+        // 地上にいるときに currentDirection が down のままなら復元する
+        else if (isGroundedNow && Vector2.Dot(currentDirection.normalized, Vector2.down) > 0.9f)
+        {
+            currentDirection = targetDirection = lastHorizontalDirection;
+            SetFirePointPosition(lastValidFirePointOffset);
+            Debug.Log("地上で下方向を維持していたので方向復元（下撃ち防止）");
+        }
+
         wasGrounded = isGroundedNow;
     }
 
