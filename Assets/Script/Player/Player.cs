@@ -39,12 +39,10 @@ public class Player : MonoBehaviour
     public float invincibilityDuration = 2f;      // 無敵状態の持続時間（秒）
     public float blinkInterval = 0.1f;            // 無敵時の点滅間隔（秒）
 
+    [Header("Sprite関連")]
+    [SerializeField] private Sprite standingSprite;  // 待機状態
+    [SerializeField] private Sprite crouchingSprite; // しゃがみ状態
     private SpriteRenderer spriteRenderer;        //プレイヤーのスプライト表示用コンポーネント
-
-    [Header("攻撃設定")]
-    //public GameObject bulletPrefab;               // 弾のプレハブ（未使用）
-    //public Transform firePoint;                   // 弾の発射位置（未使用）
-    //public float bulletSpeed = 10f;               // 弾のスピード（未使用）
 
     // Input System 関連
     private PlayerControls controls;              // Input System 用のカスタムアセット
@@ -118,6 +116,22 @@ public class Player : MonoBehaviour
         // 円を使って地面と接触しているかを判定する
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
     }
+
+    //プレイヤーのSpriteを切り替える関数
+    private void UpdateSpriteByState()
+    {
+        //しゃがみ状態
+        if (isCrouching)
+        {
+            spriteRenderer.sprite = crouchingSprite;
+        }
+        //立ち状態
+        else
+        {
+            spriteRenderer.sprite = standingSprite;
+        }
+    }
+
 
     //移動処理
     void HandleMovement()
@@ -228,6 +242,9 @@ public class Player : MonoBehaviour
                 col.size = standingSize;
                 col.offset = standingOffset;
             }
+
+            // 状態に応じてスプライトを切り替える
+            UpdateSpriteByState();
         }
     }
 
