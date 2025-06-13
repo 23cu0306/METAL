@@ -427,7 +427,7 @@ public class Attack : MonoBehaviour
         if (rb != null)
             rb.linearVelocity = direction.normalized * bulletSpeed;
 
-        Debug.Log($"弾を {direction.normalized} に発射（角度: {angle}°）");
+        //Debug.Log($"弾を {direction.normalized} に発射（角度: {angle}°）");
     }
 
     //==================== 発射位置を設定 ====================
@@ -503,7 +503,7 @@ public class Attack : MonoBehaviour
     }
 
 
-    //ナイフ攻撃処理
+    //==================== 近接攻撃(ナイフ) ====================
     public void PerformMeleeAttack(Collider2D other)
     {
         Debug.Log("ナイフ攻撃！");

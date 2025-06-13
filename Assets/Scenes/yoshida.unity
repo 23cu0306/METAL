@@ -1223,6 +1223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deee7f23e785519479f7054c92ead1b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SceneName: GameClear
 --- !u!4 &993677186 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3108571556896684391, guid: ddf6f321b24986b4ab422dae4da09c22, type: 3}
