@@ -263,6 +263,7 @@ MonoBehaviour:
   blinkInterval: 0.1
   standingSprite: {fileID: -1923159360018771241, guid: 0cf4c1f9803a3824fa20cbf7165e5d1b, type: 3}
   crouchingSprite: {fileID: -8692991198958538733, guid: 5cd7a9385fd52c245883d3a876997eda, type: 3}
+  jumpngSprite: {fileID: 7950574971868122969, guid: 0e1cc9805368c604a932f2a78ca064e7, type: 3}
 --- !u!114 &2264747471376486549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,7 +289,6 @@ MonoBehaviour:
   topLeftOffset: {x: 0, y: 0, z: 0}
   bottomRightOffset: {x: 0, y: 0, z: 0}
   bottomLeftOffset: {x: 0, y: 0, z: 0}
-  attackPressed: 0
 --- !u!61 &2684220448564784000
 BoxCollider2D:
   m_ObjectHideFlags: 0
