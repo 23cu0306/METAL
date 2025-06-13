@@ -70,7 +70,7 @@ public class Attack : MonoBehaviour
     private PlayerControls controls;
     private Vector2 moveInput;
     private bool attackPressed = false;  // 押した瞬間
-    private bool attackHeld = false;    // 押しっぱなし(現在はマシンガンでも使用していない)
+    //private bool attackHeld = false;    // 押しっぱなし(現在はマシンガンでも使用していない)コメントアウト
 
     //==================== 初期化 ====================
     void Awake()
@@ -90,11 +90,11 @@ public class Attack : MonoBehaviour
         // 攻撃入力（ボタン押下・離す）
         controls.Player.Attack.started += ctx => {
             attackPressed = true;       // 攻撃が押された（1回のトリガーとして使用）
-            attackHeld = true;          // 攻撃ボタンが押されている間ずっと true（押しっぱなし状態）
+            //attackHeld = true;          // 攻撃ボタンが押されている間ずっと true（押しっぱなし状態）コメントアウト
         };
         // 攻撃ボタンが離されたときに呼ばれる処理
         // `canceled` は「ボタンが離された瞬間」に一度だけ発生する
-        controls.Player.Attack.canceled += ctx => attackHeld = false;
+        //controls.Player.Attack.canceled += ctx => attackHeld = false;コメントアウト
     }
 
     void OnEnable() => controls.Enable();

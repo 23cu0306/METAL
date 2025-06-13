@@ -107,7 +107,7 @@ public class Player : MonoBehaviour
         HandleMovement();    // 横移動入力処理
         Jump();              // ジャンプ処理
         HandleFall();        // 落下時の重力補正
-        UpdateSpriteByState();// 状態に応じてスプライトを切り替える
+        UpdateSpriteByState();  // 状態に応じてスプライトを切り替える
     }
 
     //地面に接触確認
@@ -251,9 +251,6 @@ public class Player : MonoBehaviour
                 col.size = standingSize;
                 col.offset = standingOffset;
             }
-
-            //// 状態に応じてスプライトを切り替える
-            //UpdateSpriteByState();
         }
     }
 
