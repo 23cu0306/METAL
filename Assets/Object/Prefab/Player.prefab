@@ -261,9 +261,8 @@ MonoBehaviour:
   health: 100
   invincibilityDuration: 2
   blinkInterval: 0.1
-  bulletPrefab: {fileID: 8162234288098437430, guid: b26f38666b410a445be9a2f42824b978, type: 3}
-  firePoint: {fileID: 0}
-  bulletSpeed: 10
+  standingSprite: {fileID: -1923159360018771241, guid: 0cf4c1f9803a3824fa20cbf7165e5d1b, type: 3}
+  crouchingSprite: {fileID: -8692991198958538733, guid: 5cd7a9385fd52c245883d3a876997eda, type: 3}
 --- !u!114 &2264747471376486549
 MonoBehaviour:
   m_ObjectHideFlags: 0
