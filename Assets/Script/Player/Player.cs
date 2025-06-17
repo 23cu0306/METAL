@@ -120,16 +120,16 @@ public class Player : MonoBehaviour
     //プレイヤーのSpriteを切り替える関数
     private void UpdateSpriteByState()
     {
-        //しゃがみ状態
-        if (isCrouching)
-        {
-            spriteRenderer.sprite = crouchingSprite;
-        }
-
         //ジャンプ状態
-        else if (!isGrounded)
+        if (!isGrounded)
         {
             spriteRenderer.sprite = jumpngSprite;
+        }
+
+        //しゃがみ状態
+        else if (isCrouching)
+        {
+            spriteRenderer.sprite = crouchingSprite;
         }
 
         //立ち状態
@@ -152,6 +152,7 @@ public class Player : MonoBehaviour
             // 左右移動入力を正規化
             Vector2 moveDir = new Vector2(Mathf.Sign(input.x), 0f);
             Vector2 aimDir = input.normalized;
+            //プレイヤーの左右の向きの切り替え
             if(moveDir.x > 0.4f)
             {
                 spriteRenderer.flipX = false;
@@ -188,8 +189,11 @@ public class Player : MonoBehaviour
     //ジャンプ処理
     void Jump()
     {
+        //下方向入力があるかの確認
+        bool isDownPressed = moveInput.y < -0.5f;
+
         // 地面に接していて、ジャンプ入力があった場合のみジャンプ
-        if (jumpPressed && isGrounded)
+        if (jumpPressed && isGrounded) //&& !isCrouching)   //コメントアウトを解除することでしゃがみながらジャンプをしなくなるが打ってる時もしゃがんでいるとジャンプ打ちできなくなる。
         {
             respawnPosition = transform.position; // ジャンプ地点をリスポーン位置として保存
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);

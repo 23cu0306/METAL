@@ -5,6 +5,7 @@ public class MachineGunItem : MonoBehaviour
 	public AudioClip itemSound;
 	[Tooltip("マシンガンモードの持続時間（秒）")]
 	public float duration = 1000f;
+	private int machineGunAmmo = 200;	//マシンガンの残弾数を追加
 
 
     private void Start()
@@ -22,7 +23,7 @@ public class MachineGunItem : MonoBehaviour
 
 		if (attack != null)
 		{
-			attack.ActivateMachineGunMode(duration); // マシンガンモード起動
+			attack.ActivateMachineGunMode2(machineGunAmmo); // マシンガンモード起動
 			Debug.Log("マシンガンアイテム取得！");
             // AudioManager を使って効果音を再生
             SoundManager.Instance.PlaySound(itemSound, transform.position);
