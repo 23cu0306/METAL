@@ -189,15 +189,33 @@ public class Player : MonoBehaviour
     //ジャンプ処理
     void Jump()
     {
-        //下方向入力があるかの確認
-        bool isDownPressed = moveInput.y < -0.5f;
-
-        // 地面に接していて、ジャンプ入力があった場合のみジャンプ
-        if (jumpPressed && isGrounded) //&& !isCrouching)   //コメントアウトを解除することでしゃがみながらジャンプをしなくなるが打ってる時もしゃがんでいるとジャンプ打ちできなくなる。
+        //地面に接していないorジャンプ入力がない場合はスキップ
+        if(!isGrounded || !jumpPressed)
         {
-            respawnPosition = transform.position; // ジャンプ地点をリスポーン位置として保存
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            jumpPressed = false;
+            return;
         }
+
+        // しゃがみ中の場合
+        if (isCrouching)
+        {
+            // 頭上に障害物がある場合はジャンプしない
+            if (isCeilingBlocked)
+            {
+                jumpPressed = false;
+                return;
+            }
+
+            // 障害物がない場合はしゃがみを解除してからジャンプする
+            isCrouching = false;
+            col.size = standingSize;
+            col.offset = standingOffset;
+        }
+
+        // ジャンプ実行
+        respawnPosition = transform.position; // ジャンプ地点をリスポーン位置として保存
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+
         jumpPressed = false; // フラグリセット
     }
 
