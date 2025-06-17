@@ -23,7 +23,7 @@ public class Attack : MonoBehaviour
     [Header("マシンガン設定")]
     private int burstShotCount = 0;       // バースト発射で発射した弾数
     private int burstShotMax = 4;         // バースト1回あたりの弾数
-    public int machineGunAmmo = 0; // マシンガンの残弾数
+    private int machineGunAmmo = 0; // マシンガンの残弾数
     private float burstTimer = 0f;        // バースト間のタイマー
     private float burstInterval = 0.05f;  // バースト間隔（秒）
     private bool isBurstFiring = false;   // 現在バースト中か
@@ -377,6 +377,7 @@ public class Attack : MonoBehaviour
       
     }
 
+    //また残弾数がなくなることでマシンガンモードが終了すること
     void HandleMachineGunBurst2()
     {
         //バースト中ではないかつ、攻撃ボタンが押されたかつ、銃が打てる状態なら
