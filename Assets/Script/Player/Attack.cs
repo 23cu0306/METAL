@@ -23,7 +23,7 @@ public class Attack : MonoBehaviour
     [Header("マシンガン設定")]
     private int burstShotCount = 0;       // バースト発射で発射した弾数
     private int burstShotMax = 4;         // バースト1回あたりの弾数
-    private int machineGunAmmo = 0; // マシンガンの残弾数
+    private int machineGunAmmo = 0;       // マシンガンの残弾数
     private float burstTimer = 0f;        // バースト間のタイマー
     private float burstInterval = 0.05f;  // バースト間隔（秒）
     private bool isBurstFiring = false;   // 現在バースト中か
@@ -122,7 +122,8 @@ public class Attack : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.F1))
         {
             //マシンガンを強制起動
-            ActivateMachineGunMode(1000000.0f);
+            //ActivateMachineGunMode(1000000.0f);
+            ActivateMachineGunMode2(200);
         }
 #endif
     }

@@ -139,7 +139,6 @@ public class Player : MonoBehaviour
         }
     }
 
-
     //移動処理
     void HandleMovement()
     {
