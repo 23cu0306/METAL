@@ -240,18 +240,6 @@ public class Attack : MonoBehaviour
         //もしマシンガンモードじゃなかったら処理をスキップ
         if (!isMachineGunMode) return;
 
-        //// 左右方向だけは即時反映
-        //if (targetDirection == Vector2.right || targetDirection == Vector2.left)
-        //{
-        //    currentDirection = targetDirection;
-        //}
-        //else
-        //{
-        //    // 斜めまたは上下方向に滑らかに補間
-        //    float t = Time.deltaTime / directionLerpDuration;
-        //    currentDirection = ((Vector2)Vector3.Slerp(currentDirection, targetDirection, t)).normalized;
-        //}
-
         // 現在と目標のY成分の差を見る → 上下方向の変化があれば補間
         bool verticalChange = Mathf.Abs(currentDirection.y - targetDirection.y) > 0.01f;
 

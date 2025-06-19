@@ -75,6 +75,7 @@
     <Compile Include="Assets\Script\Scene\ScenManager.cs" />
     <Compile Include="Assets\Script\Enemy\HomingMissile.cs" />
     <Compile Include="Assets\Script\Scene\GameOverManager.cs" />
+    <Compile Include="Assets\Script\Scene\PlyerHpText.cs" />
     <Compile Include="Assets\Script\Enemy\DecayBullet.cs" />
     <Compile Include="Assets\Script\Player\gurenerd.cs" />
     <Compile Include="Assets\Script\Scene\ScoreManager.cs" />
