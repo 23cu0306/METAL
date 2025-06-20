@@ -17,6 +17,11 @@ public class vehicle_move : MonoBehaviour
     // Rigidbody2D への参照（物理演算処理用）
     private Rigidbody2D rb;
 
+    //重力用
+    private Vector2 velocity;
+    private float gravity = -30f;
+    private bool isJumping = false;
+
     void Awake()
     {
         // Input Actionのインスタンスを生成
@@ -45,7 +50,11 @@ public class vehicle_move : MonoBehaviour
     void Update()
     {
         // プレイヤーが乗って操作している時に移動を実行
-        if (isControlled) HandleMovement();
+        if (isControlled)
+        {
+            HandleMovement();
+            HandleJump();
+        }
     }
 
     public void OnPlayerEnter(GameObject player)
@@ -90,20 +99,58 @@ public class vehicle_move : MonoBehaviour
     // ジャンプ処理
     private void HandleJump()
     {
-        // 操作中でなければジャンプしない
-        if (!isControlled) return;
+        //// 操作中でなければジャンプしない
+        //if (!isControlled) return;
 
-        // 下入力＋ジャンプ入力で降車
-        if (moveInput.y < -0.5f && rider != null)
+        //// 下入力＋ジャンプ入力で降車
+        //if (moveInput.y < -0.5f && rider != null)
+        //{
+        //    StopControl(); // プレイヤーを降ろす
+        //}
+        //else
+        //{
+        //    // ジャンプ力をY軸方向に加える
+        //    rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce); // ジャンプ
+        //}
+
+
+        // ジャンプ開始処理
+        if (Keyboard.current.spaceKey.wasPressedThisFrame || Gamepad.current.buttonSouth.wasPressedThisFrame)
         {
-            StopControl(); // プレイヤーを降ろす
+            // 下入力＋ジャンプ入力で降車
+            if (moveInput.y < -0.5f && rider != null)
+            {
+                StopControl(); // 下入力＋ジャンプボタンで降車
+                return;
+            }
+
+            if (!isJumping) // 接地していればジャンプ開始
+            {
+                isJumping = true;
+                velocity.y = jumpForce;
+            }
         }
-        else
+
+        // ジャンプ中の重力処理
+        if (isJumping)
         {
-            // ジャンプ力をY軸方向に加える
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce); // ジャンプ
+            // 重力を手動で加える
+            velocity.y += gravity * Time.deltaTime;
+            transform.position += (Vector3)(velocity * Time.deltaTime);
+
+            // 接地判定（地面に着いたら終了）
+            if (IsGrounded())
+            {
+                isJumping = false;
+                velocity = Vector2.zero;
+            }
         }
     }
 
-    //グラウンド判定を追加予定
+    //とりあえず適当な地面判定
+    private bool IsGrounded()
+    {
+        // 例：Y座標が一定以下になったら地面に着いたと見なす
+        return transform.position.y <= -9.7f;
+    }
 }
