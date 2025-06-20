@@ -81,8 +81,8 @@ public class vehicle_move : MonoBehaviour
 
         if(rider != null)
         {
-            // プレイヤーを乗り物の左に再配置して表示(左に5ユニットずらす)
-            rider.transform.position = transform.position + Vector3.left * 5f;
+            // プレイヤーを乗り物の右に再配置して表示(右に5ユニットずらす)
+            rider.transform.position = transform.position + Vector3.right * 5f;
             rider.SetActive(true);
             rider = null;   // riderの参照をクリア
         }
