@@ -113,7 +113,6 @@ public class Attack : MonoBehaviour
         HandleGroundState();        // 地面との接触チェック
         UpdateDirectionLerp();      // 発射方向を補間して更新
         Attackswitch();             // 攻撃方法を分岐して処理
-        //MachineGunTimelimit();      // マシンガンの残り時間の計測
 
 #if DEBUG
         // F1キーでマシンガンモード強制起動

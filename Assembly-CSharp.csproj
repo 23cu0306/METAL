@@ -61,6 +61,7 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.0.43f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Script\Player\vehicle\vehicle_move.cs" />
     <Compile Include="Assets\Script\Enemy\meteo.cs" />
     <Compile Include="Assets\Script\Scene\SoundManager.cs" />
     <Compile Include="Assets\Script\Player\Metal_Manager.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="Assets\UnityTechnologies\EffectExamples\Shared\Scripts\GunShoot.cs" />
     <Compile Include="Assets\Script\Enemy\CameraLock.cs" />
     <Compile Include="Assets\Script\Enemy\EnemySpawner.cs" />
+    <Compile Include="Assets\Script\Player\vehicle\VehicleEnterSensor.cs" />
     <Compile Include="Assets\Script\Scene\Image.cs" />
   </ItemGroup>
   <ItemGroup>
