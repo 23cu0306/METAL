@@ -107,7 +107,7 @@ MonoBehaviour:
   enemybulletSound: {fileID: 8300000, guid: 5a44dfac488b47e4cb9739685e2b7690, type: 3}
   scoreValue: 100
   health: 20
-  deathEffect: {fileID: 0}
+  deathEffect: {fileID: 649394730084515955, guid: b4153f711864cfe4ebfb5d14f18d383a, type: 3}
   shotData:
     frame: 1000
     type: 2

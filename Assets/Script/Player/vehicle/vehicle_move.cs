@@ -22,6 +22,17 @@ public class vehicle_move : MonoBehaviour
     private float gravity = -30f;
     private bool isJumping = false;
 
+    private void Start()
+    {
+        rb.mass = 1000f; // プレイヤーに押されないようにした
+        // 敵との衝突を無効化
+        int playerLayer = LayerMask.NameToLayer("Player");
+        int enemyLayer = LayerMask.NameToLayer("Enemy");
+        int stopLayer = LayerMask.NameToLayer("Stop_Enemy");
+        Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, true);
+        Physics2D.IgnoreLayerCollision(playerLayer, stopLayer, true);
+    }
+
     void Awake()
     {
         // Input Actionのインスタンスを生成
