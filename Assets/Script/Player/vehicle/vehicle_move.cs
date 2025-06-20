@@ -27,7 +27,7 @@ public class vehicle_move : MonoBehaviour
 
     private void Start()
     {
-        rb.mass = 1000f; // プレイヤーに押されないようにした
+        rb.mass = 100000f; // プレイヤーに押されないようにした
         // 敵との衝突を無効化
         int playerLayer = LayerMask.NameToLayer("Player");
         int enemyLayer = LayerMask.NameToLayer("Enemy");
@@ -149,8 +149,7 @@ public class vehicle_move : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
     }
 
-    //↑問題発生中:checkRadiusがgroundCheckの中央ではなく本体の中心に生成されてしまっている
-    // 円を大きくして無理矢理対応させた
+    // Debug処理
     private void OnDrawGizmosSelected()
     {
         if (groundCheck == null) return;
