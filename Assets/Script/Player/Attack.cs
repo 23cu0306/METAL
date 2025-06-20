@@ -14,8 +14,8 @@ public class Attack : MonoBehaviour
 
     //==================== 弾関連設定 ====================
     [Header("弾の設定")]
-    public GameObject pistolBulletPrefab;       //拳銃の弾のプレハブ
-    public GameObject machineGunBulletPrefab;   //マシンガンの弾のプレハブ
+    public GameObject pistolBulletPrefab;       // 拳銃の弾のプレハブ
+    public GameObject machineGunBulletPrefab;   // マシンガンの弾のプレハブ
     public Transform firePoint;                 // 弾の発射位置
     public float bulletSpeed = 10f;             // 弾の速度
 
@@ -29,8 +29,6 @@ public class Attack : MonoBehaviour
     private bool isBurstFiring = false;   // 現在バースト中か
     private Vector2 burstDirection;       // バースト時の射撃方向（未使用）
     private bool isMachineGunMode = false;// マシンガンモード中か
-    private float machineGunDuration = 0f; // マシンガンモードの継続時間(MachineGunItemから時間を受け取り)
-    private float machineGunTimer = 0f;   // モード発動からの経過時間
 
     //==================== 近接戦闘判定 ====================
     public int knifeDamage = 30;
@@ -122,8 +120,7 @@ public class Attack : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.F1))
         {
             //マシンガンを強制起動
-            //ActivateMachineGunMode(1000000.0f);
-            ActivateMachineGunMode2(200);
+            ActivateMachineGunMode(200);
         }
 #endif
     }
@@ -303,7 +300,7 @@ public class Attack : MonoBehaviour
                 //マシンガンモード
                 if(isMachineGunMode)
                 {
-                    HandleMachineGunBurst2();    //マシンガン発射処理
+                    HandleMachineGunBurst();    //マシンガン発射処理
                 }
                 //通常モード(拳銃)
                 else
@@ -333,41 +330,8 @@ public class Attack : MonoBehaviour
 
     //==================== マシンガン処理 ====================
     //一回押すことでburstShotCountの間隔でburstShotMaxの回数分弾が発射される
+    //また残弾数がなくなることでマシンガンモードが終了する
     void HandleMachineGunBurst()
-    {
-        //バースト中ではないかつ、攻撃ボタンが押されたかつ、銃が打てる状態なら
-        if (!isBurstFiring && attackPressed && CanShoot())
-        {
-            isBurstFiring = true;   //現在のバースト中(マシンガン発射中)に変更
-            burstShotCount = 0;     //弾を打った数を初期化
-            burstTimer = 0f;        //バースト間のタイマーを初期化
-            attackPressed = false;  //攻撃ボタンを解除
-        }
-
-        if (isBurstFiring)
-        {
-            burstTimer += Time.deltaTime; //バースト間のタイマーカウントスタート
-            //バーストタイマーがバーストインタバルを超えたら処理を実行
-            if (burstTimer >= burstInterval)
-            {
-                burstTimer = 0f;            //初期化
-                Shoot(currentDirection);    //弾の発射
-                SoundManager.Instance.PlaySound(machinegunSound, transform.position);
-                burstShotCount++;   //弾の発射数を加算
-
-                //弾の発射数がburstShotMax(4発)を超えたら処理
-                if (burstShotCount >= burstShotMax)
-                {
-                    isBurstFiring = false;  //バースト状態を解除
-                    burstShotCount = 0;     //初期化
-                }
-            }
-        }
-      
-    }
-
-    //また残弾数がなくなることでマシンガンモードが終了すること
-    void HandleMachineGunBurst2()
     {
         //バースト中ではないかつ、攻撃ボタンが押されたかつ、銃が打てる状態なら
         if (!isBurstFiring && attackPressed && CanShoot())
@@ -572,17 +536,8 @@ public class Attack : MonoBehaviour
 
     //==================== マシンガンモードの起動 ====================
     //アイテムを取得した際にMachineGunItemクラスから呼び出されるクラス
-    public void ActivateMachineGunMode(float duration)
-    {
-        isMachineGunMode = true;
-        //MachineGunItemクラスから時間を取得
-        machineGunDuration = duration * Time.deltaTime; // 実時間に変換
-        machineGunTimer = 0f;                           // 初期化
-        Debug.Log("アイテムからマシンガン情報を取得しました。");
-    }
-
     //時間ではなく残弾数
-    public void ActivateMachineGunMode2 (int addAmmo = 200)
+    public void ActivateMachineGunMode (int addAmmo = 200)
     {
         machineGunAmmo += addAmmo;
         isMachineGunMode = true;

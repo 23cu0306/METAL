@@ -592,7 +592,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000015259, y: 0.000015259}
+  m_AnchoredPosition: {x: -0.000015258789, y: 0.000015259}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &745518881
@@ -781,7 +781,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4565239109860875003, guid: e884925fabca97645ad10f0ab2e8d876, type: 3}
       propertyPath: m_Name
-      value: Ground
+      value: test
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1034,7 +1034,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 569368964712988995, guid: cd4c51f8618b1054fb90a613cab00f58, type: 3}
       propertyPath: shotData.type
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 569368964712988995, guid: cd4c51f8618b1054fb90a613cab00f58, type: 3}
       propertyPath: shotData.frame
@@ -1742,8 +1742,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 11, y: 0.00000095367}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_AnchoredPosition: {x: 5.5000997, y: 1.14e-13}
+  m_SizeDelta: {x: 1931, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1505492393
 MonoBehaviour:
@@ -1888,7 +1888,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00000095367, y: 0.00000095367}
+  m_AnchoredPosition: {x: 0.0000009536743, y: 0.00000095367}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1763515244
@@ -1924,9 +1924,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 50
-  m_Text: '0
-
-'
+  m_Text: PlayerHP
 --- !u!222 &1763515245
 CanvasRenderer:
   m_ObjectHideFlags: 0
