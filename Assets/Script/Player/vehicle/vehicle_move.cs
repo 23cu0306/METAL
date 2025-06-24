@@ -25,9 +25,19 @@ public class vehicle_move : MonoBehaviour
     // Rigidbody2D への参照（物理演算処理用）
     private Rigidbody2D rb;
 
+    // 降車処理
+    private bool isExiting = false;         // 降車中かの判定
+    private Vector3 exitDirection = Vector3.right;
+    private Collider2D vehicleCollider;
+    private float exitResetDistance = 2.5f; // 2.5離れたら復帰
+
     private void Start()
     {
         rb.mass = 100000f; // プレイヤーに押されないようにした
+
+        // 自身の Collider2D を取得（BoxCollider2D や CircleCollider2D に対応）
+        vehicleCollider = GetComponent<Collider2D>();
+
         // 敵との衝突を無効化
         int playerLayer = LayerMask.NameToLayer("Player");
         int enemyLayer = LayerMask.NameToLayer("Enemy");
@@ -71,6 +81,34 @@ public class vehicle_move : MonoBehaviour
         {
             HandleMovement();
         }
+
+        if (isExiting && rider != null)
+        {
+            Vector3 offset = rider.transform.position - transform.position;
+
+            float xThreshold = exitResetDistance;    // X方向の離脱距離は従来通り
+            float yThreshold = exitResetDistance * 10f; // Y方向だけ少し広め（調整可）
+
+            if (Mathf.Abs(offset.x) > xThreshold || Mathf.Abs(offset.y) > yThreshold)
+            {
+                if (vehicleCollider != null) vehicleCollider.enabled = true;
+
+                // プレイヤーの接触復活
+                int playerLayer = LayerMask.NameToLayer("Player");
+                int vehicleLayer = LayerMask.NameToLayer("Vehicle");
+                Physics2D.IgnoreLayerCollision(playerLayer, vehicleLayer, false);
+
+                // センサー有効化
+                VehicleEnterSensor sensor = GetComponentInChildren<VehicleEnterSensor>();
+                if (sensor != null)
+                {
+                    sensor.SetSensorEnabled(true);
+                }
+
+                isExiting = false;
+                rider = null;
+            }
+        }
     }
 
     public void OnPlayerEnter(GameObject player)
@@ -89,19 +127,45 @@ public class vehicle_move : MonoBehaviour
         controls.Enable();
     }
 
-    // 操作を終了してプレイヤーを降ろす
+    // 降車の処理
     public void StopControl()
     {
         isControlled = false;
         controls.Disable();
 
-        if(rider != null)
+        if (rider != null)
         {
-            // 一回上に飛び上がらせてから車の前に着地(この時プレイヤーのの当たり判定を無効化する)
-            // プレイヤーを乗り物の右に再配置して表示(右に5ユニットずらす)↑に変更
-            rider.transform.position = transform.position + Vector3.right * 5f;
+            isExiting = true;       //降車中に変更
+
+            // プレイヤーの最有効化
             rider.SetActive(true);
-            rider = null;   // riderの参照をクリア
+
+            // プレイヤーとの衝突を無効化
+            int playerLayer = LayerMask.NameToLayer("Player");
+            int vehicleLayer = LayerMask.NameToLayer("Vehicle");
+            Physics2D.IgnoreLayerCollision(playerLayer, vehicleLayer, true);
+
+            // 一度ジャンプをしてから乗り物の前に移動
+            Rigidbody2D riderRb = rider.GetComponent<Rigidbody2D>();
+            if (riderRb != null)
+            {
+                rider.transform.position = transform.position + Vector3.up * 1.0f;
+                riderRb.linearVelocity = new Vector2(0f, 20f); // 左：横、右：上への力
+            }
+
+            // センサー無効化
+            VehicleEnterSensor sensor = GetComponentInChildren<VehicleEnterSensor>();
+            if (sensor != null)
+            {
+                sensor.SetSensorEnabled(false);
+            }
+
+
+            //// 一回上に飛び上がらせてから車の前に着地(この時プレイヤーのの当たり判定を無効化する)
+            //// プレイヤーを乗り物の右に再配置して表示(右に5ユニットずらす)↑に変更
+            //rider.transform.position = transform.position + Vector3.right * 5f;
+            //rider.SetActive(true);
+            //rider = null;   // riderの参照をクリア
         }
     }
 
@@ -112,7 +176,7 @@ public class vehicle_move : MonoBehaviour
         float currentSpeed = isGrounded ? moveSpeed : airMoveSpeed;
 
         // 入力に基づいてX軸方向に移動
-        Vector3 move = new Vector3(moveInput.x, 0f, 0f) *currentSpeed * Time.deltaTime;
+        Vector3 move = new Vector3(moveInput.x, 0f, 0f) * currentSpeed * Time.deltaTime;
         transform.position += move;
     }
 
