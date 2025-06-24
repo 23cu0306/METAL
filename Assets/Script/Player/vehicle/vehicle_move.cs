@@ -97,7 +97,8 @@ public class vehicle_move : MonoBehaviour
 
         if(rider != null)
         {
-            // プレイヤーを乗り物の右に再配置して表示(右に5ユニットずらす)
+            // 一回上に飛び上がらせてから車の前に着地(この時プレイヤーのの当たり判定を無効化する)
+            // プレイヤーを乗り物の右に再配置して表示(右に5ユニットずらす)↑に変更
             rider.transform.position = transform.position + Vector3.right * 5f;
             rider.SetActive(true);
             rider = null;   // riderの参照をクリア

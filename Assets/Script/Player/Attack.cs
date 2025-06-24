@@ -174,12 +174,21 @@ public class Attack : MonoBehaviour
                 //発射方向を下へ
                 targetDirection = Vector2.down;
             }
-            // 下を離した場合または着地時は最後に向いていた水平方向に即座に復元
-            else if (!isDown && Vector2.Dot(currentDirection.normalized, Vector2.down) > 0.9f || !isGrounded)
+            //// 下を離した場合または着地時は最後に向いていた水平方向に即座に復元
+            //else if (!isDown && Vector2.Dot(currentDirection.normalized, Vector2.down) > 0.9f || !isGrounded)
+            //{
+            //    currentDirection = targetDirection = lastHorizontalDirection;
+            //    SetFirePointPosition(lastValidFirePointOffset);
+            //}
+
+            // 下撃ちをしていて、かつ下を離した場合(戻り補完開始)
+            else if(Vector2.Dot(currentDirection.normalized, Vector2.down) > 0.9f && moveInput.y >= -0.3f)
             {
-                currentDirection = targetDirection = lastHorizontalDirection;
-                SetFirePointPosition(lastValidFirePointOffset);
+                targetDirection = lastHorizontalDirection;
             }
+
+            // 下を押している状態で着地した際最後に向いていた水平方向に即座に復元する処理は
+            // HandleGroundState()処理の中
         }
 
         //通常モード(拳銃の処理)
