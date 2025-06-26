@@ -1,3 +1,4 @@
+// プレイヤーの基本処理
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.InputSystem;

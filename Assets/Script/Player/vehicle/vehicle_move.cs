@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class vehicle_move : MonoBehaviour
 {
     [Header("移動設定")]
-    public float moveSpeed = 15f;               // 通常時の速度
+    public float moveSpeed = 10f;               // 通常時の速度
     public float airMoveSpeed = 8f;             // 空中の時の速度
     public float jumpForce = 20f;
     public float fallMultiplier = 5f;           // 落下速度強化用の重力補正倍率

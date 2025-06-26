@@ -1,3 +1,4 @@
+//乗り物の攻撃処理
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
@@ -6,7 +7,7 @@ public class Vehicle_Attack : MonoBehaviour
 {
     //==================== 弾関連設定 ====================
     [Header("弾の設定")]
-    public GameObject BulletPrefab;   // 弾のプレハブ
+    public GameObject BulletPrefab;             // 弾のプレハブ
     public Transform firePoint;                 // 弾の発射位置
     public float bulletSpeed = 10f;             // 弾の速度
 
@@ -20,7 +21,7 @@ public class Vehicle_Attack : MonoBehaviour
 
     //==================== 乗り物関連 ====================
     [Header("乗り物接続")]
-    public vehicle_move vehicleScript;           // 乗り物のスクリプトを参照
+    public vehicle_move vehicleScript;                  // 乗り物のスクリプトを参照
 
     private Vector2 currentDirection = Vector2.right;   // 現在の発射方向
     private Vector2 targetDirection = Vector2.right;    // 目標の発射方向（補間先）
@@ -36,7 +37,6 @@ public class Vehicle_Attack : MonoBehaviour
     private Vector2 downOffset = new Vector2(0f, -1f);
 
     // 補間用タイマー
-    private float directionLerpTimer = 0f;
     private float directionLerpDuration = 0.15f;
 
     // 斜め方向のオフセット（インスペクターで設定）
@@ -174,6 +174,7 @@ public class Vehicle_Attack : MonoBehaviour
         float t = Time.deltaTime / directionLerpDuration;
         currentDirection = ((Vector2)Vector3.Slerp(currentDirection, targetDirection, t)).normalized;
 
+        // 現在のベクトルから角度を取得
         float angle = Mathf.Atan2(currentDirection.y, currentDirection.x) * Mathf.Rad2Deg;
 
         if (angle >= 67.5f && angle < 112.5f)
@@ -194,7 +195,7 @@ public class Vehicle_Attack : MonoBehaviour
             SetFirePointPosition(leftOffset);
     }
 
-    //==================== 攻撃処理 ====================
+    //==================== 攻撃処理(ここで武器切り替え可能) ====================
     void Attack()
     {
         //攻撃ボタンがおされたときに処理
@@ -209,10 +210,10 @@ public class Vehicle_Attack : MonoBehaviour
     }
 
     //==================== 通常攻撃処理 ====================
-    //一回押すことでburstShotCountの間隔でburstShotMaxの回数分弾が発射される
+    // 一回押すことでburstShotCountの間隔でburstShotMaxの回数分弾が発射される
     void HandleBurst()
     {
-        //バースト中ではないかつ、攻撃ボタンが押されたかつ、銃が打てる状態なら
+        // バースト中ではないかつ、攻撃ボタンが押されたかつ、銃が打てる状態なら
         if (!isBurstFiring && attackPressed && CanShoot())
         {
             isBurstFiring = true;   // 現在を弾発射中に変更
@@ -225,14 +226,14 @@ public class Vehicle_Attack : MonoBehaviour
         {
             burstTimer += Time.deltaTime; //バースト間のタイマーカウントスタート
 
-            //バーストタイマーがバーストインタバルを超えたら処理を実行
+            // バーストタイマーがバーストインタバルを超えたら処理を実行
             if (burstTimer >= burstInterval)
             {
                 burstTimer = 0f;            //初期化
                 Shoot(currentDirection);    //弾の発射
                 burstShotCount++;   //弾の発射数を加算
 
-                //弾の発射数がburstShotMax(4発)を超えたら処理
+                // 弾の発射数がburstShotMax(4発)を超えたら処理
                 if (burstShotCount >= burstShotMax)
                 {
                     isBurstFiring = false;  //バースト状態を解除
@@ -248,7 +249,7 @@ public class Vehicle_Attack : MonoBehaviour
         // 発射方向の角度計算
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        // モードによって弾プレハブを切り替え
+        // 弾のプレハブを設定(ここを利用すれば弾の切り替え可能)
         GameObject bulletPrefabToUse = BulletPrefab;
 
         // プレハブが設定されていなければエラー表示
@@ -261,7 +262,7 @@ public class Vehicle_Attack : MonoBehaviour
         // 弾を生成して回転をセット
         GameObject bullet = Instantiate(bulletPrefabToUse, firePoint.position, Quaternion.Euler(0f, 0f, angle));
 
-        // Rigidbody2D が存在すれば、発射方向に速度を設定
+        // Rigidbody2Dが存在すれば、発射方向に速度を設定
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         if (rb != null)
             rb.linearVelocity = direction.normalized * bulletSpeed;
@@ -282,7 +283,7 @@ public class Vehicle_Attack : MonoBehaviour
     {
         if (vehicleScript == null) return;
 
-        //PlayerScriptから地面にいるかの結果をもらう
+        // PlayerScriptから地面にいるかの結果をもらう
         bool isGroundedNow = vehicleScript.isGrounded;
         if (!wasGrounded && isGroundedNow && currentDirection == Vector2.down)
         {
@@ -314,7 +315,7 @@ public class Vehicle_Attack : MonoBehaviour
             return false;
         }
 
-        //それ以外は打てるようにする
+        // それ以外は打てるようにする
         return true;
     }
 }

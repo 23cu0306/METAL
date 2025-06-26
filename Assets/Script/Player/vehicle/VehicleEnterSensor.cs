@@ -1,3 +1,4 @@
+// æ‚è•¨‚Éæ‚é‚©‚Ì”»’è
 using UnityEngine;
 
 public class VehicleEnterSensor : MonoBehaviour
