@@ -5,31 +5,33 @@ using UnityEngine.InputSystem;
 public class vehicle_move : MonoBehaviour
 {
     [Header("移動設定")]
-    public float moveSpeed = 15f;                 // 通常時の速度
-    public float airMoveSpeed = 8f;               // 空中の時の速度
+    public float moveSpeed = 15f;               // 通常時の速度
+    public float airMoveSpeed = 8f;             // 空中の時の速度
     public float jumpForce = 20f;
-    public float fallMultiplier = 2.5f;           // 落下速度強化用の重力補正倍率
+    public float fallMultiplier = 5f;           // 落下速度強化用の重力補正倍率
+    public float lowJumpMultiplier = 2f;
+    public　float upwardThreshold = 5f;         // ジャンプの高さ制限(この高さを超えたら重力)
 
     [Header("接地判定")]
-    public Transform groundCheck;                 // 地面との接触を確認するための位置（通常は足元）
-    public float checkRadius = 0.5f;              // 地面接触判定の円の半径
-    public LayerMask groundLayer;                 // 接地と判定するレイヤー
-    public bool isGrounded;                      // 地面に接しているかのフラグ
+    public Transform groundCheck;               // 地面との接触を確認するための位置（通常は足元）
+    public float checkRadius = 0.5f;            // 地面接触判定の円の半径
+    public LayerMask groundLayer;               // 接地と判定するレイヤー
+    public bool isGrounded;                     // 地面に接しているかのフラグ
 
     // 入力管理変数
-    private Vector2 moveInput;         // プレイヤーからの移動入力（左右＋上下）
-    private bool isControlled = false; // プレイヤーが操作中かどうか
-    private PlayerControls controls;   // 新Input System用の操作マッピング
-    private GameObject rider;          // 現在この乗り物に乗っているプレイヤー
+    private Vector2 moveInput;                  // プレイヤーからの移動入力（左右＋上下）
+    private bool isControlled = false;          // プレイヤーが操作中かどうか
+    private PlayerControls controls;            // 新Input System用の操作マッピング
+    private GameObject rider;                   // 現在この乗り物に乗っているプレイヤー
 
     // Rigidbody2D への参照（物理演算処理用）
     private Rigidbody2D rb;
 
     // 降車処理
-    private bool isExiting = false;         // 降車中かの判定
+    private bool isExiting = false;              // 降車中かの判定
     private Vector3 exitDirection = Vector3.right;
     private Collider2D vehicleCollider;
-    private float exitResetDistance = 2.5f; // 2.5離れたら復帰
+    private float exitResetDistance = 2.5f;      // 2.5離れたら復帰
 
     private void Start()
     {
@@ -38,12 +40,14 @@ public class vehicle_move : MonoBehaviour
         // 自身の Collider2D を取得（BoxCollider2D や CircleCollider2D に対応）
         vehicleCollider = GetComponent<Collider2D>();
 
-        // 敵との衝突を無効化
+        // 敵やアイテムとの衝突を無効化
+        int itemLayer = LayerMask.NameToLayer("Item");
         int vehicleLayer = LayerMask.NameToLayer("Vehicle");
         int enemyLayer = LayerMask.NameToLayer("Enemy");
         int stopLayer = LayerMask.NameToLayer("Stop_Enemy");
         Physics2D.IgnoreLayerCollision(vehicleLayer, enemyLayer, true);
         Physics2D.IgnoreLayerCollision(vehicleLayer, stopLayer, true);
+        Physics2D.IgnoreLayerCollision(vehicleLayer, itemLayer, true);
     }
 
     void Awake()
@@ -159,13 +163,6 @@ public class vehicle_move : MonoBehaviour
             {
                 sensor.SetSensorEnabled(false);
             }
-
-
-            //// 一回上に飛び上がらせてから車の前に着地(この時プレイヤーのの当たり判定を無効化する)
-            //// プレイヤーを乗り物の右に再配置して表示(右に5ユニットずらす)↑に変更
-            //rider.transform.position = transform.position + Vector3.right * 5f;
-            //rider.SetActive(true);
-            //rider = null;   // riderの参照をクリア
         }
     }
 
@@ -205,6 +202,15 @@ public class vehicle_move : MonoBehaviour
         {
             rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
+
+        //else if (rb.linearVelocity.y > 0 )
+        //{
+        //    // 上昇中
+        //    if (rb.linearVelocity.y < upwardThreshold)
+        //    {
+        //        rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+        //    }
+        //}
     }
 
     //地面判定

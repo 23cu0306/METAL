@@ -24,8 +24,6 @@ public class Vehicle_Attack : MonoBehaviour
 
     private Vector2 currentDirection = Vector2.right;   // 現在の発射方向
     private Vector2 targetDirection = Vector2.right;    // 目標の発射方向（補間先）
-    private Vector2 StartDirection;                     // 初期方向（未使用）
-    private Vector2 lastValidDirection = Vector2.right; // 有効な最後の方向（未使用）
     private Vector2 lastValidFirePointOffset;           // 最後の有効な発射位置オフセット
     private Vector2 lastHorizontalDirection = Vector2.right; // 最後に向いていた左右方向
 
@@ -36,7 +34,6 @@ public class Vehicle_Attack : MonoBehaviour
     private Vector2 leftOffset = new Vector2(-0.5f, 0f);
     private Vector2 upOffset = new Vector2(0f, 1f);
     private Vector2 downOffset = new Vector2(0f, -1f);
-    private Vector2 crouchOffset = new Vector2(0.5f, -0.5f);
 
     // 補間用タイマー
     private float directionLerpTimer = 0f;
@@ -101,109 +98,98 @@ public class Vehicle_Attack : MonoBehaviour
     {
         bool isGrounded = vehicleScript != null && vehicleScript.isGrounded;    // 乗り物が存在し、かつ地面にいるかどうかの確認
 
-        bool isLeft = moveInput.x < -0.4f;  //左入力
-        bool isRight = moveInput.x > 0.4f;  //右入力
-        bool isUp = moveInput.y > 0.4f;     //上入力
-        bool isDown = moveInput.y < -0.3f;  //下入力
+        //bool isLeft = moveInput.x < -0.4f;  //左入力
+        //bool isRight = moveInput.x > 0.4f;  //右入力
+        //bool isUp = moveInput.y > 0.4f;     //上入力
+        //bool isDown = moveInput.y < -0.3f;  //下入力
 
-        //  水平方向の入力がある時にtargetDirectionに即設定することで方向を保存(上下から戻すときに利用)
-        //  左入力
-        if (isLeft)
-        {
-            //発射方向を左へ
-            targetDirection = Vector2.left;
-            //左方向を保存
-            lastHorizontalDirection = Vector2.left;
-        }
-
-        //右入力
-        else if (isRight)
-        {
-            //発射方向を右へ
-            targetDirection = Vector2.right;
-            //右方向を保存
-            lastHorizontalDirection = Vector2.right;
-        }
-
-        // 上方向入力
-        if (isUp)
-        {
-            targetDirection = Vector2.up;
-        }
-        // 上方向を離した場合（戻り補間開始）
-        else if (Vector2.Distance(currentDirection, Vector2.up) < 0.1f && !isUp)
-        {
-            targetDirection = lastHorizontalDirection;
-        }
-
-
-        // 下方向（空中のみ許可）
-        else if (isDown && !isGrounded)
-        {
-            //発射方向を下へ
-            targetDirection = Vector2.down;
-        }
-        //// 下を離した場合または着地時は最後に向いていた水平方向に即座に復元
-        //else if (!isDown && Vector2.Dot(currentDirection.normalized, Vector2.down) > 0.9f || !isGrounded)
+        ////  水平方向の入力がある時にtargetDirectionに即設定することで方向を保存(上下から戻すときに利用)
+        ////  左入力
+        //if (isLeft)
         //{
-        //    currentDirection = targetDirection = lastHorizontalDirection;
-        //    SetFirePointPosition(lastValidFirePointOffset);
+        //    //発射方向を左へ
+        //    targetDirection = Vector2.left;
+        //    //左方向を保存
+        //    lastHorizontalDirection = Vector2.left;
         //}
 
-        // 下撃ちをしていて、かつ下を離した場合(戻り補完開始)
-        else if (Vector2.Dot(currentDirection.normalized, Vector2.down) > 0.9f && moveInput.y >= -0.3f)
-        {
-            targetDirection = lastHorizontalDirection;
-        }
+        ////右入力
+        //else if (isRight)
+        //{
+        //    //発射方向を右へ
+        //    targetDirection = Vector2.right;
+        //    //右方向を保存
+        //    lastHorizontalDirection = Vector2.right;
+        //}
 
-        // 下を押している状態で着地した際最後に向いていた水平方向に即座に復元する処理は
-        // HandleGroundState()処理の中
+        //// 上方向入力
+        //if (isUp)
+        //{
+        //    targetDirection = Vector2.up;
+        //}
+        //// 上方向を離した場合（戻り補間開始）
+        //else if (Vector2.Distance(currentDirection, Vector2.up) < 0.1f && !isUp)
+        //{
+        //    targetDirection = lastHorizontalDirection;
+        //}
+
+
+        //// 下方向（空中のみ許可）
+        //else if (isDown && !isGrounded)
+        //{
+        //    //発射方向を下へ
+        //    targetDirection = Vector2.down;
+        //}
+        ////// 下を離した場合または着地時は最後に向いていた水平方向に即座に復元
+        ////else if (!isDown && Vector2.Dot(currentDirection.normalized, Vector2.down) > 0.9f || !isGrounded)
+        ////{
+        ////    currentDirection = targetDirection = lastHorizontalDirection;
+        ////    SetFirePointPosition(lastValidFirePointOffset);
+        ////}
+
+        //// 下撃ちをしていて、かつ下を離した場合(戻り補完開始)
+        //else if (Vector2.Dot(currentDirection.normalized, Vector2.down) > 0.9f && moveInput.y >= -0.3f)
+        //{
+        //    targetDirection = lastHorizontalDirection;
+        //}
+
+        //// 下を押している状態で着地した際最後に向いていた水平方向に即座に復元する処理は
+        //// HandleGroundState()処理の中
+
+        // 左スティックを倒した方向に弾を発射に変更してみたが違和感しかない
+        if(moveInput.sqrMagnitude > 0.1f)
+        {
+            targetDirection = moveInput.normalized;
+
+            if (Mathf.Abs(moveInput.x) > Mathf.Abs(moveInput.y))
+            {
+                lastHorizontalDirection = new Vector2(Mathf.Sign(moveInput.x), 0f);
+            }
+        }
     }
 
     //==================== 補間処理で滑らかに方向を更新 ====================
     void UpdateDirectionLerp()
     {
-        // 現在と目標のY成分の差を見る → 上下方向の変化があれば補間
-        bool verticalChange = Mathf.Abs(currentDirection.y - targetDirection.y) > 0.01f;
+        float t = Time.deltaTime / directionLerpDuration;
+        currentDirection = ((Vector2)Vector3.Slerp(currentDirection, targetDirection, t)).normalized;
 
-        if (verticalChange)
-        {
-            // 上下が絡んでいる場合は補間あり
-            float t = Time.deltaTime / directionLerpDuration;
-            currentDirection = ((Vector2)Vector3.Slerp(currentDirection, targetDirection, t)).normalized;
-        }
-        else
-        {
-            // 左右だけなら即時反映
-            currentDirection = targetDirection;
-        }
-
-        //現在のベクトルから角度を取得
         float angle = Mathf.Atan2(currentDirection.y, currentDirection.x) * Mathf.Rad2Deg;
 
-        // 角度に応じて発射位置を切り替え
-        //真上に発射
-        if (angle >= 45f && angle <= 135f)
+        if (angle >= 67.5f && angle < 112.5f)
             SetFirePointPosition(upOffset);
-        //少し上の右方向
-        else if (angle >= 20f && angle < 45f)
+        else if (angle >= 22.5f && angle < 67.5f)
             SetFirePointPosition(topRightOffset);
-        //少し上の左方向
-        else if (angle > 135f || angle < -135f)
-            SetFirePointPosition(topLeftOffset);
-        //真下を向いている
-        else if (angle <= -45f && angle >= -135f)
-            SetFirePointPosition(downOffset);
-        //下寄りの左方向
-        else if (angle < -135f)
-            SetFirePointPosition(bottomLeftOffset);
-        //下寄りの右方向
-        else if (angle > -45f && angle < -20f)
-            SetFirePointPosition(bottomRightOffset);
-        //右方向
-        else if (angle > -20f && angle < 20f)
+        else if (angle >= -22.5f && angle < 22.5f)
             SetFirePointPosition(rightOffset);
-        //左方向
+        else if (angle >= -67.5f && angle < -22.5f)
+            SetFirePointPosition(bottomRightOffset);
+        else if (angle >= -112.5f && angle < -67.5f)
+            SetFirePointPosition(downOffset);
+        else if (angle >= -157.5f && angle < -112.5f)
+            SetFirePointPosition(bottomLeftOffset);
+        else if (angle >= 112.5f && angle < 157.5f)
+            SetFirePointPosition(topLeftOffset);
         else
             SetFirePointPosition(leftOffset);
     }
@@ -217,14 +203,14 @@ public class Vehicle_Attack : MonoBehaviour
             //銃の処理が可能か
             if (CanShoot())
             {
-                HandleMachineGunBurst();    // 攻撃処理実行
+                HandleBurst();    // 攻撃処理実行
             }
         }
     }
 
     //==================== 通常攻撃処理 ====================
     //一回押すことでburstShotCountの間隔でburstShotMaxの回数分弾が発射される
-    void HandleMachineGunBurst()
+    void HandleBurst()
     {
         //バースト中ではないかつ、攻撃ボタンが押されたかつ、銃が打てる状態なら
         if (!isBurstFiring && attackPressed && CanShoot())

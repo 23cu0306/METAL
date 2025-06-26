@@ -2306,10 +2306,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4717073455184149223, guid: 585495c216243b84da29e8a981576381, type: 3}
-      propertyPath: BulletPrefab
-      value: 
-      objectReference: {fileID: 8162234288098437430, guid: b26f38666b410a445be9a2f42824b978, type: 3}
+    - target: {fileID: 3232451776530154725, guid: 585495c216243b84da29e8a981576381, type: 3}
+      propertyPath: fallMultiplier
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8062314274973312895, guid: 585495c216243b84da29e8a981576381, type: 3}
       propertyPath: m_Name
       value: ' vehicle'

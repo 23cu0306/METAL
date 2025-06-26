@@ -277,7 +277,9 @@ MonoBehaviour:
   moveSpeed: 15
   airMoveSpeed: 8
   jumpForce: 10
-  fallMultiplier: 2.5
+  fallMultiplier: 5
+  lowJumpMultiplier: 2
+  upwardThreshold: 5
   groundCheck: {fileID: 6658843338654285716}
   checkRadius: 0.3
   groundLayer:
