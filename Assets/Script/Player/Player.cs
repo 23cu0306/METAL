@@ -40,10 +40,10 @@ public class Player : MonoBehaviour
     public float blinkInterval = 0.1f;            // 無敵時の点滅間隔（秒）
 
     [Header("Sprite関連")]
-    [SerializeField] private Sprite standingSprite;  // 待機状態
-    [SerializeField] private Sprite crouchingSprite; // しゃがみ状態
-    [SerializeField] private Sprite jumpngSprite;    // ジャンプ状態
-    private SpriteRenderer spriteRenderer;        //プレイヤーのスプライト表示用コンポーネント
+    [SerializeField] private Sprite standingSprite;     // 待機状態
+    [SerializeField] private Sprite crouchingSprite;    // しゃがみ状態
+    [SerializeField] private Sprite jumpngSprite;       // ジャンプ状態
+    private SpriteRenderer spriteRenderer;              //プレイヤーのスプライト表示用コンポーネント
 
     // Input System 関連
     private PlayerControls controls;              // Input System 用のカスタムアセット

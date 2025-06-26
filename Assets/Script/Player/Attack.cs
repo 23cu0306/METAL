@@ -127,6 +127,7 @@ public class Attack : MonoBehaviour
     //==================== 入力方向に応じた射撃方向設定 ====================
     void HandleInput()
     {
+        // playerScriptが存在し、かつIsGround()がtrueならisGroundをtrueに変更
         bool isGrounded = playerScript != null && playerScript.IsGrounded();
 
         //マシンガンモードの処理

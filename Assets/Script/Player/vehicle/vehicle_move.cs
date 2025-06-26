@@ -14,7 +14,7 @@ public class vehicle_move : MonoBehaviour
     public Transform groundCheck;                 // 地面との接触を確認するための位置（通常は足元）
     public float checkRadius = 0.5f;              // 地面接触判定の円の半径
     public LayerMask groundLayer;                 // 接地と判定するレイヤー
-    private bool isGrounded;                      // 地面に接しているかのフラグ
+    public bool isGrounded;                      // 地面に接しているかのフラグ
 
     // 入力管理変数
     private Vector2 moveInput;         // プレイヤーからの移動入力（左右＋上下）
@@ -39,11 +39,11 @@ public class vehicle_move : MonoBehaviour
         vehicleCollider = GetComponent<Collider2D>();
 
         // 敵との衝突を無効化
-        int playerLayer = LayerMask.NameToLayer("Player");
+        int vehicleLayer = LayerMask.NameToLayer("Vehicle");
         int enemyLayer = LayerMask.NameToLayer("Enemy");
         int stopLayer = LayerMask.NameToLayer("Stop_Enemy");
-        Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, true);
-        Physics2D.IgnoreLayerCollision(playerLayer, stopLayer, true);
+        Physics2D.IgnoreLayerCollision(vehicleLayer, enemyLayer, true);
+        Physics2D.IgnoreLayerCollision(vehicleLayer, stopLayer, true);
     }
 
     void Awake()
