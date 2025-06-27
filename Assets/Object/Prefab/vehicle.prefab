@@ -286,6 +286,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   isGrounded: 0
+  VehicleHp: 300
+  hpDecreaseInterval: 1
+  hpDecreaseAmount: 10
+  autoDecreaseHP: 0
 --- !u!114 &4717073455184149223
 MonoBehaviour:
   m_ObjectHideFlags: 0

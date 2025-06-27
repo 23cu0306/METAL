@@ -1,6 +1,7 @@
 // 乗り物移動処理
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class vehicle_move : MonoBehaviour
 {
@@ -17,6 +18,16 @@ public class vehicle_move : MonoBehaviour
     public float checkRadius = 0.5f;            // 地面接触判定の円の半径
     public LayerMask groundLayer;               // 接地と判定するレイヤー
     public bool isGrounded;                     // 地面に接しているかのフラグ
+
+    [Header("乗り物の詳細設定")]
+    public float VehicleHp = 300;               // 乗り物のHP
+
+    //---------------------------------------------------------------
+    [Header("テスト用：HP自動減少")]
+    public float hpDecreaseInterval = 1.0f;   // HPを減らす間隔（秒）
+    public float hpDecreaseAmount = 10f;      // 一度に減らすHPの量
+    public bool autoDecreaseHP = false;        // 自動で減少するか（デバッグ用ON/OFF）
+    //---------------------------------------------------------------
 
     // 入力管理変数
     private Vector2 moveInput;                  // プレイヤーからの移動入力（左右＋上下）
@@ -47,7 +58,36 @@ public class vehicle_move : MonoBehaviour
         Physics2D.IgnoreLayerCollision(vehicleLayer, enemyLayer, true);
         Physics2D.IgnoreLayerCollision(vehicleLayer, stopLayer, true);
         Physics2D.IgnoreLayerCollision(vehicleLayer, itemLayer, true);
+
+        //---------------------------------------------------
+        // HP自動減少コルーチンを開始（デバッグ用）
+        if (autoDecreaseHP)
+        {
+            StartCoroutine(AutoDecreaseHP());
+        }
+        //----------------------------------------------------
     }
+
+    //----------------------------------------------------------
+    //仮
+    private IEnumerator AutoDecreaseHP()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(hpDecreaseInterval);
+
+            VehicleHp -= hpDecreaseAmount;
+
+            Debug.Log($"Vehicle HP: {VehicleHp}");
+
+            if (VehicleHp <= 0f)
+            {
+                VehicleDestroy();
+                yield break; // 終了
+            }
+        }
+    }
+    //---------------------------------------------------------------------
 
     void Awake()
     {
@@ -89,6 +129,12 @@ public class vehicle_move : MonoBehaviour
         if (isExiting && rider != null)
         {
             HandleExitCheck();
+        }
+
+        //乗り物のHPが0を下回ったら処理
+        if (VehicleHp < 0)
+        {
+            VehicleDestroy();   // 乗り物の破壊処理
         }
     }
 
@@ -245,5 +291,52 @@ public class vehicle_move : MonoBehaviour
 
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
+    }
+
+    //==================== 乗り物の破壊処理関連 ====================
+    private void VehicleDestroy()
+    {
+
+        // プレイヤーも含めて範囲攻撃
+
+        // プレイヤーが脱出していなかったら乗り物のから排出
+        if(rider != null)
+        {
+            // プレイヤーをアクティブ状態に変更
+            rider.SetActive(true);
+
+            // プレイヤーの位置を乗り物の少し上に移動
+            rider.transform.position = transform.position + Vector3.up * 1.0f;
+
+            // 少し上にジャンプさせる
+            Rigidbody2D riderRb = rider.GetComponent<Rigidbody2D>();
+            if(riderRb != null)
+            {
+                riderRb.linearVelocity = new Vector2(0f, 20f); // 左：横、右：上への力
+            }
+
+            // センサーを無効化
+            VehicleEnterSensor sensor = GetComponentInChildren<VehicleEnterSensor>();
+            if (sensor != null)
+            {
+                sensor.SetSensorEnabled(false); // VehicleEnterSensorクラスのフラグ変更
+            }
+
+            // 乗り物のとプレイヤーの衝突判定の復活を1フレーム分遅延させる
+            StartCoroutine(ReenableCollisionAfterDestroy(rider));
+        }
+
+        // 乗り物のを破棄
+        Destroy(this.gameObject);
+    }
+
+    private IEnumerator ReenableCollisionAfterDestroy(GameObject player)
+    {
+        yield return new WaitForEndOfFrame(); // 1フレーム待つ
+
+        int playerLayer = LayerMask.NameToLayer("Player");
+        int vehicleLayer = LayerMask.NameToLayer("Vehicle");
+
+        Physics2D.IgnoreLayerCollision(playerLayer, vehicleLayer, false);
     }
 }
