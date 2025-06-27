@@ -291,7 +291,7 @@ MonoBehaviour:
   explosionRadius: 20
   explosionTargetLayers:
     serializedVersion: 2
-    m_Bits: 1408
+    m_Bits: 384
   hpDecreaseInterval: 1
   hpDecreaseAmount: 10
   autoDecreaseHP: 1
