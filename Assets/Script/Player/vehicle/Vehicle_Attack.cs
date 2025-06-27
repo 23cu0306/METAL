@@ -98,64 +98,6 @@ public class Vehicle_Attack : MonoBehaviour
     {
         bool isGrounded = vehicleScript != null && vehicleScript.isGrounded;    // 乗り物が存在し、かつ地面にいるかどうかの確認
 
-        //bool isLeft = moveInput.x < -0.4f;  //左入力
-        //bool isRight = moveInput.x > 0.4f;  //右入力
-        //bool isUp = moveInput.y > 0.4f;     //上入力
-        //bool isDown = moveInput.y < -0.3f;  //下入力
-
-        ////  水平方向の入力がある時にtargetDirectionに即設定することで方向を保存(上下から戻すときに利用)
-        ////  左入力
-        //if (isLeft)
-        //{
-        //    //発射方向を左へ
-        //    targetDirection = Vector2.left;
-        //    //左方向を保存
-        //    lastHorizontalDirection = Vector2.left;
-        //}
-
-        ////右入力
-        //else if (isRight)
-        //{
-        //    //発射方向を右へ
-        //    targetDirection = Vector2.right;
-        //    //右方向を保存
-        //    lastHorizontalDirection = Vector2.right;
-        //}
-
-        //// 上方向入力
-        //if (isUp)
-        //{
-        //    targetDirection = Vector2.up;
-        //}
-        //// 上方向を離した場合（戻り補間開始）
-        //else if (Vector2.Distance(currentDirection, Vector2.up) < 0.1f && !isUp)
-        //{
-        //    targetDirection = lastHorizontalDirection;
-        //}
-
-
-        //// 下方向（空中のみ許可）
-        //else if (isDown && !isGrounded)
-        //{
-        //    //発射方向を下へ
-        //    targetDirection = Vector2.down;
-        //}
-        ////// 下を離した場合または着地時は最後に向いていた水平方向に即座に復元
-        ////else if (!isDown && Vector2.Dot(currentDirection.normalized, Vector2.down) > 0.9f || !isGrounded)
-        ////{
-        ////    currentDirection = targetDirection = lastHorizontalDirection;
-        ////    SetFirePointPosition(lastValidFirePointOffset);
-        ////}
-
-        //// 下撃ちをしていて、かつ下を離した場合(戻り補完開始)
-        //else if (Vector2.Dot(currentDirection.normalized, Vector2.down) > 0.9f && moveInput.y >= -0.3f)
-        //{
-        //    targetDirection = lastHorizontalDirection;
-        //}
-
-        //// 下を押している状態で着地した際最後に向いていた水平方向に即座に復元する処理は
-        //// HandleGroundState()処理の中
-
         // 左スティックを倒した方向に弾を発射に変更してみたが違和感しかない
         if(moveInput.sqrMagnitude > 0.1f)
         {
@@ -283,7 +225,7 @@ public class Vehicle_Attack : MonoBehaviour
     {
         if (vehicleScript == null) return;
 
-        // PlayerScriptから地面にいるかの結果をもらう
+        // vehicleScriptから地面にいるかの結果をもらう
         bool isGroundedNow = vehicleScript.isGrounded;
         if (!wasGrounded && isGroundedNow && currentDirection == Vector2.down)
         {
