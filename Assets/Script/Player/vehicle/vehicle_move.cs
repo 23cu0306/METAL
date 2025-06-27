@@ -23,9 +23,11 @@ public class vehicle_move : MonoBehaviour
     public float VehicleHp = 100;               // 乗り物のHP
 
     [Header("乗り物破壊の詳細設定")]
-    public int explosionDamage = 50;           // 爆発のダメージ量
+    public int explosionDamage = 50;            // 爆発のダメージ量
     public float explosionRadius = 20.0f;       // ダメージ範囲
     public LayerMask explosionTargetLayers;     // ダメージを与える対象レイヤー
+    public float VehicleDestroyDelayTime = 5.0f;// HPが0になってから破壊されるまでの時間
+    private bool isDestroying = false;          // 二重侵入防止対策
 
     //---------------------------------------------------------------
     [Header("テスト用：HP自動減少")]
@@ -87,10 +89,11 @@ public class vehicle_move : MonoBehaviour
 
             if (VehicleHp <= 0f)
             {
-                VehicleDestroy();
-                yield break; // 終了
+                yield break; // コルーチン終了
             }
         }
+
+
     }
     //---------------------------------------------------------------------
 
@@ -136,10 +139,12 @@ public class vehicle_move : MonoBehaviour
             HandleExitCheck();
         }
 
-        //乗り物のHPが0を下回ったら処理
-        if (VehicleHp < 0)
+        // 乗り物のHPが0を下回ったらカウントをして処理
+        if (VehicleHp <= 0f && !isDestroying)
         {
-            VehicleDestroy();   // 乗り物の破壊処理
+            Debug.Log("破壊処理開始");
+            // カウント開始
+            StartCoroutine(VehicleDestroyDelay());
         }
     }
 
@@ -343,6 +348,29 @@ public class vehicle_move : MonoBehaviour
     }
 
     //==================== 乗り物の破壊処理関連 ====================
+    // 破壊処理を遅延させるコルーチン
+    private IEnumerator VehicleDestroyDelay()
+    {
+        VehicleHp = -9999;      // フラグとして無効化
+
+        isDestroying = true;    // 二重実行防止
+
+        //// 待機
+        //yield return new WaitForSeconds(VehicleDestroyDelayTime);
+
+        // ↓はデバッグで時間表示できるようになっている
+        while (VehicleDestroyDelayTime > 0f)
+        {
+            Debug.Log($"破壊まで残り: {VehicleDestroyDelayTime:F1} 秒");
+            yield return new WaitForSeconds(1.0f); // 1秒ごとに更新
+            VehicleDestroyDelayTime -= 1.0f;
+        }
+
+        // 破壊処理へ
+        VehicleDestroy();
+    }
+
+    // 破壊処理開始
     private void VehicleDestroy()
     {
         // プレイヤー排出処理
@@ -371,7 +399,7 @@ public class vehicle_move : MonoBehaviour
                 sensor.SetSensorEnabled(false); // VehicleEnterSensorクラスのフラグ変更
             }
         }
-        // プレイヤー復帰が反映されるまで1フレーム待ってから爆発ダメージ判定
+        // 1フレーム待ってから爆発ダメージ判定(プレイヤーにダメージが入るように)
         StartCoroutine(DelayedExplosion());
     }
 
@@ -422,6 +450,9 @@ public class vehicle_move : MonoBehaviour
         int vehicleLayer = LayerMask.NameToLayer("Vehicle");
 
         Physics2D.IgnoreLayerCollision(playerLayer, vehicleLayer, false);
+
+        // 二重侵入防止のフラグを下げる
+        isDestroying = false;
     }
 
     // 敵などからダメージを受けた時に呼ばれる関数

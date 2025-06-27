@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 7834546239698009830}
   m_Layer: 13
   m_Name: vehicle
-  m_TagString: Player
+  m_TagString: Vehide
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -286,15 +286,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   isGrounded: 0
-  VehicleHp: 400
+  VehicleHp: 100
   explosionDamage: 50
   explosionRadius: 20
   explosionTargetLayers:
     serializedVersion: 2
     m_Bits: 384
+  VehicleDestroyDelayTime: 5
   hpDecreaseInterval: 1
   hpDecreaseAmount: 10
-  autoDecreaseHP: 1
+  autoDecreaseHP: 0
 --- !u!114 &4717073455184149223
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ TagManager:
   - TEXT
   - EnemyBullet
   - Enemy1
+  - Vehide
   layers:
   - Default
   - TransparentFX
