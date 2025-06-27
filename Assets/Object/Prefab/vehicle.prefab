@@ -286,10 +286,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   isGrounded: 0
-  VehicleHp: 300
+  VehicleHp: 400
+  explosionDamage: 50
+  explosionRadius: 20
+  explosionTargetLayers:
+    serializedVersion: 2
+    m_Bits: 1408
   hpDecreaseInterval: 1
   hpDecreaseAmount: 10
-  autoDecreaseHP: 0
+  autoDecreaseHP: 1
 --- !u!114 &4717073455184149223
 MonoBehaviour:
   m_ObjectHideFlags: 0

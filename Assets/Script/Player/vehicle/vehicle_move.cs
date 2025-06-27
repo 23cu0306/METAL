@@ -20,7 +20,12 @@ public class vehicle_move : MonoBehaviour
     public bool isGrounded;                     // 地面に接しているかのフラグ
 
     [Header("乗り物の詳細設定")]
-    public float VehicleHp = 300;               // 乗り物のHP
+    public float VehicleHp = 100;               // 乗り物のHP
+
+    [Header("乗り物破壊の詳細設定")]
+    public int explosionDamage = 50;           // 爆発のダメージ量
+    public float explosionRadius = 20.0f;       // ダメージ範囲
+    public LayerMask explosionTargetLayers;     // ダメージを与える対象レイヤー
 
     //---------------------------------------------------------------
     [Header("テスト用：HP自動減少")]
@@ -326,23 +331,26 @@ public class vehicle_move : MonoBehaviour
     // Debug処理(円を表示)
     private void OnDrawGizmosSelected()
     {
+        // 地面に接触チェックの可視化
         if (groundCheck == null) return;
 
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
+
+        // 爆発範囲の可視化
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
 
     //==================== 乗り物の破壊処理関連 ====================
     private void VehicleDestroy()
     {
-        // プレイヤーを自身の子オブジェクトから解除
-        SafeSetParent(rider.transform, null);
-
-        // プレイヤーも含めて範囲攻撃
-
-        // プレイヤーが脱出していなかったら乗り物のから排出
+        // プレイヤー排出処理
         if (rider != null)
         {
+            // プレイヤーを自身の子オブジェクトから解除
+            SafeSetParent(rider.transform, null);
+
             // プレイヤーをアクティブ状態に変更
             rider.SetActive(true);
 
@@ -351,7 +359,7 @@ public class vehicle_move : MonoBehaviour
 
             // 少し上にジャンプさせる
             Rigidbody2D riderRb = rider.GetComponent<Rigidbody2D>();
-            if(riderRb != null)
+            if (riderRb != null)
             {
                 riderRb.linearVelocity = new Vector2(0f, 20f); // 左：横、右：上への力
             }
@@ -362,19 +370,54 @@ public class vehicle_move : MonoBehaviour
             {
                 sensor.SetSensorEnabled(false); // VehicleEnterSensorクラスのフラグ変更
             }
-
-            // 乗り物のとプレイヤーの衝突判定の復活を1フレーム分遅延させる
-            StartCoroutine(ReenableCollisionAfterDestroy(rider));
         }
-
-        // 乗り物のを破棄
-        Destroy(this.gameObject);
+        // プレイヤー復帰が反映されるまで1フレーム待ってから爆発ダメージ判定
+        StartCoroutine(DelayedExplosion());
     }
 
-    private IEnumerator ReenableCollisionAfterDestroy(GameObject player)
+    // プレイヤーが復帰してから確実にダメージを入れるため1フレームずらす処理
+    private IEnumerator DelayedExplosion()
     {
         yield return new WaitForEndOfFrame(); // 1フレーム待つ
 
+        Collider2D[] targets = Physics2D.OverlapCircleAll(transform.position, explosionRadius, explosionTargetLayers);
+
+        foreach (var col in targets)
+        {
+            // 敵にダメージ
+            if (col.CompareTag("Enemy"))
+            {
+                var enemy = col.GetComponent<Enemy_Manager>();
+                if (enemy != null) enemy.TakeDamage(explosionDamage);
+            }
+            // ボスにダメージ
+            else if (col.CompareTag("WeakPoint"))
+            {
+                var boss = col.GetComponentInParent<GloomVisBoss>();
+                if (boss != null) boss.TakeDamage(explosionDamage);
+            }
+            // プレイヤーにダメージ
+            else if (col.CompareTag("Player"))
+            {
+                var player = col.GetComponent<Player>();
+                if (player != null) player.TakeDamage(explosionDamage);
+            }
+        }
+
+        // 乗り物のとプレイヤーの衝突判定の復活を1フレーム分遅延させる
+        StartCoroutine(ReenableCollisionAfterDestroy(rider));
+
+        Destroy(gameObject); // 最後に乗り物を破壊
+    }
+
+    // 乗り物を破壊後に1フレーム待ってからプレイヤーと乗り物の接触判定を有効化する処理
+    // 破壊時に一時的に無効化していた衝突を復元する際に仕様
+    private IEnumerator ReenableCollisionAfterDestroy(GameObject player)
+    {
+        // 衝突を復活させる際に1フレーム待機させる
+        yield return new WaitForEndOfFrame();
+
+        // PlayerとVehicleの衝突を有効化させる
         int playerLayer = LayerMask.NameToLayer("Player");
         int vehicleLayer = LayerMask.NameToLayer("Vehicle");
 
