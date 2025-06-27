@@ -2310,10 +2310,6 @@ PrefabInstance:
       propertyPath: moveSpeed
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 3232451776530154725, guid: 585495c216243b84da29e8a981576381, type: 3}
-      propertyPath: fallMultiplier
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 8062314274973312895, guid: 585495c216243b84da29e8a981576381, type: 3}
       propertyPath: m_Name
       value: ' vehicle'

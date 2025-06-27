@@ -29,9 +29,8 @@ public class vehicle_move : MonoBehaviour
 
     // 降車処理
     private bool isExiting = false;              // 降車中かの判定
-    private Vector3 exitDirection = Vector3.right;
     private Collider2D vehicleCollider;
-    private float exitResetDistance = 2.5f;      // 2.5離れたら復帰
+    private float exitResetDistance = 5.0f;      // 5離れたら復帰
 
     private void Start()
     {
