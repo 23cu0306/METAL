@@ -30,7 +30,7 @@ public class vehicle_move : MonoBehaviour
     // 降車処理
     private bool isExiting = false;              // 降車中かの判定
     private Collider2D vehicleCollider;
-    private float exitResetDistance = 5.0f;      // 5離れたら復帰
+    private float exitResetDistance = 5.0f;      // 5以上離れたら復帰
 
     private void Start()
     {
@@ -76,8 +76,8 @@ public class vehicle_move : MonoBehaviour
 
     void Update()
     {
-        CheckGround();
-        HandleFall();
+        CheckGround();      // 地面との接触確認
+        HandleFall();       // 落下中の挙動を制御
 
         // プレイヤーが乗って操作している時に移動を実行
         if (isControlled)
@@ -85,32 +85,10 @@ public class vehicle_move : MonoBehaviour
             HandleMovement();
         }
 
+        // プレイヤーが乗り物から降りて離れている最中の処理
         if (isExiting && rider != null)
         {
-            Vector3 offset = rider.transform.position - transform.position;
-
-            float xThreshold = exitResetDistance;    // X方向の離脱距離は従来通り
-            float yThreshold = exitResetDistance * 10f; // Y方向だけ少し広め（調整可）
-
-            if (Mathf.Abs(offset.x) > xThreshold || Mathf.Abs(offset.y) > yThreshold)
-            {
-                if (vehicleCollider != null) vehicleCollider.enabled = true;
-
-                // プレイヤーの接触復活
-                int playerLayer = LayerMask.NameToLayer("Player");
-                int vehicleLayer = LayerMask.NameToLayer("Vehicle");
-                Physics2D.IgnoreLayerCollision(playerLayer, vehicleLayer, false);
-
-                // センサー有効化
-                VehicleEnterSensor sensor = GetComponentInChildren<VehicleEnterSensor>();
-                if (sensor != null)
-                {
-                    sensor.SetSensorEnabled(true);
-                }
-
-                isExiting = false;
-                rider = null;
-            }
+            HandleExitCheck();
         }
     }
 
@@ -124,11 +102,13 @@ public class vehicle_move : MonoBehaviour
     // 操作を開始する(Inputを有効にする)
     public void StartControl()
     {
-        if (isControlled) return;   //すでに操作中なら何もしない
+        if (isControlled) return;   // すでに操作中なら何もしない
 
         isControlled = true;
         controls.Enable();
     }
+
+    //==================== 乗り物の降車に関する処理 ====================
 
     // 降車の処理
     public void StopControl()
@@ -160,10 +140,45 @@ public class vehicle_move : MonoBehaviour
             VehicleEnterSensor sensor = GetComponentInChildren<VehicleEnterSensor>();
             if (sensor != null)
             {
-                sensor.SetSensorEnabled(false);
+                sensor.SetSensorEnabled(false); // VehicleEnterSensorクラスのフラグ変更
             }
         }
     }
+
+    // プレイヤーが降車し乗り物から十分はなれたさいに行う処理
+    void HandleExitCheck()
+    {
+        // プレイヤーと乗り物との位置差を取得
+        Vector3 offset = rider.transform.position - transform.position;
+
+        float xThreshold = exitResetDistance;       // X方向の離脱距離は従来通り
+        float yThreshold = exitResetDistance * 10f; // Y方向だけ少し広め（調整可）
+
+        // プレイヤーが十分離れたかを確認
+        if (Mathf.Abs(offset.x) > xThreshold || Mathf.Abs(offset.y) > yThreshold)
+        {
+            // 乗り物のコライダーを有効化(物理衝突を有効に)
+            if (vehicleCollider != null) vehicleCollider.enabled = true;
+
+            // プレイヤーと乗り物のレイヤー間の衝突判定を再び有効に
+            int playerLayer = LayerMask.NameToLayer("Player");
+            int vehicleLayer = LayerMask.NameToLayer("Vehicle");
+            Physics2D.IgnoreLayerCollision(playerLayer, vehicleLayer, false);
+
+            // 乗車用のセンサー有効化(乗車可能状態に)
+            VehicleEnterSensor sensor = GetComponentInChildren<VehicleEnterSensor>();
+            if (sensor != null)
+            {
+                sensor.SetSensorEnabled(true);
+            }
+
+            // 状態のリセット(降車用のフラグとプレイヤー情報をクリア)
+            isExiting = false;
+            rider = null;
+        }
+    }
+
+    //==================== プレイヤーの横移動処理 ====================
 
     // 横移動処理
     private void HandleMovement()
@@ -176,7 +191,9 @@ public class vehicle_move : MonoBehaviour
         transform.position += move;
     }
 
-    // ジャンプ処理
+    //==================== ジャンプの処理 ====================
+
+    // ジャンプ・降車処理
     private void HandleJump()
     {
         // 下入力＋ジャンプ入力で降車
@@ -212,6 +229,8 @@ public class vehicle_move : MonoBehaviour
         //}
     }
 
+    //==================== 地面に接触しているか判定 ====================
+
     //地面判定
     private void CheckGround()
     {
@@ -219,7 +238,7 @@ public class vehicle_move : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
     }
 
-    // Debug処理
+    // Debug処理(円を表示)
     private void OnDrawGizmosSelected()
     {
         if (groundCheck == null) return;

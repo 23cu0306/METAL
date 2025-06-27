@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "D:\\23CU0338\\METAL\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|D:\\23CU0338\\METAL\\assets\\script\\player\\vehicle\\vehicle_attack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\player\\vehicle\\vehicle_attack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|D:\\23CU0338\\METAL\\assets\\script\\player\\vehicle\\vehicle_move.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\player\\vehicle\\vehicle_move.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|d:\\23cu0338\\metal\\assets\\script\\player\\vehicle\\vehicleentersensor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|D:\\23CU0338\\METAL\\assets\\script\\player\\vehicle\\vehicleentersensor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\player\\vehicle\\vehicleentersensor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|D:\\23CU0338\\METAL\\assets\\script\\player\\vehicle\\vehicle_move.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\player\\vehicle\\vehicle_move.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|d:\\23cu0338\\metal\\assets\\script\\player\\vehicle\\vehicle_attack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\player\\vehicle\\vehicle_attack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|D:\\23CU0338\\METAL\\Assets\\Script\\Player\\MachineGunItem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -134,17 +134,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Vehicle_Attack.cs",
               "DocumentMoniker": "D:\\23CU0338\\METAL\\Assets\\Script\\Player\\vehicle\\Vehicle_Attack.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Player\\vehicle\\Vehicle_Attack.cs",
               "ToolTip": "D:\\23CU0338\\METAL\\Assets\\Script\\Player\\vehicle\\Vehicle_Attack.cs",
               "RelativeToolTip": "Assets\\Script\\Player\\vehicle\\Vehicle_Attack.cs",
-              "ViewState": "AgIAALoAAAAAAAAAAADwv8UAAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAAC8AAAAAAAAAAADwv8UAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-26T04:39:34.429Z",
               "EditorCaption": ""
@@ -157,20 +157,20 @@
               "RelativeDocumentMoniker": "Assets\\Script\\Player\\vehicle\\VehicleEnterSensor.cs",
               "ToolTip": "D:\\23CU0338\\METAL\\Assets\\Script\\Player\\vehicle\\VehicleEnterSensor.cs",
               "RelativeToolTip": "Assets\\Script\\Player\\vehicle\\VehicleEnterSensor.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAADwvxMAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-20T01:28:39.136Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "vehicle_move.cs",
               "DocumentMoniker": "D:\\23CU0338\\METAL\\Assets\\Script\\Player\\vehicle\\vehicle_move.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Player\\vehicle\\vehicle_move.cs",
               "ToolTip": "D:\\23CU0338\\METAL\\Assets\\Script\\Player\\vehicle\\vehicle_move.cs",
               "RelativeToolTip": "Assets\\Script\\Player\\vehicle\\vehicle_move.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAAMcAAAAAAAAAAAAIwNgAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-20T01:04:37.926Z",
               "EditorCaption": ""
@@ -185,8 +185,7 @@
               "RelativeToolTip": "Assets\\Script\\Scene\\PlyerHpText.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-19T07:02:29.134Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-19T07:02:29.134Z"
             },
             {
               "$type": "Document",
@@ -198,8 +197,7 @@
               "RelativeToolTip": "Assets\\Script\\Player\\Attack.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-10T04:26:53.53Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-10T04:26:53.53Z"
             },
             {
               "$type": "Document",
@@ -211,8 +209,7 @@
               "RelativeToolTip": "Assets\\Script\\Player\\Player.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-10T04:26:53.299Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-10T04:26:53.299Z"
             },
             {
               "$type": "Document",
@@ -224,8 +221,7 @@
               "RelativeToolTip": "Assets\\Script\\Player\\EnemyDetector.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-10T04:26:53.728Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-10T04:26:53.728Z"
             },
             {
               "$type": "Document",
@@ -237,8 +233,7 @@
               "RelativeToolTip": "Assets\\Script\\Player\\MachineGunItem.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-10T04:26:53.774Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-10T04:26:53.774Z"
             },
             {
               "$type": "Document",
@@ -250,8 +245,7 @@
               "RelativeToolTip": "Assets\\Script\\Scene\\NextStage.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-12T07:10:33.864Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-12T07:10:33.864Z"
             },
             {
               "$type": "Document",
