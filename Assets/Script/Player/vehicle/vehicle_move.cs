@@ -138,10 +138,35 @@ public class vehicle_move : MonoBehaviour
         }
     }
 
+    void SafeSetParent(Transform child, Transform newParent)
+    {
+        Vector3 worldScale = child.lossyScale;           // 現在の見た目上のスケール
+        child.SetParent(newParent, true);                // ワールド位置・回転は維持
+        child.localScale = GetLocalScaleRelativeTo(worldScale, newParent); // スケール補正
+    }
+
+    // 親に対して必要なlocalScaleを計算する
+    Vector3 GetLocalScaleRelativeTo(Vector3 worldScale, Transform parent)
+    {
+        if (parent == null)
+            return worldScale;
+
+        Vector3 parentScale = parent.lossyScale;
+        return new Vector3(
+            worldScale.x / parentScale.x,
+            worldScale.y / parentScale.y,
+            worldScale.z / parentScale.z
+        );
+    }
+
     public void OnPlayerEnter(GameObject player)
     {
         rider = player;         // 乗っているプレイヤーを記録
         rider.SetActive(false); // プレイヤーを非表示に
+
+        // プレイヤーを自分の子オブジェクトにする
+        SafeSetParent(rider.transform, this.transform);
+
         StartControl();         // 操作開始
     }
 
@@ -165,6 +190,9 @@ public class vehicle_move : MonoBehaviour
         if (rider != null)
         {
             isExiting = true;       //降車中に変更
+
+            // プレイヤーを自身の子オブジェクトから解除
+            SafeSetParent(rider.transform, null);
 
             // プレイヤーの最有効化
             rider.SetActive(true);
@@ -296,11 +324,13 @@ public class vehicle_move : MonoBehaviour
     //==================== 乗り物の破壊処理関連 ====================
     private void VehicleDestroy()
     {
+        // プレイヤーを自身の子オブジェクトから解除
+        SafeSetParent(rider.transform, null);
 
         // プレイヤーも含めて範囲攻撃
 
         // プレイヤーが脱出していなかったら乗り物のから排出
-        if(rider != null)
+        if (rider != null)
         {
             // プレイヤーをアクティブ状態に変更
             rider.SetActive(true);
