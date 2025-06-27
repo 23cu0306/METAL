@@ -423,4 +423,10 @@ public class vehicle_move : MonoBehaviour
 
         Physics2D.IgnoreLayerCollision(playerLayer, vehicleLayer, false);
     }
+
+    // 敵などからダメージを受けた時に呼ばれる関数
+    public void TakeDamage(int damage)
+    {
+        VehicleHp -= damage;
+    }
 }
