@@ -138,26 +138,37 @@ public class vehicle_move : MonoBehaviour
         }
     }
 
+    //==================== プレイヤーのスケールが変わらないように親子関係を変更するための処理 ====================
+
+    // 子オブジェクトを完全に新しい親オブジェクトに変更する関数
+    // ワールドスケール(大きさの見た目)を維持したまま親子関係を変更
     void SafeSetParent(Transform child, Transform newParent)
     {
-        Vector3 worldScale = child.lossyScale;           // 現在の見た目上のスケール
+        Vector3 worldScale = child.lossyScale;           // 現在のワールドスケール(大きさの見た目)を保存
         child.SetParent(newParent, true);                // ワールド位置・回転は維持
-        child.localScale = GetLocalScaleRelativeTo(worldScale, newParent); // スケール補正
+        child.localScale = GetLocalScaleRelativeTo(worldScale, newParent); // ワールドスケールが変わらないようにlocalScaleを再計算して設定
     }
 
-    // 親に対して必要なlocalScaleを計算する
+    //指定したワールドスケールを保つために必要なlocalScaleを計算
     Vector3 GetLocalScaleRelativeTo(Vector3 worldScale, Transform parent)
     {
+        // 親が存在しない場合は、localScale = worldScale とすれば見た目が一致する。
         if (parent == null)
             return worldScale;
 
+        // 親のワールドスケールを取得
         Vector3 parentScale = parent.lossyScale;
+
+        // 子のlocalScaleを調整することで、結果的にworldScaleを維持している
+        // 各軸ごとにワールドスケール ÷ 親のワールドスケールを計算
         return new Vector3(
             worldScale.x / parentScale.x,
             worldScale.y / parentScale.y,
             worldScale.z / parentScale.z
         );
     }
+
+    //==================== プレイヤーが乗り物に乗った際の処理 ====================
 
     public void OnPlayerEnter(GameObject player)
     {
