@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
 
     private Vector3 respawnPosition;              // 落下・ダメージ時のリスポーン地点
 
-    public int health = 100;                      // プレイヤーの体力（HP）
+    public int health = 50;                       // プレイヤーの体力（HP）
     private bool isInvincible = false;            // 無敵状態中かどうか
     public float invincibilityDuration = 2f;      // 無敵状態の持続時間（秒）
     public float blinkInterval = 0.1f;            // 無敵時の点滅間隔（秒）
@@ -45,6 +45,9 @@ public class Player : MonoBehaviour
     [SerializeField] private Sprite crouchingSprite;    // しゃがみ状態
     [SerializeField] private Sprite jumpngSprite;       // ジャンプ状態
     private SpriteRenderer spriteRenderer;              //プレイヤーのスプライト表示用コンポーネント
+
+    // 着地まで無敵かどうか
+    private bool isLandingInvincible = false;
 
     // Input System 関連
     private PlayerControls controls;              // Input System 用のカスタムアセット
@@ -114,8 +117,18 @@ public class Player : MonoBehaviour
     //地面に接触確認
     void CheckGround()
     {
+        bool wasGrounded = isGrounded;
+
         // 円を使って地面と接触しているかを判定する
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
+
+        // === 追加: 降車後、最初の着地で無敵解除 ===
+        if (isLandingInvincible && !wasGrounded && isGrounded)
+        {
+            isLandingInvincible = false;
+            isInvincible = false;
+            Debug.Log("着地したので無敵解除");
+        }
     }
 
     //プレイヤーのSpriteを切り替える関数
@@ -310,6 +323,13 @@ public class Player : MonoBehaviour
     // 敵などからダメージを受けた時に呼ばれる関数
     public void TakeDamage(int damage)
     {
+        // 乗り物から降りて着地するまでダメージをしない
+        if (isLandingInvincible)
+        {
+            Debug.Log("着地前無敵：ダメージ無効");
+            return;
+        }
+
         if (!isInvincible)
         {
             health -= damage;

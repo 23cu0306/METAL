@@ -293,11 +293,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 569368964712988995, guid: cd4c51f8618b1054fb90a613cab00f58, type: 3}
       propertyPath: shotData.type
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 569368964712988995, guid: cd4c51f8618b1054fb90a613cab00f58, type: 3}
       propertyPath: shotData.frame
-      value: 1000
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 640817499230300369, guid: cd4c51f8618b1054fb90a613cab00f58, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1038,7 +1038,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 569368964712988995, guid: cd4c51f8618b1054fb90a613cab00f58, type: 3}
       propertyPath: shotData.type
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 569368964712988995, guid: cd4c51f8618b1054fb90a613cab00f58, type: 3}
       propertyPath: shotData.frame
@@ -2306,6 +2306,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3232451776530154725, guid: 585495c216243b84da29e8a981576381, type: 3}
+      propertyPath: autoDecreaseHP
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3232451776530154725, guid: 585495c216243b84da29e8a981576381, type: 3}
+      propertyPath: explosionDamage
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 3232451776530154725, guid: 585495c216243b84da29e8a981576381, type: 3}
+      propertyPath: explosionRadius
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3232451776530154725, guid: 585495c216243b84da29e8a981576381, type: 3}
+      propertyPath: VehicleDestroyDelayTime
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8062314274973312895, guid: 585495c216243b84da29e8a981576381, type: 3}
       propertyPath: m_Name
       value: ' vehicle'
@@ -2363,6 +2379,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 578293097641000402, guid: 71fa7d123797b174592ede8b93bad7e1, type: 3}
+      propertyPath: health
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 2785801392096796056, guid: 71fa7d123797b174592ede8b93bad7e1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -22.7

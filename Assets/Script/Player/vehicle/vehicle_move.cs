@@ -23,11 +23,15 @@ public class vehicle_move : MonoBehaviour
     public float VehicleHp = 100;               // 乗り物のHP
 
     [Header("乗り物破壊の詳細設定")]
-    public int explosionDamage = 50;            // 爆発のダメージ量
+    public int explosionDamage = 70;            // 爆発のダメージ量
     public float explosionRadius = 20.0f;       // ダメージ範囲
     public LayerMask explosionTargetLayers;     // ダメージを与える対象レイヤー
-    public float VehicleDestroyDelayTime = 5.0f;// HPが0になってから破壊されるまでの時間
+    public float VehicleDestroyDelayTime = 3.0f;// HPが0になってから破壊されるまでの時間
     private bool isDestroying = false;          // 二重侵入防止対策
+
+    [Header("無敵時間設定")]
+    public float invincibleDuration = 2f;       // プレイヤー搭乗後の無敵時間（秒）
+    private float invincibleTimer = 0f;         // 無敵タイマー
 
     //---------------------------------------------------------------
     [Header("テスト用：HP自動減少")]
@@ -92,8 +96,6 @@ public class vehicle_move : MonoBehaviour
                 yield break; // コルーチン終了
             }
         }
-
-
     }
     //---------------------------------------------------------------------
 
@@ -133,6 +135,12 @@ public class vehicle_move : MonoBehaviour
             HandleMovement();
         }
 
+        // 無敵時間カウントダウン
+        if (invincibleTimer > 0f)
+        {
+            invincibleTimer -= Time.deltaTime;
+        }
+
         // プレイヤーが乗り物から降りて離れている最中の処理
         if (isExiting && rider != null)
         {
@@ -146,6 +154,12 @@ public class vehicle_move : MonoBehaviour
             // カウント開始
             StartCoroutine(VehicleDestroyDelay());
         }
+    }
+
+    // プレイヤーが乗ってるかの情報を返す
+    public bool IsControlled()
+    {
+        return isControlled;
     }
 
     //==================== プレイヤーのスケールが変わらないように親子関係を変更するための処理 ====================
@@ -247,7 +261,7 @@ public class vehicle_move : MonoBehaviour
         Vector3 offset = rider.transform.position - transform.position;
 
         float xThreshold = exitResetDistance;       // X方向の離脱距離は従来通り
-        float yThreshold = exitResetDistance * 10f; // Y方向だけ少し広め（調整可）
+        float yThreshold = exitResetDistance;       // Y方向だけ少し広め（調整可）
 
         // プレイヤーが十分離れたかを確認
         if (Mathf.Abs(offset.x) > xThreshold || Mathf.Abs(offset.y) > yThreshold)
@@ -292,7 +306,7 @@ public class vehicle_move : MonoBehaviour
     private void HandleJump()
     {
         // 下入力＋ジャンプ入力で降車
-        if (moveInput.y < -0.5f && rider != null)
+        if (moveInput.y < -0.5f && rider != null && isGrounded)
         {
             StopControl(); // 下入力＋ジャンプボタンで降車
             return;
@@ -314,14 +328,14 @@ public class vehicle_move : MonoBehaviour
             rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
 
-        //else if (rb.linearVelocity.y > 0 )
-        //{
-        //    // 上昇中
-        //    if (rb.linearVelocity.y < upwardThreshold)
-        //    {
-        //        rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
-        //    }
-        //}
+        else if (rb.linearVelocity.y > 0)
+        {
+            // 上昇中
+            if (rb.linearVelocity.y < upwardThreshold)
+            {
+                rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+            }
+        }
     }
 
     //==================== 地面に接触しているか判定 ====================
@@ -399,48 +413,17 @@ public class vehicle_move : MonoBehaviour
                 sensor.SetSensorEnabled(false); // VehicleEnterSensorクラスのフラグ変更
             }
         }
-        // 1フレーム待ってから爆発ダメージ判定(プレイヤーにダメージが入るように)
-        StartCoroutine(DelayedExplosion());
-    }
-
-    // プレイヤーが復帰してから確実にダメージを入れるため1フレームずらす処理
-    private IEnumerator DelayedExplosion()
-    {
-        yield return new WaitForEndOfFrame(); // 1フレーム待つ
-
-        Collider2D[] targets = Physics2D.OverlapCircleAll(transform.position, explosionRadius, explosionTargetLayers);
-
-        foreach (var col in targets)
+        // Vehicle_Attackに爆破処理を依頼
+        var attack = GetComponentInChildren<Vehicle_Attack>();
+        if(attack != null)
         {
-            // 敵にダメージ
-            if (col.CompareTag("Enemy"))
-            {
-                var enemy = col.GetComponent<Enemy_Manager>();
-                if (enemy != null) enemy.TakeDamage(explosionDamage);
-            }
-            // ボスにダメージ
-            else if (col.CompareTag("WeakPoint"))
-            {
-                var boss = col.GetComponentInParent<GloomVisBoss>();
-                if (boss != null) boss.TakeDamage(explosionDamage);
-            }
-            // プレイヤーにダメージ
-            else if (col.CompareTag("Player"))
-            {
-                var player = col.GetComponent<Player>();
-                if (player != null) player.TakeDamage(explosionDamage);
-            }
+            attack.StartExplosion();
         }
-
-        // 乗り物のとプレイヤーの衝突判定の復活を1フレーム分遅延させる
-        StartCoroutine(ReenableCollisionAfterDestroy(rider));
-
-        Destroy(gameObject); // 最後に乗り物を破壊
     }
 
     // 乗り物を破壊後に1フレーム待ってからプレイヤーと乗り物の接触判定を有効化する処理
     // 破壊時に一時的に無効化していた衝突を復元する際に仕様
-    private IEnumerator ReenableCollisionAfterDestroy(GameObject player)
+    public IEnumerator ReenableCollisionAfterDestroy()
     {
         // 衝突を復活させる際に1フレーム待機させる
         yield return new WaitForEndOfFrame();
@@ -458,6 +441,20 @@ public class vehicle_move : MonoBehaviour
     // 敵などからダメージを受けた時に呼ばれる関数
     public void TakeDamage(int damage)
     {
+        // プレイヤーが乗っていない場合は処理をしない
+        if (!isControlled)
+        {
+            Debug.Log("プレイヤーが乗っていないため被弾無効");
+            return;
+        }
+
+        // 無敵時間内なら処理をしない
+        if (invincibleTimer > 0f)
+        {
+            Debug.Log("無敵時間中のためダメージ無効");
+            return;
+        }
+
         VehicleHp -= damage;
     }
 }

@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using System.Collections;
 
 public class Vehicle_Attack : MonoBehaviour
 {
@@ -29,6 +30,8 @@ public class Vehicle_Attack : MonoBehaviour
     private Vector2 lastHorizontalDirection = Vector2.right; // 最後に向いていた左右方向
 
     private bool wasGrounded = true; // 直前のフレームで地面にいたかどうか
+
+    private bool isControlled => vehicleScript != null && vehicleScript.IsControlled();
 
     //==================== 発射位置オフセット設定 ====================
     private Vector2 rightOffset = new Vector2(0.5f, 0f);
@@ -87,6 +90,9 @@ public class Vehicle_Attack : MonoBehaviour
 
     void Update()
     {
+        // プレイヤーが乗っていない場合、攻撃関連を一切処理しない
+        if (!isControlled) return;
+
         HandleInput();              // 入力から方向決定
         HandleGroundState();        // 地面との接触チェック
         UpdateDirectionLerp();      // 発射方向を補間して更新
@@ -259,5 +265,53 @@ public class Vehicle_Attack : MonoBehaviour
 
         // それ以外は打てるようにする
         return true;
+    }
+
+    // 爆発処理
+    // 乗り物の破壊時に呼び出し
+    public void StartExplosion()
+    {
+        StartCoroutine(DelayedExplosion());
+    }
+
+    // プレイヤーが復帰してから確実にダメージを入れるため1フレームずらす処理
+    private IEnumerator DelayedExplosion()
+    {
+        yield return new WaitForEndOfFrame(); // 1フレーム待つ
+
+        Collider2D[] targets = Physics2D.OverlapCircleAll(
+            transform.position,
+            vehicleScript.explosionRadius,
+            vehicleScript.explosionTargetLayers
+        );
+
+        foreach (var col in targets)
+        {
+            // 敵にダメージ
+            if (col.CompareTag("Enemy"))
+            {
+                var enemy = col.GetComponent<Enemy_Manager>();
+                if (enemy != null) enemy.TakeDamage(vehicleScript.explosionDamage);
+            }
+            // ボスにダメージ
+            else if (col.CompareTag("WeakPoint"))
+            {
+                var boss = col.GetComponentInParent<GloomVisBoss>();
+                if (boss != null) boss.TakeDamage(vehicleScript.explosionDamage);
+            }
+            // プレイヤーにダメージ
+            else if (col.CompareTag("Player"))
+            {
+                var player = col.GetComponent<Player>();
+                if (player != null) player.TakeDamage(vehicleScript.explosionDamage);
+            }
+        }
+
+        // 乗り物のとプレイヤーの衝突判定の復活を1フレーム分遅延させる
+        if (vehicleScript != null)
+            vehicleScript.StartCoroutine(vehicleScript.ReenableCollisionAfterDestroy());
+
+        // 爆発完了後自身を破壊
+        Destroy(gameObject);
     }
 }
