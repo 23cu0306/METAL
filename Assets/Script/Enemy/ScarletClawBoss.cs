@@ -8,8 +8,11 @@ public class ScarletClawBoss : MonoBehaviour
     public GameObject drillAttackPrefab;
     public GameObject missilePrefab;
     public GameObject corePhasePrefab;
+    public GameObject missilePrefab2;
     public Transform firePoint;
     public Transform[] movePoints;
+    public float speed = 3f;  // ï¿½Gï¿½ÌˆÚ“ï¿½ï¿½ï¿½ï¿½x
+    private Rigidbody2D rb;  // ï¿½Gï¿½ï¿½Rigidbody2D
 
     public float attackInterval = 3f;
     private float attackTimer;
@@ -24,8 +27,11 @@ public class ScarletClawBoss : MonoBehaviour
     private bool isFacingRight = true;
     private Transform player;
 
+    public bool BossMood = false;
+
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         currentHP = maxHP;
         attackTimer = attackInterval;
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
@@ -33,17 +39,43 @@ public class ScarletClawBoss : MonoBehaviour
 
     void Update()
     {
-        HandleMovement();
-        HandleAttack();
-        FacePlayer();
+        if (BossMood == true)
+        {
+            HandleMovement();
+            HandleAttack();
+            FacePlayer();
+        }
+        else if(BossMood == false) 
+        {
+            //Movement();
+            MoveAttack();
+            FacePlayer();
+     
+        }
     }
 
+    //void Movement()
+    //{
+    //    if (player == null) return;
+
+    //    Vector2 direction = (player.position - transform.position).normalized;
+    //    rb.linearVelocity = new Vector2(direction.x * speed, rb.linearVelocity.y); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éƒvï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ÖˆÚ“ï¿½
+    //}
     void HandleAttack()
     {
         attackTimer -= Time.deltaTime;
         if (attackTimer <= 0f)
         {
             ExecuteAttack();
+            attackTimer = attackInterval;
+        }
+    }
+    void MoveAttack()
+    {
+        attackTimer -= Time.deltaTime;
+        if (attackTimer <= 0f)
+        {
+            Attack();
             attackTimer = attackInterval;
         }
     }
@@ -95,38 +127,47 @@ public class ScarletClawBoss : MonoBehaviour
                 break;
         }
     }
+    void Attack()
+    {
+        
+        Instantiate(missilePrefab2, firePoint.position, Quaternion.identity);
+        Instantiate(corePhasePrefab, firePoint.position, Quaternion.identity);
+    }
 
     public void TakeDamage(int damage)
     {
-        if (isInvulnerable) return;
+        if (BossMood == true)
+        {
+            if (isInvulnerable) return;
 
-        currentHP -= damage;
+            currentHP -= damage;
 
-        if (currentHP <= 600 && currentPhase == BossPhase.Phase1)
-        {
-            TransitionToPhase2();
-        }
-        else if (currentHP <= 300 && currentPhase == BossPhase.Phase2)
-        {
-            attackInterval /= 2;
-            TransitionToPhase3();
-        }
-        else if (currentHP <= 0)
-        {
-            Die();
+            if (currentHP <= 600 && currentPhase == BossPhase.Phase1)
+            {
+                TransitionToPhase2();
+            }
+            else if (currentHP <= 300 && currentPhase == BossPhase.Phase2)
+            {
+                attackInterval /= 2;
+                TransitionToPhase3();
+            }
+            else if (currentHP <= 0)
+            {
+                Die();
+            }
         }
     }
 
     void TransitionToPhase2()
     {
         currentPhase = BossPhase.Phase2;
-        // ”š”­‚â“_–Å‚Ì‰‰o‚ğ’Ç‰Á
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½Å‚Ì‰ï¿½ï¿½oï¿½ï¿½Ç‰ï¿½
     }
 
     void TransitionToPhase3()
     {
         currentPhase = BossPhase.Phase3;
-        // ƒRƒA˜Io‰‰o‚ğ’Ç‰Á
+        // ï¿½Rï¿½Aï¿½Iï¿½oï¿½ï¿½ï¿½oï¿½ï¿½Ç‰ï¿½
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -136,7 +177,7 @@ public class ScarletClawBoss : MonoBehaviour
             Bullet bullet = other.GetComponent<Bullet>();
             if (bullet != null)
             {
-                int damage = bullet.damage; // BulletƒXƒNƒŠƒvƒg“à‚Ìpublic•Ï”
+                int damage = bullet.damage; // Bulletï¿½Xï¿½Nï¿½ï¿½ï¿½vï¿½gï¿½ï¿½ï¿½ï¿½publicï¿½Ïï¿½
                 TakeDamage(damage);
                 Debug.Log("Boss hit! Damage: " + damage + " | Current HP: " + currentHP);
             }
@@ -147,7 +188,7 @@ public class ScarletClawBoss : MonoBehaviour
 
     void Die()
     {
-        // ”š”­E‰‰o
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Eï¿½ï¿½ï¿½o
         Destroy(gameObject);
     }
 }

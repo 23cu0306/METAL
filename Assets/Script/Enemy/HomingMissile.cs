@@ -16,8 +16,10 @@ public class HomingMissile : MonoBehaviour
 
     void Update()
     {
-        if (target == null) return;
-
+        if (target == null)
+        {
+            target = GameObject.FindGameObjectWithTag("Vehide")?.transform;
+        }
         Vector2 direction = (Vector2)target.position - (Vector2)transform.position;
         direction.Normalize();
 
