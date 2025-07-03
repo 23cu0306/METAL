@@ -2,39 +2,67 @@ using UnityEngine;
 
 public class Enemy_Jump : MonoBehaviour, Enemy_Manager
 {
-    public AudioClip jumpSound; //ジャンプする際の効果音
-    public Transform player;  // プレイヤーのTransform
-    public float speed = 3f;  // 敵の移動速度
-    public float jumpDistance = 2f;  // ジャンプする距離
-    public float jumpForce = 10f;  // ジャンプの力
-    public float jumpHorizontalForce = 5f;  // プレイヤー方向に向かって加える水平ジャンプ力
-    public int health = 20;  // 敵の体力
-    public GameObject deathEffect;  // 敵が消滅した際に表示するエフェクト
-    public int damage = 20;  // 敵のダメージ量
+    public enum EnemyState
+    {
+        JumpAttack,
+        FallAttack,
+        Idle,
+    }
 
-    private Rigidbody2D rb;  // 敵のRigidbody2D
-    private bool isGrounded;  // 地面にいるかどうかのフラグ
-    private bool isJumping;  // ジャンプしているかどうかのフラグ
+    public EnemyState currentState = EnemyState.JumpAttack;  // 初期行動パターンを指定可能に
 
-    public int scoreValue = 100;//スコア換算の値（死亡時の所に入れといた）
+    public AudioClip jumpSound;
+    public Transform player;
+    public float speed = 3f;
+    public float jumpDistance = 2f;
+    public float jumpForce = 10f;
+    public float jumpHorizontalForce = 5f;
+    public int health = 20;
+    public GameObject deathEffect;
+    public int damage = 20;
+    public float fallSpeed = 5f;  // 落下速度（FallAttack用）
+
+    private Rigidbody2D rb;
+    private bool isGrounded;
+    private bool isJumping;
+
+    public int scoreValue = 100;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        // 敵との衝突を無効化
-        int enemyLayer1 = LayerMask.NameToLayer("Enemy");
-        int enemyLayer2 = LayerMask.NameToLayer("Enemy");
-        Physics2D.IgnoreLayerCollision(enemyLayer1, enemyLayer2, true);
+        int enemyLayer = LayerMask.NameToLayer("Enemy");
+        Physics2D.IgnoreLayerCollision(enemyLayer, enemyLayer, true);
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        if (currentState == EnemyState.FallAttack)
+        {
+            isGrounded = false;
+        }
     }
 
     void Update()
     {
-        // ジャンプ中でないときのみ追跡を行う
+        switch (currentState)
+        {
+            case EnemyState.JumpAttack:
+                UpdateJumpAttack();
+                break;
+
+            case EnemyState.FallAttack:
+                UpdateFallAttack();
+                break;
+
+            case EnemyState.Idle:
+                break;
+        }
+    }
+
+    void UpdateJumpAttack()
+    {
         if (!isJumping)
         {
-            // プレイヤーが近くにいる場合、追跡してジャンプ
             float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
             if (distanceToPlayer < jumpDistance && isGrounded)
@@ -48,37 +76,60 @@ public class Enemy_Jump : MonoBehaviour, Enemy_Manager
         }
     }
 
-    // プレイヤーに向かって移動するメソッド
     void MoveTowardsPlayer()
     {
         Vector2 direction = (player.position - transform.position).normalized;
-        rb.linearVelocity = new Vector2(direction.x * speed, rb.linearVelocity.y); // 横方向に移動
+        Vector2 desiredVelocity = new Vector2(direction.x * speed, rb.linearVelocity.y);
+        Vector2 velocityChange = desiredVelocity - rb.linearVelocity;
+
+        // Impulseで速度差分だけ力を加える
+        rb.AddForce(velocityChange * rb.mass, ForceMode2D.Impulse);
     }
 
-    // プレイヤーの方向に向かってジャンプするメソッド
     void Jump()
     {
-        isJumping = true; // ジャンプ中フラグを立てる
-
-        // プレイヤーとの方向ベクトルを計算
+        isJumping = true;
         Vector2 jumpDirection = (player.position - transform.position).normalized;
 
-        // X方向にプレイヤーの方向を加えてジャンプ力を与える
-        rb.linearVelocity = new Vector2(jumpDirection.x * jumpHorizontalForce, jumpForce); // プレイヤー方向に向かってジャンプ
+        // いったん垂直速度をリセットしたいなら（警告がでるなら慎重に）
+        // rb.velocity = new Vector2(rb.velocity.x, 0f);
 
+        Vector2 jumpForceVector = new Vector2(jumpDirection.x * jumpHorizontalForce, jumpForce);
+        rb.AddForce(jumpForceVector * rb.mass, ForceMode2D.Impulse);
     }
 
-    // 敵が地面にいるかどうかをチェックするメソッド
+    void UpdateFallAttack()
+    {
+        if (!isGrounded)
+        {
+            Vector2 desiredVelocity = new Vector2(0, -fallSpeed);
+            Vector2 velocityChange = desiredVelocity - rb.linearVelocity;
+
+            rb.AddForce(velocityChange * rb.mass, ForceMode2D.Impulse);
+        }
+        else
+        {
+            currentState = EnemyState.Idle;
+            // 速度を即時0にしたい場合は以下の行をコメントアウトしたまま調整してみてください
+            // rb.velocity = Vector2.zero;
+        }
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
-            isJumping = false; // 地面に着いたらジャンプ中フラグを解除
+            isJumping = false;
+
+            // ここでFallAttackからJumpAttackに変更
+            if (currentState == EnemyState.FallAttack)
+            {
+                currentState = EnemyState.JumpAttack;
+            }
         }
     }
 
-    // 地面から離れたときにジャンプできないようにする
     void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
@@ -87,23 +138,18 @@ public class Enemy_Jump : MonoBehaviour, Enemy_Manager
         }
     }
 
-    // トリガーイベント
     void OnTriggerEnter2D(Collider2D other)
     {
-       
-        // プレイヤーに接触した場合
         if (other.CompareTag("Player"))
         {
-           
             Player playerHealth = other.GetComponent<Player>();
             if (playerHealth != null)
             {
-                playerHealth.TakeDamage(damage);  // プレイヤーにダメージを与える
+                playerHealth.TakeDamage(damage);
             }
         }
     }
 
-    // 体力を減らすメソッド
     public void TakeDamage(int Enemydamage)
     {
         health -= Enemydamage;
@@ -113,21 +159,14 @@ public class Enemy_Jump : MonoBehaviour, Enemy_Manager
         }
     }
 
-    // 敵が死んだときの処理
     void Die()
     {
-        
-
-        // 死亡エフェクトを表示
         if (deathEffect != null)
         {
             Instantiate(deathEffect, transform.position, Quaternion.identity);
         }
 
-        // 敵オブジェクトを消去
         Destroy(gameObject);
-        // スコア加算
         ScoreManager.Instance.AddScore(scoreValue);
     }
-
 }
