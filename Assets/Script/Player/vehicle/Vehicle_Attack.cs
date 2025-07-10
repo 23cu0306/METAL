@@ -229,39 +229,39 @@ public class Vehicle_Attack : MonoBehaviour
     //==================== 地面への着地判定と復元処理 ====================
     void HandleGroundState()
     {
-        if (vehicleScript == null) return;
+        //if (vehicleScript == null) return;
 
-        // vehicleScriptから地面にいるかの結果をもらう
-        bool isGroundedNow = vehicleScript.isGrounded;
-        if (!wasGrounded && isGroundedNow && currentDirection == Vector2.down)
-        {
-            // 空中で下撃ちしていて着地したら、方向を元に戻す
-            currentDirection = lastHorizontalDirection;
-            targetDirection = lastHorizontalDirection;
-            SetFirePointPosition(lastValidFirePointOffset);
-            Debug.Log("着地したため方向復元（下撃ち→左右）");
-        }
+        //// vehicleScriptから地面にいるかの結果をもらう
+        //bool isGroundedNow = vehicleScript.isGrounded;
+        //if (!wasGrounded && isGroundedNow && currentDirection == Vector2.down)
+        //{
+        //    // 空中で下撃ちしていて着地したら、方向を元に戻す
+        //    currentDirection = lastHorizontalDirection;
+        //    targetDirection = lastHorizontalDirection;
+        //    SetFirePointPosition(lastValidFirePointOffset);
+        //    Debug.Log("着地したため方向復元（下撃ち→左右）");
+        //}
 
-        // 地上にいるときに currentDirection が down のままなら復元する
-        else if (isGroundedNow && Vector2.Dot(currentDirection.normalized, Vector2.down) > 0.9f)
-        {
-            currentDirection = targetDirection = lastHorizontalDirection;
-            SetFirePointPosition(lastValidFirePointOffset);
-            Debug.Log("地上で下方向を維持していたので方向復元（下撃ち防止）");
-        }
+        //// 地上にいるときに currentDirection が down のままなら復元する
+        //else if (isGroundedNow && Vector2.Dot(currentDirection.normalized, Vector2.down) > 0.9f)
+        //{
+        //    currentDirection = targetDirection = lastHorizontalDirection;
+        //    SetFirePointPosition(lastValidFirePointOffset);
+        //    Debug.Log("地上で下方向を維持していたので方向復元（下撃ち防止）");
+        //}
 
-        wasGrounded = isGroundedNow;
+        //wasGrounded = isGroundedNow;
     }
 
     //==================== 発射可能かどうかを判定 ====================
     bool CanShoot()
     {
-        // 地上で下撃ちできないように制限
-        if (Vector2.Dot(currentDirection.normalized, Vector2.down) > 0.9f && vehicleScript.isGrounded)
-        {
-            Debug.Log("地上で下撃ちは禁止");
-            return false;
-        }
+        //// 地上で下撃ちできないように制限
+        //if (Vector2.Dot(currentDirection.normalized, Vector2.down) > 0.9f && vehicleScript.isGrounded)
+        //{
+        //    Debug.Log("地上で下撃ちは禁止");
+        //    return false;
+        //}
 
         // それ以外は打てるようにする
         return true;

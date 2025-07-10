@@ -95,8 +95,11 @@ public class Bullet : MonoBehaviour
                 boss.TakeDamage(damage);
             }
             Destroy(gameObject); // ’e‚ğÁ‚·
-
-
+        }
+        if (other.CompareTag("Ground"))
+        {
+            Debug.Log("’n–Ê‚ÉÚG");
+            Destroy(gameObject);
         }
     }
 }
