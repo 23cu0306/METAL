@@ -73,7 +73,7 @@ public class EnemySpawner : MonoBehaviour
         if (mState == State.Idle)
         {
             //Õ“Ë”ÍˆÍ‚ÉƒvƒŒƒCƒ„[‚ª“ü‚Á‚Ä‚«‚½‚ç
-            if (collision.gameObject.tag == "Player")
+            if (collision.gameObject.tag == "Player" || collision.gameObject.tag =="Vehicle")
             {
                 mState = State.Spawning;
             }

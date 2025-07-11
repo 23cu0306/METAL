@@ -1,35 +1,44 @@
-// æ‚è•¨‚Éæ‚é‚©‚Ì”»’è
+// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒä¹—ã‚‹ã‹åˆ¤æ–­ã™ã‚‹ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 using UnityEngine;
 
 public class VehicleEnterSensor : MonoBehaviour
 {
-    private vehicle_move vehicle;       // æ‚è•¨‚ÌƒXƒNƒŠƒvƒg‚ğQÆ
-    private bool isEnabled = true;      // ƒZƒ“ƒT[‚Ì—LŒø/–³Œø‚ğŠÇ—
+    private vehicle_move vehicle;       // ä¹—ã‚Šç‰©ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’å‚ç…§
+    private bool isEnabled = true;      // ã‚»ãƒ³ã‚µãƒ¼ã®æœ‰åŠ¹/ç„¡åŠ¹ã‚’ç®¡ç†
 
     void Start()
     {
-        // eƒIƒuƒWƒFƒNƒg‚É‚ ‚évehicle_moveƒRƒ“ƒ|[ƒlƒ“ƒg‚ğæ“¾iæ‚è•¨‚Ì§Œä—pj
+        // // è¦ªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ã‚ã‚‹vehicle_moveã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’å–å¾—ï¼ˆä¹—ã‚Šç‰©ã®åˆ¶å¾¡ç”¨ï¼‰
         vehicle = GetComponentInParent<vehicle_move>();
         if (vehicle == null)
         {
-            Debug.LogWarning("e‚É Vehicle ƒXƒNƒŠƒvƒg‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ");
+            Debug.LogWarning("è¦ªã« Vehicle ã‚¹ã‚¯ãƒªãƒ—ãƒˆãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“");
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // ƒZƒ“ƒT[‚ª–³Œø‚Ìê‡ˆ—‚µ‚È‚¢
+        // ã‚»ãƒ³ã‚µãƒ¼ãŒç„¡åŠ¹ã®å ´åˆå‡¦ç†ã—ãªã„
         if (!isEnabled) return;
 
-        // ÚG‚µ‚½‘Šè‚ªuPlayervƒ^ƒO‚Åæ‚è•¨‚ÌQÆ‚ª‚ ‚ê‚Îˆ—Às
+        // æ¥è§¦ã—ãŸç›¸æ‰‹ãŒã€ŒPlayerã€ã‚¿ã‚°ã§ä¹—ã‚Šç‰©ã®å‚ç…§ãŒã‚ã‚Œã°å‡¦ç†å®Ÿè¡Œ
         if (collision.CompareTag("Player") && vehicle != null)
         {
-            // ƒvƒŒƒCƒ„[‚ªæ‚è•¨‚Éæ‚éˆ—Àsó‘Ô‚Ö
-            vehicle.OnPlayerEnter(collision.gameObject);
+            // Rigidbody2D ã‚’å–å¾—ã—ã¦è½ä¸‹ä¸­ã‹ç¢ºèª
+            Rigidbody2D rb = collision.GetComponent<Rigidbody2D>();
+            if (rb != null && rb.linearVelocity.y < -0.1f) // -0.1f ãã‚‰ã„ã§å¾®å°ãªæºã‚Œã‚‚é™¤å¤–
+            {
+                Debug.Log("ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒè½ä¸‹ä¸­ãªã®ã§ä¹—ã‚Šè¾¼ã¿å‡¦ç†é–‹å§‹");
+                vehicle.OnPlayerEnter(collision.gameObject);
+            }
+            else
+            {
+                Debug.Log("ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒè½ä¸‹ä¸­ã§ãªã„ãŸã‚ä¹—ã‚Šè¾¼ã¿ç„¡åŠ¹");
+            }
         }
     }
 
-    // ƒZƒ“ƒT[‚Ì—LŒø/–³Œø‚ğŠO•”‚©‚çØ‚è‘Ö‚¦‚é—p(vehicle‚Ì“à•”‚Å•ÏX)
+    // ã‚»ãƒ³ã‚µãƒ¼ã®æœ‰åŠ¹/ç„¡åŠ¹ã‚’å¤–éƒ¨ã‹ã‚‰åˆ‡ã‚Šæ›¿ãˆã‚‹ç”¨(vehicleã®å†…éƒ¨ã§å¤‰æ›´)
     public void SetSensorEnabled(bool enabled)
     {
         isEnabled = enabled;

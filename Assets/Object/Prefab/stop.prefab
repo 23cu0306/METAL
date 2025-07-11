@@ -177,8 +177,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7577ef8c03d76414288ff28fffe59bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   jumpSound: {fileID: 0}
-  player: {fileID: 7323478143867855901, guid: a50f9fd37ecb70b4288b4106e1d7f9ce, type: 3}
+  player: {fileID: 0}
   speed: 15
   jumpDistance: 2
   jumpForce: 10
@@ -186,6 +187,7 @@ MonoBehaviour:
   health: 20
   deathEffect: {fileID: 649394730084515955, guid: b4153f711864cfe4ebfb5d14f18d383a, type: 3}
   damage: 20
+  fallSpeed: 5
   scoreValue: 100
 --- !u!114 &2938144913153030666
 MonoBehaviour:
