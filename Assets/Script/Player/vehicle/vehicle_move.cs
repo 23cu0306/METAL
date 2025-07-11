@@ -232,6 +232,16 @@ public class vehicle_move : MonoBehaviour
             // プレイヤーの最有効化
             rider.SetActive(true);
 
+            // 降車の際に着地するまでダメージを受けないように変更
+            Player playerScript = rider.GetComponent<Player>();
+            if (playerScript != null)
+            {
+                playerScript.isLandingInvincible = true;
+                playerScript.isInvincible = true;   // 視覚的に明示したい場合
+                playerScript.ForceShowSprite();     // プレイヤーが消えないように強制表示
+                Debug.Log("降車後プレイヤーを着地まで無敵に設定");
+            }
+
             // プレイヤーとの衝突を無効化
             int playerLayer = LayerMask.NameToLayer("Player");
             int vehicleLayer = LayerMask.NameToLayer("Vehicle");
@@ -395,6 +405,8 @@ public class vehicle_move : MonoBehaviour
 
             // プレイヤーをアクティブ状態に変更
             rider.SetActive(true);
+
+            
 
             // プレイヤーの位置を乗り物の少し上に移動
             rider.transform.position = transform.position + Vector3.up * 1.0f;
