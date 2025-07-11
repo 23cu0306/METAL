@@ -623,7 +623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9153388f6d3fe1740a95e106395a4586, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vehicle: {fileID: 0}
+  vehicle: {fileID: 838271707}
 --- !u!61 &161244681
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -844,7 +844,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 578293097641000402, guid: 71fa7d123797b174592ede8b93bad7e1, type: 3}
   m_PrefabInstance: {fileID: 249294117}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 518961153}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3fbfde878e9a2824fb2ffdc3bc53b888, type: 3}
@@ -855,7 +855,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3755241051999671243, guid: 71fa7d123797b174592ede8b93bad7e1, type: 3}
   m_PrefabInstance: {fileID: 249294117}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 518961153}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 95a74b34a8b040b4597176009bf76efc, type: 3}
@@ -964,6 +964,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0483335ad93430245b34599788c3cb6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &518961153 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8401028143153046387, guid: 71fa7d123797b174592ede8b93bad7e1, type: 3}
+  m_PrefabInstance: {fileID: 249294117}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &526119953
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1003,11 +1008,15 @@ PrefabInstance:
     - target: {fileID: 5239255058080110534, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 518961153}
     - target: {fileID: 5239255058080110534, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
       propertyPath: ExPrefab
       value: 
       objectReference: {fileID: 4407178277181556488, guid: 0178539635de9c44bbae347d351f4046, type: 3}
+    - target: {fileID: 7756079946621940111, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.87
+      objectReference: {fileID: 0}
     - target: {fileID: 9165783695796098830, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
       propertyPath: m_LocalPosition.x
       value: 273.29
@@ -1200,7 +1209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 363ec67dee7ff4a489f314e1dac256db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 518961153}
   cameraTransform: {fileID: 622343506}
   startZoomOut: 0
   moveSpeed: 2
@@ -1559,6 +1568,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd4c51f8618b1054fb90a613cab00f58, type: 3}
+--- !u!114 &838271707 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3232451776530154725, guid: 585495c216243b84da29e8a981576381, type: 3}
+  m_PrefabInstance: {fileID: 973995527}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d0ce21e5dbd734dacc9f42429ed63f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &892673462
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2329,7 +2349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9153388f6d3fe1740a95e106395a4586, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vehicle: {fileID: 0}
+  vehicle: {fileID: 838271707}
 --- !u!61 &1776797460
 BoxCollider2D:
   m_ObjectHideFlags: 0
