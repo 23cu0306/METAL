@@ -2445,7 +2445,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3232451776530154725, guid: 585495c216243b84da29e8a981576381, type: 3}
       propertyPath: autoDecreaseHP
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7834546239698009830, guid: 585495c216243b84da29e8a981576381, type: 3}
       propertyPath: m_GravityScale

@@ -40,10 +40,6 @@ public class Enemy_Jump : MonoBehaviour, Enemy_Manager
         int enemyLayer = LayerMask.NameToLayer("Enemy");
         Physics2D.IgnoreLayerCollision(enemyLayer, enemyLayer, true);
 
-<<<<<<< HEAD
-        // プレイヤーを自動で取得
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-=======
         //player = GameObject.FindGameObjectWithTag("Player").transform;
 
         // プレイヤーが乗り物に乗っていない時にTransformを取得
@@ -71,8 +67,6 @@ public class Enemy_Jump : MonoBehaviour, Enemy_Manager
                 }
             }
         }
-
->>>>>>> origin/main
 
         // FallAttack開始時は空中扱いにする
         if (currentState == EnemyState.FallAttack)
