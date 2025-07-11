@@ -562,4 +562,15 @@ public class Attack : MonoBehaviour
         isEnemyNearby = isNearby;
         nearbyEnemy = enemy;
     }
+
+    //==================== 残弾数表記を切り替えるのに使用 ====================
+    public bool IsMachineGunMode()
+    {
+        return isMachineGunMode;
+    }
+
+    public int GetMachineGunAmmo()
+    {
+        return machineGunAmmo;
+    }
 }
