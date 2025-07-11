@@ -13,10 +13,10 @@ public class CoreLaser : MonoBehaviour
         // ‚Ü‚¸Player‚ğ’T‚·
         target = GameObject.FindGameObjectWithTag("Player")?.transform;
 
-        // Player‚ª‚¢‚È‚¯‚ê‚ÎVehide‚ğ’T‚·
+        // Player‚ª‚¢‚È‚¯‚ê‚ÎVehicle‚ğ’T‚·
         if (target == null)
         {
-            target = GameObject.FindGameObjectWithTag("Vehide")?.transform;
+            target = GameObject.FindGameObjectWithTag("Vehicle")?.transform;
         }
 
         // ‚Ç‚¿‚ç‚©‚ªŒ©‚Â‚©‚Á‚½‚çA‚»‚Ì•ûŒü‚ÖŒü‚¯‚ÄŒ‚‚Â

@@ -62,13 +62,11 @@ public class vehicle_move : MonoBehaviour
         vehicleCollider = GetComponent<Collider2D>();
 
         // 敵やアイテムとの衝突を無効化
-        int itemLayer = LayerMask.NameToLayer("Item");
         int vehicleLayer = LayerMask.NameToLayer("Vehicle");
         int enemyLayer = LayerMask.NameToLayer("Enemy");
         int stopLayer = LayerMask.NameToLayer("Stop_Enemy");
         Physics2D.IgnoreLayerCollision(vehicleLayer, enemyLayer, true);
         Physics2D.IgnoreLayerCollision(vehicleLayer, stopLayer, true);
-        Physics2D.IgnoreLayerCollision(vehicleLayer, itemLayer, true);
 
         //---------------------------------------------------
         // HP自動減少コルーチンを開始（デバッグ用）
@@ -203,6 +201,10 @@ public class vehicle_move : MonoBehaviour
         SafeSetParent(rider.transform, this.transform);
 
         StartControl();         // 操作開始
+
+        // 乗り物の無敵タイマー開始
+        invincibleTimer = invincibleDuration;
+        Debug.Log($"乗車による無敵時間 {invincibleDuration} 秒開始");
     }
 
     // 操作を開始する(Inputを有効にする)
@@ -450,6 +452,11 @@ public class vehicle_move : MonoBehaviour
         isDestroying = false;
     }
 
+    public GameObject GetRider()
+    {
+        return rider;
+    }
+
     // 敵などからダメージを受けた時に呼ばれる関数
     public void TakeDamage(int damage)
     {
@@ -460,7 +467,7 @@ public class vehicle_move : MonoBehaviour
             return;
         }
 
-        // 無敵時間内なら処理をしない
+        // プレイヤーが乗り込んだ直後で一定時間いないならダメージ処理をしない
         if (invincibleTimer > 0f)
         {
             Debug.Log("無敵時間中のためダメージ無効");

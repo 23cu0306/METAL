@@ -12,7 +12,7 @@ TagManager:
   - TEXT
   - EnemyBullet
   - Enemy1
-  - Vehide
+  - Vehicle
   layers:
   - Default
   - TransparentFX

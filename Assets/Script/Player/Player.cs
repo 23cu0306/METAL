@@ -359,7 +359,6 @@ public class Player : MonoBehaviour
         if (spriteRenderer != null)
         {
             spriteRenderer.enabled = true;
-            Debug.Log("ForceShowSprite: スプライトを強制表示しました");
         }
     }
 
