@@ -419,7 +419,7 @@ public class vehicle_move : MonoBehaviour
             Rigidbody2D riderRb = rider.GetComponent<Rigidbody2D>();
             if (riderRb != null)
             {
-                riderRb.linearVelocity = new Vector2(0f, 20f); // 左：横、右：上への力
+                riderRb.linearVelocity = new Vector2(0f, 30f); // 左：横、右：上への力
             }
 
             // センサーを無効化
