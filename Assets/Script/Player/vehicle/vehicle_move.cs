@@ -8,7 +8,7 @@ public class vehicle_move : MonoBehaviour
     [Header("移動設定")]
     public float moveSpeed = 10f;               // 通常時の速度
     public float airMoveSpeed = 8f;             // 空中の時の速度
-    public float jumpForce = 20f;
+    public float jumpForce = 15f;
     public float fallMultiplier = 5f;           // 落下速度強化用の重力補正倍率
     public float lowJumpMultiplier = 2f;
     public　float upwardThreshold = 5f;         // ジャンプの高さ制限(この高さを超えたら重力)
@@ -333,7 +333,7 @@ public class vehicle_move : MonoBehaviour
         }
     }
 
-    //ジャンプからの落下が自然に見えるように修正
+    // ジャンプからの落下が自然に見えるように修正
     void HandleFall()
     {
         // 落下中（Y速度がマイナス）のときに重力を強化してより自然な落下感に
