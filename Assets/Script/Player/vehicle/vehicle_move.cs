@@ -62,13 +62,13 @@ public class vehicle_move : MonoBehaviour
         vehicleCollider = GetComponent<Collider2D>();
 
         // 敵やアイテムとの衝突を無効化
-        int itemLayer = LayerMask.NameToLayer("Item");
         int vehicleLayer = LayerMask.NameToLayer("Vehicle");
         int enemyLayer = LayerMask.NameToLayer("Enemy");
         int stopLayer = LayerMask.NameToLayer("Stop_Enemy");
+        int playerLayer = LayerMask.NameToLayer("Player");
         Physics2D.IgnoreLayerCollision(vehicleLayer, enemyLayer, true);
         Physics2D.IgnoreLayerCollision(vehicleLayer, stopLayer, true);
-        Physics2D.IgnoreLayerCollision(vehicleLayer, itemLayer, true);
+        Physics2D.IgnoreLayerCollision(vehicleLayer, playerLayer, true);
 
         //---------------------------------------------------
         // HP自動減少コルーチンを開始（デバッグ用）
@@ -203,6 +203,10 @@ public class vehicle_move : MonoBehaviour
         SafeSetParent(rider.transform, this.transform);
 
         StartControl();         // 操作開始
+
+        // 乗り物の無敵タイマー開始
+        invincibleTimer = invincibleDuration;
+        Debug.Log($"乗車による無敵時間 {invincibleDuration} 秒開始");
     }
 
     // 操作を開始する(Inputを有効にする)
@@ -232,10 +236,20 @@ public class vehicle_move : MonoBehaviour
             // プレイヤーの最有効化
             rider.SetActive(true);
 
-            // プレイヤーとの衝突を無効化
-            int playerLayer = LayerMask.NameToLayer("Player");
-            int vehicleLayer = LayerMask.NameToLayer("Vehicle");
-            Physics2D.IgnoreLayerCollision(playerLayer, vehicleLayer, true);
+            // 降車の際に着地するまでダメージを受けないように変更
+            Player playerScript = rider.GetComponent<Player>();
+            if (playerScript != null)
+            {
+                playerScript.isLandingInvincible = true;
+                playerScript.isInvincible = true;   // 視覚的に明示したい場合
+                playerScript.ForceShowSprite();     // プレイヤーが消えないように強制表示
+                Debug.Log("降車後プレイヤーを着地まで無敵に設定");
+            }
+
+            //// プレイヤーとの衝突を無効化
+            //int playerLayer = LayerMask.NameToLayer("Player");
+            //int vehicleLayer = LayerMask.NameToLayer("Vehicle");
+            //Physics2D.IgnoreLayerCollision(playerLayer, vehicleLayer, true);
 
             // 一度ジャンプをしてから乗り物の前に移動
             Rigidbody2D riderRb = rider.GetComponent<Rigidbody2D>();
@@ -269,10 +283,10 @@ public class vehicle_move : MonoBehaviour
             // 乗り物のコライダーを有効化(物理衝突を有効に)
             if (vehicleCollider != null) vehicleCollider.enabled = true;
 
-            // プレイヤーと乗り物のレイヤー間の衝突判定を再び有効に
-            int playerLayer = LayerMask.NameToLayer("Player");
-            int vehicleLayer = LayerMask.NameToLayer("Vehicle");
-            Physics2D.IgnoreLayerCollision(playerLayer, vehicleLayer, false);
+            //// プレイヤーと乗り物のレイヤー間の衝突判定を再び有効に
+            //int playerLayer = LayerMask.NameToLayer("Player");
+            //int vehicleLayer = LayerMask.NameToLayer("Vehicle");
+            //Physics2D.IgnoreLayerCollision(playerLayer, vehicleLayer, false);
 
             // 乗車用のセンサー有効化(乗車可能状態に)
             VehicleEnterSensor sensor = GetComponentInChildren<VehicleEnterSensor>();
@@ -396,6 +410,8 @@ public class vehicle_move : MonoBehaviour
             // プレイヤーをアクティブ状態に変更
             rider.SetActive(true);
 
+            
+
             // プレイヤーの位置を乗り物の少し上に移動
             rider.transform.position = transform.position + Vector3.up * 1.0f;
 
@@ -403,7 +419,7 @@ public class vehicle_move : MonoBehaviour
             Rigidbody2D riderRb = rider.GetComponent<Rigidbody2D>();
             if (riderRb != null)
             {
-                riderRb.linearVelocity = new Vector2(0f, 20f); // 左：横、右：上への力
+                riderRb.linearVelocity = new Vector2(0f, 30f); // 左：横、右：上への力
             }
 
             // センサーを無効化
@@ -428,14 +444,19 @@ public class vehicle_move : MonoBehaviour
         // 衝突を復活させる際に1フレーム待機させる
         yield return new WaitForEndOfFrame();
 
-        // PlayerとVehicleの衝突を有効化させる
-        int playerLayer = LayerMask.NameToLayer("Player");
-        int vehicleLayer = LayerMask.NameToLayer("Vehicle");
+        //// PlayerとVehicleの衝突を有効化させる
+        //int playerLayer = LayerMask.NameToLayer("Player");
+        //int vehicleLayer = LayerMask.NameToLayer("Vehicle");
 
-        Physics2D.IgnoreLayerCollision(playerLayer, vehicleLayer, false);
+        //Physics2D.IgnoreLayerCollision(playerLayer, vehicleLayer, false);
 
         // 二重侵入防止のフラグを下げる
         isDestroying = false;
+    }
+
+    public GameObject GetRider()
+    {
+        return rider;
     }
 
     // 敵などからダメージを受けた時に呼ばれる関数
@@ -448,7 +469,7 @@ public class vehicle_move : MonoBehaviour
             return;
         }
 
-        // 無敵時間内なら処理をしない
+        // プレイヤーが乗り込んだ直後で一定時間いないならダメージ処理をしない
         if (invincibleTimer > 0f)
         {
             Debug.Log("無敵時間中のためダメージ無効");

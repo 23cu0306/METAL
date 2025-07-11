@@ -29,5 +29,33 @@ public class MachineGunItem : MonoBehaviour
 
             Destroy(gameObject); // アイテムを削除
 		}
+
+        // 乗り物に接触した場合は自分を消してプレイヤーに弾を追加
+        if (other.CompareTag("Vehicle"))
+        {
+            vehicle_move vm = other.GetComponent<vehicle_move>();
+            if (vm != null && vm.IsControlled())
+            {
+                Debug.Log("乗り物がアイテムに接触");
+
+                // プレイヤーを取得
+                GameObject riderObj = vm.GetRider();
+                if (riderObj != null)
+                {
+                    Attack riderAttack = riderObj.GetComponent<Attack>();
+                    if (riderAttack != null)
+                    {
+                        riderAttack.ActivateMachineGunMode(machineGunAmmo);
+                        Debug.Log("乗車中プレイヤーにマシンガン弾を追加");
+                        SoundManager.Instance.PlaySound(itemSound, transform.position);
+                        Destroy(gameObject);
+                    }
+                    else
+                    {
+                        Debug.LogWarning("乗車中プレイヤーに Attack スクリプトが見つかりません");
+                    }
+                }
+            }
+        }
 	}
 }

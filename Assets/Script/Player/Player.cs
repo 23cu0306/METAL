@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
     private Vector3 respawnPosition;              // 落下・ダメージ時のリスポーン地点
 
     public int health = 50;                       // プレイヤーの体力（HP）
-    private bool isInvincible = false;            // 無敵状態中かどうか
+    public bool isInvincible = false;            // 無敵状態中かどうか
     public float invincibilityDuration = 2f;      // 無敵状態の持続時間（秒）
     public float blinkInterval = 0.1f;            // 無敵時の点滅間隔（秒）
 
@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
     private SpriteRenderer spriteRenderer;              //プレイヤーのスプライト表示用コンポーネント
 
     // 着地まで無敵かどうか
-    private bool isLandingInvincible = false;
+    public bool isLandingInvincible = false;
 
     // Input System 関連
     private PlayerControls controls;              // Input System 用のカスタムアセット
@@ -122,7 +122,7 @@ public class Player : MonoBehaviour
         // 円を使って地面と接触しているかを判定する
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
 
-        // === 追加: 降車後、最初の着地で無敵解除 ===
+        // 降車し地面に着地で無敵解除
         if (isLandingInvincible && !wasGrounded && isGrounded)
         {
             isLandingInvincible = false;
@@ -351,6 +351,15 @@ public class Player : MonoBehaviour
     {
         Debug.Log("プレイヤーが死亡しました");
         SceneManager.LoadScene("GameOverScene"); // ゲームオーバー画面へ遷移
+    }
+
+    // 他スクリプトからスプライトを強制表示させる用
+    public void ForceShowSprite()
+    {
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.enabled = true;
+        }
     }
 
     // 他スクリプトから接地状態を取得するためのゲッター

@@ -80,6 +80,7 @@
     <Compile Include="Assets\Script\Enemy\DecayBullet.cs" />
     <Compile Include="Assets\Script\Player\gurenerd.cs" />
     <Compile Include="Assets\Script\Scene\ScoreManager.cs" />
+    <Compile Include="Assets\Script\Scene\AmmoUI.cs" />
     <Compile Include="Assets\UnityTechnologies\EffectExamples\Shared\Scripts\ExtinguishableFire.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy_Shooter.cs" />
     <Compile Include="Assets\Script\Scene\TaitlManager.cs" />
