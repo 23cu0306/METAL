@@ -65,8 +65,10 @@ public class vehicle_move : MonoBehaviour
         int vehicleLayer = LayerMask.NameToLayer("Vehicle");
         int enemyLayer = LayerMask.NameToLayer("Enemy");
         int stopLayer = LayerMask.NameToLayer("Stop_Enemy");
+        int playerLayer = LayerMask.NameToLayer("Player");
         Physics2D.IgnoreLayerCollision(vehicleLayer, enemyLayer, true);
         Physics2D.IgnoreLayerCollision(vehicleLayer, stopLayer, true);
+        Physics2D.IgnoreLayerCollision(vehicleLayer, playerLayer, true);
 
         //---------------------------------------------------
         // HP自動減少コルーチンを開始（デバッグ用）
@@ -244,10 +246,10 @@ public class vehicle_move : MonoBehaviour
                 Debug.Log("降車後プレイヤーを着地まで無敵に設定");
             }
 
-            // プレイヤーとの衝突を無効化
-            int playerLayer = LayerMask.NameToLayer("Player");
-            int vehicleLayer = LayerMask.NameToLayer("Vehicle");
-            Physics2D.IgnoreLayerCollision(playerLayer, vehicleLayer, true);
+            //// プレイヤーとの衝突を無効化
+            //int playerLayer = LayerMask.NameToLayer("Player");
+            //int vehicleLayer = LayerMask.NameToLayer("Vehicle");
+            //Physics2D.IgnoreLayerCollision(playerLayer, vehicleLayer, true);
 
             // 一度ジャンプをしてから乗り物の前に移動
             Rigidbody2D riderRb = rider.GetComponent<Rigidbody2D>();
@@ -281,10 +283,10 @@ public class vehicle_move : MonoBehaviour
             // 乗り物のコライダーを有効化(物理衝突を有効に)
             if (vehicleCollider != null) vehicleCollider.enabled = true;
 
-            // プレイヤーと乗り物のレイヤー間の衝突判定を再び有効に
-            int playerLayer = LayerMask.NameToLayer("Player");
-            int vehicleLayer = LayerMask.NameToLayer("Vehicle");
-            Physics2D.IgnoreLayerCollision(playerLayer, vehicleLayer, false);
+            //// プレイヤーと乗り物のレイヤー間の衝突判定を再び有効に
+            //int playerLayer = LayerMask.NameToLayer("Player");
+            //int vehicleLayer = LayerMask.NameToLayer("Vehicle");
+            //Physics2D.IgnoreLayerCollision(playerLayer, vehicleLayer, false);
 
             // 乗車用のセンサー有効化(乗車可能状態に)
             VehicleEnterSensor sensor = GetComponentInChildren<VehicleEnterSensor>();
@@ -442,11 +444,11 @@ public class vehicle_move : MonoBehaviour
         // 衝突を復活させる際に1フレーム待機させる
         yield return new WaitForEndOfFrame();
 
-        // PlayerとVehicleの衝突を有効化させる
-        int playerLayer = LayerMask.NameToLayer("Player");
-        int vehicleLayer = LayerMask.NameToLayer("Vehicle");
+        //// PlayerとVehicleの衝突を有効化させる
+        //int playerLayer = LayerMask.NameToLayer("Player");
+        //int vehicleLayer = LayerMask.NameToLayer("Vehicle");
 
-        Physics2D.IgnoreLayerCollision(playerLayer, vehicleLayer, false);
+        //Physics2D.IgnoreLayerCollision(playerLayer, vehicleLayer, false);
 
         // 二重侵入防止のフラグを下げる
         isDestroying = false;

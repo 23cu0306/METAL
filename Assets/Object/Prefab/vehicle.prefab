@@ -108,7 +108,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 23.06, y: 1.7}
+  m_Size: {x: 24.99, y: 1.7}
   m_EdgeRadius: 0
 --- !u!114 &3623048076123097074
 MonoBehaviour:
@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 7834546239698009830}
   m_Layer: 13
   m_Name: vehicle
-  m_TagString: Vehide
+  m_TagString: Vehicle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -287,12 +287,13 @@ MonoBehaviour:
     m_Bits: 8
   isGrounded: 0
   VehicleHp: 100
-  explosionDamage: 50
+  explosionDamage: 70
   explosionRadius: 20
   explosionTargetLayers:
     serializedVersion: 2
     m_Bits: 384
-  VehicleDestroyDelayTime: 5
+  VehicleDestroyDelayTime: 3
+  invincibleDuration: 2
   hpDecreaseInterval: 1
   hpDecreaseAmount: 10
   autoDecreaseHP: 0
