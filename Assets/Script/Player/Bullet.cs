@@ -98,7 +98,6 @@ public class Bullet : MonoBehaviour
         }
         if (other.CompareTag("Ground"))
         {
-            Debug.Log("’n–Ê‚ÉÚG");
             Destroy(gameObject);
         }
     }
