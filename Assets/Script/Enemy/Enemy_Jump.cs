@@ -34,7 +34,34 @@ public class Enemy_Jump : MonoBehaviour, Enemy_Manager
         int enemyLayer = LayerMask.NameToLayer("Enemy");
         Physics2D.IgnoreLayerCollision(enemyLayer, enemyLayer, true);
 
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        //player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        // プレイヤーが乗り物に乗っていない時にTransformを取得
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+        {
+            // 通常のプレイヤーを取得
+            player = playerObj.transform;
+        }
+        else
+        {
+            // プレイヤーが乗り物に乗っていて非アクティブ状態の場合はこちらの処理を実行
+            GameObject vehicle = GameObject.FindGameObjectWithTag("Vehicle");
+            if (vehicle != null)
+            {
+                // vehicle_moveスクリプトを取得
+                vehicle_move vm = vehicle.GetComponent<vehicle_move>();
+                if (vm != null && vm.IsControlled())    // プレイヤーが乗車中か確認
+                {
+                    GameObject rider = vm.GetRider();   // rider=プレイヤー
+                    if (rider != null)
+                    {
+                        player = rider.transform;   // プレイヤーのTransformを登録
+                    }
+                }
+            }
+        }
+
 
         if (currentState == EnemyState.FallAttack)
         {
