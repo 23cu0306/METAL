@@ -114,7 +114,7 @@ public class GloomVisBoss : MonoBehaviour
 				Vector3 spawnPos = MSpawnPoint.position;
 
 				// X座標に乱数を加えた新しい位置を作成
-				Vector3 newPos = new Vector3(spawnPos.x + RNum, spawnPos.y, spawnPos.z);
+				Vector3 newPos = new Vector3(spawnPos.x + -RNum, spawnPos.y, spawnPos.z);
 
 				Instantiate(decayBulletPrefab, newPos, Quaternion.identity);
 
