@@ -37,7 +37,10 @@ public class GloomVisBoss : MonoBehaviour
 
 	private Animator animator;
 
-	void Start()
+    [SerializeField] private GameObject headObject;
+    private HeadBlinker headBlinker;                 // Headのスクリプトをキャッシュ
+
+    void Start()
 	{
 		currentHP = maxHP;
 		actionTimer = actionInterval;
@@ -45,6 +48,9 @@ public class GloomVisBoss : MonoBehaviour
 		animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalPosition = transform.position;
+        // HeadオブジェクトからHeadBlinkerスクリプトを取得（存在すれば）
+        if (headObject != null)
+            headBlinker = headObject.GetComponent<HeadBlinker>();
     }
 
 	void Update()
@@ -233,27 +239,25 @@ public class GloomVisBoss : MonoBehaviour
 			Die();
 		}
 	}
-    IEnumerator BlinkOnDamage()
+
+
+    /// <summary>
+    /// ダメージを受けたときに呼び出される点滅処理（Headに指示を出すだけ）
+    /// </summary>
+    private IEnumerator BlinkOnDamage()
     {
         isBlinking = true;
-        int blinkCount = 4;
-        float blinkDuration = 0.1f;
 
-        for (int i = 0; i < blinkCount; i++)
-        {
-            if (spriteRenderer != null)
-                spriteRenderer.enabled = false;
+        // Headオブジェクトに対して点滅を開始させる
+        if (headBlinker != null)
+            headBlinker.StartBlink(4, 0.1f); // 点滅4回、0.1秒間隔
 
-            yield return new WaitForSeconds(blinkDuration);
-
-            if (spriteRenderer != null)
-                spriteRenderer.enabled = true;
-
-            yield return new WaitForSeconds(blinkDuration);
-        }
+        // 全体の演出時間など調整する場合ここで待機
+        yield return new WaitForSeconds(0.8f);
 
         isBlinking = false;
     }
+
 
     void Die()
 	{

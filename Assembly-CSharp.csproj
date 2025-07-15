@@ -67,6 +67,7 @@
     <Compile Include="Assets\Script\Player\Metal_Manager.cs" />
     <Compile Include="Assets\Script\Scene\GameManager.cs" />
     <Compile Include="Assets\UnityTechnologies\EffectExamples\Shared\Scripts\ParticleExamples.cs" />
+    <Compile Include="Assets\Script\Enemy\HeadBlinker.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy_Bullet.cs" />
     <Compile Include="Assets\Script\Player\Attack.cs" />
     <Compile Include="Assets\UnityTechnologies\EffectExamples\Shared\Scripts\ParticleCollision.cs" />
