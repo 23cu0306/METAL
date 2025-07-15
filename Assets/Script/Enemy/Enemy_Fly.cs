@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Enemy_Fly : MonoBehaviour
+public class Enemy_Fly : MonoBehaviour, Enemy_Manager
 {
     // 敵の行動状態を表す列挙体（ステートマシン）
     public enum State
@@ -18,6 +18,9 @@ public class Enemy_Fly : MonoBehaviour
     public float glideCooldown = 3f;       // 前回の滑空攻撃からのクールタイム
     [Range(0f, 1f)]
     public float glideChance = 0.5f;       // 検知したときに滑空する確率（0〜1）
+    public int health = 20;              // 敵の体力
+    public GameObject deathEffect;       // 死亡時に生成するエフェクト
+    public int scoreValue = 100;         // 倒した時に加算されるスコア
 
     // ===== 内部状態管理用変数 =====
     private State currentState = State.Patrol; // 現在の行動状態（初期は巡回）
@@ -117,5 +120,30 @@ public class Enemy_Fly : MonoBehaviour
                 playerScript.TakeDamage(20); // プレイヤーにダメージを与える
             }
         }
+    }
+    // ダメージを受けた時の処理
+    public void TakeDamage(int Enemydamage)
+    {
+        health -= Enemydamage;
+
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    // 死亡処理
+    void Die()
+    {
+        if (deathEffect != null)
+        {
+            Instantiate(deathEffect, transform.position, Quaternion.identity);
+        }
+
+        // 自身を削除
+        Destroy(gameObject);
+
+        // スコアを加算
+        ScoreManager.Instance.AddScore(scoreValue);
     }
 }

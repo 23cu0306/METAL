@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5cd7a9385fd52c245883d3a876997eda
+guid: 339f5e0b338ed41439ff40b6ceacc02e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8692991198958538733
-    second: syagami_0
+      213: -4583759729981363908
+    second: "\u3057\u3083\u304C\u307F_\u8ABF\u6574\u6E08\u307F_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: syagami_0
+      name: "\u3057\u3083\u304C\u307F_\u8ABF\u6574\u6E08\u307F_0"
       rect:
         serializedVersion: 2
-        x: 39
-        y: 22
-        width: 428
-        height: 437
+        x: 35
+        y: 18
+        width: 402
+        height: 409
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 310ba7edf8a4c5780800000000000000
-      internalID: -8692991198958538733
+      spriteID: c3968b6bfc63360c0800000000000000
+      internalID: -4583759729981363908
       vertices: []
       indices: 
       edges: []
