@@ -20,6 +20,12 @@ public class Vehicle_Attack : MonoBehaviour
     private float burstInterval = 0.05f;  // バースト間隔（秒）
     private bool isBurstFiring = false;   // 現在バースト中か
 
+    //==================== 突進攻撃 ====================
+    private bool isDashing = false;              // 突進中かどうか
+    public float dashSpeed = 20f;                // 突進の速度
+    public LayerMask enemyLayerMask;             // 敵判定用のLayerMask
+    public float dashDetectionRadius = 0.5f;     // 衝突判定用の半径
+
     //==================== 乗り物関連 ====================
     [Header("乗り物接続")]
     public vehicle_move vehicleScript;                  // 乗り物のスクリプトを参照
@@ -52,6 +58,7 @@ public class Vehicle_Attack : MonoBehaviour
     private PlayerControls controls;
     private Vector2 moveInput;
     private bool attackPressed = false;  // 押した瞬間
+    private bool jumpPressed = false;
     //private bool attackHeld = false;    // 押しっぱなし(現在は使用していない)コメントアウト
 
     //==================== 初期化 ====================
@@ -77,6 +84,7 @@ public class Vehicle_Attack : MonoBehaviour
         // 攻撃ボタンが離されたときに呼ばれる処理
         // `canceled` は「ボタンが離された瞬間」に一度だけ発生する
         //controls.Player.Attack.canceled += ctx => attackHeld = false;コメントアウト
+        controls.Player.Jump.started += ctx => jumpPressed = true;
     }
 
     void OnEnable() => controls.Enable();
@@ -93,9 +101,30 @@ public class Vehicle_Attack : MonoBehaviour
         // プレイヤーが乗っていない場合、攻撃関連を一切処理しない
         if (!isControlled) return;
 
+        if (isDashing)
+        {
+            DashForward(); // 突進中の処理
+            return; // それ以外の操作は受け付けない
+        }
+
+
         HandleInput();              // 入力から方向決定
         UpdateDirectionLerp();      // 発射方向を補間して更新
         Attack();                   // 攻撃処理
+    }
+
+    void DashForward()
+    {
+        // 右に自動移動
+        transform.position += Vector3.right * dashSpeed * Time.deltaTime;
+
+        // 敵との衝突判定
+        Collider2D hit = Physics2D.OverlapCircle(transform.position, dashDetectionRadius, enemyLayerMask);
+        if (hit != null)
+        {
+            isDashing = false;
+            StartExplosion();  // 爆発処理を呼び出す
+        }
     }
 
     //==================== 入力方向に応じた射撃方向設定 ====================
@@ -145,6 +174,15 @@ public class Vehicle_Attack : MonoBehaviour
     //==================== 攻撃処理(ここで武器切り替え可能) ====================
     void Attack()
     {
+        if (attackPressed && jumpPressed)
+        {
+            // 同時押し時に突進開始
+            isDashing = true;
+            attackPressed = false;
+            jumpPressed = false;
+            return;
+        }
+
         //攻撃ボタンがおされたときに処理
         if (attackPressed)
         {
