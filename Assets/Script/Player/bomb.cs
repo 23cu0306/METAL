@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class bomb : MonoBehaviour
 {
@@ -11,22 +11,16 @@ public class bomb : MonoBehaviour
     public static int activeGrenadeCount = 0;
 
     private Rigidbody2D rb;
+    private bool isFacingRight = true; // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å‘ãã‚’ä¿æŒ
 
-    //void Start()
-    //{
-    //    //ƒvƒŒƒCƒ„[‚Æ“G‚Ö‚Ì•¨—“IÚG‚ğ–³Œø‰»
-    //    int playerLayer = LayerMask.NameToLayer("Player");
-    //    int bombLayer = LayerMask.NameToLayer("Bullet");
-    //    Physics2D.IgnoreLayerCollision(playerLayer, bombLayer, true);
+    // âœ… å‘ãã‚’è¨­å®šã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ï¼ˆé‡è¤‡ã—ãªã„ã‚ˆã†ã«1ã¤ã ã‘æ®‹ã™ï¼‰
+    public void SetDirection(bool facingRight)
+    {
+        isFacingRight = facingRight;
+    }
 
-    //    activeGrenadeCount++;
-    //    rb = GetComponent<Rigidbody2D>();
-    //    rb.AddForce(transform.right * throwForce + transform.up * (throwForce / 2), ForceMode2D.Impulse);
-    //    Invoke("Explode", explosionDelay);
-    //}
     void Start()
     {
-        // ƒvƒŒƒCƒ„[‚Æ“G‚Ö‚Ì•¨—“IÚG‚ğ–³Œø‰»
         int playerLayer = LayerMask.NameToLayer("Player");
         int bombLayer = LayerMask.NameToLayer("Bullet");
         Physics2D.IgnoreLayerCollision(playerLayer, bombLayer, true);
@@ -34,19 +28,8 @@ public class bomb : MonoBehaviour
         activeGrenadeCount++;
         rb = GetComponent<Rigidbody2D>();
 
-        // ƒvƒŒƒCƒ„[‚ÌŒü‚«‚É‰‚¶‚Ä“Š‚°‚é•ûŒü‚ğ•ÏX
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        Vector2 throwDirection = Vector2.right;
-
-        if (player != null)
-        {
-            SpriteRenderer playerSprite = player.GetComponent<SpriteRenderer>();
-            if (playerSprite != null && playerSprite.flipX)
-            {
-                throwDirection = Vector2.left; // ¶Œü‚«‚È‚ç¶‚É“Š‚°‚é
-            }
-        }
-
+        // âœ… ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å‘ãã«å¿œã˜ã¦æŠ•ã’ã‚‹
+        Vector2 throwDirection = isFacingRight ? Vector2.right : Vector2.left;
         rb.AddForce(throwDirection * throwForce + Vector2.up * (throwForce / 2), ForceMode2D.Impulse);
 
         Invoke("Explode", explosionDelay);
@@ -54,45 +37,28 @@ public class bomb : MonoBehaviour
 
     void Explode()
     {
-        // ”š”­ƒGƒtƒFƒNƒg
         Instantiate(explosionEffect, transform.position, transform.rotation);
-
-        //Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
-        //  foreach (Collider2D col in enemies)
-        //  {
-        //      if (col.CompareTag("Enemy"))
-        //      {
-        //          // “G‚Éƒ_ƒ[ƒW‚ğ—^‚¦‚éˆ—iEnemyƒXƒNƒŠƒvƒg‚ğŒÄ‚Ô‚È‚Çj
-        //          col.GetComponent<GloomVisBoss>()?.TakeDamage(damage);
-        //          col.GetComponent<ScarletClawBoss>()?.TakeDamage((int)damage);
-        //      }
-        //  }
-
         activeGrenadeCount--;
-        // ƒOƒŒƒl[ƒh‚ğíœ
         Destroy(gameObject);
-        // AudioManager ‚ğg‚Á‚ÄŒø‰Ê‰¹‚ğÄ¶
         SoundManager.Instance.PlaySound(bombSound, transform.position);
-
     }
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            //”š”­ƒGƒtƒFƒNƒg
             Instantiate(explosionEffect, transform.position, transform.rotation);
-            // Enemy_ManagerƒCƒ“ƒ^[ƒtƒF[ƒX‚ğÀ‘•‚µ‚Ä‚¢‚éƒRƒ“ƒ|[ƒlƒ“ƒg‚ğæ“¾
             Enemy_Manager enemy = collision.gameObject.GetComponent<Enemy_Manager>();
             if (enemy != null)
             {
                 enemy.TakeDamage(damage);
             }
-            // AudioManager ‚ğg‚Á‚ÄŒø‰Ê‰¹‚ğÄ¶
             SoundManager.Instance.PlaySound(bombSound, transform.position);
 
             activeGrenadeCount--;

@@ -5,37 +5,26 @@ public class gurenerd : MonoBehaviour
 {
     public GameObject grenadePrefab;
     public Transform grenadeSpawnPoint;
+    public float throwForce = 10f; // 投げる力
     private bool isFacingRight = true;
 
     public PlayerControls playerControls; // Input Action のスクリプタブルオブジェクト
 
     void Awake()
     {
-        //入力定義クラスのインスタンスを生成
         playerControls = new PlayerControls();
     }
 
     void OnEnable()
     {
-        //実際に入力を受け付けるように有効化
         playerControls.Enable();
     }
 
-
-    //void OnDisable()
-    //{
-    //    //無効化時に入力も止める
-    //    playerControls.Disable();
-    //}
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void OnDisable()
     {
-        
+        playerControls.Disable();
     }
 
-    // Update is called once per frame
     void Update()
     {
         ThrowGrenade();
@@ -43,14 +32,31 @@ public class gurenerd : MonoBehaviour
 
     void ThrowGrenade()
     {
-        if (playerControls.Player.Bomb.triggered && bomb.activeGrenadeCount < 2) // グレネード投擲キー
+        if (playerControls.Player.Bomb.triggered && bomb.activeGrenadeCount < 2)
         {
             GameObject grenade = Instantiate(grenadePrefab, grenadeSpawnPoint.position, Quaternion.identity);
-            
-            // 向いている方向に応じて回転
-            Vector3 scale = grenade.transform.localScale;
-            scale.x = isFacingRight ? Mathf.Abs(scale.x) : -Mathf.Abs(scale.x);
-            grenade.transform.localScale = scale;
+
+            // PlayerのflipXを参照
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
+            {
+                SpriteRenderer sr = player.GetComponentInChildren<SpriteRenderer>();
+                bool isFacingRight = !(sr != null && sr.flipX); // flipXなら左向き
+                bomb bombScript = grenade.GetComponent<bomb>();
+                if (bombScript != null)
+                {
+                    bombScript.SetDirection(isFacingRight);
+                }
+            }
         }
+
+
+    }
+
+    // プレイヤーの向きを更新する処理（例: 移動方向で判定）
+    public void SetFacingDirection(float moveX)
+    {
+        if (moveX > 0) isFacingRight = true;
+        else if (moveX < 0) isFacingRight = false;
     }
 }

@@ -12,6 +12,8 @@ public class BilliardEnemy : MonoBehaviour
     public float laserSpeed = 10f;       // レーザーの速さ
     public Color laserColor = Color.red; // レーザーの色
     [Range(0f, 1f)]
+    public float currentHP = 100;
+
     public float playerTargetChance = 0.5f; // プレイヤーを狙う確率（0.5で50%）
 
     [Header("ターゲット設定")]
@@ -51,6 +53,18 @@ public class BilliardEnemy : MonoBehaviour
         {
             Vector2 normal = collision.contacts[0].normal;
             moveDirection = Vector2.Reflect(moveDirection, normal).normalized;
+        }
+    }
+
+    public void TakeDamage(float dmg)
+    {
+        currentHP -= dmg;
+        Debug.Log("ダメージ量 " + dmg + "ボス残り HP: " + currentHP);
+       // if (!isBlinking)
+          //  StartCoroutine(BlinkOnDamage());
+        if (currentHP <= 0)
+        {
+           // Die();
         }
     }
 
