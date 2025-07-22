@@ -24,11 +24,16 @@ public class Player : MonoBehaviour
     private bool isGrounded;                      // 地面に接しているかのフラグ
 
     [Header("しゃがみ設定")]
-    private bool isCrouching = false;             // 現在しゃがみ中かどうか
-    private Vector2 standingSize;                 // 通常時（立ち状態）のコライダーサイズ
-    private Vector2 crouchingSize;                // しゃがみ時のコライダーサイズ
-    private Vector2 standingOffset;               // 立っている状態
-    private Vector2 crouchingOffset;              // しゃがみ状態
+    private bool isCrouching = false;               // 現在しゃがみ中かどうか
+    private Vector2 standingSize;                   // 通常時（立ち状態）のコライダーサイズ
+    private Vector2 crouchingSize;                  // しゃがみ時のコライダーサイズ
+    private Vector2 standingOffset;                 // 立っている状態
+    [SerializeField]private Vector2 crouchingOffset = new Vector2(0f, -0.25f);// しゃがみ状態
+
+    // しゃがみ→立ち・立ち→しゃがみに切り替えるとき滑らかにボックスコライダーが上にずれる用(補間)
+    private Vector2 currentOffset;           // 今の補間中のオフセット
+    private Vector2 targetOffset;            // 補間先（目標）のオフセット
+    public float crouchTransitionSpeed = 10f; // 補間のスピード（大きいほど速く切り替わる）
 
     public Collider2D headCheckCollider;          // 頭上に障害物があるか確認するためのコライダー
     private bool isCeilingBlocked = false;        // 頭上に何かがある場合 true
@@ -45,6 +50,15 @@ public class Player : MonoBehaviour
     [SerializeField] private Sprite crouchingSprite;    // しゃがみ状態
     [SerializeField] private Sprite jumpngSprite;       // ジャンプ状態
     private SpriteRenderer spriteRenderer;              //プレイヤーのスプライト表示用コンポーネント
+
+    //-------------------------------------------------------------
+    // Spriteを表示する子オブジェクト
+    [SerializeField] private Transform spriteRoot;
+
+    // 各状態に応じたSpriteの見た目位置（localPositionで調整）
+    [SerializeField] private Vector2 standingSpriteOffset = Vector2.zero;
+    [SerializeField] private Vector2 crouchingSpriteOffset = new Vector2(0f, -0.75f);
+    //-------------------------------------------------------------
 
     // 着地まで無敵かどうか
     public bool isLandingInvincible = false;
@@ -80,6 +94,10 @@ public class Player : MonoBehaviour
         Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, true);
         Physics2D.IgnoreLayerCollision(playerLayer, stopLayer, true);
 
+        spriteRenderer = spriteRoot.GetComponent<SpriteRenderer>();
+
+
+
         // 各コンポーネントの取得と初期設定
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<BoxCollider2D>();
@@ -88,7 +106,7 @@ public class Player : MonoBehaviour
         standingSize = col.size;
         crouchingSize = new Vector2(standingSize.x, standingSize.y / 2f);
 
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        //spriteRenderer = GetComponent<SpriteRenderer>();
         respawnPosition = transform.position; // 初期位置をリスポーン地点として保存
 
         //立ち状態のBoxCollider2Dのサイズを保存
@@ -101,6 +119,9 @@ public class Player : MonoBehaviour
         //しゃがみ時のオフセット
         //高さが縮んだ分、中央基準のBoxColliderを足元に合わせて下へずらすことで地面のめり込みを解決
         crouchingOffset = new Vector2(standingOffset.x, standingOffset.y - (standingSize.y - crouchingSize.y) / 2f);
+
+        currentOffset = col.offset;
+        targetOffset = col.offset;
     }
 
     void Update()
@@ -138,18 +159,19 @@ public class Player : MonoBehaviour
         if (!isGrounded)
         {
             spriteRenderer.sprite = jumpngSprite;
+            if (spriteRoot != null) spriteRoot.localPosition = standingSpriteOffset;
         }
-
         //しゃがみ状態
         else if (isCrouching)
         {
             spriteRenderer.sprite = crouchingSprite;
+            if (spriteRoot != null) spriteRoot.localPosition = crouchingSpriteOffset;
         }
-
         //立ち状態
         else
         {
             spriteRenderer.sprite = standingSprite;
+            if (spriteRoot != null) spriteRoot.localPosition = standingSpriteOffset;
         }
     }
 
@@ -261,6 +283,8 @@ public class Player : MonoBehaviour
 
                 //コライダーのオフセットも下にずらして足元に揃える
                 col.offset = crouchingOffset;
+
+
             }
             else if (isCrouching)
             {
