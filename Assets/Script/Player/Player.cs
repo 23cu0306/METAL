@@ -187,14 +187,14 @@ public class Player : MonoBehaviour
             // 左右移動入力を正規化
             Vector2 moveDir = new Vector2(Mathf.Sign(input.x), 0f);
             Vector2 aimDir = input.normalized;
-            //プレイヤーの左右の向きの切り替え
-            if(moveDir.x > 0.4f)
+            // プレイヤーの左右の向きの切り替え
+            if (moveDir.x > 0.4f)
             {
-                spriteRenderer.flipX = false;
+                spriteRenderer.flipX = false; // 右
             }
-            else if(moveDir.y < 0.4f)
+            else if (moveDir.x < -0.4f)
             {
-                spriteRenderer.flipX = true;
+                spriteRenderer.flipX = true; // 左 
             }
 
             // 入力方向の角度から「上方向」入力を検出（未使用）
