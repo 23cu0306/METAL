@@ -126,6 +126,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""KAMIKAZE"",
+                    ""type"": ""Button"",
+                    ""id"": ""3c91d0e0-7a24-4ff1-920b-5304ecb72e75"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -172,6 +181,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Bomb"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""61cd68f6-ee02-41b3-a09b-315a95b6a3be"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""KAMIKAZE"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -184,6 +204,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_Bomb = m_Player.FindAction("Bomb", throwIfNotFound: true);
+        m_Player_KAMIKAZE = m_Player.FindAction("KAMIKAZE", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -268,6 +289,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_Bomb;
+    private readonly InputAction m_Player_KAMIKAZE;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -295,6 +317,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Bomb".
         /// </summary>
         public InputAction @Bomb => m_Wrapper.m_Player_Bomb;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/KAMIKAZE".
+        /// </summary>
+        public InputAction @KAMIKAZE => m_Wrapper.m_Player_KAMIKAZE;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -333,6 +359,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Bomb.started += instance.OnBomb;
             @Bomb.performed += instance.OnBomb;
             @Bomb.canceled += instance.OnBomb;
+            @KAMIKAZE.started += instance.OnKAMIKAZE;
+            @KAMIKAZE.performed += instance.OnKAMIKAZE;
+            @KAMIKAZE.canceled += instance.OnKAMIKAZE;
         }
 
         /// <summary>
@@ -356,6 +385,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Bomb.started -= instance.OnBomb;
             @Bomb.performed -= instance.OnBomb;
             @Bomb.canceled -= instance.OnBomb;
+            @KAMIKAZE.started -= instance.OnKAMIKAZE;
+            @KAMIKAZE.performed -= instance.OnKAMIKAZE;
+            @KAMIKAZE.canceled -= instance.OnKAMIKAZE;
         }
 
         /// <summary>
@@ -424,5 +456,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnBomb(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "KAMIKAZE" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnKAMIKAZE(InputAction.CallbackContext context);
     }
 }

@@ -87,7 +87,6 @@
     <Compile Include="Assets\Script\Enemy\Enemy_Shooter.cs" />
     <Compile Include="Assets\Script\Scene\TaitlManager.cs" />
     <Compile Include="Assets\Script\Player\bomb.cs" />
-    <Compile Include="Assets\UnityTechnologies\PlayerControls.cs" />
     <Compile Include="Assets\Script\Enemy\Laser.cs" />
     <Compile Include="Assets\UnityTechnologies\EffectExamples\Shared\Scripts\ParticleMenu.cs" />
     <Compile Include="Assets\Script\Scene\NextStage.cs" />
@@ -112,6 +111,7 @@
     <Compile Include="Assets\Script\Explosion_Delete.cs" />
     <Compile Include="Assets\BilliardEnemy.cs" />
     <Compile Include="Assets\Script\Player\Player_Attack_practice\Attack_Interface.cs" />
+    <Compile Include="Assets\PlayerControls.cs" />
     <Compile Include="Assets\UnityTechnologies\EffectExamples\Shared\Scripts\GunShoot.cs" />
     <Compile Include="Assets\Script\Enemy\CameraLock.cs" />
     <Compile Include="Assets\Script\Enemy\EnemySpawner.cs" />

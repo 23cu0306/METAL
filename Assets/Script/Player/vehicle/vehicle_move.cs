@@ -23,6 +23,7 @@ public class vehicle_move : MonoBehaviour
     public float VehicleHp = 100;               // 乗り物のHP
 
     [Header("乗り物破壊の詳細設定")]
+    public  Vehicle_Attack vehicleattack;
     public int explosionDamage = 70;            // 爆発のダメージ量
     public float explosionRadius = 20.0f;       // ダメージ範囲
     public LayerMask explosionTargetLayers;     // ダメージを与える対象レイヤー
@@ -53,6 +54,9 @@ public class vehicle_move : MonoBehaviour
     private bool isExiting = false;              // 降車中かの判定
     private Collider2D vehicleCollider;
     private float exitResetDistance = 5.0f;      // 5以上離れたら復帰
+
+    // プレイヤーの操作が無効かどうか
+    public bool canControl = true;
 
     private void Start()
     {
@@ -150,6 +154,8 @@ public class vehicle_move : MonoBehaviour
         // 乗り物のHPが0を下回ったらカウントをして処理
         if (VehicleHp <= 0f && !isDestroying)
         {
+            // 乗り物のHP0の爆破ダメージに設定
+            vehicleattack.isExploding = true;
             Debug.Log("破壊処理開始");
             // カウント開始
             StartCoroutine(VehicleDestroyDelay());
@@ -319,6 +325,8 @@ public class vehicle_move : MonoBehaviour
     // ジャンプ・降車処理
     private void HandleJump()
     {
+        if (!canControl) return;
+
         // 下入力＋ジャンプ入力で降車
         if (moveInput.y < -0.5f && rider != null && isGrounded)
         {
@@ -419,7 +427,7 @@ public class vehicle_move : MonoBehaviour
             Rigidbody2D riderRb = rider.GetComponent<Rigidbody2D>();
             if (riderRb != null)
             {
-                riderRb.linearVelocity = new Vector2(0f, 30f); // 左：横、右：上への力
+                riderRb.linearVelocity = new Vector2(0f, 20f); // 左：横、右：上への力
             }
 
             // センサーを無効化
@@ -436,6 +444,37 @@ public class vehicle_move : MonoBehaviour
             attack.StartExplosion();
         }
     }
+
+    public void Exit()
+    {
+        // プレイヤー排出処理
+        if (rider != null)
+        {
+            // プレイヤーを自身の子オブジェクトから解除
+            SafeSetParent(rider.transform, null);
+
+            // プレイヤーをアクティブ状態に変更
+            rider.SetActive(true);
+
+            // プレイヤーの位置を乗り物の少し上に移動
+            rider.transform.position = transform.position + Vector3.up * 1.0f;
+
+            // 少し上にジャンプさせる
+            Rigidbody2D riderRb = rider.GetComponent<Rigidbody2D>();
+            if (riderRb != null)
+            {
+                riderRb.linearVelocity = new Vector2(0f,20f); // 左：横、右：上への力
+            }
+
+            // センサーを無効化
+            VehicleEnterSensor sensor = GetComponentInChildren<VehicleEnterSensor>();
+            if (sensor != null)
+            {
+                sensor.SetSensorEnabled(false); // VehicleEnterSensorクラスのフラグ変更
+            }
+        }
+    }
+
 
     // 乗り物を破壊後に1フレーム待ってからプレイヤーと乗り物の接触判定を有効化する処理
     // 破壊時に一時的に無効化していた衝突を復元する際に仕様

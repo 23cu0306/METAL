@@ -26,6 +26,10 @@ public class Vehicle_Attack : MonoBehaviour
     public LayerMask enemyLayerMask;             // 敵判定用のLayerMask
     public float dashDetectionRadius = 0.5f;     // 衝突判定用の半径
 
+    // ダメージを分けるため
+    public bool isExploding = false;    // 乗り物がHP0で爆破な場合
+    public bool isCharging = false;     // 突進攻撃の場合
+
     //==================== 乗り物関連 ====================
     [Header("乗り物接続")]
     public vehicle_move vehicleScript;                  // 乗り物のスクリプトを参照
@@ -58,8 +62,7 @@ public class Vehicle_Attack : MonoBehaviour
     private PlayerControls controls;
     private Vector2 moveInput;
     private bool attackPressed = false;  // 押した瞬間
-    private bool jumpPressed = false;
-    //private bool attackHeld = false;    // 押しっぱなし(現在は使用していない)コメントアウト
+    private bool dashButtonPressed = false;
 
     //==================== 初期化 ====================
     void Awake()
@@ -84,7 +87,9 @@ public class Vehicle_Attack : MonoBehaviour
         // 攻撃ボタンが離されたときに呼ばれる処理
         // `canceled` は「ボタンが離された瞬間」に一度だけ発生する
         //controls.Player.Attack.canceled += ctx => attackHeld = false;コメントアウト
-        controls.Player.Jump.started += ctx => jumpPressed = true;
+        // Dashボタン（Westボタン）入力（PlayerControlsにDashアクションがある前提）
+        controls.Player.KAMIKAZE.started += ctx => dashButtonPressed = true;
+        controls.Player.KAMIKAZE.canceled += ctx => dashButtonPressed = false;
     }
 
     void OnEnable() => controls.Enable();
@@ -115,6 +120,7 @@ public class Vehicle_Attack : MonoBehaviour
 
     void DashForward()
     {
+        if (!isControlled) return;
         // 右に自動移動
         transform.position += Vector3.right * dashSpeed * Time.deltaTime;
 
@@ -174,12 +180,19 @@ public class Vehicle_Attack : MonoBehaviour
     //==================== 攻撃処理(ここで武器切り替え可能) ====================
     void Attack()
     {
-        if (attackPressed && jumpPressed)
+        if (dashButtonPressed && moveInput.y < -0.5f && vehicleScript.isGrounded)
         {
+            // 突進攻撃のダメージに設定
+            isCharging = true;
             // 同時押し時に突進開始
-            isDashing = true;
             attackPressed = false;
-            jumpPressed = false;
+
+            vehicleScript.canControl = false;
+
+            // 突進開始前にプレイヤーを乗り物から降ろす処理を呼ぶ
+            vehicleScript.Exit();
+
+            isDashing = true;
             return;
         }
 
@@ -280,22 +293,30 @@ public class Vehicle_Attack : MonoBehaviour
         foreach (var col in targets)
         {
             // 敵にダメージ
-            if (col.CompareTag("Enemy"))
+            if (isExploding)
             {
-                var enemy = col.GetComponent<Enemy_Manager>();
-                if (enemy != null) enemy.TakeDamage(vehicleScript.explosionDamage);
+                // プレイヤーにダメージ
+                if (col.CompareTag("Player"))
+                {
+                    var player = col.GetComponent<Player>();
+                    if (player != null) player.TakeDamage(vehicleScript.explosionDamage);
+                }
             }
-            // ボスにダメージ
-            else if (col.CompareTag("WeakPoint"))
+
+            else if (isCharging)
             {
-                var boss = col.GetComponentInParent<GloomVisBoss>();
-                if (boss != null) boss.TakeDamage(vehicleScript.explosionDamage);
-            }
-            // プレイヤーにダメージ
-            else if (col.CompareTag("Player"))
-            {
-                var player = col.GetComponent<Player>();
-                if (player != null) player.TakeDamage(vehicleScript.explosionDamage);
+                // ボスにダメージ
+                if (col.CompareTag("WeakPoint"))
+                {
+                    var boss = col.GetComponentInParent<GloomVisBoss>();
+                    if (boss != null) boss.TakeDamage(vehicleScript.explosionDamage);
+                }
+
+                else if (col.CompareTag("Enemy"))
+                {
+                    var enemy = col.GetComponent<Enemy_Manager>();
+                    if (enemy != null) enemy.TakeDamage(vehicleScript.explosionDamage);
+                }
             }
         }
 
