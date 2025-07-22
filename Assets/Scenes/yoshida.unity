@@ -2447,6 +2447,10 @@ PrefabInstance:
       propertyPath: autoDecreaseHP
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4717073455184149223, guid: 585495c216243b84da29e8a981576381, type: 3}
+      propertyPath: enemyLayerMask.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 7834546239698009830, guid: 585495c216243b84da29e8a981576381, type: 3}
       propertyPath: m_GravityScale
       value: 2
