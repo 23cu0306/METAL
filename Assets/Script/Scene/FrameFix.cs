@@ -16,8 +16,10 @@ public class FrameFix : MonoBehaviour
     //x座標更新地
     float HormingLine;
 
-   
-
+    // 前フレームの追従状態
+    bool previousIsHorming;
+    // 敵スポナーに当たって追従が止まったか
+    bool hasStoppedBySpawner = false;
 
     public Transform cameraTransform; // カメラのTransform
 
@@ -39,6 +41,8 @@ public class FrameFix : MonoBehaviour
         _pl = GameObject.Find("Player").GetComponent<Player>();
         HormingLine = transform.position.x;
         Debug.Log("取得");
+
+        previousIsHorming = IsHorming; // 初期値
     }
 
     // Update is called once per frame
@@ -53,6 +57,26 @@ public class FrameFix : MonoBehaviour
         }
 
         PlayerHorming(IsHorming);
+
+        // 敵スポナーに当たって止まったかどうか判定
+        if (!IsHorming && InCamera())
+        {
+            hasStoppedBySpawner = true;
+        }
+
+        // 追従開始した瞬間（falseからtrueへ）かつ敵スポナーで止まったなら時間リセット
+        if (previousIsHorming == false && IsHorming == true && hasStoppedBySpawner)
+        {
+            if (TimeText.Instance != null)
+            {
+                TimeText.Instance.ResetTime();
+            }
+
+            // リセットしたらフラグを戻す
+            hasStoppedBySpawner = false;
+        }
+
+        previousIsHorming = IsHorming;
     }
 
 
@@ -137,9 +161,6 @@ public class FrameFix : MonoBehaviour
     //敵が画面内にいるかいないか
     bool InCamera()
     {
-        // 判定結果用の変数
-        bool result = false;
-
         //稼働中のスポナーがあるか
         EnemySpawner[] spawners = GameObject.FindObjectsByType<EnemySpawner>(FindObjectsSortMode.InstanceID);
         foreach(EnemySpawner enemySpawner in spawners)

@@ -43,6 +43,13 @@ public class TimeText : MonoBehaviour
         remainingTime += timeToAdd;
     }
 
+    public void ResetTime()
+    {
+        remainingTime = 99f;  // 必要に応じて変更可能
+        isGameOver = false;
+        UpdateTimeUI();
+    }
+
     void UpdateTimeUI()
     {
         timeText.text = "Time: " + Mathf.CeilToInt(remainingTime).ToString() + "s";
