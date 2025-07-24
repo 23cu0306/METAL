@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "D:\\23cu0311\\MS\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\23cu0311\\MS\\Assets\\Script\\Enemy\\GloomVisBoss.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Script\\Enemy\\GloomVisBoss.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\23cu0311\\MS\\Assets\\Script\\Enemy\\meteo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Script\\Enemy\\meteo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\23cu0311\\MS\\Assets\\BilliardEnemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\BilliardEnemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\23cu0311\\MS\\Assets\\Script\\Enemy\\GloomVisBoss.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Script\\Enemy\\GloomVisBoss.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\23cu0311\\MS\\Assets\\Script\\Player\\Bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -33,10 +37,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\23cu0311\\MS\\Assets\\LeftRightMovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\LeftRightMovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\23cu0311\\MS\\Assets\\Script\\Enemy\\meteo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Script\\Enemy\\meteo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\23cu0311\\MS\\Assets\\Script\\Enemy\\Enemy_Jump.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -190,11 +190,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 11,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Player.cs",
               "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\Script\\Player\\Player.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Player\\Player.cs",
@@ -204,18 +204,6 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-22T04:59:43.477Z",
               "IsPinned": true
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "UpDownMovement.cs",
-              "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\UpDownMovement.cs",
-              "RelativeDocumentMoniker": "Assets\\UpDownMovement.cs",
-              "ToolTip": "D:\\23cu0311\\MS\\Assets\\UpDownMovement.cs",
-              "RelativeToolTip": "Assets\\UpDownMovement.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-22T02:15:18.836Z"
             },
             {
               "$type": "Document",
@@ -232,12 +220,12 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "GloomVisBoss.cs",
               "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\Script\\Enemy\\GloomVisBoss.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Enemy\\GloomVisBoss.cs",
-              "ToolTip": "D:\\23cu0311\\MS\\Assets\\Script\\Enemy\\GloomVisBoss.cs*",
-              "RelativeToolTip": "Assets\\Script\\Enemy\\GloomVisBoss.cs*",
+              "ToolTip": "D:\\23cu0311\\MS\\Assets\\Script\\Enemy\\GloomVisBoss.cs",
+              "RelativeToolTip": "Assets\\Script\\Enemy\\GloomVisBoss.cs",
               "ViewState": "AgIAAGwAAAAAAAAAAAApwHYAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-02T01:33:33.309Z",
@@ -245,7 +233,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Bullet.cs",
               "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\Script\\Player\\Bullet.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Player\\Bullet.cs",
@@ -253,12 +241,11 @@
               "RelativeToolTip": "Assets\\Script\\Player\\Bullet.cs",
               "ViewState": "AgIAABYAAAAAAAAAAAAAABgAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T04:37:38.251Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-22T04:37:38.251Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "LeftRightMovement.cs",
               "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\LeftRightMovement.cs",
               "RelativeDocumentMoniker": "Assets\\LeftRightMovement.cs",
@@ -318,7 +305,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "bomb.cs",
               "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\Script\\Player\\bomb.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Player\\bomb.cs",
@@ -326,12 +313,11 @@
               "RelativeToolTip": "Assets\\Script\\Player\\bomb.cs",
               "ViewState": "AgIAAC0AAAAAAAAAAAAYwEQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-23T05:28:38.467Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-23T05:28:38.467Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "gurenerd.cs",
               "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\Script\\Player\\gurenerd.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Player\\gurenerd.cs",
@@ -340,6 +326,31 @@
               "ViewState": "AgIAABsAAAAAAAAAAAAYwB0AAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-29T04:47:56.217Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "meteo.cs",
+              "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\Script\\Enemy\\meteo.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\Enemy\\meteo.cs",
+              "ToolTip": "D:\\23cu0311\\MS\\Assets\\Script\\Enemy\\meteo.cs*",
+              "RelativeToolTip": "Assets\\Script\\Enemy\\meteo.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-01T06:24:39.95Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UpDownMovement.cs",
+              "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\UpDownMovement.cs",
+              "RelativeDocumentMoniker": "Assets\\UpDownMovement.cs",
+              "ToolTip": "D:\\23cu0311\\MS\\Assets\\UpDownMovement.cs",
+              "RelativeToolTip": "Assets\\UpDownMovement.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-22T02:15:18.836Z"
             },
             {
               "$type": "Document",
@@ -376,18 +387,6 @@
               "ViewState": "AgIAAFYAAAAAAAAAAAAIwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-13T05:02:47.629Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "meteo.cs",
-              "DocumentMoniker": "D:\\23cu0311\\MS\\Assets\\Script\\Enemy\\meteo.cs",
-              "RelativeDocumentMoniker": "Assets\\Script\\Enemy\\meteo.cs",
-              "ToolTip": "D:\\23cu0311\\MS\\Assets\\Script\\Enemy\\meteo.cs",
-              "RelativeToolTip": "Assets\\Script\\Enemy\\meteo.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-01T06:24:39.95Z"
             },
             {
               "$type": "Document",
