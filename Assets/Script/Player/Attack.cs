@@ -119,8 +119,17 @@ public class Attack : MonoBehaviour
         // F1キーでマシンガンモード強制起動
         if (Input.GetKeyUp(KeyCode.F1))
         {
-            //マシンガンを強制起動
+            //マシンガンを強制起動(200追加)
             ActivateMachineGunMode(200);
+        }
+
+        // F1キーでマシンガンモード強制解除
+        if (Input.GetKeyUp(KeyCode.F2))
+        {
+            //マシンガンを強制解除
+            isMachineGunMode = false;
+            //残弾数初期化
+            machineGunAmmo = 0;
         }
 #endif
     }

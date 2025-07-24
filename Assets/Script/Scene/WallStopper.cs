@@ -3,6 +3,9 @@ using UnityEngine;
 public class WallStopper : MonoBehaviour
 {
     public vehicle_move vehicle;    // 乗り物プログラムを参照
+    public Vehicle_Attack vehicle_attack;   //乗り物攻撃処理を参照
+
+    private bool lastIgnoreState = false;   // 直前のIgnoreLayerCollision状態を記憶
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,20 +24,36 @@ public class WallStopper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // プレイヤーが乗り物に乗っている場合画面外にいけないように(vehicle_move参照)
-        if (vehicle.IsControlled())
-        {
-            int wallstopperLayer = LayerMask.NameToLayer("Stopper");
-            int vehicleLayer = LayerMask.NameToLayer("Vehicle");
-            Physics2D.IgnoreLayerCollision(wallstopperLayer, vehicleLayer, false);
-        }
+        int wallstopperLayer = LayerMask.NameToLayer("Stopper");
+        int vehicleLayer = LayerMask.NameToLayer("Vehicle");
 
-        // プレイヤーが乗り物に乗っていない場合は画面外に行くように変更(vehicle_move参照)
+        bool shouldIgnore;
+
+        if (vehicle_attack.isDashing)
+        {
+            // 突進中は壁すり抜けしたいので IgnoreCollision = true
+            shouldIgnore = true;
+        }
         else
         {
-            int wallstopperLayer = LayerMask.NameToLayer("Stopper");
-            int vehicleLayer = LayerMask.NameToLayer("Vehicle");
-            Physics2D.IgnoreLayerCollision(wallstopperLayer, vehicleLayer, true);
+            if (vehicle.IsControlled())
+            {
+                // 乗り物にプレイヤーが乗っているなら壁衝突有効化
+                shouldIgnore = false;
+            }
+            else
+            {
+                // 乗っていなければ壁はすり抜けOK（任意）
+                shouldIgnore = true;
+            }
+        }
+
+        // 状態が変わった時だけ設定を変える
+        if (lastIgnoreState != shouldIgnore)
+        {
+            Physics2D.IgnoreLayerCollision(wallstopperLayer, vehicleLayer, shouldIgnore);
+            lastIgnoreState = shouldIgnore;
+            Debug.Log($"IgnoreLayerCollision set to {shouldIgnore}");
         }
     }
 }
