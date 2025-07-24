@@ -3,11 +3,11 @@
   "WorkspaceRootPath": "D:\\23CU0338\\METAL\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|D:\\23CU0338\\METAL\\assets\\script\\scene\\wallstopper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|d:\\23cu0338\\metal\\assets\\script\\scene\\wallstopper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\scene\\wallstopper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|d:\\23cu0338\\metal\\assets\\script\\player\\vehicle\\vehicle_attack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|D:\\23CU0338\\METAL\\assets\\script\\player\\vehicle\\vehicle_attack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\player\\vehicle\\vehicle_attack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -47,7 +47,7 @@
       "RelativeMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\player\\enemydetector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|d:\\23cu0338\\metal\\assets\\script\\player\\attack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|D:\\23CU0338\\METAL\\assets\\script\\player\\attack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0B43F91A-4EEE-7AFB-4843-4E7883A3F14F}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\player\\attack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -160,8 +160,7 @@
               "ViewState": "AgIAAL8AAAAAAAAAAAA6wL8AAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-10T04:26:53.729Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -173,8 +172,7 @@
               "RelativeToolTip": "Assets\\Script\\Enemy\\CoreLaser.cs",
               "ViewState": "AgIAACcAAAAAAAAAAAA6wCcAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-20T00:44:32.806Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-20T00:44:32.806Z"
             },
             {
               "$type": "Document",
@@ -186,8 +184,7 @@
               "RelativeToolTip": "Assets\\Script\\Enemy\\GloomVisBoss.cs",
               "ViewState": "AgIAABkBAAAAAAAAAAA6wBkBAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-15T05:26:55.81Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-15T05:26:55.81Z"
             },
             {
               "$type": "Document",
@@ -199,8 +196,7 @@
               "RelativeToolTip": "Assets\\Script\\Enemy\\HomingMissile.cs",
               "ViewState": "AgIAAB8AAAAAAAAAAAA6wB8AAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-10T05:51:00.291Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-10T05:51:00.291Z"
             },
             {
               "$type": "Document",
@@ -212,8 +208,7 @@
               "RelativeToolTip": "Assets\\Script\\Enemy\\DecayBullet.cs",
               "ViewState": "AgIAAEoAAAAAAAAAAAA6wEoAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-10T04:26:53.775Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-10T04:26:53.775Z"
             },
             {
               "$type": "Document",
@@ -225,8 +220,7 @@
               "RelativeToolTip": "Assets\\Script\\Player\\vehicle\\Vehicle_Attack.cs",
               "ViewState": "AgIAACgBAAAAAAAAAAAkwC4BAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-22T05:41:41.89Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-22T05:41:41.89Z"
             },
             {
               "$type": "Document",
@@ -238,8 +232,7 @@
               "RelativeToolTip": "Assets\\Script\\Player\\Bullet.cs",
               "ViewState": "AgIAACYAAAAAAAAAAAAkwEAAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-10T04:26:53.728Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-10T04:26:53.728Z"
             },
             {
               "$type": "Document",
@@ -251,8 +244,7 @@
               "RelativeToolTip": "Assets\\Script\\Enemy\\EnemyActivator.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-10T04:26:53.296Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-10T04:26:53.296Z"
             },
             {
               "$type": "Document",
@@ -264,8 +256,7 @@
               "RelativeToolTip": "Assets\\Script\\Player\\vehicle\\vehicle_move.cs",
               "ViewState": "AgIAAO8BAAAAAAAAAAAQwPUBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-22T05:45:34.205Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-22T05:45:34.205Z"
             },
             {
               "$type": "Document",
@@ -290,8 +281,7 @@
               "RelativeToolTip": "Assets\\Script\\Enemy\\EnemySpawner.cs",
               "ViewState": "AgIAAEYAAAAAAAAAAAA6wEYAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-11T03:02:37.046Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-11T03:02:37.046Z"
             },
             {
               "$type": "Document",
@@ -303,8 +293,7 @@
               "RelativeToolTip": "Assets\\Script\\Player\\EnemyDetector.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAA6wAgAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-10T04:26:53.728Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-10T04:26:53.728Z"
             },
             {
               "$type": "Document",
@@ -316,8 +305,7 @@
               "RelativeToolTip": "Assets\\Script\\Player\\Attack.cs",
               "ViewState": "AgIAAG0AAAAAAAAAAAAUwIMAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-24T05:41:40.201Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-24T05:41:40.201Z"
             },
             {
               "$type": "Document",
