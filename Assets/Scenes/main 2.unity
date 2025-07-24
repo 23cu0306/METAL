@@ -2651,7 +2651,7 @@ Transform:
   m_GameObject: {fileID: 1365218997}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.2, y: 3.66, z: 0}
+  m_LocalPosition: {x: -0.02, y: 3.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2737,6 +2737,7 @@ MonoBehaviour:
   fireInterval: 5
   laserSpeed: 10
   laserColor: {r: 1, g: 0, b: 0, a: 1}
+  currentHP: 1
   playerTargetChance: 0.5
   player: {fileID: 249294126}
 --- !u!1 &1586901755

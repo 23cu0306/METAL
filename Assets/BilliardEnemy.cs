@@ -56,47 +56,63 @@ public class BilliardEnemy : MonoBehaviour
         }
     }
 
+    // ★ ここで弾に当たったらダメージを受ける処理を追加
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Bullet"))
+        {
+            // 弾に設定されているダメージ値を取得
+            Bullet bullet = other.GetComponent<Bullet>();
+            if (bullet != null)
+            {
+                TakeDamage(bullet.damage);
+            }
+
+            // 弾を削除
+            Destroy(other.gameObject);
+        }
+    }
+
     public void TakeDamage(float dmg)
     {
         currentHP -= dmg;
-        Debug.Log("ダメージ量 " + dmg + "ボス残り HP: " + currentHP);
-       // if (!isBlinking)
-          //  StartCoroutine(BlinkOnDamage());
+        Debug.Log("ダメージ量 " + dmg + " ボス残り HP: " + currentHP);
+
         if (currentHP <= 0)
         {
-           // Die();
+            Die();
         }
+    }
+
+    void Die()
+    {
+        Debug.Log("敵が倒されました！");
+        Destroy(gameObject);
     }
 
     void FireLaser()
     {
         if (laserPrefab == null) return;
 
-        // 発射方向を決定
         Vector2 shootDir;
 
         if (player != null && Random.value < playerTargetChance)
         {
-            // プレイヤーを狙う
             shootDir = (player.position - transform.position).normalized;
         }
         else
         {
-            // ランダム方向
             shootDir = Random.insideUnitCircle.normalized;
         }
 
-        // レーザー生成
         GameObject laser = Instantiate(laserPrefab, transform.position, Quaternion.identity);
 
-        // レーザーの色設定
         SpriteRenderer sr = laser.GetComponent<SpriteRenderer>();
         if (sr != null) sr.color = laserColor;
 
-        // レーザー移動
         Rigidbody2D laserRb = laser.GetComponent<Rigidbody2D>();
         if (laserRb != null) laserRb.linearVelocity = shootDir * laserSpeed;
 
-        Destroy(laser, 3f); // 3秒で消滅
+        Destroy(laser, 3f);
     }
 }
