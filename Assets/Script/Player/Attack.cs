@@ -202,6 +202,15 @@ public class Attack : MonoBehaviour
                 //currentDirectionは今の方向、targetDirection は目標方向
                 //通常モードでは上の二つを同時に切り替える
                 currentDirection = targetDirection = Vector2.up;
+
+                if (moveInput.x > 0.3f)
+                {
+                    lastHorizontalDirection = Vector2.right;
+                }
+                else if (moveInput.x < -0.3f)
+                {
+                    lastHorizontalDirection = Vector2.left;
+                }
             }
 
             //上入力を離した瞬間かつ、現在の方向が上だった場合は水平方向に戻す
