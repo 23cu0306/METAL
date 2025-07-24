@@ -70,9 +70,11 @@ public class vehicle_move : MonoBehaviour
         int enemyLayer = LayerMask.NameToLayer("Enemy");
         int stopLayer = LayerMask.NameToLayer("Stop_Enemy");
         int playerLayer = LayerMask.NameToLayer("Player");
+        int grenadeLayer = LayerMask.NameToLayer("Bullet");
         Physics2D.IgnoreLayerCollision(vehicleLayer, enemyLayer, true);
         Physics2D.IgnoreLayerCollision(vehicleLayer, stopLayer, true);
         Physics2D.IgnoreLayerCollision(vehicleLayer, playerLayer, true);
+        Physics2D.IgnoreLayerCollision(vehicleLayer, grenadeLayer, true);
 
         //---------------------------------------------------
         // HP自動減少コルーチンを開始（デバッグ用）
