@@ -21,7 +21,7 @@ public class Vehicle_Attack : MonoBehaviour
     private bool isBurstFiring = false;   // 現在バースト中か
 
     //==================== 突進攻撃 ====================
-    private bool isDashing = false;              // 突進中かどうか
+    public bool isDashing = false;              // 突進中かどうか
     public float dashSpeed = 20f;                // 突進の速度
     public LayerMask enemyLayerMask;             // 敵判定用のLayerMask
     public float dashDetectionRadius = 0.5f;     // 衝突判定用の半径
@@ -115,7 +115,7 @@ public class Vehicle_Attack : MonoBehaviour
 
         HandleInput();              // 入力から方向決定
         UpdateDirectionLerp();      // 発射方向を補間して更新
-        Attack();                   // 攻撃処理
+        Attack();                   // 攻撃処理 
     }
 
     void DashForward()
@@ -130,6 +130,16 @@ public class Vehicle_Attack : MonoBehaviour
         {
             isDashing = false;
             StartExplosion();  // 爆発処理を呼び出す
+        }
+
+        // 画面外判定（右端）
+        Camera mainCamera = Camera.main;
+        float distanceFromCamera = Mathf.Abs(mainCamera.transform.position.z - transform.position.z);
+        Vector3 rightEdgeWorldPos = mainCamera.ViewportToWorldPoint(new Vector3(1, 0.5f, distanceFromCamera));
+        if (transform.position.x > rightEdgeWorldPos.x)
+        {
+            isDashing = false;
+            StartExplosion();
         }
     }
 

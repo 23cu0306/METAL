@@ -869,6 +869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vehicle: {fileID: 586600575}
+  vehicle_attack: {fileID: 586600577}
 --- !u!61 &971709720
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1175,6 +1176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vehicle: {fileID: 586600575}
+  vehicle_attack: {fileID: 0}
 --- !u!61 &1060870477
 BoxCollider2D:
   m_ObjectHideFlags: 0
