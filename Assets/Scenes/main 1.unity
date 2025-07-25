@@ -354,6 +354,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vehicle: {fileID: 1223618457}
+  vehicle_attack: {fileID: 0}
 --- !u!61 &258138373
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6627,45 +6628,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1345904603664114606, guid: 585495c216243b84da29e8a981576381, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -6074920243493593019, guid: 1fcf820dbbbf78440bd338436a0685d0, type: 3}
-    - target: {fileID: 4330089683917658193, guid: 585495c216243b84da29e8a981576381, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5806702733166611843, guid: 585495c216243b84da29e8a981576381, type: 3}
-      propertyPath: m_Size.x
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5806702733166611843, guid: 585495c216243b84da29e8a981576381, type: 3}
-      propertyPath: m_Size.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5806702733166611843, guid: 585495c216243b84da29e8a981576381, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.55
-      objectReference: {fileID: 0}
-    - target: {fileID: 5806702733166611843, guid: 585495c216243b84da29e8a981576381, type: 3}
-      propertyPath: m_Offset.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8062314274973312895, guid: 585495c216243b84da29e8a981576381, type: 3}
       propertyPath: m_Name
       value: vehicle
-      objectReference: {fileID: 0}
-    - target: {fileID: 8283437174032519769, guid: 585495c216243b84da29e8a981576381, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8283437174032519769, guid: 585495c216243b84da29e8a981576381, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8283437174032519769, guid: 585495c216243b84da29e8a981576381, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8283437174032519769, guid: 585495c216243b84da29e8a981576381, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6706,26 +6671,6 @@ PrefabInstance:
     - target: {fileID: 8283437174032519769, guid: 585495c216243b84da29e8a981576381, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9017488099397137345, guid: 585495c216243b84da29e8a981576381, type: 3}
-      propertyPath: m_Size.x
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 9017488099397137345, guid: 585495c216243b84da29e8a981576381, type: 3}
-      propertyPath: m_Size.y
-      value: 4.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 9017488099397137345, guid: 585495c216243b84da29e8a981576381, type: 3}
-      propertyPath: m_Offset.y
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9017488099397137345, guid: 585495c216243b84da29e8a981576381, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 8.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 9017488099397137345, guid: 585495c216243b84da29e8a981576381, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 6.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7113,6 +7058,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vehicle: {fileID: 1223618457}
+  vehicle_attack: {fileID: 0}
 --- !u!61 &1460049718
 BoxCollider2D:
   m_ObjectHideFlags: 0

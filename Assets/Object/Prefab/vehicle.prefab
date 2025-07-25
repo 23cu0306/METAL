@@ -58,8 +58,8 @@ Transform:
   m_GameObject: {fileID: 5365086739063322225}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.98, z: 0}
+  m_LocalScale: {x: 0.3, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8283437174032519769}
@@ -98,7 +98,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 3.71}
+  m_Offset: {x: 0.55, y: 1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -108,7 +108,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 13.01, y: 1.7}
+  m_Size: {x: 16.1, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &3623048076123097074
 MonoBehaviour:
@@ -152,8 +152,8 @@ Transform:
   m_GameObject: {fileID: 8062314274973312895}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.81, y: -8.9, z: 0}
-  m_LocalScale: {x: 0.3025, y: 0.5484325, z: 0.3025}
+  m_LocalPosition: {x: 223, y: -9.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1490433524126198873}
@@ -205,7 +205,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 6682738439518977790, guid: a5b651bbd0caa1e4391b7546a1daa8d7, type: 3}
+  m_Sprite: {fileID: -6074920243493593019, guid: 1fcf820dbbbf78440bd338436a0685d0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -250,17 +250,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 25.55, y: 7.4229736}
+    oldSize: {x: 8.12, y: 6.7}
     newSize: {x: 25.55, y: 7.4229736}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 25.55, y: 7.4229736}
+  m_Size: {x: 8, y: 4.6}
   m_EdgeRadius: 0
 --- !u!114 &3232451776530154725
 MonoBehaviour:
@@ -318,10 +318,11 @@ MonoBehaviour:
   dashSpeed: 20
   enemyLayerMask:
     serializedVersion: 2
-    m_Bits: 16640
+    m_Bits: 16384
   dashDetectionRadius: 0.5
   isExploding: 0
   isCharging: 0
+  ExEffect: {fileID: 0}
   vehicleScript: {fileID: 3232451776530154725}
   topRightOffset: {x: 0, y: 0, z: 0}
   topLeftOffset: {x: 0, y: 0, z: 0}
@@ -420,7 +421,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
