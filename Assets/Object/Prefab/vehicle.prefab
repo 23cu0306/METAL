@@ -276,7 +276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   airMoveSpeed: 8
-  jumpForce: 10
+  jumpForce: 15
   fallMultiplier: 5
   lowJumpMultiplier: 2
   upwardThreshold: 5
@@ -287,16 +287,18 @@ MonoBehaviour:
     m_Bits: 8
   isGrounded: 0
   VehicleHp: 100
+  vehicleattack: {fileID: 4717073455184149223}
   explosionDamage: 70
   explosionRadius: 20
   explosionTargetLayers:
     serializedVersion: 2
-    m_Bits: 384
+    m_Bits: 16768
   VehicleDestroyDelayTime: 3
   invincibleDuration: 2
   hpDecreaseInterval: 1
   hpDecreaseAmount: 10
   autoDecreaseHP: 0
+  canControl: 1
 --- !u!114 &4717073455184149223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,6 +314,14 @@ MonoBehaviour:
   BulletPrefab: {fileID: 8162234288098437430, guid: b26f38666b410a445be9a2f42824b978, type: 3}
   firePoint: {fileID: 199105184958575713}
   bulletSpeed: 10
+  isDashing: 0
+  dashSpeed: 20
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 16640
+  dashDetectionRadius: 0.5
+  isExploding: 0
+  isCharging: 0
   vehicleScript: {fileID: 3232451776530154725}
   topRightOffset: {x: 0, y: 0, z: 0}
   topLeftOffset: {x: 0, y: 0, z: 0}
@@ -332,7 +342,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 6200000, guid: 9da209e8323f71e49a0e623a9b96aa9b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2

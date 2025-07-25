@@ -39,15 +39,15 @@ public class meteo : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("何かに衝突: " + other.name);
+        //Debug.Log("何かに衝突: " + other.name);
 
         if (other.CompareTag("Player"))
         {
-            Debug.Log("プレイヤーにヒット！");
+            //Debug.Log("プレイヤーにヒット！");
             Player playerHealth = other.GetComponent<Player>();
             if (playerHealth != null)
             {
-                Debug.Log("TakeDamage 実行");
+                //Debug.Log("TakeDamage 実行");
                 playerHealth.TakeDamage(damage);
             }
             Destroy(gameObject);

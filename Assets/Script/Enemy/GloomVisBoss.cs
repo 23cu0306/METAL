@@ -44,7 +44,7 @@ public class GloomVisBoss : MonoBehaviour
 	{
 		currentHP = maxHP;
 		actionTimer = actionInterval;
-		weakPoint.gameObject.SetActive(false); // �����͔�\��
+		//weakPoint.gameObject.SetActive(false); // �����͔�\��
 		animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalPosition = transform.position;
@@ -106,7 +106,8 @@ public class GloomVisBoss : MonoBehaviour
 
 	IEnumerator meteo()
 		{ 
-		weakPoint.gameObject.SetActive(true);
+		//weakPoint.gameObject.SetActive(true);
+
 		yield return new WaitForSeconds(1.0f);
 
 		
@@ -134,7 +135,7 @@ public class GloomVisBoss : MonoBehaviour
 		}
 
 		yield return new WaitForSeconds(0.5f);
-		weakPoint.gameObject.SetActive(false);
+		//weakPoint.gameObject.SetActive(false);
 	}
 
 
@@ -150,7 +151,7 @@ public class GloomVisBoss : MonoBehaviour
 
 	IEnumerator FireLaser()
 	{
-		weakPoint.gameObject.SetActive(true);
+		//weakPoint.gameObject.SetActive(true);
 		yield return new WaitForSeconds(1.0f);
 		
 		if (laserSpawnPoint1 != null || laserSpawnPoint2 != null || laserSpawnPoint3 != null || laserSpawnPoint2 != null)
@@ -167,7 +168,7 @@ public class GloomVisBoss : MonoBehaviour
 		}
         SoundManager.Instance.PlaySound(laserSound, transform.position);
         yield return new WaitForSeconds(0.5f);
-		weakPoint.gameObject.SetActive(false);
+		//weakPoint.gameObject.SetActive(false);
 	}
 
 	IEnumerator DashAttack()
@@ -199,14 +200,14 @@ public class GloomVisBoss : MonoBehaviour
 
 	IEnumerator OpenWeakPointTemporarily()
 	{
-		weakPoint.gameObject.SetActive(true);
+		//weakPoint.gameObject.SetActive(true);
 		yield return new WaitForSeconds(3.0f);
-		weakPoint.gameObject.SetActive(false);
+		//weakPoint.gameObject.SetActive(false);
 	}
 
 	IEnumerator OpenWeakPointPermanently()
 	{
-		weakPoint.gameObject.SetActive(true);
+		//weakPoint.gameObject.SetActive(true);
 		yield return null;
 	}
 

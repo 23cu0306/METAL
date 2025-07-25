@@ -21,6 +21,7 @@ public class Vehicle_Attack : MonoBehaviour
     private bool isBurstFiring = false;   // 現在バースト中か
 
     //==================== 突進攻撃 ====================
+    [Header("突進攻撃")]
     public bool isDashing = false;              // 突進中かどうか
     public float dashSpeed = 20f;                // 突進の速度
     public LayerMask enemyLayerMask;             // 敵判定用のLayerMask
@@ -29,6 +30,8 @@ public class Vehicle_Attack : MonoBehaviour
     // ダメージを分けるため
     public bool isExploding = false;    // 乗り物がHP0で爆破な場合
     public bool isCharging = false;     // 突進攻撃の場合
+
+    public GameObject ExEffect;
 
     //==================== 乗り物関連 ====================
     [Header("乗り物接続")]
@@ -121,15 +124,26 @@ public class Vehicle_Attack : MonoBehaviour
     void DashForward()
     {
         if (!isControlled) return;
+
         // 右に自動移動
         transform.position += Vector3.right * dashSpeed * Time.deltaTime;
 
-        // 敵との衝突判定
-        Collider2D hit = Physics2D.OverlapCircle(transform.position, dashDetectionRadius, enemyLayerMask);
+        // EnemyレイヤーBossタグに当たったら爆発処理開始
+        Collider2D hit = Physics2D.OverlapCircle(transform.position, dashDetectionRadius);
         if (hit != null)
         {
-            isDashing = false;
-            StartExplosion();  // 爆発処理を呼び出す
+            Debug.Log("Hit tag: " + hit.tag);
+
+            bool hitEnemyLayer = ((1 << hit.gameObject.layer) & enemyLayerMask) != 0;
+            bool hitBossTag = hit.CompareTag("WeakPoint");
+            bool hitBossTag2 = hit.CompareTag("Boss");
+
+            if (hitEnemyLayer || hitBossTag || hitBossTag2)
+            {
+                Debug.Log("Hit Enemy or WeakPoint. Exploding...");
+                isDashing = false;
+                StartExplosion();  // 爆発処理を呼び出す
+            }
         }
 
         // 画面外判定（右端）
@@ -334,7 +348,19 @@ public class Vehicle_Attack : MonoBehaviour
         if (vehicleScript != null)
             vehicleScript.StartCoroutine(vehicleScript.ReenableCollisionAfterDestroy());
 
+        if (ExEffect != null)
+        {
+            Instantiate(ExEffect, transform.position, Quaternion.identity);
+        }
+
         // 爆発完了後自身を破壊
         Destroy(gameObject);
+    }
+
+    // 当たり判定調整のため
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, dashDetectionRadius);
     }
 }

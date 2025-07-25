@@ -171,6 +171,15 @@ public class Attack : MonoBehaviour
             if (isUp)
             {
                 targetDirection = Vector2.up;
+
+                if (moveInput.x > 0.3f)
+                {
+                    lastHorizontalDirection = Vector2.right;
+                }
+                else if (moveInput.x < -0.3f)
+                {
+                    lastHorizontalDirection = Vector2.left;
+                }
             }
             // 上方向を離した場合（戻り補間開始）
             else if (Vector2.Distance(currentDirection, Vector2.up) < 0.1f && !isUp)

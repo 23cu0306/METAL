@@ -624,6 +624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vehicle: {fileID: 670214173}
+  vehicle_attack: {fileID: 1130706983}
 --- !u!61 &161244681
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1640,6 +1641,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1.96
       objectReference: {fileID: 0}
+    - target: {fileID: 4717073455184149223, guid: 585495c216243b84da29e8a981576381, type: 3}
+      propertyPath: isCharging
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4717073455184149223, guid: 585495c216243b84da29e8a981576381, type: 3}
+      propertyPath: enemyLayerMask.m_Bits
+      value: 16384
+      objectReference: {fileID: 0}
     - target: {fileID: 5806702733166611843, guid: 585495c216243b84da29e8a981576381, type: 3}
       propertyPath: m_Size.x
       value: 16.1
@@ -1650,11 +1659,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8283437174032519769, guid: 585495c216243b84da29e8a981576381, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 210.88
+      value: 223
       objectReference: {fileID: 0}
     - target: {fileID: 8283437174032519769, guid: 585495c216243b84da29e8a981576381, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -9.64
+      value: -9.2
       objectReference: {fileID: 0}
     - target: {fileID: 8283437174032519769, guid: 585495c216243b84da29e8a981576381, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1924,6 +1933,17 @@ MonoBehaviour:
   - enemyPrefab: {fileID: 974554202363848162, guid: 89babce286d80064a88f507a31bdecb0, type: 3}
     spawnPoint: {fileID: 148883797}
     spawnTime: 4
+--- !u!114 &1130706983 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4717073455184149223, guid: 585495c216243b84da29e8a981576381, type: 3}
+  m_PrefabInstance: {fileID: 973995527}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ce9c29de7acb3545b15b16716b5f3b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1345503033
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2315,6 +2335,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5626771958193494707, guid: 5636fb096644a004fadbda6c646d38f2, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2367,6 +2391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vehicle: {fileID: 670214173}
+  vehicle_attack: {fileID: 1130706983}
 --- !u!61 &1776797460
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2980,6 +3005,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 5654178937331168058, guid: 5187e5a3437c64f43a50eeb06ab91ea4, type: 3}
+      propertyPath: deathEffect
+      value: 
+      objectReference: {fileID: 649394730084515955, guid: b4153f711864cfe4ebfb5d14f18d383a, type: 3}
     - target: {fileID: 7350999429957395066, guid: 5187e5a3437c64f43a50eeb06ab91ea4, type: 3}
       propertyPath: m_Name
       value: Capsule
