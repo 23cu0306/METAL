@@ -152,7 +152,7 @@ Transform:
   m_GameObject: {fileID: 8062314274973312895}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 223, y: -9.2, z: 0}
+  m_LocalPosition: {x: 5.4000015, y: -8.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -289,7 +289,7 @@ MonoBehaviour:
   VehicleHp: 100
   vehicleattack: {fileID: 4717073455184149223}
   explosionDamage: 70
-  explosionRadius: 20
+  explosionRadius: 10
   explosionTargetLayers:
     serializedVersion: 2
     m_Bits: 16768

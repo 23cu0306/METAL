@@ -27,7 +27,7 @@ public class vehicle_move : MonoBehaviour
     public int explosionDamage = 70;            // 爆発のダメージ量
     public float explosionRadius = 20.0f;       // ダメージ範囲
     public LayerMask explosionTargetLayers;     // ダメージを与える対象レイヤー
-    public float VehicleDestroyDelayTime = 3.0f;// HPが0になってから破壊されるまでの時間
+    public float VehicleDestroyDelayTime = 4.0f;// HPが0になってから破壊されるまでの時間
     private bool isDestroying = false;          // 二重侵入防止対策
     // 点滅処理
     private float StartBlinkInterval = 0.2f;     // 最初の点滅間隔

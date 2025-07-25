@@ -212,6 +212,7 @@ public class Vehicle_Attack : MonoBehaviour
     {
         if (dashButtonPressed && moveInput.y < -0.5f && vehicleScript.isGrounded)
         {
+            if (isExploding) return;    // 壊された場合突進攻撃不可
             // 突進攻撃のダメージに設定
             isCharging = true;
             // 同時押し時に突進開始
