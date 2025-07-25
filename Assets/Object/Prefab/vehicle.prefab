@@ -318,11 +318,11 @@ MonoBehaviour:
   dashSpeed: 20
   enemyLayerMask:
     serializedVersion: 2
-    m_Bits: 16384
-  dashDetectionRadius: 0.5
+    m_Bits: 49408
+  dashDetectionRadius: 5
   isExploding: 0
   isCharging: 0
-  ExEffect: {fileID: 0}
+  ExEffect: {fileID: 4407178277181556488, guid: 0178539635de9c44bbae347d351f4046, type: 3}
   vehicleScript: {fileID: 3232451776530154725}
   topRightOffset: {x: 0, y: 0, z: 0}
   topLeftOffset: {x: 0, y: 0, z: 0}

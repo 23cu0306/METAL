@@ -793,7 +793,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2785801392096796056, guid: 71fa7d123797b174592ede8b93bad7e1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -22.7
+      value: -21.5
       objectReference: {fileID: 0}
     - target: {fileID: 2785801392096796056, guid: 71fa7d123797b174592ede8b93bad7e1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -965,14 +965,94 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 84744753455125109, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 84744753455125109, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 84744753455125109, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
+      propertyPath: m_TagString
+      value: Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 234376807637128421, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1139962464070660646, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1139962464070660646, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1139962464070660646, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
+      propertyPath: m_TagString
+      value: Boss
+      objectReference: {fileID: 0}
     - target: {fileID: 1228845275007878551, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
       propertyPath: m_Name
       value: R18boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 2077372413178737300, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2077372413178737300, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2077372413178737300, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
+      propertyPath: m_TagString
+      value: Boss
       objectReference: {fileID: 0}
     - target: {fileID: 5239255058080110534, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 518961153}
+    - target: {fileID: 5720658229557914834, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5720658229557914834, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5720658229557914834, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
+      propertyPath: m_TagString
+      value: Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 6806102793799262209, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6806102793799262209, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6806102793799262209, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
+      propertyPath: m_TagString
+      value: Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 7410648500755854391, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8873867704852050319, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8873867704852050319, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8873867704852050319, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
+      propertyPath: m_TagString
+      value: Boss
+      objectReference: {fileID: 0}
     - target: {fileID: 9165783695796098830, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
       propertyPath: m_LocalPosition.x
       value: 273.29

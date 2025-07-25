@@ -129,20 +129,26 @@ public class Vehicle_Attack : MonoBehaviour
         transform.position += Vector3.right * dashSpeed * Time.deltaTime;
 
         // EnemyレイヤーBossタグに当たったら爆発処理開始
-        Collider2D hit = Physics2D.OverlapCircle(transform.position, dashDetectionRadius);
-        if (hit != null)
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, dashDetectionRadius);
+
+        foreach (var hit in hits)
         {
-            Debug.Log("Hit tag: " + hit.tag);
+            if (hit == null) continue;
 
-            bool hitEnemyLayer = ((1 << hit.gameObject.layer) & enemyLayerMask) != 0;
-            bool hitBossTag = hit.CompareTag("WeakPoint");
-            bool hitBossTag2 = hit.CompareTag("Boss");
+            string tag = hit.tag;
+            int layer = hit.gameObject.layer;
 
-            if (hitEnemyLayer || hitBossTag || hitBossTag2)
+            Debug.Log($"Hit: {hit.name} / Tag: {tag} / Layer: {LayerMask.LayerToName(layer)}");
+
+            bool hitEnemyLayer = ((1 << layer) & enemyLayerMask) != 0;
+            bool hitBossTag = hit.CompareTag("WeakPoint") || hit.CompareTag("Boss");
+
+            // タグ or レイヤー どちらかでヒットしたら処理
+            if (hitEnemyLayer || hitBossTag)
             {
-                Debug.Log("Hit Enemy or WeakPoint. Exploding...");
                 isDashing = false;
-                StartExplosion();  // 爆発処理を呼び出す
+                StartExplosion();
+                break; // 一回爆発処理したら終了
             }
         }
 
