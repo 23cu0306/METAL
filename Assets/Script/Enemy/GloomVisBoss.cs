@@ -5,7 +5,7 @@ public class GloomVisBoss : MonoBehaviour
 {
 	public AudioClip laserSound;
 	public float maxHP = 100;
-	private float currentHP;
+	public float currentHP;
 
 	public GameObject player;
 	public Transform weakPoint;

@@ -172,6 +172,7 @@ public class Attack : MonoBehaviour
             {
                 targetDirection = Vector2.up;
 
+                // 上入力をしているうちに左スティックがきりかわっても対応
                 if (moveInput.x > 0.3f)
                 {
                     lastHorizontalDirection = Vector2.right;
@@ -221,6 +222,7 @@ public class Attack : MonoBehaviour
                 //通常モードでは上の二つを同時に切り替える
                 currentDirection = targetDirection = Vector2.up;
 
+                // 上入力をしているうちに左スティックがきりかわっても対応
                 if (moveInput.x > 0.3f)
                 {
                     lastHorizontalDirection = Vector2.right;
