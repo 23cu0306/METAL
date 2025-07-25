@@ -322,7 +322,7 @@ public class Vehicle_Attack : MonoBehaviour
 
         foreach (var col in targets)
         {
-            // 敵にダメージ
+            // 乗り物が破壊された場合
             if (isExploding)
             {
                 // プレイヤーにダメージ
@@ -333,15 +333,17 @@ public class Vehicle_Attack : MonoBehaviour
                 }
             }
 
+            // 乗り物で突進攻撃した場合
             else if (isCharging)
             {
                 // ボスにダメージ
-                if (col.CompareTag("WeakPoint"))
+                if (col.CompareTag("WeakPoint")|| col.CompareTag("Boss"))
                 {
                     var boss = col.GetComponentInParent<GloomVisBoss>();
                     if (boss != null) boss.TakeDamage(vehicleScript.explosionDamage);
                 }
 
+                // 敵にダメージ
                 else if (col.CompareTag("Enemy"))
                 {
                     var enemy = col.GetComponent<Enemy_Manager>();

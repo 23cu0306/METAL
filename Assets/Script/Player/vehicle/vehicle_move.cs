@@ -29,6 +29,14 @@ public class vehicle_move : MonoBehaviour
     public LayerMask explosionTargetLayers;     // ダメージを与える対象レイヤー
     public float VehicleDestroyDelayTime = 3.0f;// HPが0になってから破壊されるまでの時間
     private bool isDestroying = false;          // 二重侵入防止対策
+    // 点滅処理
+    private float StartBlinkInterval = 0.2f;     // 最初の点滅間隔
+    private float FinalBlinkInterval = 0.00001f;    // 最後の点滅間隔
+    Color flashColor = new Color(1f, 0.3f, 0.3f); // 少し暗めの赤
+    private float currentTime;
+    private Color originalColor;                // 元の色を保持
+    private Renderer vehicleRenderer;           // メッシュのレンダラー
+    private Coroutine blinkCoroutine;
 
     [Header("無敵時間設定")]
     public float invincibleDuration = 2f;       // プレイヤー搭乗後の無敵時間（秒）
@@ -60,8 +68,6 @@ public class vehicle_move : MonoBehaviour
 
     private void Start()
     {
-        rb.mass = 100000f; // プレイヤーに押されないようにした
-
         // 自身の Collider2D を取得（BoxCollider2D や CircleCollider2D に対応）
         vehicleCollider = GetComponent<Collider2D>();
 
@@ -393,8 +399,19 @@ public class vehicle_move : MonoBehaviour
 
         isDestroying = true;    // 二重実行防止
 
-        //// 待機
-        //yield return new WaitForSeconds(VehicleDestroyDelayTime);
+        // レンダラー取得と元色保持
+        if (vehicleRenderer == null)
+        {
+            vehicleRenderer = GetComponentInChildren<Renderer>();
+            originalColor = vehicleRenderer.material.color;
+        }
+
+        float totalDelay = VehicleDestroyDelayTime; // 初期値を固定保存
+
+        // 点滅コルーチン開始
+        currentTime = VehicleDestroyDelayTime;
+
+        blinkCoroutine = StartCoroutine(BlinkVehicle(totalDelay));
 
         // ↓はデバッグで時間表示できるようになっている
         while (VehicleDestroyDelayTime > 0f)
@@ -404,8 +421,32 @@ public class vehicle_move : MonoBehaviour
             VehicleDestroyDelayTime -= 1.0f;
         }
 
+        currentTime = VehicleDestroyDelayTime;
+
+        // コルーチン終了
+        StopCoroutine(blinkCoroutine);
+        vehicleRenderer.material.color = originalColor;
+
         // 破壊処理へ
         VehicleDestroy();
+    }
+
+    // 点滅処理
+    private IEnumerator BlinkVehicle(float totalDelay)
+    {
+        bool isRed = false;
+
+        while (true)
+        {
+            // 点滅スピードを補間(段々早く)
+            float t = 1f - (currentTime / totalDelay); // 初期値基準で補間
+            float interval = Mathf.Lerp(StartBlinkInterval, FinalBlinkInterval, t);
+
+            vehicleRenderer.material.color = isRed ? originalColor : flashColor;
+            isRed = !isRed;
+
+            yield return new WaitForSeconds(interval);
+        }
     }
 
     // 破壊処理開始

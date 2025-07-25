@@ -48,5 +48,22 @@ public class Enemy_Bullet : MonoBehaviour
             }
 			Destroy(gameObject);       // 弾も消す
 		}
+
+        // とりあえず書いた
+		else if (other.CompareTag("Vehicle"))
+		{
+            // 乗り物
+            if (other.CompareTag("Vehicle"))
+            {
+                vehicle_move VehicleHp = other.GetComponent<vehicle_move>();
+                if (VehicleHp != null)
+                {
+                    VehicleHp.TakeDamage(damage);  // 乗り物にダメージを与える
+                }
+                // AudioManager を使って効果音を再生
+                SoundManager.Instance.PlaySound(enemybulletHitSound, transform.position);
+            }
+            Destroy(gameObject);       // 弾も消す
+        }
 	}
 }
