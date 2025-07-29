@@ -15,7 +15,7 @@ public class BossHP_Checkt : MonoBehaviour
     {
         if (boss != null && bossText != null)
         {
-            bossText.text = $"É{ÉXÇÃHP: {boss.currentHP}";
+            bossText.text = $"BOSSHP: {boss.currentHP}";
         }
     }
 }

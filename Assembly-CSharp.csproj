@@ -74,6 +74,7 @@
     <Compile Include="Assets\UnityTechnologies\EffectExamples\Shared\Scripts\ParticleCollision.cs" />
     <Compile Include="Assets\Script\Enemy\DrillAttack.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy_Jump.cs" />
+    <Compile Include="Assets\Script\Enemy\BossSpawn.cs" />
     <Compile Include="Assets\Script\Enemy\CoreLaser.cs" />
     <Compile Include="Assets\Script\Scene\ScenManager.cs" />
     <Compile Include="Assets\Script\Enemy\HomingMissile.cs" />
