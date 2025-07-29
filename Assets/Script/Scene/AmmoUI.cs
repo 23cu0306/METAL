@@ -15,7 +15,7 @@ public class AmmoUI : MonoBehaviour
         // プレイヤーがマシンガンモードの場合はマシンガンの残弾数表記
         if (attackScript.IsMachineGunMode())
         {
-            ammoText.text = $"ARMS:\n{attackScript.GetMachineGunAmmo()}";
+            ammoText.text = $"ARMS\n{attackScript.GetMachineGunAmmo()}";
         }
         // それ以外は拳銃の残弾数表記
         else
