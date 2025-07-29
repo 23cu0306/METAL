@@ -7,6 +7,7 @@ public class gurenerd : MonoBehaviour
     public Transform grenadeSpawnPoint;
     public float throwForce = 10f; // 投げる力
     private bool isFacingRight = true;
+    public int MAXBomb = 10;
 
     public PlayerControls playerControls; // Input Action のスクリプタブルオブジェクト
 
@@ -32,25 +33,29 @@ public class gurenerd : MonoBehaviour
 
     void ThrowGrenade()
     {
-        if (playerControls.Player.Bomb.triggered && bomb.activeGrenadeCount < 2)
+        if (MAXBomb > 0)
         {
-            GameObject grenade = Instantiate(grenadePrefab, grenadeSpawnPoint.position, Quaternion.identity);
-
-            // PlayerのflipXを参照
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            if (player != null)
+            if (playerControls.Player.Bomb.triggered && bomb.activeGrenadeCount < 2)
             {
-                SpriteRenderer sr = player.GetComponentInChildren<SpriteRenderer>();
-                bool isFacingRight = !(sr != null && sr.flipX); // flipXなら左向き
-                bomb bombScript = grenade.GetComponent<bomb>();
-                if (bombScript != null)
+                GameObject grenade = Instantiate(grenadePrefab, grenadeSpawnPoint.position, Quaternion.identity);
+                MAXBomb -= 1;
+
+                // PlayerのflipXを参照
+                GameObject player = GameObject.FindGameObjectWithTag("Player");
+                if (player != null)
                 {
-                    bombScript.SetDirection(isFacingRight);
+                    SpriteRenderer sr = player.GetComponentInChildren<SpriteRenderer>();
+                    bool isFacingRight = !(sr != null && sr.flipX); // flipXなら左向き
+                    bomb bombScript = grenade.GetComponent<bomb>();
+                    if (bombScript != null)
+                    {
+                        bombScript.SetDirection(isFacingRight);
+                    }
                 }
             }
+
+
         }
-
-
     }
 
     // プレイヤーの向きを更新する処理（例: 移動方向で判定）
