@@ -109,6 +109,9 @@ public class Vehicle_Attack : MonoBehaviour
         // プレイヤーが乗っていない場合、攻撃関連を一切処理しない
         if (!isControlled) return;
 
+        // 破壊中はすべての攻撃処理を中止
+        if (vehicleScript != null && vehicleScript.IsDestroying()) return;
+
         if (isDashing)
         {
             DashForward(); // 突進中の処理
@@ -315,6 +318,23 @@ public class Vehicle_Attack : MonoBehaviour
     {
         yield return new WaitForEndOfFrame(); // 1フレーム待つ
 
+        // プレイヤーを直接取得
+        GameObject player = vehicleScript.GetRider();
+
+        if(player != null && vehicleScript.IsControlled())
+        {
+            // Playerを取得
+            Player playerScript = player.GetComponent<Player>();
+
+            // 乗り物が破壊された場合
+            if (isExploding)
+            {
+                Debug.Log("Playerにダメージ");
+                // 爆発で巻き込めないことがあるので直接ダメージをあたえるように変更
+                playerScript.TakeDamage(vehicleScript.PlayerExplosionDamege);
+            }
+        }
+
         Collider2D[] targets = Physics2D.OverlapCircleAll(
             transform.position,
             vehicleScript.explosionRadius,
@@ -323,19 +343,19 @@ public class Vehicle_Attack : MonoBehaviour
 
         foreach (var col in targets)
         {
-            // 乗り物が破壊された場合
-            if (isExploding)
-            {
-                // プレイヤーにダメージ
-                if (col.CompareTag("Player"))
-                {
-                    var player = col.GetComponent<Player>();
-                    if (player != null) player.TakeDamage(vehicleScript.explosionDamage);
-                }
-            }
+            //// 乗り物が破壊された場合
+            //if (isExploding)
+            //{
+            //    // プレイヤーにダメージ
+            //    if (col.CompareTag("Player"))
+            //    {
+            //        var player = col.GetComponent<Player>();
+            //        if (player != null) player.TakeDamage(vehicleScript.explosionDamage);
+            //    }
+            //}
 
             // 乗り物で突進攻撃した場合
-            else if (isCharging)
+            if (isCharging)
             {
                 // ボスにダメージ
                 if (col.CompareTag("WeakPoint")|| col.CompareTag("Boss"))
