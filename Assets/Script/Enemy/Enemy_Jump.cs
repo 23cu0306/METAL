@@ -200,6 +200,15 @@ public class Enemy_Jump : MonoBehaviour, Enemy_Manager
                 playerHealth.TakeDamage(damage);
             }
         }
+
+        if (other.CompareTag("Vehicle"))
+        {
+            vehicle_move VehicleHp = other.GetComponent<vehicle_move>();
+            if (VehicleHp != null)
+            {
+                VehicleHp.TakeDamage(damage);  // 乗り物にダメージを与える
+            }
+        }
     }
 
     // ダメージを受けた時の処理
