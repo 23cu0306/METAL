@@ -12,7 +12,11 @@ public class Laser : MonoBehaviour
 	{
 		// ƒvƒŒƒCƒ„[‚Ì•ûŒü‚ğæ“¾
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
-		if (player != null)
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Vehicle");
+        }
+        if (player != null)
 		{
 			direction = (player.transform.position - transform.position).normalized;
 		}
