@@ -223,6 +223,9 @@ public class Vehicle_Attack : MonoBehaviour
 
             vehicleScript.canControl = false;
 
+            // 点滅強制停止
+            vehicleScript.ForceStopDamageBlink();
+
             // 突進開始前にプレイヤーを乗り物から降ろす処理を呼ぶ
             vehicleScript.Exit();
 

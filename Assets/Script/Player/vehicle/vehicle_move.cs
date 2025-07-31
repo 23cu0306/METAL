@@ -50,6 +50,8 @@ public class vehicle_move : MonoBehaviour
     // 乗り物のSpriteRenderer参照
     private SpriteRenderer[] spriteRenderers;
 
+    private Coroutine dashBlinkCoroutine = null;  // 突進中の点滅処理用
+
 
     //---------------------------------------------------------------
     [Header("テスト用：HP自動減少")]
@@ -86,10 +88,12 @@ public class vehicle_move : MonoBehaviour
         int stopLayer = LayerMask.NameToLayer("Stop_Enemy");
         int playerLayer = LayerMask.NameToLayer("Player");
         int grenadeLayer = LayerMask.NameToLayer("Bullet");
+        int enemybulletLayer = LayerMask.NameToLayer("EnemyBullet");
         Physics2D.IgnoreLayerCollision(vehicleLayer, enemyLayer, true);
         Physics2D.IgnoreLayerCollision(vehicleLayer, stopLayer, true);
         Physics2D.IgnoreLayerCollision(vehicleLayer, playerLayer, true);
         Physics2D.IgnoreLayerCollision(vehicleLayer, grenadeLayer, true);
+        Physics2D.IgnoreLayerCollision(vehicleLayer, enemybulletLayer, true);
 
         //---------------------------------------------------
         // HP自動減少コルーチンを開始（デバッグ用）
@@ -161,6 +165,8 @@ public class vehicle_move : MonoBehaviour
         {
             HandleMovement();
         }
+
+        HandleDashBlink();
 
         // 無敵時間カウントダウン
         if (invincibleTimer > 0f)
@@ -241,6 +247,11 @@ public class vehicle_move : MonoBehaviour
     // 操作を開始する(Inputを有効にする)
     public void StartControl()
     {
+        // 敵の弾がすり抜けないように変更
+        int vehicleLayer = LayerMask.NameToLayer("Vehicle");
+        int enemybulletLayer = LayerMask.NameToLayer("EnemyBullet");
+        Physics2D.IgnoreLayerCollision(vehicleLayer, enemybulletLayer, false);
+
         if (isControlled) return;   // すでに操作中なら何もしない
 
         isControlled = true;
@@ -264,6 +275,11 @@ public class vehicle_move : MonoBehaviour
 
             // プレイヤーの最有効化
             rider.SetActive(true);
+
+            // 敵の弾がすり抜けるように変更
+            int vehicleLayer = LayerMask.NameToLayer("Vehicle");
+            int enemybulletLayer = LayerMask.NameToLayer("EnemyBullet");
+            Physics2D.IgnoreLayerCollision(vehicleLayer, enemybulletLayer, true);
 
             // 降車の際に着地するまでダメージを受けないように変更
             Player playerScript = rider.GetComponent<Player>();
@@ -469,6 +485,78 @@ public class vehicle_move : MonoBehaviour
 
             yield return new WaitForSeconds(interval);
         }
+    }
+
+    // 突進時の点滅制御関数
+    private void HandleDashBlink()
+    {
+        if (vehicleattack == null) return;
+
+        if (vehicleattack.isDashing && dashBlinkCoroutine == null)
+        {
+            dashBlinkCoroutine = StartCoroutine(DashBlinkCoroutine());
+        }
+        else if (!vehicleattack.isDashing && dashBlinkCoroutine != null)
+        {
+            StopCoroutine(dashBlinkCoroutine);
+            dashBlinkCoroutine = null;
+
+            foreach (var sr in spriteRenderers)
+                sr.color = originalColor;
+
+            if (vehicleRenderer != null)
+                vehicleRenderer.material.color = originalColor;
+        }
+    }
+
+    // 突進点滅処理
+    public IEnumerator DashBlinkCoroutine()
+    {
+        bool isRed = false;
+        float blinkInterval = 0.1f;
+
+        while (vehicleattack != null && vehicleattack.isDashing)
+        {
+            foreach (var sr in spriteRenderers)
+            {
+                sr.color = isRed ? originalColor : flashColor;
+            }
+
+            if (vehicleRenderer != null)
+            {
+                vehicleRenderer.material.color = isRed ? originalColor : flashColor;
+            }
+
+            isRed = !isRed;
+            yield return new WaitForSeconds(blinkInterval);
+        }
+
+        // 終了時に色を元に戻す
+        foreach (var sr in spriteRenderers)
+        {
+            sr.color = originalColor;
+        }
+
+        if (vehicleRenderer != null)
+        {
+            vehicleRenderer.material.color = originalColor;
+        }
+    }
+
+    // 点滅強制停止
+    public void ForceStopDamageBlink()
+    {
+        if (damageBlinkCoroutine != null)
+        {
+            StopCoroutine(damageBlinkCoroutine);
+            damageBlinkCoroutine = null;
+        }
+
+        foreach (var sr in spriteRenderers)
+            sr.color = originalColor;
+
+        if (vehicleRenderer != null)
+            vehicleRenderer.material.color = originalColor;
     }
 
     // 破壊処理開始
