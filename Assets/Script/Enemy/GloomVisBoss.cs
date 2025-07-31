@@ -173,32 +173,43 @@ public class GloomVisBoss : MonoBehaviour
 
 	IEnumerator DashAttack()
 	{
-        Vector3 dashTarget = player.transform.position;
-        float duration = 0.3f;
-        float elapsed = 0f;
-        Vector3 start = transform.position;
+            // 対象を取得：PlayerがなければVehicle
+            GameObject target = GameObject.FindGameObjectWithTag("Player");
+            if (target == null)
+            {
+                target = GameObject.FindGameObjectWithTag("Vehicle");
+            }
 
-        // 前進
-        while (elapsed < duration)
-        {
-            transform.position = Vector3.Lerp(start, dashTarget, elapsed / duration);
-            elapsed += Time.deltaTime;
-            yield return null;
+            // 対象が見つからない場合は中断
+            if (target == null)
+                yield break;
+
+            Vector3 dashTarget = target.transform.position;
+            float duration = 0.3f;
+            float elapsed = 0f;
+            Vector3 start = transform.position;
+
+            // 前進
+            while (elapsed < duration)
+            {
+                transform.position = Vector3.Lerp(start, dashTarget, elapsed / duration);
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(0.2f); // 少し待ってから戻る
+
+            // 復帰
+            elapsed = 0f;
+            while (elapsed < duration)
+            {
+                transform.position = Vector3.Lerp(dashTarget, start, elapsed / duration);
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
         }
 
-        yield return new WaitForSeconds(0.2f); // 少し待ってから戻る
-
-        // 復帰
-        elapsed = 0f;
-        while (elapsed < duration)
-        {
-            transform.position = Vector3.Lerp(dashTarget, originalPosition, elapsed / duration);
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-    }
-
-	IEnumerator OpenWeakPointTemporarily()
+        IEnumerator OpenWeakPointTemporarily()
 	{
 		//weakPoint.gameObject.SetActive(true);
 		yield return new WaitForSeconds(3.0f);
