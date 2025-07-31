@@ -24,8 +24,9 @@ public class vehicle_move : MonoBehaviour
 
     [Header("乗り物破壊の詳細設定")]
     public  Vehicle_Attack vehicleattack;
-    public int explosionDamage = 70;            // 爆発のダメージ量
-    public float explosionRadius = 20.0f;       // ダメージ範囲
+    public int PlayerExplosionDamege = 10;      // 爆破した際のプレイヤーダメージ
+    public int explosionDamage = 70;            // 爆破した際の敵ダメージ
+    public float explosionRadius = 10.0f;       // ダメージ範囲
     public LayerMask explosionTargetLayers;     // ダメージを与える対象レイヤー
     public float VehicleDestroyDelayTime = 4.0f;// HPが0になってから破壊されるまでの時間
     private bool isDestroying = false;          // 二重侵入防止対策
@@ -320,6 +321,7 @@ public class vehicle_move : MonoBehaviour
     // 横移動処理
     private void HandleMovement()
     {
+        if (isDestroying) return;
         // 地上と空中で横移動の速度変更
         float currentSpeed = isGrounded ? moveSpeed : airMoveSpeed;
 
@@ -333,8 +335,6 @@ public class vehicle_move : MonoBehaviour
     // ジャンプ・降車処理
     private void HandleJump()
     {
-        if (!canControl) return;
-
         // 下入力＋ジャンプ入力で降車
         if (moveInput.y < -0.5f && rider != null && isGrounded)
         {
@@ -342,11 +342,19 @@ public class vehicle_move : MonoBehaviour
             return;
         }
 
+        if (!canControl || isDestroying) return;
+
         // 接地している場合のみジャンプ
         if (isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
+    }
+
+    // VehicleAttackに破壊状態を送る用
+    public bool IsDestroying()
+    {
+        return isDestroying;
     }
 
     // ジャンプからの落下が自然に見えるように修正
@@ -460,7 +468,6 @@ public class vehicle_move : MonoBehaviour
 
             // プレイヤーをアクティブ状態に変更
             rider.SetActive(true);
-
             
 
             // プレイヤーの位置を乗り物の少し上に移動
@@ -471,6 +478,7 @@ public class vehicle_move : MonoBehaviour
             if (riderRb != null)
             {
                 riderRb.linearVelocity = new Vector2(0f, 20f); // 左：横、右：上への力
+                Debug.Log("プレイヤージャンプ");
             }
 
             // センサーを無効化

@@ -2680,8 +2680,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3232451776530154725, guid: 585495c216243b84da29e8a981576381, type: 3}
+      propertyPath: autoDecreaseHP
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3232451776530154725, guid: 585495c216243b84da29e8a981576381, type: 3}
       propertyPath: explosionRadius
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8062314274973312895, guid: 585495c216243b84da29e8a981576381, type: 3}
       propertyPath: m_Name
