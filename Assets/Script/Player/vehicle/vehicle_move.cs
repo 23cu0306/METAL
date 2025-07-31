@@ -43,6 +43,14 @@ public class vehicle_move : MonoBehaviour
     public float invincibleDuration = 2f;       // プレイヤー搭乗後の無敵時間（秒）
     private float invincibleTimer = 0f;         // 無敵タイマー
 
+    [Header("ダメージクールタイム設定")]
+    public float damageCooldownTime = 1.0f;         // 無敵時間（秒）
+    private bool isDamageCooldown = false;          // 無敵中フラグ
+    private Coroutine damageBlinkCoroutine = null;  // 点滅処理の参照
+    // 乗り物のSpriteRenderer参照
+    private SpriteRenderer[] spriteRenderers;
+
+
     //---------------------------------------------------------------
     [Header("テスト用：HP自動減少")]
     public float hpDecreaseInterval = 1.0f;   // HPを減らす間隔（秒）
@@ -124,6 +132,12 @@ public class vehicle_move : MonoBehaviour
         controls.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();  // 移動入力(押された時)
         controls.Player.Move.canceled += ctx => moveInput = Vector2.zero;               // 移動停止(離した時)
         controls.Player.Jump.performed += _ => HandleJump();                            // ジャンプ入力
+
+        spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+
+        // 元の色を保持（最初のレンダラーの色を使う）
+        if (spriteRenderers.Length > 0)
+            originalColor = spriteRenderers[0].color;
     }
 
     private void OnEnable()
@@ -552,6 +566,13 @@ public class vehicle_move : MonoBehaviour
     // 敵などからダメージを受けた時に呼ばれる関数
     public void TakeDamage(int damage)
     {
+        // 爆破中はダメージ処理をしない(点滅防止)
+        if (isDestroying)
+        {
+            Debug.Log("破壊中のためダメージ無効");
+            return;
+        }
+
         // プレイヤーが乗っていない場合は処理をしない
         if (!isControlled)
         {
@@ -562,10 +583,92 @@ public class vehicle_move : MonoBehaviour
         // プレイヤーが乗り込んだ直後で一定時間いないならダメージ処理をしない
         if (invincibleTimer > 0f)
         {
-            Debug.Log("無敵時間中のためダメージ無効");
+            Debug.Log("乗車直後の無敵時間中：被弾無効");
+            return;
+        }
+
+        // ダメージを食らったら一定時間ダメージ処理をしない
+        if (isDamageCooldown)
+        {
+            Debug.Log("ダメージクールタイム中:被弾無効");
             return;
         }
 
         VehicleHp -= damage;
+        // HPが0以下になったら透明点滅はしない（爆破に任せる）
+        if (VehicleHp <= 0f)
+        {
+            Debug.Log("HPが0以下になったので透明点滅をせず爆破処理に切り替え");
+            // ここで無敵・点滅系をリセットしておく
+            isDamageCooldown = false;
+            if (damageBlinkCoroutine != null)
+            {
+                StopCoroutine(damageBlinkCoroutine);
+                damageBlinkCoroutine = null;
+            }
+            // 無敵状態も解除
+            invincibleTimer = 0f;
+
+            // ここで爆破処理がUpdateなどで走る想定
+            return;
+        }
+
+        // HPが残っている場合は通常のダメージ点滅処理を行う
+        isDamageCooldown = true;
+        StartCoroutine(DamageCooldownCoroutine());
+
+        if (damageBlinkCoroutine != null)
+            StopCoroutine(damageBlinkCoroutine);
+
+        damageBlinkCoroutine = StartCoroutine(DamageBlinkCoroutine());
+    }
+
+
+    // 点滅コルーチン（透明↔不透明）
+    private IEnumerator DamageBlinkCoroutine()
+    {
+        bool isVisible = true;
+        float blinkInterval = 0.1f;
+
+        while (isDamageCooldown)
+        {
+            foreach (var sr in spriteRenderers)
+            {
+                Color c = originalColor;
+                c.a = isVisible ? 1f : 0f;  // アルファ値で透明・不透明を切り替え
+                sr.color = c;
+            }
+
+            // vehicleRendererの色も同様に切り替えるなら（もしメッシュの色を変えたいなら）
+            if (vehicleRenderer != null)
+            {
+                Color c = vehicleRenderer.material.color;
+                c.a = isVisible ? 1f : 0f;
+                vehicleRenderer.material.color = c;
+            }
+
+            isVisible = !isVisible;
+            yield return new WaitForSeconds(blinkInterval);
+        }
+
+        // 点滅終了時は全てのレンダラーの色を元に戻す
+        foreach (var sr in spriteRenderers)
+        {
+            sr.color = originalColor;
+        }
+        if (vehicleRenderer != null)
+        {
+            vehicleRenderer.material.color = originalColor;
+        }
+    }
+
+    // 無敵時間解除用のコルーチン
+    private IEnumerator DamageCooldownCoroutine()
+    {
+        yield return new WaitForSeconds(damageCooldownTime);
+        isDamageCooldown = false;
+
+        // damageBlinkCoroutineの停止はしない（DamageBlinkCoroutineが自動で終了し色を戻すため）
+        damageBlinkCoroutine = null;
     }
 }
