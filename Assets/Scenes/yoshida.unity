@@ -1132,7 +1132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 569368964712988995, guid: cd4c51f8618b1054fb90a613cab00f58, type: 3}
       propertyPath: shotData.type
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 569368964712988995, guid: cd4c51f8618b1054fb90a613cab00f58, type: 3}
       propertyPath: shotData.frame
@@ -1895,6 +1895,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1228845275007878551, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
   m_PrefabInstance: {fileID: 487777075}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1469558526 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5239255058080110534, guid: 1c74086fea2d44b44afd939de863d247, type: 3}
+  m_PrefabInstance: {fileID: 487777075}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1469558522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab922ac00cec80447b6431ba64c114d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1505492391
 GameObject:
   m_ObjectHideFlags: 0
@@ -2416,6 +2427,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 8219426380932317596}
   playerText: {fileID: 1763515244}
+  vehiclehp: {fileID: 586600575}
 --- !u!114 &1912054739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2442,7 +2454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61e84b10f025c2748a7700961af3e1d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boss: {fileID: 0}
+  boss: {fileID: 1469558526}
   bossText: {fileID: 68810298}
 --- !u!114 &1912054741
 MonoBehaviour:
@@ -2693,7 +2705,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8283437174032519769, guid: 585495c216243b84da29e8a981576381, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.1000137
+      value: 4.8
       objectReference: {fileID: 0}
     - target: {fileID: 8283437174032519769, guid: 585495c216243b84da29e8a981576381, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2746,7 +2758,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2785801392096796056, guid: 71fa7d123797b174592ede8b93bad7e1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -22.8
+      value: -23.10001
       objectReference: {fileID: 0}
     - target: {fileID: 2785801392096796056, guid: 71fa7d123797b174592ede8b93bad7e1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2813,6 +2825,6 @@ SceneRoots:
   - {fileID: 487777075}
   - {fileID: 8869339147212406822}
   - {fileID: 195097331}
-  - {fileID: 851360525}
   - {fileID: 8502667865220464711}
   - {fileID: 7378838379818143793}
+  - {fileID: 851360525}

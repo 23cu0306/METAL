@@ -543,7 +543,7 @@ public class vehicle_move : MonoBehaviour
         }
     }
 
-    // 点滅強制停止
+    // 点滅強制停止(vehicle_Attackで使用)
     public void ForceStopDamageBlink()
     {
         if (damageBlinkCoroutine != null)

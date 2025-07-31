@@ -68,6 +68,7 @@
     <Compile Include="Assets\Script\Scene\GameManager.cs" />
     <Compile Include="Assets\UnityTechnologies\EffectExamples\Shared\Scripts\ParticleExamples.cs" />
     <Compile Include="Assets\Script\Enemy\HeadBlinker.cs" />
+    <Compile Include="Assets\Script\Scene\UI\AmmoUI.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy_Bullet.cs" />
     <Compile Include="Assets\Script\Player\Attack.cs" />
     <Compile Include="Assets\LeftRightMovement.cs" />
@@ -77,13 +78,14 @@
     <Compile Include="Assets\Script\Enemy\BossSpawn.cs" />
     <Compile Include="Assets\Script\Enemy\CoreLaser.cs" />
     <Compile Include="Assets\Script\Scene\ScenManager.cs" />
+    <Compile Include="Assets\Script\Scene\UI\UIManager.cs" />
+    <Compile Include="Assets\Script\Scene\UI\ScoreManager.cs" />
+    <Compile Include="Assets\Script\Scene\UI\PlyerHpText.cs" />
     <Compile Include="Assets\Script\Enemy\HomingMissile.cs" />
     <Compile Include="Assets\Script\Scene\GameOverManager.cs" />
-    <Compile Include="Assets\Script\Scene\PlyerHpText.cs" />
     <Compile Include="Assets\Script\Enemy\DecayBullet.cs" />
     <Compile Include="Assets\Script\Player\gurenerd.cs" />
-    <Compile Include="Assets\Script\Scene\ScoreManager.cs" />
-    <Compile Include="Assets\Script\Scene\AmmoUI.cs" />
+    <Compile Include="Assets\Script\Scene\UI\BossHP_Check.cs" />
     <Compile Include="Assets\UnityTechnologies\EffectExamples\Shared\Scripts\ExtinguishableFire.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy_Shooter.cs" />
     <Compile Include="Assets\Script\Scene\TaitlManager.cs" />
@@ -91,7 +93,6 @@
     <Compile Include="Assets\Script\Enemy\Laser.cs" />
     <Compile Include="Assets\UnityTechnologies\EffectExamples\Shared\Scripts\ParticleMenu.cs" />
     <Compile Include="Assets\Script\Scene\NextStage.cs" />
-    <Compile Include="Assets\Script\Scene\UIManager.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy_Fly.cs" />
     <Compile Include="Assets\UpDownMovement.cs" />
     <Compile Include="Assets\UnityTechnologies\EffectExamples\Shared\Scripts\GunAim.cs" />
@@ -99,13 +100,13 @@
     <Compile Include="Assets\Script\Player\EnemyDetector.cs" />
     <Compile Include="Assets\Script\Player\Bullet.cs" />
     <Compile Include="Assets\Script\Scene\FrameFix.cs" />
+    <Compile Include="Assets\Script\Scene\UI\BombUI.cs" />
     <Compile Include="Assets\Script\Player\MachineGunItem.cs" />
-    <Compile Include="Assets\Script\Scene\BossHP_Check.cs" />
     <Compile Include="Assets\Script\Player\Player.cs" />
     <Compile Include="Assets\Script\Enemy\GloomVisBoss.cs" />
     <Compile Include="Assets\UnityTechnologies\EffectExamples\Shared\Scripts\DecalDestroyer.cs" />
     <Compile Include="Assets\Script\Scene\WallStopper.cs" />
-    <Compile Include="Assets\Script\Scene\TimeText.cs" />
+    <Compile Include="Assets\Script\Scene\UI\TimeText.cs" />
     <Compile Include="Assets\Script\Enemy\ScarletClawBoss.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyActivator.cs" />
     <Compile Include="Assets\Script\Player\vehicle\Vehicle_Attack.cs" />
@@ -117,7 +118,6 @@
     <Compile Include="Assets\UnityTechnologies\EffectExamples\Shared\Scripts\GunShoot.cs" />
     <Compile Include="Assets\Script\Enemy\CameraLock.cs" />
     <Compile Include="Assets\Script\Enemy\EnemySpawner.cs" />
-    <Compile Include="Assets\Script\Scene\BombUI.cs" />
     <Compile Include="Assets\Script\Player\vehicle\VehicleEnterSensor.cs" />
     <Compile Include="Assets\Script\Scene\Image.cs" />
   </ItemGroup>
