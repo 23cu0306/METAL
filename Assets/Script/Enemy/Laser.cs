@@ -35,15 +35,23 @@ public class Laser : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.CompareTag("Player"))
-		{
-            Player playerHealth = other.GetComponent<Player>();
-            if (playerHealth != null)
+        if (other.CompareTag("Player"))
+        {
+            Player player = other.GetComponent<Player>();
+            if (player != null)
             {
-                playerHealth.TakeDamage(damage);  // プレイヤーにダメージを与える
+                player.TakeDamage(damage);
             }
-            // Optional: 爆発エフェクトなど
             Destroy(gameObject);
-		}
-	}
+        }
+        else if (other.CompareTag("Vehicle"))
+        {
+            vehicle_move vehicle = other.GetComponent<vehicle_move>();
+            if (vehicle != null)
+            {
+                vehicle.TakeDamage(damage);
+            }
+            Destroy(gameObject);
+        }
+    }
 }

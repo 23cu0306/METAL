@@ -41,18 +41,25 @@ public class meteo : MonoBehaviour
     {
         //Debug.Log("何かに衝突: " + other.name);
 
+
         if (other.CompareTag("Player"))
         {
-            //Debug.Log("プレイヤーにヒット！");
-            Player playerHealth = other.GetComponent<Player>();
-            if (playerHealth != null)
+            Player player = other.GetComponent<Player>();
+            if (player != null)
             {
-                //Debug.Log("TakeDamage 実行");
-                playerHealth.TakeDamage(damage);
+                player.TakeDamage(damage);
             }
             Destroy(gameObject);
         }
-
+        else if (other.CompareTag("Vehicle"))
+        {
+            vehicle_move vehicle = other.GetComponent<vehicle_move>();
+            if (vehicle != null)
+            {
+                vehicle.TakeDamage(damage);
+            }
+            Destroy(gameObject);
+        }
         // 壁などに当たったら消える
         if (other.CompareTag("Ground") || other.CompareTag("Bullet"))
         {
