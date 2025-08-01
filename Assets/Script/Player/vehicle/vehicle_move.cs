@@ -543,22 +543,6 @@ public class vehicle_move : MonoBehaviour
         }
     }
 
-    // 点滅強制停止(vehicle_Attackで使用)
-    public void ForceStopDamageBlink()
-    {
-        if (damageBlinkCoroutine != null)
-        {
-            StopCoroutine(damageBlinkCoroutine);
-            damageBlinkCoroutine = null;
-        }
-
-        foreach (var sr in spriteRenderers)
-            sr.color = originalColor;
-
-        if (vehicleRenderer != null)
-            vehicleRenderer.material.color = originalColor;
-    }
-
     // 破壊処理開始
     private void VehicleDestroy()
     {
@@ -594,40 +578,9 @@ public class vehicle_move : MonoBehaviour
         var attack = GetComponentInChildren<Vehicle_Attack>();
         if(attack != null)
         {
-            attack.StartExplosion();
+            attack.StartExplosion();    // 爆破処理を呼び出し
         }
     }
-
-    public void Exit()
-    {
-        // プレイヤー排出処理
-        if (rider != null)
-        {
-            // プレイヤーを自身の子オブジェクトから解除
-            SafeSetParent(rider.transform, null);
-
-            // プレイヤーをアクティブ状態に変更
-            rider.SetActive(true);
-
-            // プレイヤーの位置を乗り物の少し上に移動
-            rider.transform.position = transform.position + Vector3.up * 1.0f;
-
-            // 少し上にジャンプさせる
-            Rigidbody2D riderRb = rider.GetComponent<Rigidbody2D>();
-            if (riderRb != null)
-            {
-                riderRb.linearVelocity = new Vector2(0f,20f); // 左：横、右：上への力
-            }
-
-            // センサーを無効化
-            VehicleEnterSensor sensor = GetComponentInChildren<VehicleEnterSensor>();
-            if (sensor != null)
-            {
-                sensor.SetSensorEnabled(false); // VehicleEnterSensorクラスのフラグ変更
-            }
-        }
-    }
-
 
     // 乗り物を破壊後に1フレーム待ってからプレイヤーと乗り物の接触判定を有効化する処理
     // 破壊時に一時的に無効化していた衝突を復元する際に仕様
@@ -646,9 +599,56 @@ public class vehicle_move : MonoBehaviour
         isDestroying = false;
     }
 
+    // プレイヤーを乗り物からおろす処理
+    public void Exit()
+    {
+        // プレイヤー排出処理
+        if (rider != null)
+        {
+            // プレイヤーを自身の子オブジェクトから解除
+            SafeSetParent(rider.transform, null);
+
+            // プレイヤーをアクティブ状態に変更
+            rider.SetActive(true);
+
+            // プレイヤーの位置を乗り物の少し上に移動
+            rider.transform.position = transform.position + Vector3.up * 1.0f;
+
+            // 少し上にジャンプさせる
+            Rigidbody2D riderRb = rider.GetComponent<Rigidbody2D>();
+            if (riderRb != null)
+            {
+                riderRb.linearVelocity = new Vector2(0f, 20f); // 左：横、右：上への力
+            }
+
+            // センサーを無効化
+            VehicleEnterSensor sensor = GetComponentInChildren<VehicleEnterSensor>();
+            if (sensor != null)
+            {
+                sensor.SetSensorEnabled(false); // VehicleEnterSensorクラスのフラグ変更
+            }
+        }
+    }
+
     public GameObject GetRider()
     {
         return rider;
+    }
+
+    // 点滅強制停止(vehicle_Attackで使用)
+    public void ForceStopDamageBlink()
+    {
+        if (damageBlinkCoroutine != null)
+        {
+            StopCoroutine(damageBlinkCoroutine);
+            damageBlinkCoroutine = null;
+        }
+
+        foreach (var sr in spriteRenderers)
+            sr.color = originalColor;
+
+        if (vehicleRenderer != null)
+            vehicleRenderer.material.color = originalColor;
     }
 
     // 敵などからダメージを受けた時に呼ばれる関数

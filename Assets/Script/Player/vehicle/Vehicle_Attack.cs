@@ -112,9 +112,10 @@ public class Vehicle_Attack : MonoBehaviour
         // 破壊中はすべての攻撃処理を中止
         if (vehicleScript != null && vehicleScript.IsDestroying()) return;
 
+        // もし突進状態に入ったら突進攻撃を開始
         if (isDashing)
         {
-            DashForward(); // 突進中の処理
+            DashForward(); // 突進攻撃実行
             return; // それ以外の操作は受け付けない
         }
 
@@ -124,8 +125,41 @@ public class Vehicle_Attack : MonoBehaviour
         Attack();                   // 攻撃処理 
     }
 
+    //==================== 攻撃処理(突進攻撃も含む) ====================
+    void Attack()
+    {
+        // 突進攻撃を実行
+        if (dashButtonPressed && moveInput.y < -0.5f && vehicleScript.isGrounded)
+        {
+            if (isExploding) return;    // 壊された場合突進攻撃不可
+            // 突進攻撃のダメージに設定
+            isCharging = true;
+            // 同時押し時に突進開始
+            attackPressed = false;
+
+            vehicleScript.canControl = false;
+
+            // 点滅強制停止
+            vehicleScript.ForceStopDamageBlink();
+
+            // 突進開始前にプレイヤーを乗り物から降ろす処理を呼ぶ
+            vehicleScript.Exit();
+
+            isDashing = true;   // 突進状態に変更
+            return;
+        }
+
+        // 通常攻撃を実行
+        if (attackPressed)
+        {
+            HandleBurst();    // 攻撃処理実行
+        }
+    }
+
+    //==================== 突進攻撃 ====================
     void DashForward()
     {
+        // プレイヤーが操作中ではなかったら実行しない(最終確認)
         if (!isControlled) return;
 
         // 右に自動移動
@@ -149,24 +183,25 @@ public class Vehicle_Attack : MonoBehaviour
             // タグ or レイヤー どちらかでヒットしたら処理
             if (hitEnemyLayer || hitBossTag)
             {
-                isDashing = false;
-                StartExplosion();
+                isDashing = false;  // 突進状態を解除
+                StartExplosion();   // 爆破処理を呼び出し
                 break; // 一回爆発処理したら終了
             }
         }
 
-        // 画面外判定（右端）
+        // 画面外判定（右端）に出た際に爆破処理開始
         Camera mainCamera = Camera.main;
         float distanceFromCamera = Mathf.Abs(mainCamera.transform.position.z - transform.position.z);
         Vector3 rightEdgeWorldPos = mainCamera.ViewportToWorldPoint(new Vector3(1, 0.5f, distanceFromCamera));
         if (transform.position.x > rightEdgeWorldPos.x)
         {
-            isDashing = false;
-            StartExplosion();
+            isDashing = false;  // 突進状態を解除
+            StartExplosion();   // 爆破処理を呼び出し
         }
     }
 
     //==================== 入力方向に応じた射撃方向設定 ====================
+    // 弾の発射方向を調整する関数
     void HandleInput()
     {
         bool isGrounded = vehicleScript != null && vehicleScript.isGrounded;    // 乗り物が存在し、かつ地面にいるかどうかの確認
@@ -210,37 +245,7 @@ public class Vehicle_Attack : MonoBehaviour
             SetFirePointPosition(leftOffset);
     }
 
-    //==================== 攻撃処理(ここで武器切り替え可能) ====================
-    void Attack()
-    {
-        if (dashButtonPressed && moveInput.y < -0.5f && vehicleScript.isGrounded)
-        {
-            if (isExploding) return;    // 壊された場合突進攻撃不可
-            // 突進攻撃のダメージに設定
-            isCharging = true;
-            // 同時押し時に突進開始
-            attackPressed = false;
-
-            vehicleScript.canControl = false;
-
-            // 点滅強制停止
-            vehicleScript.ForceStopDamageBlink();
-
-            // 突進開始前にプレイヤーを乗り物から降ろす処理を呼ぶ
-            vehicleScript.Exit();
-
-            isDashing = true;
-            return;
-        }
-
-        //攻撃ボタンがおされたときに処理
-        if (attackPressed)
-        {
-            HandleBurst();    // 攻撃処理実行
-        }
-    }
-
-    //==================== 通常攻撃処理 ====================
+    //==================== 攻撃処理 ====================
     // 一回押すことでburstShotCountの間隔でburstShotMaxの回数分弾が発射される
     void HandleBurst()
     {
@@ -309,14 +314,14 @@ public class Vehicle_Attack : MonoBehaviour
             lastValidFirePointOffset = offset;
     }
 
-    // 爆発処理
+    //==================== 爆破処理 ====================
     // 乗り物の破壊時に呼び出し
     public void StartExplosion()
     {
         StartCoroutine(DelayedExplosion());
     }
 
-    // プレイヤーが復帰してから確実にダメージを入れるため1フレームずらす処理
+    // ダメージを相手に渡す関数(HP0か突進でターゲット変更)
     private IEnumerator DelayedExplosion()
     {
         yield return new WaitForEndOfFrame(); // 1フレーム待つ
@@ -346,17 +351,6 @@ public class Vehicle_Attack : MonoBehaviour
 
         foreach (var col in targets)
         {
-            //// 乗り物が破壊された場合
-            //if (isExploding)
-            //{
-            //    // プレイヤーにダメージ
-            //    if (col.CompareTag("Player"))
-            //    {
-            //        var player = col.GetComponent<Player>();
-            //        if (player != null) player.TakeDamage(vehicleScript.explosionDamage);
-            //    }
-            //}
-
             // 乗り物で突進攻撃した場合
             if (isCharging)
             {
@@ -389,7 +383,7 @@ public class Vehicle_Attack : MonoBehaviour
         Destroy(gameObject);
     }
 
-    // 当たり判定調整のため
+    // 突進をした際の衝突判定を可視化
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
