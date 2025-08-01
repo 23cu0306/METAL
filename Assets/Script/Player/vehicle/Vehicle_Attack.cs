@@ -405,7 +405,7 @@ public class Vehicle_Attack : MonoBehaviour
     {
         if (!isControlled) return;
 
-        if (grenadePressed)
+        if (grenadePressed && moveInput.y < -0.5f)
         {
             grenadePressed = false;
 
