@@ -37,6 +37,7 @@ public class Vehicle_Attack : MonoBehaviour
     [Header("乗り物接続")]
     public vehicle_move vehicleScript;                  // 乗り物のスクリプトを参照
 
+
     private Vector2 currentDirection = Vector2.right;   // 現在の発射方向
     private Vector2 targetDirection = Vector2.right;    // 目標の発射方向（補間先）
     private Vector2 lastValidFirePointOffset;           // 最後の有効な発射位置オフセット
@@ -315,7 +316,7 @@ public class Vehicle_Attack : MonoBehaviour
     }
 
     //==================== 爆破処理 ====================
-    // 乗り物の破壊時に呼び出し
+    // 乗り物の破壊時に呼び出し(突進処理かVehicle_moveの)
     public void StartExplosion()
     {
         StartCoroutine(DelayedExplosion());

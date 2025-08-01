@@ -19,7 +19,7 @@ public class vehicle_move : MonoBehaviour
     public LayerMask groundLayer;               // 接地と判定するレイヤー
     public bool isGrounded;                     // 地面に接しているかのフラグ
 
-    [Header("乗り物の詳細設定")]
+    [Header("乗り物のHP設定")]
     public float VehicleHp = 100;               // 乗り物のHP
 
     [Header("乗り物破壊の詳細設定")]
@@ -60,6 +60,7 @@ public class vehicle_move : MonoBehaviour
     public bool autoDecreaseHP = false;        // 自動で減少するか（デバッグ用ON/OFF）
     //---------------------------------------------------------------
 
+    [Header("その他")]
     // 入力管理変数
     private Vector2 moveInput;                  // プレイヤーからの移動入力（左右＋上下）
     private bool isControlled = false;          // プレイヤーが操作中かどうか
@@ -76,6 +77,27 @@ public class vehicle_move : MonoBehaviour
 
     // プレイヤーの操作が無効かどうか
     public bool canControl = true;
+
+    //==================== 2. Unityイベント ====================
+    void Awake()
+    {
+        // Input Actionのインスタンスを生成
+        controls = new PlayerControls();
+
+        // Rigidbody2Dを取得
+        rb = GetComponent<Rigidbody2D>();
+
+        // 入力イベントの登録
+        controls.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();  // 移動入力(押された時)
+        controls.Player.Move.canceled += ctx => moveInput = Vector2.zero;               // 移動停止(離した時)
+        controls.Player.Jump.performed += _ => HandleJump();                            // ジャンプ入力
+
+        spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+
+        // 元の色を保持（最初のレンダラーの色を使う）
+        if (spriteRenderers.Length > 0)
+            originalColor = spriteRenderers[0].color;
+    }
 
     private void Start()
     {
@@ -102,46 +124,6 @@ public class vehicle_move : MonoBehaviour
             StartCoroutine(AutoDecreaseHP());
         }
         //----------------------------------------------------
-    }
-
-    //----------------------------------------------------------
-    //仮
-    private IEnumerator AutoDecreaseHP()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(hpDecreaseInterval);
-
-            VehicleHp -= hpDecreaseAmount;
-
-            Debug.Log($"Vehicle HP: {VehicleHp}");
-
-            if (VehicleHp <= 0f)
-            {
-                yield break; // コルーチン終了
-            }
-        }
-    }
-    //---------------------------------------------------------------------
-
-    void Awake()
-    {
-        // Input Actionのインスタンスを生成
-        controls = new PlayerControls();
-
-        // Rigidbody2Dを取得
-        rb = GetComponent<Rigidbody2D>();
-
-        // 入力イベントの登録
-        controls.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();  // 移動入力(押された時)
-        controls.Player.Move.canceled += ctx => moveInput = Vector2.zero;               // 移動停止(離した時)
-        controls.Player.Jump.performed += _ => HandleJump();                            // ジャンプ入力
-
-        spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
-
-        // 元の色を保持（最初のレンダラーの色を使う）
-        if (spriteRenderers.Length > 0)
-            originalColor = spriteRenderers[0].color;
     }
 
     private void OnEnable()
@@ -191,44 +173,8 @@ public class vehicle_move : MonoBehaviour
         }
     }
 
-    // プレイヤーが乗ってるかの情報を返す
-    public bool IsControlled()
-    {
-        return isControlled;
-    }
-
-    //==================== プレイヤーのスケールが変わらないように親子関係を変更するための処理 ====================
-
-    // 子オブジェクトを完全に新しい親オブジェクトに変更する関数
-    // ワールドスケール(大きさの見た目)を維持したまま親子関係を変更
-    void SafeSetParent(Transform child, Transform newParent)
-    {
-        Vector3 worldScale = child.lossyScale;           // 現在のワールドスケール(大きさの見た目)を保存
-        child.SetParent(newParent, true);                // ワールド位置・回転は維持
-        child.localScale = GetLocalScaleRelativeTo(worldScale, newParent); // ワールドスケールが変わらないようにlocalScaleを再計算して設定
-    }
-
-    //指定したワールドスケールを保つために必要なlocalScaleを計算
-    Vector3 GetLocalScaleRelativeTo(Vector3 worldScale, Transform parent)
-    {
-        // 親が存在しない場合は、localScale = worldScale とすれば見た目が一致する。
-        if (parent == null)
-            return worldScale;
-
-        // 親のワールドスケールを取得
-        Vector3 parentScale = parent.lossyScale;
-
-        // 子のlocalScaleを調整することで、結果的にworldScaleを維持している
-        // 各軸ごとにワールドスケール ÷ 親のワールドスケールを計算
-        return new Vector3(
-            worldScale.x / parentScale.x,
-            worldScale.y / parentScale.y,
-            worldScale.z / parentScale.z
-        );
-    }
-
-    //==================== プレイヤーが乗り物に乗った際の処理 ====================
-
+    //==================== 3. 操作関連 ====================
+    // プレイヤーが乗り物に乗った際の処理
     public void OnPlayerEnter(GameObject player)
     {
         rider = player;         // 乗っているプレイヤーを記録
@@ -257,8 +203,6 @@ public class vehicle_move : MonoBehaviour
         isControlled = true;
         controls.Enable();
     }
-
-    //==================== 乗り物の降車に関する処理 ====================
 
     // 降車の処理
     public void StopControl()
@@ -313,6 +257,37 @@ public class vehicle_move : MonoBehaviour
         }
     }
 
+    // プレイヤーを乗り物からおろす処理
+    public void Exit()
+    {
+        // プレイヤー排出処理
+        if (rider != null)
+        {
+            // プレイヤーを自身の子オブジェクトから解除
+            SafeSetParent(rider.transform, null);
+
+            // プレイヤーをアクティブ状態に変更
+            rider.SetActive(true);
+
+            // プレイヤーの位置を乗り物の少し上に移動
+            rider.transform.position = transform.position + Vector3.up * 1.0f;
+
+            // 少し上にジャンプさせる
+            Rigidbody2D riderRb = rider.GetComponent<Rigidbody2D>();
+            if (riderRb != null)
+            {
+                riderRb.linearVelocity = new Vector2(0f, 20f); // 左：横、右：上への力
+            }
+
+            // センサーを無効化
+            VehicleEnterSensor sensor = GetComponentInChildren<VehicleEnterSensor>();
+            if (sensor != null)
+            {
+                sensor.SetSensorEnabled(false); // VehicleEnterSensorクラスのフラグ変更
+            }
+        }
+    }
+
     // プレイヤーが降車し乗り物から十分はなれたさいに行う処理
     void HandleExitCheck()
     {
@@ -346,8 +321,18 @@ public class vehicle_move : MonoBehaviour
         }
     }
 
-    //==================== プレイヤーの横移動処理 ====================
+    // プレイヤーが乗ってるかの情報を返す
+    public bool IsControlled()
+    {
+        return isControlled;
+    }
 
+    public GameObject GetRider()
+    {
+        return rider;
+    }
+
+    //==================== 4. 移動・ジャンプ・落下制御 ====================
     // 横移動処理
     private void HandleMovement()
     {
@@ -360,9 +345,7 @@ public class vehicle_move : MonoBehaviour
         transform.position += move;
     }
 
-    //==================== ジャンプの処理 ====================
-
-    // ジャンプ・降車処理
+    // ジャンプ・降車処理(切り替え)
     private void HandleJump()
     {
         // 下入力＋ジャンプ入力で降車
@@ -379,12 +362,6 @@ public class vehicle_move : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
-    }
-
-    // VehicleAttackに破壊状態を送る用
-    public bool IsDestroying()
-    {
-        return isDestroying;
     }
 
     // ジャンプからの落下が自然に見えるように修正
@@ -406,69 +383,132 @@ public class vehicle_move : MonoBehaviour
         }
     }
 
-    //==================== 地面に接触しているか判定 ====================
-
-    //地面判定
-    private void CheckGround()
+    //==================== 5. ダメージ処理・無敵制御 ====================
+    // 敵などからダメージを受けた時に呼ばれる関数
+    public void TakeDamage(int damage)
     {
-        // 円を使って地面と接触しているかを判定する
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
-    }
-
-    // Debug処理(円を表示)
-    private void OnDrawGizmosSelected()
-    {
-        // 地面に接触チェックの可視化
-        if (groundCheck == null) return;
-
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
-
-        // 爆発範囲の可視化
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, explosionRadius);
-    }
-
-    //==================== 乗り物の破壊処理関連 ====================
-    // 破壊処理を遅延させるコルーチン
-    private IEnumerator VehicleDestroyDelay()
-    {
-        VehicleHp = -9999;      // フラグとして無効化
-
-        isDestroying = true;    // 二重実行防止
-
-        // レンダラー取得と元色保持
-        if (vehicleRenderer == null)
+        // 爆破中はダメージ処理をしない(点滅防止)
+        if (isDestroying)
         {
-            vehicleRenderer = GetComponentInChildren<Renderer>();
-            originalColor = vehicleRenderer.material.color;
+            Debug.Log("破壊中のためダメージ無効");
+            return;
         }
 
-        float totalDelay = VehicleDestroyDelayTime; // 初期値を固定保存
-
-        // 点滅コルーチン開始
-        currentTime = VehicleDestroyDelayTime;
-
-        blinkCoroutine = StartCoroutine(BlinkVehicle(totalDelay));
-
-        // ↓はデバッグで時間表示できるようになっている
-        while (VehicleDestroyDelayTime > 0f)
+        // プレイヤーが乗っていない場合は処理をしない
+        if (!isControlled)
         {
-            Debug.Log($"破壊まで残り: {VehicleDestroyDelayTime:F1} 秒");
-            yield return new WaitForSeconds(1.0f); // 1秒ごとに更新
-            VehicleDestroyDelayTime -= 1.0f;
+            Debug.Log("プレイヤーが乗っていないため被弾無効");
+            return;
         }
 
-        currentTime = VehicleDestroyDelayTime;
+        // プレイヤーが乗り込んだ直後で一定時間いないならダメージ処理をしない
+        if (invincibleTimer > 0f)
+        {
+            Debug.Log("乗車直後の無敵時間中：被弾無効");
+            return;
+        }
 
-        // コルーチン終了
-        StopCoroutine(blinkCoroutine);
-        vehicleRenderer.material.color = originalColor;
+        // ダメージを食らったら一定時間ダメージ処理をしない
+        if (isDamageCooldown)
+        {
+            Debug.Log("ダメージクールタイム中:被弾無効");
+            return;
+        }
 
-        // 破壊処理へ
-        VehicleDestroy();
+        VehicleHp -= damage;
+        // HPが0以下になったら透明点滅はしない（爆破に任せる）
+        if (VehicleHp <= 0f)
+        {
+            Debug.Log("HPが0以下になったので透明点滅をせず爆破処理に切り替え");
+            // ここで無敵・点滅系をリセットしておく
+            isDamageCooldown = false;
+            if (damageBlinkCoroutine != null)
+            {
+                StopCoroutine(damageBlinkCoroutine);
+                damageBlinkCoroutine = null;
+            }
+            // 無敵状態も解除
+            invincibleTimer = 0f;
+
+            // ここで爆破処理がUpdateなどで走る想定
+            return;
+        }
+
+        // HPが残っている場合は通常のダメージ点滅処理を行う
+        isDamageCooldown = true;
+        StartCoroutine(DamageCooldownCoroutine());
+
+        if (damageBlinkCoroutine != null)
+            StopCoroutine(damageBlinkCoroutine);
+
+        damageBlinkCoroutine = StartCoroutine(DamageBlinkCoroutine());
     }
 
+    // 点滅コルーチン（透明↔不透明）
+    private IEnumerator DamageBlinkCoroutine()
+    {
+        bool isVisible = true;
+        float blinkInterval = 0.1f;
+
+        while (isDamageCooldown)
+        {
+            foreach (var sr in spriteRenderers)
+            {
+                Color c = originalColor;
+                c.a = isVisible ? 1f : 0f;  // アルファ値で透明・不透明を切り替え
+                sr.color = c;
+            }
+
+            // vehicleRendererの色も同様に切り替えるなら（もしメッシュの色を変えたいなら）
+            if (vehicleRenderer != null)
+            {
+                Color c = vehicleRenderer.material.color;
+                c.a = isVisible ? 1f : 0f;
+                vehicleRenderer.material.color = c;
+            }
+
+            isVisible = !isVisible;
+            yield return new WaitForSeconds(blinkInterval);
+        }
+
+        // 点滅終了時は全てのレンダラーの色を元に戻す
+        foreach (var sr in spriteRenderers)
+        {
+            sr.color = originalColor;
+        }
+        if (vehicleRenderer != null)
+        {
+            vehicleRenderer.material.color = originalColor;
+        }
+    }
+
+    // 無敵時間解除用のコルーチン
+    private IEnumerator DamageCooldownCoroutine()
+    {
+        yield return new WaitForSeconds(damageCooldownTime);
+        isDamageCooldown = false;
+
+        // damageBlinkCoroutineの停止はしない（DamageBlinkCoroutineが自動で終了し色を戻すため）
+        damageBlinkCoroutine = null;
+    }
+
+    // 点滅強制停止(vehicle_Attackで使用)
+    public void ForceStopDamageBlink()
+    {
+        if (damageBlinkCoroutine != null)
+        {
+            StopCoroutine(damageBlinkCoroutine);
+            damageBlinkCoroutine = null;
+        }
+
+        foreach (var sr in spriteRenderers)
+            sr.color = originalColor;
+
+        if (vehicleRenderer != null)
+            vehicleRenderer.material.color = originalColor;
+    }
+
+    //==================== 6. 点滅関連（破壊・突進） ====================
     // 点滅処理
     private IEnumerator BlinkVehicle(float totalDelay)
     {
@@ -543,6 +583,46 @@ public class vehicle_move : MonoBehaviour
         }
     }
 
+    //==================== 7. HP0の破壊処理 ====================
+    // 破壊処理を遅延させるコルーチン
+    private IEnumerator VehicleDestroyDelay()
+    {
+        VehicleHp = -9999;      // フラグとして無効化
+
+        isDestroying = true;    // 二重実行防止
+
+        // レンダラー取得と元色保持
+        if (vehicleRenderer == null)
+        {
+            vehicleRenderer = GetComponentInChildren<Renderer>();
+            originalColor = vehicleRenderer.material.color;
+        }
+
+        float totalDelay = VehicleDestroyDelayTime; // 初期値を固定保存
+
+        // 点滅コルーチン開始
+        currentTime = VehicleDestroyDelayTime;
+
+        blinkCoroutine = StartCoroutine(BlinkVehicle(totalDelay));
+
+        // ↓はデバッグで時間表示できるようになっている
+        while (VehicleDestroyDelayTime > 0f)
+        {
+            Debug.Log($"破壊まで残り: {VehicleDestroyDelayTime:F1} 秒");
+            yield return new WaitForSeconds(1.0f); // 1秒ごとに更新
+            VehicleDestroyDelayTime -= 1.0f;
+        }
+
+        currentTime = VehicleDestroyDelayTime;
+
+        // コルーチン終了
+        StopCoroutine(blinkCoroutine);
+        vehicleRenderer.material.color = originalColor;
+
+        // 破壊処理へ
+        VehicleDestroy();
+    }
+
     // 破壊処理開始
     private void VehicleDestroy()
     {
@@ -554,7 +634,7 @@ public class vehicle_move : MonoBehaviour
 
             // プレイヤーをアクティブ状態に変更
             rider.SetActive(true);
-            
+
 
             // プレイヤーの位置を乗り物の少し上に移動
             rider.transform.position = transform.position + Vector3.up * 1.0f;
@@ -576,7 +656,7 @@ public class vehicle_move : MonoBehaviour
         }
         // Vehicle_Attackに爆破処理を依頼
         var attack = GetComponentInChildren<Vehicle_Attack>();
-        if(attack != null)
+        if (attack != null)
         {
             attack.StartExplosion();    // 爆破処理を呼び出し
         }
@@ -599,164 +679,80 @@ public class vehicle_move : MonoBehaviour
         isDestroying = false;
     }
 
-    // プレイヤーを乗り物からおろす処理
-    public void Exit()
+    // VehicleAttackに破壊状態を送る用
+    public bool IsDestroying()
     {
-        // プレイヤー排出処理
-        if (rider != null)
-        {
-            // プレイヤーを自身の子オブジェクトから解除
-            SafeSetParent(rider.transform, null);
-
-            // プレイヤーをアクティブ状態に変更
-            rider.SetActive(true);
-
-            // プレイヤーの位置を乗り物の少し上に移動
-            rider.transform.position = transform.position + Vector3.up * 1.0f;
-
-            // 少し上にジャンプさせる
-            Rigidbody2D riderRb = rider.GetComponent<Rigidbody2D>();
-            if (riderRb != null)
-            {
-                riderRb.linearVelocity = new Vector2(0f, 20f); // 左：横、右：上への力
-            }
-
-            // センサーを無効化
-            VehicleEnterSensor sensor = GetComponentInChildren<VehicleEnterSensor>();
-            if (sensor != null)
-            {
-                sensor.SetSensorEnabled(false); // VehicleEnterSensorクラスのフラグ変更
-            }
-        }
+        return isDestroying;
     }
 
-    public GameObject GetRider()
+    //==================== 8. 接地判定・Gizmos ====================
+    //地面判定
+    private void CheckGround()
     {
-        return rider;
+        // 円を使って地面と接触しているかを判定する
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
     }
 
-    // 点滅強制停止(vehicle_Attackで使用)
-    public void ForceStopDamageBlink()
+    // Debug処理(円を表示)
+    private void OnDrawGizmosSelected()
     {
-        if (damageBlinkCoroutine != null)
-        {
-            StopCoroutine(damageBlinkCoroutine);
-            damageBlinkCoroutine = null;
-        }
+        // 地面に接触チェックの可視化
+        if (groundCheck == null) return;
 
-        foreach (var sr in spriteRenderers)
-            sr.color = originalColor;
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
 
-        if (vehicleRenderer != null)
-            vehicleRenderer.material.color = originalColor;
+        // 爆発範囲の可視化
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
 
-    // 敵などからダメージを受けた時に呼ばれる関数
-    public void TakeDamage(int damage)
+    //==================== 9. ユーティリティ関数 ====================
+    // プレイヤーのスケールが変わらないように親子関係を変更するための処理
+    // 子オブジェクトを完全に新しい親オブジェクトに変更する関数
+    // ワールドスケール(大きさの見た目)を維持したまま親子関係を変更
+    void SafeSetParent(Transform child, Transform newParent)
     {
-        // 爆破中はダメージ処理をしない(点滅防止)
-        if (isDestroying)
-        {
-            Debug.Log("破壊中のためダメージ無効");
-            return;
-        }
+        Vector3 worldScale = child.lossyScale;           // 現在のワールドスケール(大きさの見た目)を保存
+        child.SetParent(newParent, true);                // ワールド位置・回転は維持
+        child.localScale = GetLocalScaleRelativeTo(worldScale, newParent); // ワールドスケールが変わらないようにlocalScaleを再計算して設定
+    }
 
-        // プレイヤーが乗っていない場合は処理をしない
-        if (!isControlled)
-        {
-            Debug.Log("プレイヤーが乗っていないため被弾無効");
-            return;
-        }
+    //指定したワールドスケールを保つために必要なlocalScaleを計算
+    Vector3 GetLocalScaleRelativeTo(Vector3 worldScale, Transform parent)
+    {
+        // 親が存在しない場合は、localScale = worldScale とすれば見た目が一致する。
+        if (parent == null)
+            return worldScale;
 
-        // プレイヤーが乗り込んだ直後で一定時間いないならダメージ処理をしない
-        if (invincibleTimer > 0f)
-        {
-            Debug.Log("乗車直後の無敵時間中：被弾無効");
-            return;
-        }
+        // 親のワールドスケールを取得
+        Vector3 parentScale = parent.lossyScale;
 
-        // ダメージを食らったら一定時間ダメージ処理をしない
-        if (isDamageCooldown)
-        {
-            Debug.Log("ダメージクールタイム中:被弾無効");
-            return;
-        }
+        // 子のlocalScaleを調整することで、結果的にworldScaleを維持している
+        // 各軸ごとにワールドスケール ÷ 親のワールドスケールを計算
+        return new Vector3(
+            worldScale.x / parentScale.x,
+            worldScale.y / parentScale.y,
+            worldScale.z / parentScale.z
+        );
+    }
 
-        VehicleHp -= damage;
-        // HPが0以下になったら透明点滅はしない（爆破に任せる）
-        if (VehicleHp <= 0f)
+    //====================10. テスト機能 ====================
+    //仮(HP自動減少処理)
+    private IEnumerator AutoDecreaseHP()
+    {
+        while (true)
         {
-            Debug.Log("HPが0以下になったので透明点滅をせず爆破処理に切り替え");
-            // ここで無敵・点滅系をリセットしておく
-            isDamageCooldown = false;
-            if (damageBlinkCoroutine != null)
+            yield return new WaitForSeconds(hpDecreaseInterval);
+
+            VehicleHp -= hpDecreaseAmount;
+
+            Debug.Log($"Vehicle HP: {VehicleHp}");
+
+            if (VehicleHp <= 0f)
             {
-                StopCoroutine(damageBlinkCoroutine);
-                damageBlinkCoroutine = null;
+                yield break; // コルーチン終了
             }
-            // 無敵状態も解除
-            invincibleTimer = 0f;
-
-            // ここで爆破処理がUpdateなどで走る想定
-            return;
         }
-
-        // HPが残っている場合は通常のダメージ点滅処理を行う
-        isDamageCooldown = true;
-        StartCoroutine(DamageCooldownCoroutine());
-
-        if (damageBlinkCoroutine != null)
-            StopCoroutine(damageBlinkCoroutine);
-
-        damageBlinkCoroutine = StartCoroutine(DamageBlinkCoroutine());
-    }
-
-
-    // 点滅コルーチン（透明↔不透明）
-    private IEnumerator DamageBlinkCoroutine()
-    {
-        bool isVisible = true;
-        float blinkInterval = 0.1f;
-
-        while (isDamageCooldown)
-        {
-            foreach (var sr in spriteRenderers)
-            {
-                Color c = originalColor;
-                c.a = isVisible ? 1f : 0f;  // アルファ値で透明・不透明を切り替え
-                sr.color = c;
-            }
-
-            // vehicleRendererの色も同様に切り替えるなら（もしメッシュの色を変えたいなら）
-            if (vehicleRenderer != null)
-            {
-                Color c = vehicleRenderer.material.color;
-                c.a = isVisible ? 1f : 0f;
-                vehicleRenderer.material.color = c;
-            }
-
-            isVisible = !isVisible;
-            yield return new WaitForSeconds(blinkInterval);
-        }
-
-        // 点滅終了時は全てのレンダラーの色を元に戻す
-        foreach (var sr in spriteRenderers)
-        {
-            sr.color = originalColor;
-        }
-        if (vehicleRenderer != null)
-        {
-            vehicleRenderer.material.color = originalColor;
-        }
-    }
-
-    // 無敵時間解除用のコルーチン
-    private IEnumerator DamageCooldownCoroutine()
-    {
-        yield return new WaitForSeconds(damageCooldownTime);
-        isDamageCooldown = false;
-
-        // damageBlinkCoroutineの停止はしない（DamageBlinkCoroutineが自動で終了し色を戻すため）
-        damageBlinkCoroutine = null;
     }
 }
