@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class BombUI : MonoBehaviour
 {
-    public gurenerd bomb;   //ボスのHP確認用
+    public VehicleGrenade bomb;   //ボスのHP確認用
     public Text bombText;		//BossのHP表示
 
     // Update is called once per frame
@@ -15,7 +15,7 @@ public class BombUI : MonoBehaviour
     {
         if (bomb != null && bombText != null)
         {
-            bombText.text = $"BOMB\n {bomb.MAXBomb}";
+            bombText.text = $"BOMB\n {bomb.maxBomb}";
         }
     }
 }

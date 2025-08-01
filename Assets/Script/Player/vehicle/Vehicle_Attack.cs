@@ -1,4 +1,4 @@
-//æ‚è•¨‚ÌUŒ‚ˆ—
+//ï¿½ï¿½è•¨ï¿½ÌUï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
@@ -6,94 +6,103 @@ using System.Collections;
 
 public class Vehicle_Attack : MonoBehaviour
 {
-    //==================== ’eŠÖ˜Aİ’è ====================
-    [Header("’e‚Ìİ’è")]
-    public GameObject BulletPrefab;             // ’e‚ÌƒvƒŒƒnƒu
-    public Transform firePoint;                 // ’e‚Ì”­ËˆÊ’u
-    public float bulletSpeed = 10f;             // ’e‚Ì‘¬“x
+    //==================== ï¿½eï¿½Ö˜Aï¿½İ’ï¿½ ====================
+    [Header("ï¿½eï¿½Ìİ’ï¿½")]
+    public GameObject BulletPrefab;             // ï¿½eï¿½Ìƒvï¿½ï¿½ï¿½nï¿½u
+    public Transform firePoint;                 // ï¿½eï¿½Ì”ï¿½ï¿½ËˆÊ’u
+    public float bulletSpeed = 10f;             // ï¿½eï¿½Ì‘ï¿½ï¿½x
 
-    //==================== ’ÊíUŒ‚İ’è ====================
-    [Header("’ÊíUŒ‚İ’è")]
-    private int burstShotCount = 0;       // ƒo[ƒXƒg”­Ë‚Å”­Ë‚µ‚½’e”
-    private int burstShotMax = 4;         // ƒo[ƒXƒg1‰ñ‚ ‚½‚è‚Ì’e”
-    private float burstTimer = 0f;        // ƒo[ƒXƒgŠÔ‚Ìƒ^ƒCƒ}[
-    private float burstInterval = 0.05f;  // ƒo[ƒXƒgŠÔŠui•bj
-    private bool isBurstFiring = false;   // Œ»İƒo[ƒXƒg’†‚©
+    //==================== ï¿½Êï¿½Uï¿½ï¿½ï¿½İ’ï¿½ ====================
+    [Header("ï¿½Êï¿½Uï¿½ï¿½ï¿½İ’ï¿½")]
+    private int burstShotCount = 0;       // ï¿½oï¿½[ï¿½Xï¿½gï¿½ï¿½ï¿½Ë‚Å”ï¿½ï¿½Ë‚ï¿½ï¿½ï¿½ï¿½eï¿½ï¿½
+    private int burstShotMax = 4;         // ï¿½oï¿½[ï¿½Xï¿½g1ï¿½ñ‚ ‚ï¿½ï¿½ï¿½Ì’eï¿½ï¿½
+    private float burstTimer = 0f;        // ï¿½oï¿½[ï¿½Xï¿½gï¿½Ô‚Ìƒ^ï¿½Cï¿½}ï¿½[
+    private float burstInterval = 0.05f;  // ï¿½oï¿½[ï¿½Xï¿½gï¿½ÔŠuï¿½iï¿½bï¿½j
+    private bool isBurstFiring = false;   // ï¿½ï¿½ï¿½İƒoï¿½[ï¿½Xï¿½gï¿½ï¿½ï¿½ï¿½
 
-    //==================== “ËiUŒ‚ ====================
-    [Header("“ËiUŒ‚")]
-    public bool isDashing = false;              // “Ëi’†‚©‚Ç‚¤‚©
-    public float dashSpeed = 20f;                // “Ëi‚Ì‘¬“x
-    public LayerMask enemyLayerMask;             // “G”»’è—p‚ÌLayerMask
-    public float dashDetectionRadius = 0.5f;     // Õ“Ë”»’è—p‚Ì”¼Œa
+    //==================== ï¿½Ëiï¿½Uï¿½ï¿½ ====================
+    [Header("ï¿½Ëiï¿½Uï¿½ï¿½")]
+    public bool isDashing = false;              // ï¿½Ëiï¿½ï¿½ï¿½ï¿½ï¿½Ç‚ï¿½ï¿½ï¿½
+    public float dashSpeed = 20f;                // ï¿½Ëiï¿½Ì‘ï¿½ï¿½x
+    public LayerMask enemyLayerMask;             // ï¿½Gï¿½ï¿½ï¿½ï¿½pï¿½ï¿½LayerMask
+    public float dashDetectionRadius = 0.5f;     // ï¿½Õ“Ë”ï¿½ï¿½ï¿½pï¿½Ì”ï¿½ï¿½a
 
-    // ƒ_ƒ[ƒW‚ğ•ª‚¯‚é‚½‚ß
-    public bool isExploding = false;    // æ‚è•¨‚ªHP0‚Å”š”j‚Èê‡
-    public bool isCharging = false;     // “ËiUŒ‚‚Ìê‡
+    // ï¿½_ï¿½ï¿½ï¿½[ï¿½Wï¿½ğ•ª‚ï¿½ï¿½é‚½ï¿½ï¿½
+    public bool isExploding = false;    // ï¿½ï¿½è•¨ï¿½ï¿½HP0ï¿½Å”ï¿½ï¿½jï¿½Èê‡
+    public bool isCharging = false;     // ï¿½Ëiï¿½Uï¿½ï¿½ï¿½Ìê‡
 
     public GameObject ExEffect;
 
-    //==================== æ‚è•¨ŠÖ˜A ====================
-    [Header("æ‚è•¨Ú‘±")]
-    public vehicle_move vehicleScript;                  // æ‚è•¨‚ÌƒXƒNƒŠƒvƒg‚ğQÆ
+    [Header("ï¿½Oï¿½ï¿½ï¿½lï¿½[ï¿½hï¿½İ’ï¿½")]
+    public GameObject grenadePrefab;
+    public float grenadeThrowForce = 10f;
+    private bool grenadePressed = false; // ï¿½Oï¿½ï¿½ï¿½lï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½Ìƒgï¿½ï¿½ï¿½Kï¿½[
+
+    //==================== ï¿½ï¿½è•¨ï¿½Ö˜A ====================
+    [Header("ï¿½ï¿½è•¨ï¿½Ú‘ï¿½")]
+    public vehicle_move vehicleScript;                  // ï¿½ï¿½è•¨ï¿½ÌƒXï¿½Nï¿½ï¿½ï¿½vï¿½gï¿½ï¿½ï¿½Qï¿½ï¿½
 
 
-    private Vector2 currentDirection = Vector2.right;   // Œ»İ‚Ì”­Ë•ûŒü
-    private Vector2 targetDirection = Vector2.right;    // –Ú•W‚Ì”­Ë•ûŒüi•âŠÔæj
-    private Vector2 lastValidFirePointOffset;           // ÅŒã‚Ì—LŒø‚È”­ËˆÊ’uƒIƒtƒZƒbƒg
-    private Vector2 lastHorizontalDirection = Vector2.right; // ÅŒã‚ÉŒü‚¢‚Ä‚¢‚½¶‰E•ûŒü
+    private Vector2 currentDirection = Vector2.right;   // ï¿½ï¿½ï¿½İ‚Ì”ï¿½ï¿½Ë•ï¿½ï¿½ï¿½
+    private Vector2 targetDirection = Vector2.right;    // ï¿½Ú•Wï¿½Ì”ï¿½ï¿½Ë•ï¿½ï¿½ï¿½ï¿½iï¿½ï¿½Ôï¿½j
+    private Vector2 lastValidFirePointOffset;           // ï¿½ÅŒï¿½Ì—Lï¿½ï¿½ï¿½È”ï¿½ï¿½ËˆÊ’uï¿½Iï¿½tï¿½Zï¿½bï¿½g
+    private Vector2 lastHorizontalDirection = Vector2.right; // ï¿½ÅŒï¿½ÉŒï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Eï¿½ï¿½ï¿½ï¿½
 
-    private bool wasGrounded = true; // ’¼‘O‚ÌƒtƒŒ[ƒ€‚Å’n–Ê‚É‚¢‚½‚©‚Ç‚¤‚©
+    private bool wasGrounded = true; // ï¿½ï¿½ï¿½Oï¿½Ìƒtï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Å’nï¿½Ê‚É‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç‚ï¿½ï¿½ï¿½
 
     private bool isControlled => vehicleScript != null && vehicleScript.IsControlled();
 
-    //==================== ”­ËˆÊ’uƒIƒtƒZƒbƒgİ’è ====================
+    //==================== ï¿½ï¿½ï¿½ËˆÊ’uï¿½Iï¿½tï¿½Zï¿½bï¿½gï¿½İ’ï¿½ ====================
     private Vector2 rightOffset = new Vector2(0.5f, 0f);
     private Vector2 leftOffset = new Vector2(-0.5f, 0f);
     private Vector2 upOffset = new Vector2(0f, 1f);
     private Vector2 downOffset = new Vector2(0f, -1f);
 
-    // •âŠÔ—pƒ^ƒCƒ}[
+    // ï¿½ï¿½Ô—pï¿½^ï¿½Cï¿½}ï¿½[
     private float directionLerpDuration = 0.15f;
 
-    // Î‚ß•ûŒü‚ÌƒIƒtƒZƒbƒgiƒCƒ“ƒXƒyƒNƒ^[‚Åİ’èj
+    // ï¿½Î‚ß•ï¿½ï¿½ï¿½ï¿½ÌƒIï¿½tï¿½Zï¿½bï¿½gï¿½iï¿½Cï¿½ï¿½ï¿½Xï¿½yï¿½Nï¿½^ï¿½[ï¿½Åİ’ï¿½j
     public Vector3 topRightOffset;
     public Vector3 topLeftOffset;
     public Vector3 bottomRightOffset;
     public Vector3 bottomLeftOffset;
 
-    // “ü—ÍƒVƒXƒeƒ€
+    // ï¿½ï¿½ï¿½ÍƒVï¿½Xï¿½eï¿½ï¿½
     private PlayerControls controls;
     private Vector2 moveInput;
-    private bool attackPressed = false;  // ‰Ÿ‚µ‚½uŠÔ
+    private bool attackPressed = false;  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½uï¿½ï¿½
     private bool dashButtonPressed = false;
 
-    //==================== ‰Šú‰» ====================
+    //==================== ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ====================
     void Awake()
     {
-        // V‚µ‚¢ PlayerControls ƒCƒ“ƒXƒ^ƒ“ƒX‚ğì¬
-        // Input System ‚É‚¨‚¯‚é“ü—Íƒ}ƒbƒsƒ“ƒOiInput Actionsj‚ğ§Œä‚·‚é‚½‚ß‚Ì‚à‚Ì
+        // ï¿½Vï¿½ï¿½ï¿½ï¿½ PlayerControls ï¿½Cï¿½ï¿½ï¿½Xï¿½^ï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½ì¬
+        // Input System ï¿½É‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Íƒ}ï¿½bï¿½sï¿½ï¿½ï¿½Oï¿½iInput Actionsï¿½jï¿½ğ§Œä‚·ï¿½é‚½ï¿½ß‚Ì‚ï¿½ï¿½ï¿½
         controls = new PlayerControls();
 
-        // ˆÚ“®“ü—Íæ“¾
-        // ƒvƒŒƒCƒ„[‚ªˆÚ“®ƒXƒeƒBƒbƒNi‚Ü‚½‚Í–îˆóƒL[/•ûŒüƒL[j‚ğ“ü—Í‚µ‚½‚Æ‚«‚Ìˆ—
-        // Move.performed ‚Íu“ü—Í‚ªs‚í‚ê‚½‚Æ‚«v‚ÉŒÄ‚Î‚ê‚é
+        // ï¿½Ú“ï¿½ï¿½ï¿½ï¿½Íæ“¾
+        // ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Ú“ï¿½ï¿½Xï¿½eï¿½Bï¿½bï¿½Nï¿½iï¿½Ü‚ï¿½ï¿½Í–ï¿½ï¿½Lï¿½[/ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½[ï¿½jï¿½ï¿½ï¿½ï¿½Í‚ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½Ìï¿½ï¿½ï¿½
+        // Move.performed ï¿½Íuï¿½ï¿½ï¿½Í‚ï¿½ï¿½sï¿½ï¿½ê‚½ï¿½Æ‚ï¿½ï¿½vï¿½ÉŒÄ‚Î‚ï¿½ï¿½
         controls.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
-        // •ûŒü“ü—Í‚ğ~‚ß‚½‚Æ‚«iƒXƒeƒBƒbƒN‚ğ—£‚·/ƒL[‚ğ—£‚·j‚É‚à”½‰‚·‚é‚ªA‚±‚±‚Å‚Í‰½‚à‚µ‚Ä‚¢‚È‚¢
-        // •ûŒü‚ğˆÛ‚·‚é‚½‚ß‚É‹ó‚Ìƒ‰ƒ€ƒ_®ictx => { }j‚ğİ’è‚µ‚Ä‚¢‚é
-        controls.Player.Move.canceled += ctx => moveInput = Vector2.zero; // •ûŒüˆÛiMove’†~‚µ‚Ä‚à•Ûj//ƒXƒeƒBƒbƒN‚ğ—£‚µ‚½‚É0‚ğ“ü‚ê‚ÄŠmÀ‚É–ß‚·
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í‚ï¿½ï¿½~ï¿½ß‚ï¿½ï¿½Æ‚ï¿½ï¿½iï¿½Xï¿½eï¿½Bï¿½bï¿½Nï¿½ğ—£‚ï¿½/ï¿½Lï¿½[ï¿½ğ—£‚ï¿½ï¿½jï¿½É‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é‚ªï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½Å‚Í‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ûï¿½ï¿½ï¿½ï¿½é‚½ï¿½ß‚É‹ï¿½Ìƒï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½ictx => { }ï¿½jï¿½ï¿½İ’è‚µï¿½Ä‚ï¿½ï¿½ï¿½
+        controls.Player.Move.canceled += ctx => moveInput = Vector2.zero; // ï¿½ï¿½ï¿½ï¿½ï¿½Ûï¿½ï¿½iMoveï¿½ï¿½ï¿½~ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Ûï¿½ï¿½j//ï¿½Xï¿½eï¿½Bï¿½bï¿½Nï¿½ğ—£‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½0ï¿½ï¿½ï¿½ï¿½ï¿½ÄŠmï¿½ï¿½ï¿½É–ß‚ï¿½
 
-        // UŒ‚“ü—Íiƒ{ƒ^ƒ“‰Ÿ‰ºE—£‚·j
+        // ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½Íiï¿½{ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Eï¿½ï¿½ï¿½ï¿½ï¿½j
         controls.Player.Attack.started += ctx => {
-            attackPressed = true;       // UŒ‚‚ª‰Ÿ‚³‚ê‚½i1‰ñ‚ÌƒgƒŠƒK[‚Æ‚µ‚Äg—pj
-            //attackHeld = true;          // UŒ‚ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚Ä‚¢‚éŠÔ‚¸‚Á‚Æ truei‰Ÿ‚µ‚Á‚Ï‚È‚µó‘ÔjƒRƒƒ“ƒgƒAƒEƒg
+            attackPressed = true;       // ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½i1ï¿½ï¿½Ìƒgï¿½ï¿½ï¿½Kï¿½[ï¿½Æ‚ï¿½ï¿½Ägï¿½pï¿½j
+            //attackHeld = true;          // ï¿½Uï¿½ï¿½ï¿½{ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½Ô‚ï¿½ï¿½ï¿½ï¿½ï¿½ trueï¿½iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï‚È‚ï¿½ï¿½ï¿½Ôjï¿½Rï¿½ï¿½ï¿½ï¿½ï¿½gï¿½Aï¿½Eï¿½g
         };
-        // UŒ‚ƒ{ƒ^ƒ“‚ª—£‚³‚ê‚½‚Æ‚«‚ÉŒÄ‚Î‚ê‚éˆ—
-        // `canceled` ‚Íuƒ{ƒ^ƒ“‚ª—£‚³‚ê‚½uŠÔv‚Éˆê“x‚¾‚¯”­¶‚·‚é
-        //controls.Player.Attack.canceled += ctx => attackHeld = false;ƒRƒƒ“ƒgƒAƒEƒg
-        // Dashƒ{ƒ^ƒ“iWestƒ{ƒ^ƒ“j“ü—ÍiPlayerControls‚ÉDashƒAƒNƒVƒ‡ƒ“‚ª‚ ‚é‘O’ñj
+        // ï¿½Uï¿½ï¿½ï¿½{ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½Æ‚ï¿½ï¿½ÉŒÄ‚Î‚ï¿½éˆï¿½ï¿½
+        // `canceled` ï¿½Íuï¿½{ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½uï¿½Ôvï¿½Éˆï¿½xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        //controls.Player.Attack.canceled += ctx => attackHeld = false;ï¿½Rï¿½ï¿½ï¿½ï¿½ï¿½gï¿½Aï¿½Eï¿½g
+        // Dashï¿½{ï¿½^ï¿½ï¿½ï¿½iWestï¿½{ï¿½^ï¿½ï¿½ï¿½jï¿½ï¿½ï¿½ÍiPlayerControlsï¿½ï¿½Dashï¿½Aï¿½Nï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½ï¿½j
         controls.Player.KAMIKAZE.started += ctx => dashButtonPressed = true;
         controls.Player.KAMIKAZE.canceled += ctx => dashButtonPressed = false;
+
+        // ï¿½Oï¿½ï¿½ï¿½lï¿½[ï¿½hï¿½ï¿½ï¿½Íiï¿½Vï¿½ï¿½ï¿½ï¿½Input Actionï¿½ï¿½ï¿½gï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½Æ‰ï¿½ï¿½ï¿½j
+        controls.Player.Bomb.started += ctx => grenadePressed = true;
+
     }
 
     void OnEnable() => controls.Enable();
@@ -101,72 +110,73 @@ public class Vehicle_Attack : MonoBehaviour
 
     void Start()
     {
-        firePoint.localPosition = rightOffset;          // ‰Šú‚Ì”­ËˆÊ’u‚ğ‰E‚Éİ’è
-        lastValidFirePointOffset = rightOffset;         // ÅŒã‚Ì—LŒø‚È”­ËˆÊ’u‚Æ‚µ‚Ä‚à•Û‘¶
+        firePoint.localPosition = rightOffset;          // ï¿½ï¿½ï¿½ï¿½ï¿½Ì”ï¿½ï¿½ËˆÊ’uï¿½ï¿½ï¿½Eï¿½Éİ’ï¿½
+        lastValidFirePointOffset = rightOffset;         // ï¿½ÅŒï¿½Ì—Lï¿½ï¿½ï¿½È”ï¿½ï¿½ËˆÊ’uï¿½Æ‚ï¿½ï¿½Ä‚ï¿½ï¿½Û‘ï¿½
     }
 
     void Update()
     {
-        // ƒvƒŒƒCƒ„[‚ªæ‚Á‚Ä‚¢‚È‚¢ê‡AUŒ‚ŠÖ˜A‚ğˆêØˆ—‚µ‚È‚¢
+        // ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ê‡ï¿½Aï¿½Uï¿½ï¿½ï¿½Ö˜Aï¿½ï¿½ï¿½ï¿½Øï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½
         if (!isControlled) return;
 
-        // ”j‰ó’†‚Í‚·‚×‚Ä‚ÌUŒ‚ˆ—‚ğ’†~
+        // ï¿½jï¿½ó’†‚Í‚ï¿½ï¿½×‚Ä‚ÌUï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ğ’†~
         if (vehicleScript != null && vehicleScript.IsDestroying()) return;
 
-        // ‚à‚µ“Ëió‘Ô‚É“ü‚Á‚½‚ç“ËiUŒ‚‚ğŠJn
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Ëiï¿½ï¿½Ô‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëiï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½n
         if (isDashing)
         {
-            DashForward(); // “ËiUŒ‚Às
-            return; // ‚»‚êˆÈŠO‚Ì‘€ì‚Íó‚¯•t‚¯‚È‚¢
+            DashForward(); // ï¿½Ëiï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½s
+            return; // ï¿½ï¿½ï¿½ï¿½ÈŠOï¿½Ì‘ï¿½ï¿½ï¿½Íó‚¯•tï¿½ï¿½ï¿½È‚ï¿½
         }
 
 
-        HandleInput();              // “ü—Í‚©‚ç•ûŒüŒˆ’è
-        UpdateDirectionLerp();      // ”­Ë•ûŒü‚ğ•âŠÔ‚µ‚ÄXV
-        Attack();                   // UŒ‚ˆ— 
+        HandleInput();              // ï¿½ï¿½ï¿½Í‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        UpdateDirectionLerp();      // ï¿½ï¿½ï¿½Ë•ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‚ï¿½ï¿½ÄXï¿½V
+        Attack();                   // ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+        HandleGrenade(); // ï¿½Oï¿½ï¿½ï¿½lï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½
     }
 
-    //==================== UŒ‚ˆ—(“ËiUŒ‚‚àŠÜ‚Ş) ====================
+    //==================== ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½Ëiï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½) ====================
     void Attack()
     {
-        // “ËiUŒ‚‚ğÀs
+        // ï¿½Ëiï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½s
         if (dashButtonPressed && moveInput.y < -0.5f && vehicleScript.isGrounded)
         {
-            if (isExploding) return;    // ‰ó‚³‚ê‚½ê‡“ËiUŒ‚•s‰Â
-            // “ËiUŒ‚‚Ìƒ_ƒ[ƒW‚Éİ’è
+            if (isExploding) return;    // ï¿½ó‚³‚ê‚½ï¿½ê‡ï¿½Ëiï¿½Uï¿½ï¿½ï¿½sï¿½ï¿½
+            // ï¿½Ëiï¿½Uï¿½ï¿½ï¿½Ìƒ_ï¿½ï¿½ï¿½[ï¿½Wï¿½Éİ’ï¿½
             isCharging = true;
-            // “¯‰Ÿ‚µ‚É“ËiŠJn
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É“Ëiï¿½Jï¿½n
             attackPressed = false;
 
             vehicleScript.canControl = false;
 
-            // “_–Å‹­§’â~
+            // ï¿½_ï¿½Å‹ï¿½ï¿½ï¿½ï¿½ï¿½~
             vehicleScript.ForceStopDamageBlink();
 
-            // “ËiŠJn‘O‚ÉƒvƒŒƒCƒ„[‚ğæ‚è•¨‚©‚ç~‚ë‚·ˆ—‚ğŒÄ‚Ô
+            // ï¿½Ëiï¿½Jï¿½nï¿½Oï¿½Éƒvï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½è•¨ï¿½ï¿½ï¿½ï¿½~ï¿½ë‚·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½
             vehicleScript.Exit();
 
-            isDashing = true;   // “Ëió‘Ô‚É•ÏX
+            isDashing = true;   // ï¿½Ëiï¿½ï¿½Ô‚É•ÏX
             return;
         }
 
-        // ’ÊíUŒ‚‚ğÀs
+        // ï¿½Êï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½s
         if (attackPressed)
         {
-            HandleBurst();    // UŒ‚ˆ—Às
+            HandleBurst();    // ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½s
         }
     }
 
-    //==================== “ËiUŒ‚ ====================
+    //==================== ï¿½Ëiï¿½Uï¿½ï¿½ ====================
     void DashForward()
     {
-        // ƒvƒŒƒCƒ„[‚ª‘€ì’†‚Å‚Í‚È‚©‚Á‚½‚çÀs‚µ‚È‚¢(ÅIŠm”F)
+        // ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ì’†ï¿½Å‚Í‚È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½È‚ï¿½(ï¿½ÅIï¿½mï¿½F)
         if (!isControlled) return;
 
-        // ‰E‚É©“®ˆÚ“®
+        // ï¿½Eï¿½Éï¿½ï¿½ï¿½ï¿½Ú“ï¿½
         transform.position += Vector3.right * dashSpeed * Time.deltaTime;
 
-        // EnemyƒŒƒCƒ„[Bossƒ^ƒO‚É“–‚½‚Á‚½‚ç”š”­ˆ—ŠJn
+        // Enemyï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[Bossï¿½^ï¿½Oï¿½É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ç”šï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½n
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, dashDetectionRadius);
 
         foreach (var hit in hits)
@@ -181,33 +191,33 @@ public class Vehicle_Attack : MonoBehaviour
             bool hitEnemyLayer = ((1 << layer) & enemyLayerMask) != 0;
             bool hitBossTag = hit.CompareTag("WeakPoint") || hit.CompareTag("Boss");
 
-            // ƒ^ƒO or ƒŒƒCƒ„[ ‚Ç‚¿‚ç‚©‚Åƒqƒbƒg‚µ‚½‚çˆ—
+            // ï¿½^ï¿½O or ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ ï¿½Ç‚ï¿½ï¿½ç‚©ï¿½Åƒqï¿½bï¿½gï¿½ï¿½ï¿½ï¿½ï¿½çˆï¿½ï¿½
             if (hitEnemyLayer || hitBossTag)
             {
-                isDashing = false;  // “Ëió‘Ô‚ğ‰ğœ
-                StartExplosion();   // ”š”jˆ—‚ğŒÄ‚Ño‚µ
-                break; // ˆê‰ñ”š”­ˆ—‚µ‚½‚çI—¹
+                isDashing = false;  // ï¿½Ëiï¿½ï¿½Ô‚ï¿½ï¿½ï¿½ï¿½ï¿½
+                StartExplosion();   // ï¿½ï¿½ï¿½jï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚Ñoï¿½ï¿½
+                break; // ï¿½ï¿½ñ”š”ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½
             }
         }
 
-        // ‰æ–ÊŠO”»’èi‰E’[j‚Éo‚½Û‚É”š”jˆ—ŠJn
+        // ï¿½ï¿½ÊŠOï¿½ï¿½ï¿½ï¿½iï¿½Eï¿½[ï¿½jï¿½Éoï¿½ï¿½ï¿½Û‚É”ï¿½ï¿½jï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½n
         Camera mainCamera = Camera.main;
         float distanceFromCamera = Mathf.Abs(mainCamera.transform.position.z - transform.position.z);
         Vector3 rightEdgeWorldPos = mainCamera.ViewportToWorldPoint(new Vector3(1, 0.5f, distanceFromCamera));
         if (transform.position.x > rightEdgeWorldPos.x)
         {
-            isDashing = false;  // “Ëió‘Ô‚ğ‰ğœ
-            StartExplosion();   // ”š”jˆ—‚ğŒÄ‚Ño‚µ
+            isDashing = false;  // ï¿½Ëiï¿½ï¿½Ô‚ï¿½ï¿½ï¿½ï¿½ï¿½
+            StartExplosion();   // ï¿½ï¿½ï¿½jï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚Ñoï¿½ï¿½
         }
     }
 
-    //==================== “ü—Í•ûŒü‚É‰‚¶‚½ËŒ‚•ûŒüİ’è ====================
-    // ’e‚Ì”­Ë•ûŒü‚ğ’²®‚·‚éŠÖ”
+    //==================== ï¿½ï¿½ï¿½Í•ï¿½ï¿½ï¿½ï¿½É‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ËŒï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ’ï¿½ ====================
+    // ï¿½eï¿½Ì”ï¿½ï¿½Ë•ï¿½ï¿½ï¿½ï¿½ğ’²ï¿½ï¿½ï¿½ï¿½ï¿½Öï¿½
     void HandleInput()
     {
-        bool isGrounded = vehicleScript != null && vehicleScript.isGrounded;    // æ‚è•¨‚ª‘¶İ‚µA‚©‚Â’n–Ê‚É‚¢‚é‚©‚Ç‚¤‚©‚ÌŠm”F
+        bool isGrounded = vehicleScript != null && vehicleScript.isGrounded;    // ï¿½ï¿½è•¨ï¿½ï¿½ï¿½ï¿½ï¿½İ‚ï¿½ï¿½Aï¿½ï¿½ï¿½Â’nï¿½Ê‚É‚ï¿½ï¿½é‚©ï¿½Ç‚ï¿½ï¿½ï¿½ï¿½ÌŠmï¿½F
 
-        // ¶ƒXƒeƒBƒbƒN‚ğ“|‚µ‚½•ûŒü‚É’e‚ğ”­Ë‚É•ÏX
+        // ï¿½ï¿½ï¿½Xï¿½eï¿½Bï¿½bï¿½Nï¿½ï¿½|ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É’eï¿½ğ”­Ë‚É•ÏX
         if(moveInput.sqrMagnitude > 0.1f)
         {
             targetDirection = moveInput.normalized;
@@ -219,13 +229,13 @@ public class Vehicle_Attack : MonoBehaviour
         }
     }
 
-    //==================== •âŠÔˆ—‚ÅŠŠ‚ç‚©‚É•ûŒü‚ğXV ====================
+    //==================== ï¿½ï¿½Ôï¿½ï¿½ï¿½ï¿½ÅŠï¿½ï¿½ç‚©ï¿½É•ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½V ====================
     void UpdateDirectionLerp()
     {
         float t = Time.deltaTime / directionLerpDuration;
         currentDirection = ((Vector2)Vector3.Slerp(currentDirection, targetDirection, t)).normalized;
 
-        // Œ»İ‚ÌƒxƒNƒgƒ‹‚©‚çŠp“x‚ğæ“¾
+        // ï¿½ï¿½ï¿½İ‚Ìƒxï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½pï¿½xï¿½ï¿½ï¿½æ“¾
         float angle = Mathf.Atan2(currentDirection.y, currentDirection.x) * Mathf.Rad2Deg;
 
         if (angle >= 67.5f && angle < 112.5f)
@@ -246,100 +256,100 @@ public class Vehicle_Attack : MonoBehaviour
             SetFirePointPosition(leftOffset);
     }
 
-    //==================== UŒ‚ˆ— ====================
-    // ˆê‰ñ‰Ÿ‚·‚±‚Æ‚ÅburstShotCount‚ÌŠÔŠu‚ÅburstShotMax‚Ì‰ñ”•ª’e‚ª”­Ë‚³‚ê‚é
+    //==================== ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ====================
+    // ï¿½ï¿½ñ‰Ÿ‚ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½burstShotCountï¿½ÌŠÔŠuï¿½ï¿½burstShotMaxï¿½Ì‰ñ”•ï¿½ï¿½eï¿½ï¿½ï¿½ï¿½ï¿½Ë‚ï¿½ï¿½ï¿½ï¿½
     void HandleBurst()
     {
-        // ƒo[ƒXƒg’†‚Å‚Í‚È‚¢‚©‚ÂAUŒ‚ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚©‚ÂAe‚ª‘Å‚Ä‚éó‘Ô‚È‚ç
+        // ï¿½oï¿½[ï¿½Xï¿½gï¿½ï¿½ï¿½Å‚Í‚È‚ï¿½ï¿½ï¿½ï¿½ÂAï¿½Uï¿½ï¿½ï¿½{ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½ï¿½ï¿½ÂAï¿½eï¿½ï¿½ï¿½Å‚Ä‚ï¿½ï¿½Ô‚È‚ï¿½
         if (!isBurstFiring && attackPressed)
         {
-            isBurstFiring = true;   // Œ»İ‚ğ’e”­Ë’†‚É•ÏX
-            burstShotCount = 0;     // ’e‚ğ‘Å‚Á‚½”‚ğ‰Šú‰»
-            burstTimer = 0f;        // ƒo[ƒXƒgŠÔ‚Ìƒ^ƒCƒ}[‚ğ‰Šú‰»
-            attackPressed = false;  // UŒ‚ƒ{ƒ^ƒ“‚ğ‰ğœ
+            isBurstFiring = true;   // ï¿½ï¿½ï¿½İ‚ï¿½eï¿½ï¿½ï¿½Ë’ï¿½ï¿½É•ÏX
+            burstShotCount = 0;     // ï¿½eï¿½ï¿½Å‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            burstTimer = 0f;        // ï¿½oï¿½[ï¿½Xï¿½gï¿½Ô‚Ìƒ^ï¿½Cï¿½}ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            attackPressed = false;  // ï¿½Uï¿½ï¿½ï¿½{ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         }
 
         if (isBurstFiring)
         {
-            burstTimer += Time.deltaTime; //ƒo[ƒXƒgŠÔ‚Ìƒ^ƒCƒ}[ƒJƒEƒ“ƒgƒXƒ^[ƒg
+            burstTimer += Time.deltaTime; //ï¿½oï¿½[ï¿½Xï¿½gï¿½Ô‚Ìƒ^ï¿½Cï¿½}ï¿½[ï¿½Jï¿½Eï¿½ï¿½ï¿½gï¿½Xï¿½^ï¿½[ï¿½g
 
-            // ƒo[ƒXƒgƒ^ƒCƒ}[‚ªƒo[ƒXƒgƒCƒ“ƒ^ƒoƒ‹‚ğ’´‚¦‚½‚çˆ—‚ğÀs
+            // ï¿½oï¿½[ï¿½Xï¿½gï¿½^ï¿½Cï¿½}ï¿½[ï¿½ï¿½ï¿½oï¿½[ï¿½Xï¿½gï¿½Cï¿½ï¿½ï¿½^ï¿½oï¿½ï¿½ï¿½ğ’´‚ï¿½ï¿½ï¿½ï¿½çˆï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½s
             if (burstTimer >= burstInterval)
             {
-                burstTimer = 0f;            //‰Šú‰»
-                Shoot(currentDirection);    //’e‚Ì”­Ë
-                burstShotCount++;   //’e‚Ì”­Ë”‚ğ‰ÁZ
+                burstTimer = 0f;            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                Shoot(currentDirection);    //ï¿½eï¿½Ì”ï¿½ï¿½ï¿½
+                burstShotCount++;   //ï¿½eï¿½Ì”ï¿½ï¿½Ëï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Z
 
-                // ’e‚Ì”­Ë”‚ªburstShotMax(4”­)‚ğ’´‚¦‚½‚çˆ—
+                // ï¿½eï¿½Ì”ï¿½ï¿½Ëï¿½ï¿½ï¿½burstShotMax(4ï¿½ï¿½)ï¿½ğ’´‚ï¿½ï¿½ï¿½ï¿½çˆï¿½ï¿½
                 if (burstShotCount >= burstShotMax)
                 {
-                    isBurstFiring = false;  //ƒo[ƒXƒgó‘Ô‚ğ‰ğœ
-                    burstShotCount = 0;     //‰Šú‰»
+                    isBurstFiring = false;  //ï¿½oï¿½[ï¿½Xï¿½gï¿½ï¿½Ô‚ï¿½ï¿½ï¿½ï¿½ï¿½
+                    burstShotCount = 0;     //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 }
             }
         }
     }
 
-    //==================== ’e‚Ì”­Ëˆ— ====================
+    //==================== ï¿½eï¿½Ì”ï¿½ï¿½Ëï¿½ï¿½ï¿½ ====================
     void Shoot(Vector2 direction)
     {
-        // ”­Ë•ûŒü‚ÌŠp“xŒvZ
+        // ï¿½ï¿½ï¿½Ë•ï¿½ï¿½ï¿½ï¿½ÌŠpï¿½xï¿½vï¿½Z
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        // ’e‚ÌƒvƒŒƒnƒu‚ğİ’è(‚±‚±‚ğ—˜—p‚·‚ê‚Î’e‚ÌØ‚è‘Ö‚¦‰Â”\)
+        // ï¿½eï¿½Ìƒvï¿½ï¿½ï¿½nï¿½uï¿½ï¿½İ’ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ğ—˜—pï¿½ï¿½ï¿½ï¿½Î’eï¿½ÌØ‚ï¿½Ö‚ï¿½ï¿½Â”\)
         GameObject bulletPrefabToUse = BulletPrefab;
 
-        // ƒvƒŒƒnƒu‚ªİ’è‚³‚ê‚Ä‚¢‚È‚¯‚ê‚ÎƒGƒ‰[•\¦
+        // ï¿½vï¿½ï¿½ï¿½nï¿½uï¿½ï¿½ï¿½İ’è‚³ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ï¿½ÎƒGï¿½ï¿½ï¿½[ï¿½\ï¿½ï¿½
         if (bulletPrefabToUse == null)
         {
-            Debug.LogError("’e‚ÌƒvƒŒƒnƒu‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ");
+            Debug.LogError("ï¿½eï¿½Ìƒvï¿½ï¿½ï¿½nï¿½uï¿½ï¿½ï¿½İ’è‚³ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½");
             return;
         }
 
-        // ’e‚ğ¶¬‚µ‚Ä‰ñ“]‚ğƒZƒbƒg
+        // ï¿½eï¿½ğ¶ï¿½ï¿½ï¿½ï¿½Ä‰ï¿½]ï¿½ï¿½ï¿½Zï¿½bï¿½g
         GameObject bullet = Instantiate(bulletPrefabToUse, firePoint.position, Quaternion.Euler(0f, 0f, angle));
 
-        // Rigidbody2D‚ª‘¶İ‚·‚ê‚ÎA”­Ë•ûŒü‚É‘¬“x‚ğİ’è
+        // Rigidbody2Dï¿½ï¿½ï¿½ï¿½ï¿½İ‚ï¿½ï¿½ï¿½ÎAï¿½ï¿½ï¿½Ë•ï¿½ï¿½ï¿½ï¿½É‘ï¿½ï¿½xï¿½ï¿½İ’ï¿½
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         if (rb != null)
             rb.linearVelocity = direction.normalized * bulletSpeed;
     }
 
-    //==================== ”­ËˆÊ’u‚ğİ’è ====================
+    //==================== ï¿½ï¿½ï¿½ËˆÊ’uï¿½ï¿½İ’ï¿½ ====================
     void SetFirePointPosition(Vector2 offset)
     {
         firePoint.localPosition = offset;
 
-        // ’nãŒ‚‚¿ˆÈŠO‚Í‹L˜^‚µ‚Ä‚¨‚­
+        // ï¿½nï¿½ãŒ‚ï¿½ï¿½ï¿½ÈŠOï¿½Í‹Lï¿½^ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½
         if (currentDirection != Vector2.down)
             lastValidFirePointOffset = offset;
     }
 
-    //==================== ”š”jˆ— ====================
-    // æ‚è•¨‚Ì”j‰ó‚ÉŒÄ‚Ño‚µ(“Ëiˆ—‚©Vehicle_move‚Ì)
+    //==================== ï¿½ï¿½ï¿½jï¿½ï¿½ï¿½ï¿½ ====================
+    // ï¿½ï¿½è•¨ï¿½Ì”jï¿½ó‚ÉŒÄ‚Ñoï¿½ï¿½(ï¿½Ëiï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Vehicle_moveï¿½ï¿½)
     public void StartExplosion()
     {
         StartCoroutine(DelayedExplosion());
     }
 
-    // ƒ_ƒ[ƒW‚ğ‘Šè‚É“n‚·ŠÖ”(HP0‚©“Ëi‚Åƒ^[ƒQƒbƒg•ÏX)
+    // ï¿½_ï¿½ï¿½ï¿½[ï¿½Wï¿½ğ‘Šï¿½É“nï¿½ï¿½ï¿½Öï¿½(HP0ï¿½ï¿½ï¿½Ëiï¿½Åƒ^ï¿½[ï¿½Qï¿½bï¿½gï¿½ÏX)
     private IEnumerator DelayedExplosion()
     {
-        yield return new WaitForEndOfFrame(); // 1ƒtƒŒ[ƒ€‘Ò‚Â
+        yield return new WaitForEndOfFrame(); // 1ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Ò‚ï¿½
 
-        // ƒvƒŒƒCƒ„[‚ğ’¼Úæ“¾
+        // ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ğ’¼Úæ“¾
         GameObject player = vehicleScript.GetRider();
 
         if(player != null && vehicleScript.IsControlled())
         {
-            // Player‚ğæ“¾
+            // Playerï¿½ï¿½ï¿½æ“¾
             Player playerScript = player.GetComponent<Player>();
 
-            // æ‚è•¨‚ª”j‰ó‚³‚ê‚½ê‡
+            // ï¿½ï¿½è•¨ï¿½ï¿½ï¿½jï¿½ó‚³‚ê‚½ï¿½ê‡
             if (isExploding)
             {
-                Debug.Log("Player‚Éƒ_ƒ[ƒW");
-                // ”š”­‚ÅŠª‚«‚ß‚È‚¢‚±‚Æ‚ª‚ ‚é‚Ì‚Å’¼Úƒ_ƒ[ƒW‚ğ‚ ‚½‚¦‚é‚æ‚¤‚É•ÏX
+                Debug.Log("Playerï¿½Éƒ_ï¿½ï¿½ï¿½[ï¿½W");
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ÅŠï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß‚È‚ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚Å’ï¿½ï¿½Úƒ_ï¿½ï¿½ï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ‚¤ï¿½É•ÏX
                 playerScript.TakeDamage(vehicleScript.PlayerExplosionDamege);
             }
         }
@@ -352,17 +362,17 @@ public class Vehicle_Attack : MonoBehaviour
 
         foreach (var col in targets)
         {
-            // æ‚è•¨‚Å“ËiUŒ‚‚µ‚½ê‡
+            // ï¿½ï¿½è•¨ï¿½Å“Ëiï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡
             if (isCharging)
             {
-                // ƒ{ƒX‚Éƒ_ƒ[ƒW
+                // ï¿½{ï¿½Xï¿½Éƒ_ï¿½ï¿½ï¿½[ï¿½W
                 if (col.CompareTag("WeakPoint")|| col.CompareTag("Boss"))
                 {
                     var boss = col.GetComponentInParent<GloomVisBoss>();
                     if (boss != null) boss.TakeDamage(vehicleScript.explosionDamage);
                 }
 
-                // “G‚Éƒ_ƒ[ƒW
+                // ï¿½Gï¿½Éƒ_ï¿½ï¿½ï¿½[ï¿½W
                 else if (col.CompareTag("Enemy"))
                 {
                     var enemy = col.GetComponent<Enemy_Manager>();
@@ -371,7 +381,7 @@ public class Vehicle_Attack : MonoBehaviour
             }
         }
 
-        // æ‚è•¨‚Ì‚ÆƒvƒŒƒCƒ„[‚ÌÕ“Ë”»’è‚Ì•œŠˆ‚ğ1ƒtƒŒ[ƒ€•ª’x‰„‚³‚¹‚é
+        // ï¿½ï¿½è•¨ï¿½Ì‚Æƒvï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ÌÕ“Ë”ï¿½ï¿½ï¿½Ì•ï¿½ï¿½ï¿½ï¿½ï¿½1ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (vehicleScript != null)
             vehicleScript.StartCoroutine(vehicleScript.ReenableCollisionAfterDestroy());
 
@@ -380,14 +390,47 @@ public class Vehicle_Attack : MonoBehaviour
             Instantiate(ExEffect, transform.position, Quaternion.identity);
         }
 
-        // ”š”­Š®—¹Œã©g‚ğ”j‰ó
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ã©ï¿½gï¿½ï¿½jï¿½ï¿½
         Destroy(gameObject);
     }
 
-    // “Ëi‚ğ‚µ‚½Û‚ÌÕ“Ë”»’è‚ğ‰Â‹‰»
+    // ï¿½Ëiï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Û‚ÌÕ“Ë”ï¿½ï¿½ï¿½ï¿½ï¿½Âï¿½ï¿½ï¿½
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, dashDetectionRadius);
     }
+
+    void HandleGrenade()
+    {
+        if (!isControlled) return;
+
+        if (grenadePressed)
+        {
+            grenadePressed = false;
+
+            if (VehicleGrenade.Instance.GetCurrentBombCount() > 0)
+            {
+                GameObject grenade = Instantiate(grenadePrefab, firePoint.position, Quaternion.identity);
+
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ currentDirection ï¿½ğ—˜—p
+                Rigidbody2D rb = grenade.GetComponent<Rigidbody2D>();
+                if (rb != null)
+                {
+                    rb.linearVelocity = currentDirection.normalized * grenadeThrowForce;
+                }
+
+                bomb bombScript = grenade.GetComponent<bomb>();
+                if (bombScript != null)
+                {
+                    // ï¿½Eï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Åİ’ï¿½
+                    bool isFacingRight = currentDirection.x >= 0;
+                    bombScript.SetDirection(isFacingRight);
+                }
+
+                VehicleGrenade.Instance.UseBomb();
+            }
+        }
+    }
+
 }

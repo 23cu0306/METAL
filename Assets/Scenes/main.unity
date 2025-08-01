@@ -876,17 +876,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8401028143153046387, guid: 71fa7d123797b174592ede8b93bad7e1, type: 3}
   m_PrefabInstance: {fileID: 249294117}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &518961157 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7052131343807643305, guid: 71fa7d123797b174592ede8b93bad7e1, type: 3}
-  m_PrefabInstance: {fileID: 249294117}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 518961153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf8599f206810dd419ae5e188a29a1b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &526119953
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1142,6 +1131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 249294119}
   playerText: {fileID: 1037150838}
+  vehiclehp: {fileID: 0}
 --- !u!114 &622343500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1280,7 +1270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 728dae759a45361429cd050cf4348d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bomb: {fileID: 518961157}
+  bomb: {fileID: 1130706984}
   bombText: {fileID: 1314312702}
 --- !u!114 &670214173 stripped
 MonoBehaviour:
@@ -1855,6 +1845,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ce9c29de7acb3545b15b16716b5f3b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1130706984 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -1874867530894904991, guid: 585495c216243b84da29e8a981576381, type: 3}
+  m_PrefabInstance: {fileID: 973995527}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af472120e811e1b4a9f6318c08d4aa0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1173378307
