@@ -685,7 +685,7 @@ public class vehicle_move : MonoBehaviour
         return isDestroying;
     }
 
-    //==================== 8. 接地判定・Gizmos ====================
+    //==================== 8. 接地判定・判定のDebug ====================
     //地面判定
     private void CheckGround()
     {
