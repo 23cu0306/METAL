@@ -33,19 +33,18 @@ public class gurenerd : MonoBehaviour
 
     void ThrowGrenade()
     {
-        if (MAXBomb > 0)
+        if (VehicleGrenade.Instance.GetCurrentBombCount() > 0)
         {
             if (playerControls.Player.Bomb.triggered && bomb.activeGrenadeCount < 2)
             {
                 GameObject grenade = Instantiate(grenadePrefab, grenadeSpawnPoint.position, Quaternion.identity);
-                MAXBomb -= 1;
+                VehicleGrenade.Instance.UseBomb();
 
-                // PlayerÇÃflipXÇéQè∆
                 GameObject player = GameObject.FindGameObjectWithTag("Player");
                 if (player != null)
                 {
                     SpriteRenderer sr = player.GetComponentInChildren<SpriteRenderer>();
-                    bool isFacingRight = !(sr != null && sr.flipX); // flipXÇ»ÇÁç∂å¸Ç´
+                    bool isFacingRight = !(sr != null && sr.flipX);
                     bomb bombScript = grenade.GetComponent<bomb>();
                     if (bombScript != null)
                     {
@@ -53,8 +52,6 @@ public class gurenerd : MonoBehaviour
                     }
                 }
             }
-
-
         }
     }
 
