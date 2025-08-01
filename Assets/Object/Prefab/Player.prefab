@@ -184,7 +184,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 20
+  m_SortingOrder: 21
   m_Sprite: {fileID: -1923159360018771241, guid: 0cf4c1f9803a3824fa20cbf7165e5d1b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -422,6 +422,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grenadePrefab: {fileID: 3058942607959340667, guid: 8e384fdd9571fa4478dad55c726e7ba2, type: 3}
   grenadeSpawnPoint: {fileID: 5639942565218348585}
+  throwForce: 10
+  MAXBomb: 10
 --- !u!114 &578293097641000402
 MonoBehaviour:
   m_ObjectHideFlags: 0
