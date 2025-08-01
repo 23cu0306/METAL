@@ -35,7 +35,7 @@ public class Vehicle_Attack : MonoBehaviour
 
     [Header("グレネード設定")]
     public GameObject grenadePrefab;
-    public float grenadeThrowForce = 10f;
+    public float grenadeThrowForce = 5f;
     private bool grenadePressed = false; // �O���l�[�h�����̃g���K�[
 
     //==================== 乗り物関連 ====================
@@ -413,19 +413,19 @@ public class Vehicle_Attack : MonoBehaviour
             {
                 GameObject grenade = Instantiate(grenadePrefab, firePoint.position, Quaternion.identity);
 
-                // ����������� currentDirection �𗘗p
                 Rigidbody2D rb = grenade.GetComponent<Rigidbody2D>();
                 if (rb != null)
                 {
-                    rb.linearVelocity = currentDirection.normalized * grenadeThrowForce;
+                    // 常に右上へ投げる
+                    Vector2 throwDir = new Vector2(1f, 1f).normalized;
+                    rb.linearVelocity = throwDir * grenadeThrowForce;
                 }
 
                 bomb bombScript = grenade.GetComponent<bomb>();
                 if (bombScript != null)
                 {
-                    // �E�������������Őݒ�
-                    bool isFacingRight = currentDirection.x >= 0;
-                    bombScript.SetDirection(isFacingRight);
+                    // 向きは常に右で固定
+                    bombScript.SetDirection(true);
                 }
 
                 VehicleGrenade.Instance.UseBomb();

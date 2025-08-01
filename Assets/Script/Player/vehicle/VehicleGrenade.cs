@@ -11,7 +11,6 @@ public class VehicleGrenade : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // ƒV[ƒ“‚ğ‚Ü‚½‚¢‚Å‚à•Û‚·‚éê‡
         }
         else
         {

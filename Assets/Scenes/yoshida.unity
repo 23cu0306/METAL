@@ -2699,6 +2699,10 @@ PrefabInstance:
       propertyPath: explosionRadius
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4717073455184149223, guid: 585495c216243b84da29e8a981576381, type: 3}
+      propertyPath: grenadeThrowForce
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8062314274973312895, guid: 585495c216243b84da29e8a981576381, type: 3}
       propertyPath: m_Name
       value: ' vehicle'
