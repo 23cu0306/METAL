@@ -155,8 +155,7 @@
               "ViewState": "AgIAAFkCAAAAAAAAAAAiwGMCAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-22T05:45:34.205Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -166,7 +165,7 @@
               "RelativeDocumentMoniker": "Assets\\Script\\Player\\vehicle\\Vehicle_Attack.cs",
               "ToolTip": "D:\\23CU0338\\METAL\\Assets\\Script\\Player\\vehicle\\Vehicle_Attack.cs",
               "RelativeToolTip": "Assets\\Script\\Player\\vehicle\\Vehicle_Attack.cs",
-              "ViewState": "AgIAAJMBAAAAAAAAAAAuwJcBAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAAJEBAAAAAAAAAAAiwJsBAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-22T05:41:41.89Z",
               "IsPinned": true,
@@ -398,8 +397,7 @@
               "RelativeToolTip": "Assets\\Script\\Enemy\\meteo.cs",
               "ViewState": "AgIAACUAAAAAAAAAAAAgwC0AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-10T04:26:53.295Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-10T04:26:53.295Z"
             },
             {
               "$type": "Document",
@@ -459,8 +457,7 @@
               "RelativeToolTip": "Assets\\Script\\Player\\gurenerd.cs",
               "ViewState": "AgIAABUAAAAAAAAAAAAIwDwAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-10T04:26:53.763Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-10T04:26:53.763Z"
             },
             {
               "$type": "Document",
@@ -508,8 +505,7 @@
               "RelativeToolTip": "Assets\\Script\\Enemy\\Enemy_Manager.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-10T04:26:53.767Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-10T04:26:53.767Z"
             },
             {
               "$type": "Document",
@@ -521,8 +517,7 @@
               "RelativeToolTip": "Assets\\Script\\Player\\bomb.cs",
               "ViewState": "AgIAADYAAAAAAAAAAAAYwAcAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-10T04:26:53.297Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-10T04:26:53.297Z"
             },
             {
               "$type": "Document",

@@ -194,13 +194,17 @@ public class Attack : MonoBehaviour
             {
                 //発射方向を下へ
                 targetDirection = Vector2.down;
+
+                // 下入力をしているうちに左スティックがきりかわっても対応
+                if (moveInput.x > 0.3f)
+                {
+                    lastHorizontalDirection = Vector2.right;
+                }
+                else if (moveInput.x < -0.3f)
+                {
+                    lastHorizontalDirection = Vector2.left;
+                }
             }
-            //// 下を離した場合または着地時は最後に向いていた水平方向に即座に復元
-            //else if (!isDown && Vector2.Dot(currentDirection.normalized, Vector2.down) > 0.9f || !isGrounded)
-            //{
-            //    currentDirection = targetDirection = lastHorizontalDirection;
-            //    SetFirePointPosition(lastValidFirePointOffset);
-            //}
 
             // 下撃ちをしていて、かつ下を離した場合(戻り補完開始)
             else if(Vector2.Dot(currentDirection.normalized, Vector2.down) > 0.9f && moveInput.y >= -0.3f)
@@ -245,6 +249,16 @@ public class Attack : MonoBehaviour
             else if (moveInput.y < -0.3f && !isGrounded)
             {
                 currentDirection = targetDirection = Vector2.down;
+
+                // 下入力をしているうちに左スティックがきりかわっても対応
+                if (moveInput.x > 0.3f)
+                {
+                    lastHorizontalDirection = Vector2.right;
+                }
+                else if (moveInput.x < -0.3f)
+                {
+                    lastHorizontalDirection = Vector2.left;
+                }
             }
 
             //下を離した場合もしくは着地時は最後に向いていた水平方向に戻す処理
