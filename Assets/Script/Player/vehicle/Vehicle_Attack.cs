@@ -133,7 +133,7 @@ public class Vehicle_Attack : MonoBehaviour
         HandleInput();              // 入力から方向決定
         UpdateDirectionLerp();      // 発射方向を補間して更新
         Attack();
-        HandleGrenade(); // �O���l�[�h����
+        HandleGrenade(); // 手榴弾を投げる処理
     }
 
     //==================== 攻撃処理(突進攻撃も含む) ====================
@@ -175,6 +175,7 @@ public class Vehicle_Attack : MonoBehaviour
 
         // 右に自動移動
         transform.position += Vector3.right * dashSpeed * Time.deltaTime;
+
 
         // EnemyレイヤーBossタグに当たったら爆発処理開始
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, dashDetectionRadius);

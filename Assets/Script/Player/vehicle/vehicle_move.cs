@@ -231,7 +231,10 @@ public class vehicle_move : MonoBehaviour
             {
                 playerScript.isLandingInvincible = true;
                 playerScript.isInvincible = true;   // 視覚的に明示したい場合
-                playerScript.ForceShowSprite();     // プレイヤーが消えないように強制表示
+
+                // 透明になるバグを防止
+                playerScript.StopInvincibilityBlink();  // 点滅中なら止める
+                playerScript.ForceShowSprite();         // プレイヤーが消えないように強制表示
                 Debug.Log("降車後プレイヤーを着地まで無敵に設定");
             }
 
@@ -263,6 +266,14 @@ public class vehicle_move : MonoBehaviour
         // プレイヤー排出処理
         if (rider != null)
         {
+            // プレイヤーが透明化するバグを防ぐための予防
+            Player playerScript = rider.GetComponent<Player>();
+            if (playerScript != null)
+            {
+                playerScript.StopInvincibilityBlink();
+                playerScript.ForceShowSprite();
+            }
+
             // プレイヤーを自身の子オブジェクトから解除
             SafeSetParent(rider.transform, null);
 
@@ -336,7 +347,10 @@ public class vehicle_move : MonoBehaviour
     // 横移動処理
     private void HandleMovement()
     {
+        if (isDestroying || vehicleattack.isDashing) return; // 突進状態に入ったら横移動操作を受け付けないように
+
         if (isDestroying) return;
+
         // 地上と空中で横移動の速度変更
         float currentSpeed = isGrounded ? moveSpeed : airMoveSpeed;
 

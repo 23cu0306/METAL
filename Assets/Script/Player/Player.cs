@@ -44,6 +44,7 @@ public class Player : MonoBehaviour
     public bool isInvincible = false;            // 無敵状態中かどうか
     public float invincibilityDuration = 2f;      // 無敵状態の持続時間（秒）
     public float blinkInterval = 0.1f;            // 無敵時の点滅間隔（秒）
+    private Coroutine invincibilityCoroutine;   // 現在の無敵コルーチン
 
     [Header("Sprite関連")]
     [SerializeField] private Sprite standingSprite;     // 待機状態
@@ -344,6 +345,25 @@ public class Player : MonoBehaviour
         isInvincible = false;
     }
 
+    public void StopInvincibilityBlink()
+    {
+        if (invincibilityCoroutine != null)
+        {
+            StopCoroutine(invincibilityCoroutine);
+            invincibilityCoroutine = null;
+        }
+
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.enabled = true;
+
+            // アルファ値が0のままになるのを防ぐ
+            Color c = spriteRenderer.color;
+            c.a = 1f;
+            spriteRenderer.color = c;
+        }
+    }
+
     // 敵などからダメージを受けた時に呼ばれる関数
     public void TakeDamage(int damage)
     {
@@ -363,10 +383,7 @@ public class Player : MonoBehaviour
                 Die(); // 体力が0になったら死亡処理へ
             }
 
-            //// 被弾後はリスポーン位置に戻す
-            //transform.position = respawnPosition;
-            //rb.linearVelocity = Vector2.zero;
-            StartCoroutine(InvincibilityCoroutine()); // 一定時間無敵状態になる
+            invincibilityCoroutine = StartCoroutine(InvincibilityCoroutine()); // 一定時間無敵状態になる
         }
     }
 
@@ -383,6 +400,11 @@ public class Player : MonoBehaviour
         if (spriteRenderer != null)
         {
             spriteRenderer.enabled = true;
+
+            // 念のため透明度をリセット
+            Color c = spriteRenderer.color;
+            c.a = 1f;
+            spriteRenderer.color = c;
         }
     }
 
