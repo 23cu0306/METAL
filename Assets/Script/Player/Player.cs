@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public float moveSpeed = 15f;                 // 通常時の移動速度
     public float jumpForce = 20f;                 // ジャンプ時に加える上方向の力
     public float crouchSpeed = 4f;                // しゃがみ時の移動速度
-    public float airMoveSpeed = 8f;               // 空中での移動速度
+    public float airMoveSpeed = 1000f;               // 空中での移動速度
     public float airControlMultiplier = 0.5f;     // 空中での移動制御倍率（未使用）
     public float fallMultiplier = 2.5f;           // 落下速度強化用の重力補正倍率
 
