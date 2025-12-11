@@ -11,8 +11,8 @@ TagManager:
   - Boss
   - TEXT
   - EnemyBullet
-  - Enemy1
   - Vehicle
+  - BossHead
   layers:
   - Default
   - TransparentFX

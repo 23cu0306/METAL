@@ -70,6 +70,7 @@
     <Compile Include="Assets\Script\Enemy\HeadBlinker.cs" />
     <Compile Include="Assets\Script\Scene\UI\AmmoUI.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy_Bullet.cs" />
+    <Compile Include="Assets\Script\Enemy\EnemyFlashHead.cs" />
     <Compile Include="Assets\Script\Player\Attack.cs" />
     <Compile Include="Assets\LeftRightMovement.cs" />
     <Compile Include="Assets\UnityTechnologies\EffectExamples\Shared\Scripts\ParticleCollision.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Assets\Script\Enemy\ScarletClawBoss.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyActivator.cs" />
     <Compile Include="Assets\Script\Player\vehicle\Vehicle_Attack.cs" />
+    <Compile Include="Assets\Script\Enemy\Enemy_Flash.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy_Manager.cs" />
     <Compile Include="Assets\Script\Explosion_Delete.cs" />
     <Compile Include="Assets\BilliardEnemy.cs" />

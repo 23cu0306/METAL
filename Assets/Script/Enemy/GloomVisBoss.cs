@@ -245,8 +245,7 @@ public class GloomVisBoss : MonoBehaviour
 	{
 		currentHP -= dmg;
         Debug.Log("ダメージ量 " + dmg + "ボス残り HP: " + currentHP);
-        if (!isBlinking)
-            StartCoroutine(BlinkOnDamage());
+       
         if (currentHP <= 0)
 		{
 			Die();
@@ -254,23 +253,7 @@ public class GloomVisBoss : MonoBehaviour
 	}
 
 
-    /// <summary>
-    /// ダメージを受けたときに呼び出される点滅処理（Headに指示を出すだけ）
-    /// </summary>
-    private IEnumerator BlinkOnDamage()
-    {
-        isBlinking = true;
-
-        // Headオブジェクトに対して点滅を開始させる
-        if (headBlinker != null)
-            headBlinker.StartBlink(4, 0.1f); // 点滅4回、0.1秒間隔
-
-        // 全体の演出時間など調整する場合ここで待機
-        yield return new WaitForSeconds(0.8f);
-
-        isBlinking = false;
-    }
-
+  
 
     void Die()
 	{

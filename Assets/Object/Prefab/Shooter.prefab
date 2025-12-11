@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -5806298513429511440}
   - component: {fileID: 2240476161653109302}
   - component: {fileID: 9094812070174459512}
+  - component: {fileID: 7788064456181461380}
   - component: {fileID: -3628075164763892706}
   m_Layer: 8
   m_Name: Shooter
@@ -197,6 +198,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 4.59, y: 4.18}
   m_EdgeRadius: 0
+--- !u!114 &7788064456181461380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4968795692144619796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e701c21116da1a46903f9ae4c84418e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashColor: {r: 1, g: 0.5, b: 0, a: 1}
+  flashTime: 0.1
 --- !u!82 &-3628075164763892706
 AudioSource:
   m_ObjectHideFlags: 0

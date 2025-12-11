@@ -132,6 +132,8 @@ public class Enemy_Fly : MonoBehaviour, Enemy_Manager
         }
     }
 
+
+
     // 死亡処理
     void Die()
     {

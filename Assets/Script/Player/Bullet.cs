@@ -80,6 +80,7 @@ public class Bullet : MonoBehaviour
         {
             Enemy_Manager enemy = other.gameObject.GetComponent<Enemy_Manager>();
             enemy.TakeDamage(damage);
+            other.GetComponent<Enemy_Flash>()?.Flash();
             Destroy(gameObject);  //“–‚½‚Á‚½‚ç©•ª‚ğÁ‚·
         }
 
@@ -93,6 +94,7 @@ public class Bullet : MonoBehaviour
             if (boss != null)
             {
                 boss.TakeDamage(damage);
+                other.GetComponent<EnemyFlashHead>()?.Flash();
             }
             Destroy(gameObject); // ’e‚ğÁ‚·
         }

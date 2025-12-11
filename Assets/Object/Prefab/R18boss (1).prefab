@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 9013813873955559829}
   - component: {fileID: 7334192032862861565}
-  - component: {fileID: 8603082473223578085}
+  - component: {fileID: 708363808394423551}
   m_Layer: 0
   m_Name: head
-  m_TagString: Untagged
+  m_TagString: WeakPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -88,7 +88,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8603082473223578085
+--- !u!114 &708363808394423551
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,9 +97,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 84744753455125109}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c8386e80c35fcb40863d4b07461f913, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e701c21116da1a46903f9ae4c84418e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flashColor: {r: 1, g: 0.8, b: 0.2, a: 1}
+  flashTime: 0.1
 --- !u!1 &1139962464070660646
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,8 +186,9 @@ GameObject:
   - component: {fileID: 8839984854261298003}
   - component: {fileID: -260670758219447382}
   - component: {fileID: 7271618690778673678}
+  - component: {fileID: 4907885065949355380}
   m_Layer: 14
-  m_Name: R18boss
+  m_Name: R18boss (1)
   m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -200,7 +203,7 @@ Transform:
   m_GameObject: {fileID: 1228845275007878551}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 268.48926, y: -2.975359, z: 0}
+  m_LocalPosition: {x: 244.11824, y: -23.26069, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -321,6 +324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   laserSound: {fileID: 8300000, guid: c92fc493843675d4fb7f5a8acee9d427, type: 3}
   maxHP: 500
+  currentHP: 0
   player: {fileID: 0}
   weakPoint: {fileID: 5158415949908583731}
   decayBulletPrefab: {fileID: 3732021045332269484, guid: 758cf477f00142c46b2729296577f37a, type: 3}
@@ -483,6 +487,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0483335ad93430245b34599788c3cb6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4907885065949355380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228845275007878551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e701c21116da1a46903f9ae4c84418e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashColor: {r: 1, g: 0.5, b: 0, a: 1}
+  flashTime: 0.1
 --- !u!1 &2077372413178737300
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,7 +677,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5158415949908583731}
-  - component: {fileID: 234376807637128421}
+  - component: {fileID: 1472440467171484368}
   m_Layer: 15
   m_Name: WeakPoint
   m_TagString: WeakPoint
@@ -676,14 +694,14 @@ Transform:
   m_GameObject: {fileID: 7410648500755854391}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.33, y: 0.81, z: 0}
-  m_LocalScale: {x: 1.7534716, y: 2.104166, z: 1.7534716}
+  m_LocalPosition: {x: -1.99, y: 1.12, z: 0}
+  m_LocalScale: {x: 3.477634, y: 6.159183, z: 1.6759682}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9165783695796098830}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &234376807637128421
-CircleCollider2D:
+--- !u!61 &1472440467171484368
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -712,12 +730,22 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 1.4
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &8873867704852050319
 GameObject:
   m_ObjectHideFlags: 0
